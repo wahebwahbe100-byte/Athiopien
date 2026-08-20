@@ -1,0 +1,103 @@
+IMAGE SOURCES FOR INTRO GALLERIES
+All selected intro images are referenced from Wikimedia Commons file pages.
+Please review the individual license/attribution requirements before production use.
+
+reise-north.html
+  - Landscape with Church of Bet Giyorgis (3282501914).jpg
+    https://commons.wikimedia.org/wiki/File:Landscape_with_Church_of_Bet_Giyorgis_(3282501914).jpg
+  - Gonder.jpg
+    https://commons.wikimedia.org/wiki/File:Gonder.jpg
+  - Rome Stele.jpg
+    https://commons.wikimedia.org/wiki/File:Rome_Stele.jpg
+  - Simien Mountains Landscape, Ethiopia (2466091417).jpg
+    https://commons.wikimedia.org/wiki/File:Simien_Mountains_Landscape,_Ethiopia_(2466091417).jpg
+
+reise-south.html
+  - Hamer People (11694216496).jpg
+    https://commons.wikimedia.org/wiki/File:Hamer_People_(11694216496).jpg
+  - Ethnic Mursi women without her Lip plate at Omo Valley, Ethiopia.jpg
+    https://commons.wikimedia.org/wiki/File:Ethnic_Mursi_women_without_her_Lip_plate_at_Omo_Valley,_Ethiopia.jpg
+  - Lake Chamo 01.jpg
+    https://commons.wikimedia.org/wiki/File:Lake_Chamo_01.jpg
+  - LakeChamoCrocodile.jpg
+    https://commons.wikimedia.org/wiki/File:LakeChamoCrocodile.jpg
+
+reise-simien.html
+  - Simien Mountains Landscape, Ethiopia (2466091417).jpg
+    https://commons.wikimedia.org/wiki/File:Simien_Mountains_Landscape,_Ethiopia_(2466091417).jpg
+  - Simien Mountains National Park 11.jpg
+    https://commons.wikimedia.org/wiki/File:Simien_Mountains_National_Park_11.jpg
+  - Gelada 03.jpg
+    https://commons.wikimedia.org/wiki/File:Gelada_03.jpg
+  - Geladas near Chennek.jpg
+    https://commons.wikimedia.org/wiki/File:Geladas_near_Chennek.jpg
+
+reise-danakil.html
+  - The hydrothermal system of Dallol.png
+    https://commons.wikimedia.org/wiki/File:The_hydrothermal_system_of_Dallol.png
+  - ET Afar asv2018-01 img48 Dallol.jpg
+    https://commons.wikimedia.org/wiki/File:ET_Afar_asv2018-01_img48_Dallol.jpg
+  - ET Afar asv2018-01 img36 Dallol.jpg
+    https://commons.wikimedia.org/wiki/File:ET_Afar_asv2018-01_img36_Dallol.jpg
+  - ET Afar asv2018-01 img103 Ertale.jpg
+    https://commons.wikimedia.org/wiki/File:ET_Afar_asv2018-01_img103_Ertale.jpg
+
+reise-harar.html
+  - City Gate, Harar Jugol (14464345823).jpg
+    https://commons.wikimedia.org/wiki/File:City_Gate,_Harar_Jugol_(14464345823).jpg
+  - Harar Market, Ethiopia (23743606401).jpg
+    https://commons.wikimedia.org/wiki/File:Harar_Market,_Ethiopia_(23743606401).jpg
+  - Sanetti Plateau, Ethiopia (10668417294).jpg
+    https://commons.wikimedia.org/wiki/File:Sanetti_Plateau,_Ethiopia_(10668417294).jpg
+  - Ethiopian wolf (Canis simensis citernii) 2.jpg
+    https://commons.wikimedia.org/wiki/File:Ethiopian_wolf_(Canis_simensis_citernii)_2.jpg
+
+reise-photo.html
+  - Ethiopia LakeTana WomanPreparingTraditionalCoffee.JPG
+    https://commons.wikimedia.org/wiki/File:Ethiopia_LakeTana_WomanPreparingTraditionalCoffee.JPG
+  - Landscape with Church of Bet Giyorgis (3282501914).jpg
+    https://commons.wikimedia.org/wiki/File:Landscape_with_Church_of_Bet_Giyorgis_(3282501914).jpg
+  - Harar Market, Ethiopia (23743606401).jpg
+    https://commons.wikimedia.org/wiki/File:Harar_Market,_Ethiopia_(23743606401).jpg
+  - Simien Mountains Landscape, Ethiopia (2466091417).jpg
+    https://commons.wikimedia.org/wiki/File:Simien_Mountains_Landscape,_Ethiopia_(2466091417).jpg
+
+reise-family.html
+  - Lake Chamo 01.jpg
+    https://commons.wikimedia.org/wiki/File:Lake_Chamo_01.jpg
+  - LakeChamoCrocodile.jpg
+    https://commons.wikimedia.org/wiki/File:LakeChamoCrocodile.jpg
+  - Southern Ethiopia banner.jpg
+    https://commons.wikimedia.org/wiki/File:Southern_Ethiopia_banner.jpg
+  - Hamer People (11694216496).jpg
+    https://commons.wikimedia.org/wiki/File:Hamer_People_(11694216496).jpg
+
+reise-private.html
+  - Addis Ababa aerial approach 2009-08-27 15-26-13.jpg
+    https://commons.wikimedia.org/wiki/File:Addis_Ababa_aerial_approach_2009-08-27_15-26-13.jpg
+  - Churches of Lalibela - Bet Abba Libanos.jpg
+    https://commons.wikimedia.org/wiki/File:Churches_of_Lalibela_-_Bet_Abba_Libanos.jpg
+  - Simien Mountains National Park 11.jpg
+    https://commons.wikimedia.org/wiki/File:Simien_Mountains_National_Park_11.jpg
+  - Lake Chamo 01.jpg
+    https://commons.wikimedia.org/wiki/File:Lake_Chamo_01.jpg
+
+reise-comfort.html
+  - Sunset on the rising city, Addis Ababa - Flickr - jeanotr.jpg
+    https://commons.wikimedia.org/wiki/File:Sunset_on_the_rising_city,_Addis_Ababa_-_Flickr_-_jeanotr.jpg
+  - Ethiopian woman in coffee ceremony.jpg
+    https://commons.wikimedia.org/wiki/File:Ethiopian_woman_in_coffee_ceremony.jpg
+  - Landscape with Church of Bet Giyorgis (3282501914).jpg
+    https://commons.wikimedia.org/wiki/File:Landscape_with_Church_of_Bet_Giyorgis_(3282501914).jpg
+  - Lake Chamo 01.jpg
+    https://commons.wikimedia.org/wiki/File:Lake_Chamo_01.jpg
+
+PERFORMANCE UPDATE
+- Intro gallery thumbnails now request 1100 px (large cells) / 650 px (small cells).
+- Only the first intro image is eager/high priority; the other three use lazy/low priority.
+- Images decode asynchronously.
+- The first image is preloaded and Wikimedia hosts are preconnected.
+- Lightbox images are capped at 1600 px and load only when opened.
+
+
+Replacement image: omo-portrait.webp — generated for this site (local WebP).

@@ -1,0 +1,8 @@
+Google Maps – aktuelle Einbindung
+
+Die Reisekarten verwenden jetzt Google Maps als eingebettete Kartenbasis.
+Die animierten Routen, Pfeile und Stopps liegen als eigene SVG-Ebene darüber.
+Dadurch ist KEIN Google Maps JavaScript API Key mehr erforderlich.
+
+Jede Reise besitzt eine eigene Route in aj-route-map.js.
+Die Karte bleibt beim Scrollen fest; nur die schwarze Route, Pfeile und der aktuelle Punkt bauen sich auf.
