@@ -1043,6 +1043,452 @@ img{font-style:normal}.trip-media img,#dimg img,#overviewImg img,#summaryImage i
 .footer-socials-ref{display:flex!important;flex-wrap:wrap!important;gap:10px!important;align-items:center!important}
 @media(max-width:700px){.footer-socials-ref{gap:8px!important;max-width:330px!important}}
 </style>
+
+<style id="aj-nav-dropdown-sync-v13">
+/* synced from index: aj-desktop-dropdown-navigation-final */
+/* Polished navigation dropdowns — aligned with the site's navy / cream / gold identity. */
+.navlinks .nav-dropdown{
+  position:relative;display:flex;align-items:stretch;height:100%;min-width:0
+}
+.navlinks .nav-dropdown>.nav-main-link{
+  display:flex!important;align-items:center!important;gap:8px!important;white-space:nowrap
+}
+.navlinks .nav-arrow{
+  width:7px;height:7px;flex:0 0 auto;margin-top:-3px;
+  border-right:1.8px solid currentColor;border-bottom:1.8px solid currentColor;
+  transform:rotate(45deg);transform-origin:58% 58%;opacity:.72;
+  transition:transform .34s cubic-bezier(.22,1,.36,1),opacity .22s ease
+}
+.navlinks .nav-dropdown:hover>.nav-main-link .nav-arrow,
+.navlinks .nav-dropdown:focus-within>.nav-main-link .nav-arrow,
+.navlinks .nav-dropdown.is-open>.nav-main-link .nav-arrow{
+  transform:rotate(225deg);opacity:1
+}
+
+.nav-dropdown-menu{
+  --drop-bg:rgba(250,248,242,.985);
+  --drop-ink:#173a55;
+  --drop-muted:#62717b;
+  --drop-gold:#d8aa4d;
+  --drop-hover:#fff;
+  position:absolute;top:calc(100% - 5px);left:-22px;width:356px;
+  padding:10px;border:1px solid rgba(24,60,90,.11);border-radius:18px;
+  background:var(--drop-bg);color:var(--drop-ink);
+  box-shadow:0 22px 60px rgba(7,29,46,.18),0 4px 16px rgba(7,29,46,.07);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(10px) scale(.985);transform-origin:top left;
+  transition:opacity .20s ease,transform .30s cubic-bezier(.22,1,.36,1),visibility 0s linear .20s;
+  z-index:1200
+}
+.nav-dropdown:hover>.nav-dropdown-menu,
+.nav-dropdown:focus-within>.nav-dropdown-menu,
+.nav-dropdown.is-open>.nav-dropdown-menu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1);
+  transition:opacity .20s ease,transform .30s cubic-bezier(.22,1,.36,1),visibility 0s
+}
+/* Invisible bridge: keeps hover stable between the navbar and panel. */
+.nav-dropdown-menu::before{content:'';position:absolute;left:0;right:0;top:-14px;height:14px}
+/* Small visual pointer under the active top-level item. */
+.nav-dropdown-menu::after{
+  content:'';position:absolute;top:-6px;left:34px;width:12px;height:12px;
+  background:var(--drop-bg);border-left:1px solid rgba(24,60,90,.10);border-top:1px solid rgba(24,60,90,.10);
+  transform:rotate(45deg);border-radius:2px 0 0 0
+}
+
+.nav-dropdown-menu .drop-row{
+  position:relative;display:flex!important;align-items:center!important;justify-content:space-between!important;
+  gap:18px;min-height:54px!important;height:auto!important;margin:0;padding:11px 14px!important;
+  border:0!important;border-radius:12px;color:var(--drop-ink)!important;background:transparent!important;
+  font:700 .91rem/1.35 'Manrope',sans-serif!important;text-shadow:none!important;text-decoration:none!important;
+  transition:background .22s ease,color .22s ease,transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s ease!important
+}
+.nav-dropdown-menu .drop-row::before{
+  content:'';position:absolute;left:0;top:50%;width:3px;height:0;border-radius:999px;background:var(--drop-gold);
+  transform:translateY(-50%);transition:height .22s cubic-bezier(.22,1,.36,1)
+}
+.nav-dropdown-menu .drop-row::after{display:none!important}
+.nav-dropdown-menu .drop-row:hover,
+.nav-dropdown-menu .drop-row:focus-visible,
+.nav-dropdown-menu .drop-group.is-open>.drop-row{
+  color:#0e314d!important;background:rgba(255,255,255,.9)!important;
+  box-shadow:0 7px 20px rgba(7,29,46,.065);transform:translateX(2px)
+}
+.nav-dropdown-menu .drop-row:hover::before,
+.nav-dropdown-menu .drop-row:focus-visible::before,
+.nav-dropdown-menu .drop-group.is-open>.drop-row::before{height:24px}
+
+.nav-dropdown-menu .side-arrow{
+  width:8px;height:8px;flex:0 0 auto;margin-right:3px;
+  border-right:1.8px solid currentColor;border-top:1.8px solid currentColor;
+  transform:rotate(45deg);opacity:.62;
+  transition:transform .28s cubic-bezier(.22,1,.36,1),opacity .2s ease,color .2s ease
+}
+.nav-dropdown-menu .drop-row:hover .side-arrow,
+.nav-dropdown-menu .drop-group.is-open>.drop-row .side-arrow{color:var(--drop-gold);opacity:1;transform:translateX(2px) rotate(45deg)}
+.nav-dropdown-menu .drop-group{position:relative}
+
+.nav-dropdown-menu .drop-submenu{
+  position:absolute;left:calc(100% + 12px);top:-10px;width:384px;padding:10px;
+  border:1px solid rgba(24,60,90,.11);border-radius:18px;background:var(--drop-bg);
+  box-shadow:0 22px 60px rgba(7,29,46,.17),0 4px 15px rgba(7,29,46,.06);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateX(9px) scale(.985);transform-origin:left top;
+  transition:opacity .18s ease,transform .28s cubic-bezier(.22,1,.36,1),visibility 0s linear .18s;z-index:3
+}
+/* Invisible bridge between level one and level two. */
+.nav-dropdown-menu .drop-submenu::before{content:'';position:absolute;left:-13px;top:0;bottom:0;width:13px}
+.nav-dropdown-menu .drop-group:hover>.drop-submenu,
+.nav-dropdown-menu .drop-group:focus-within>.drop-submenu,
+.nav-dropdown-menu .drop-group.is-open>.drop-submenu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateX(0) scale(1);
+  transition:opacity .18s ease,transform .28s cubic-bezier(.22,1,.36,1),visibility 0s
+}
+.nav-dropdown-menu .drop-submenu a{
+  position:relative;display:flex!important;align-items:center!important;min-height:52px!important;height:auto!important;
+  padding:10px 14px!important;border:0!important;border-radius:11px;color:#29495f!important;background:transparent!important;
+  font:600 .90rem/1.38 'Manrope',sans-serif!important;text-shadow:none!important;white-space:normal!important;
+  transition:background .20s ease,color .20s ease,transform .20s cubic-bezier(.22,1,.36,1)!important
+}
+.nav-dropdown-menu .drop-submenu a::after{display:none!important}
+.nav-dropdown-menu .drop-submenu a:hover,
+.nav-dropdown-menu .drop-submenu a:focus-visible{
+  background:rgba(255,255,255,.94)!important;color:#0e314d!important;transform:translateX(2px)
+}
+.nav-dropdown-menu .drop-submenu a:hover::before,
+.nav-dropdown-menu .drop-submenu a:focus-visible::before{
+  content:'';width:6px;height:6px;margin-right:10px;flex:0 0 auto;border-radius:50%;background:var(--drop-gold)
+}
+
+/* Compact menus keep the same premium visual language. */
+.nav-dropdown-menu.compact{width:292px}
+.nav-dropdown-menu.compact .drop-row{min-height:50px!important;padding:10px 13px!important;font-size:.86rem!important}
+
+/* Dropdowns remain light and readable while the navbar itself turns dark on scroll. */
+.site-nav.scrolled .nav-dropdown-menu a,
+body.top-strip-collapsed .site-nav .nav-dropdown-menu a{color:var(--drop-ink)!important;text-shadow:none!important}
+.site-nav.scrolled .nav-dropdown-menu .drop-row:hover,
+body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e314d!important}
+
+@media(max-width:1180px) and (min-width:769px){
+  .navlinks .nav-dropdown>.nav-main-link{gap:5px!important}
+  .navlinks .nav-arrow{width:6px;height:6px}
+  .nav-dropdown-menu{left:-14px;width:318px;padding:8px}
+  .nav-dropdown-menu .drop-submenu{width:338px;padding:8px}
+  .nav-dropdown-menu .drop-row{min-height:50px!important;padding:9px 12px!important;font-size:.83rem!important}
+  .nav-dropdown-menu .drop-submenu a{min-height:48px!important;padding:9px 12px!important;font-size:.82rem!important}
+  .nav-dropdown-menu.compact{width:270px}
+}
+
+/* Mobile: smooth nested accordion with the same navy / gold palette. */
+@media(max-width:768px){
+  .navlinks .nav-dropdown{display:block!important;height:auto!important;width:100%!important}
+  .navlinks .nav-dropdown>.nav-main-link{
+    width:100%!important;min-height:48px!important;justify-content:space-between!important;
+    padding:12px 13px!important;border-radius:12px!important;transition:background .22s ease,color .22s ease!important
+  }
+  .navlinks .nav-dropdown.is-open>.nav-main-link{background:rgba(255,255,255,.07)!important;color:#f2cf74!important}
+  .navlinks .nav-dropdown>.nav-main-link::after{display:none!important}
+  .navlinks .nav-dropdown>.nav-main-link .nav-arrow{margin-left:auto;color:#f2cf74}
+
+  .nav-dropdown-menu,.nav-dropdown-menu.compact{
+    position:static!important;width:100%!important;max-height:0!important;padding:0 7px!important;margin:0!important;
+    border:0!important;border-radius:14px!important;background:rgba(4,23,38,.20)!important;box-shadow:none!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+    opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:none!important;overflow:hidden!important;
+    transition:max-height .48s cubic-bezier(.22,1,.36,1),padding .36s ease,margin .36s ease!important
+  }
+  .nav-dropdown-menu::before,.nav-dropdown-menu::after{display:none!important}
+  .nav-dropdown.is-open>.nav-dropdown-menu{max-height:780px!important;padding:7px!important;margin:4px 0 8px!important}
+
+  .nav-dropdown-menu .drop-row{
+    min-height:45px!important;padding:10px 12px!important;border-radius:10px!important;color:#edf4f8!important;background:transparent!important;
+    box-shadow:none!important;transform:none!important;font-size:.81rem!important
+  }
+  .nav-dropdown-menu .drop-row::before{display:none!important}
+  .nav-dropdown-menu .drop-row:hover,
+  .nav-dropdown-menu .drop-row:focus-visible,
+  .nav-dropdown-menu .drop-group.is-open>.drop-row{background:rgba(255,255,255,.075)!important;color:#f2cf74!important;box-shadow:none!important}
+  .nav-dropdown-menu .side-arrow{color:#f2cf74;transform:rotate(45deg)}
+  .nav-dropdown-menu .drop-group.is-open>.drop-row .side-arrow{transform:rotate(135deg)}
+
+  .nav-dropdown-menu .drop-submenu{
+    position:static!important;width:100%!important;max-height:0!important;padding:0 0 0 10px!important;margin:0!important;
+    border:0!important;border-radius:10px!important;background:rgba(3,20,33,.18)!important;box-shadow:none!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+    opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:none!important;overflow:hidden!important;
+    transition:max-height .42s cubic-bezier(.22,1,.36,1),padding .30s ease!important
+  }
+  .nav-dropdown-menu .drop-submenu::before{display:none!important}
+  .nav-dropdown-menu .drop-group.is-open>.drop-submenu{max-height:430px!important;padding-top:5px!important;padding-bottom:5px!important}
+  .nav-dropdown-menu .drop-submenu a{
+    min-height:42px!important;padding:9px 12px!important;border-radius:9px!important;color:#dce8ef!important;background:transparent!important;font-size:.77rem!important;transform:none!important
+  }
+  .nav-dropdown-menu .drop-submenu a:hover,
+  .nav-dropdown-menu .drop-submenu a:focus-visible{background:rgba(255,255,255,.06)!important;color:#f2cf74!important;transform:none!important}
+  .nav-dropdown-menu .drop-submenu a:hover::before,
+  .nav-dropdown-menu .drop-submenu a:focus-visible::before{width:5px;height:5px;margin-right:8px;background:#f2cf74}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .navlinks .nav-arrow,.nav-dropdown-menu,.nav-dropdown-menu .drop-row,.nav-dropdown-menu .side-arrow,.nav-dropdown-menu .drop-submenu,.nav-dropdown-menu .drop-submenu a{transition:none!important}
+}
+
+/* synced from index: aj-dropdown-clean-smaller-final */
+/* Remove the extra decorative marker and make the whole navigation a bit smaller/cleaner. */
+.nav-dropdown-menu::after,
+.nav-dropdown-menu .drop-row::before,
+.nav-dropdown-menu .drop-submenu a:hover::before,
+.nav-dropdown-menu .drop-submenu a:focus-visible::before{
+  content:none!important;
+  display:none!important;
+}
+
+@media(min-width:769px){
+  .site-nav .nav-inner,
+  .site-nav.scrolled .nav-inner,
+  body.top-strip-collapsed .site-nav .nav-inner{
+    height:72px!important;
+    min-height:72px!important;
+  }
+
+  .site-nav .navlinks,
+  .site-nav.scrolled .navlinks,
+  body.top-strip-collapsed .site-nav .navlinks{
+    gap:16px!important;
+  }
+
+  .site-nav .navlinks a,
+  .site-nav.scrolled .navlinks a,
+  body.top-strip-collapsed .site-nav .navlinks a{
+    font-size:.78rem!important;
+    padding-top:26px!important;
+    padding-bottom:22px!important;
+    letter-spacing:.01em!important;
+  }
+
+  .site-nav .navlinks a::after,
+  .site-nav.scrolled .navlinks a::after,
+  body.top-strip-collapsed .site-nav .navlinks a::after{
+    bottom:13px!important;
+  }
+
+  .navlinks .nav-dropdown>.nav-main-link{
+    gap:5px!important;
+  }
+
+  .navlinks .nav-arrow{
+    width:5px!important;
+    height:5px!important;
+    margin-top:-2px!important;
+    border-right-width:1.5px!important;
+    border-bottom-width:1.5px!important;
+  }
+
+  .nav-dropdown-menu{
+    top:calc(100% - 1px)!important;
+    left:-10px!important;
+    width:286px!important;
+    padding:7px!important;
+    border-radius:14px!important;
+    box-shadow:0 16px 34px rgba(7,29,46,.14),0 3px 10px rgba(7,29,46,.05)!important;
+  }
+
+  .nav-dropdown-menu::before{
+    top:-10px!important;
+    height:10px!important;
+  }
+
+  .nav-dropdown-menu .drop-row{
+    min-height:44px!important;
+    gap:12px!important;
+    padding:8px 11px!important;
+    border-radius:10px!important;
+    font-size:.81rem!important;
+    line-height:1.3!important;
+  }
+
+  .nav-dropdown-menu .drop-row:hover,
+  .nav-dropdown-menu .drop-row:focus-visible,
+  .nav-dropdown-menu .drop-group.is-open>.drop-row{
+    transform:none!important;
+    box-shadow:0 5px 14px rgba(7,29,46,.05)!important;
+  }
+
+  .nav-dropdown-menu .side-arrow{
+    width:6px!important;
+    height:6px!important;
+    margin-right:1px!important;
+    border-right-width:1.5px!important;
+    border-top-width:1.5px!important;
+    opacity:.72!important;
+  }
+
+  .nav-dropdown-menu .drop-row:hover .side-arrow,
+  .nav-dropdown-menu .drop-group.is-open>.drop-row .side-arrow{
+    transform:rotate(45deg)!important;
+  }
+
+  .nav-dropdown-menu .drop-submenu{
+    left:calc(100% + 8px)!important;
+    top:-7px!important;
+    width:298px!important;
+    padding:7px!important;
+    border-radius:14px!important;
+    box-shadow:0 16px 34px rgba(7,29,46,.13),0 3px 10px rgba(7,29,46,.05)!important;
+  }
+
+  .nav-dropdown-menu .drop-submenu::before{
+    left:-9px!important;
+    width:9px!important;
+  }
+
+  .nav-dropdown-menu .drop-submenu a{
+    min-height:44px!important;
+    padding:8px 11px!important;
+    border-radius:9px!important;
+    font-size:.80rem!important;
+    line-height:1.3!important;
+  }
+
+  .nav-dropdown-menu.compact{
+    width:236px!important;
+  }
+}
+
+@media(max-width:768px){
+  .navlinks .nav-dropdown>.nav-main-link{
+    min-height:44px!important;
+    padding:10px 12px!important;
+    font-size:.80rem!important;
+  }
+
+  .navlinks .nav-arrow{
+    width:5px!important;
+    height:5px!important;
+  }
+
+  .nav-dropdown.is-open>.nav-dropdown-menu{
+    margin:3px 0 7px!important;
+    padding:6px!important;
+  }
+
+  .nav-dropdown-menu .drop-row{
+    min-height:40px!important;
+    padding:8px 10px!important;
+    font-size:.77rem!important;
+  }
+
+  .nav-dropdown-menu .drop-submenu a{
+    min-height:38px!important;
+    padding:8px 10px!important;
+    font-size:.74rem!important;
+  }
+}
+
+/* synced from index: aj-dropdown-extra-small-final */
+@media(min-width:769px){
+  .site-nav .nav-inner,
+  .site-nav.scrolled .nav-inner,
+  body.top-strip-collapsed .site-nav .nav-inner{
+    height:64px!important;
+    min-height:64px!important;
+  }
+
+  .site-nav .navlinks,
+  .site-nav.scrolled .navlinks,
+  body.top-strip-collapsed .site-nav .navlinks{
+    gap:12px!important;
+  }
+
+  .site-nav .navlinks a,
+  .site-nav.scrolled .navlinks a,
+  body.top-strip-collapsed .site-nav .navlinks a{
+    font-size:.70rem!important;
+    padding-top:22px!important;
+    padding-bottom:19px!important;
+  }
+
+  .site-nav .navlinks a::after,
+  .site-nav.scrolled .navlinks a::after,
+  body.top-strip-collapsed .site-nav .navlinks a::after{
+    bottom:10px!important;
+    height:1.5px!important;
+  }
+
+  .navlinks .nav-dropdown>.nav-main-link{gap:4px!important}
+
+  .navlinks .nav-arrow{
+    width:4px!important;
+    height:4px!important;
+    border-right-width:1.3px!important;
+    border-bottom-width:1.3px!important;
+  }
+
+  .nav-dropdown-menu{
+    left:-8px!important;
+    width:248px!important;
+    padding:6px!important;
+    border-radius:12px!important;
+    box-shadow:0 12px 26px rgba(7,29,46,.12),0 2px 8px rgba(7,29,46,.04)!important;
+  }
+
+  .nav-dropdown-menu .drop-row{
+    min-height:38px!important;
+    gap:9px!important;
+    padding:7px 9px!important;
+    border-radius:8px!important;
+    font-size:.73rem!important;
+  }
+
+  .nav-dropdown-menu .side-arrow{
+    width:5px!important;
+    height:5px!important;
+    border-right-width:1.3px!important;
+    border-top-width:1.3px!important;
+  }
+
+  .nav-dropdown-menu .drop-submenu{
+    left:calc(100% + 6px)!important;
+    top:-6px!important;
+    width:258px!important;
+    padding:6px!important;
+    border-radius:12px!important;
+    box-shadow:0 12px 26px rgba(7,29,46,.11),0 2px 8px rgba(7,29,46,.04)!important;
+  }
+
+  .nav-dropdown-menu .drop-submenu a{
+    min-height:38px!important;
+    padding:7px 9px!important;
+    border-radius:8px!important;
+    font-size:.72rem!important;
+  }
+
+  .nav-dropdown-menu.compact{width:210px!important}
+}
+
+@media(max-width:768px){
+  .navlinks .nav-dropdown>.nav-main-link{
+    min-height:40px!important;
+    padding:8px 10px!important;
+    font-size:.75rem!important;
+  }
+
+  .navlinks .nav-arrow{width:4px!important;height:4px!important}
+
+  .nav-dropdown-menu .drop-row{
+    min-height:36px!important;
+    padding:7px 9px!important;
+    font-size:.72rem!important;
+  }
+
+  .nav-dropdown-menu .drop-submenu a{
+    min-height:34px!important;
+    padding:7px 9px!important;
+    font-size:.69rem!important;
+  }
+}
+</style>
 </head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
 
 <section class="trip-photo-gallery" id="tripPhotoGallery" aria-label="Reisebilder">
@@ -1931,5 +2377,144 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
   .site-nav .menuBtn{flex-basis:42px!important}
 }
 </style>
+
+
+<script id="aj-nav-arrows-sync-v13">
+(function(){
+  function syncIndexNavigation(){
+    const navlinks=document.getElementById('mainNav') || document.querySelector('.site-nav .navlinks');
+    if(!navlinks || navlinks.dataset.indexArrowsSynced==='1') return;
+    navlinks.dataset.indexArrowsSynced='1';
+
+    const p = '../';
+    navlinks.id='mainNav';
+    navlinks.innerHTML=`
+      <div class="nav-dropdown nav-dropdown-groups">
+        <a class="nav-main-link" href="${p}reisen.html" data-page="reisen.html"><span data-i18n="groups">Gruppenreisen</span><i class="nav-arrow" aria-hidden="true"></i></a>
+        <div class="nav-dropdown-menu" aria-label="Gruppenreisen Untermenü">
+          <div class="drop-group">
+            <a class="drop-row" href="${p}reisen.html?filter=region"><span>Nach Region</span><i class="side-arrow" aria-hidden="true"></i></a>
+            <div class="drop-submenu">
+              <a href="${p}reisen.html?region=nord">Nordäthiopien-Rundreisen</a>
+              <a href="${p}reisen.html?region=sued">Südäthiopien-Rundreisen</a>
+              <a href="${p}reisen.html?region=ost">Ostäthiopien-Rundreisen</a>
+              <a href="${p}reisen.html?region=zentral">Zentraläthiopien-Rundreisen</a>
+            </div>
+          </div>
+          <div class="drop-group">
+            <a class="drop-row" href="${p}reisen.html?filter=thema"><span>Nach Thema &amp; Aktivität</span><i class="side-arrow" aria-hidden="true"></i></a>
+            <div class="drop-submenu">
+              <a href="${p}reisen.html?cat=Kultur">Kulturreisen</a>
+              <a href="${p}reisen.html?cat=Wandern">Natur &amp; Trekking</a>
+              <a href="${p}reisen.html?cat=Begegnungen">Kultur &amp; Begegnungen</a>
+              <a href="${p}reisen.html?cat=Abenteuer">Abenteuerreisen</a>
+              <a href="${p}reisen.html?cat=Reisen%20f%C3%BCr%20Personen%20mit%20k%C3%B6rperlicher%20Beeintr%C3%A4chtigung">Reisen für Personen mit körperlicher Beeinträchtigung</a>
+            </div>
+          </div>
+          <div class="drop-group">
+            <a class="drop-row" href="${p}reisen.html?filter=dauer"><span>Nach Dauer</span><i class="side-arrow" aria-hidden="true"></i></a>
+            <div class="drop-submenu">
+              <a href="${p}reisen.html?dauer=1-2">1–2 Tage</a>
+              <a href="${p}reisen.html?dauer=3-4">3–4 Tage</a>
+              <a href="${p}reisen.html?dauer=5-8">5–8 Tage</a>
+              <a href="${p}reisen.html?dauer=1-woche">1 Woche</a>
+              <a href="${p}reisen.html?dauer=2-wochen">2 Wochen</a>
+              <a href="${p}reisen.html?dauer=3-wochen">3 Wochen</a>
+              <a href="${p}reisen.html">Beliebig</a>
+            </div>
+          </div>
+          <a class="drop-row" href="${p}reisen.html"><span>Alle Touren</span></a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a class="nav-main-link" href="${p}individualreisen.html" data-page="individualreisen.html"><span data-i18n="private">Individualreisen</span><i class="nav-arrow" aria-hidden="true"></i></a>
+        <div class="nav-dropdown-menu compact">
+          <a class="drop-row" href="${p}individualreisen.html"><span>Private Rundreisen</span></a>
+          <a class="drop-row" href="${p}baukasten.html"><span>Individuell planen</span></a>
+          <a class="drop-row" href="${p}kontakt.html"><span>Persönliche Beratung</span></a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a class="nav-main-link" href="${p}baukasten.html" data-page="baukasten.html"><span data-i18n="modules">Reisebausteine</span><i class="nav-arrow" aria-hidden="true"></i></a>
+        <div class="nav-dropdown-menu compact">
+          <a class="drop-row" href="${p}baukasten.html"><span>Reise zusammenstellen</span></a>
+          <a class="drop-row" href="${p}reisen.html?cat=Kultur"><span>Kultur &amp; Geschichte</span></a>
+          <a class="drop-row" href="${p}reisen.html?cat=Wandern"><span>Natur &amp; Aktivität</span></a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a class="nav-main-link" href="${p}reisetipps.html" data-page="reisetipps.html"><span data-i18n="tips">Reisetipps</span><i class="nav-arrow" aria-hidden="true"></i></a>
+        <div class="nav-dropdown-menu compact">
+          <a class="drop-row" href="${p}reisetipps.html"><span>Sehenswürdigkeiten</span></a>
+          <a class="drop-row" href="${p}reisetipps.html"><span>Beste Reisezeit</span></a>
+          <a class="drop-row" href="${p}reisetipps.html"><span>Einreise &amp; Visum</span></a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a class="nav-main-link" href="${p}info.html" data-page="info.html"><span data-i18n="info">Infos</span><i class="nav-arrow" aria-hidden="true"></i></a>
+        <div class="nav-dropdown-menu compact">
+          <a class="drop-row" href="${p}info.html"><span>Über uns</span></a>
+          <a class="drop-row" href="${p}kontakt.html"><span>Kontaktieren Sie uns</span></a>
+        </div>
+      </div>`;
+
+    const current=(location.pathname.split('/').pop()||'index.html').toLowerCase();
+    navlinks.querySelectorAll('[data-page]').forEach(a=>{
+      const active=(a.dataset.page||'').toLowerCase()===current;
+      a.classList.toggle('active',active);
+      if(active) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    if(location.pathname.includes('/Ausgewaehlte-Reisen/')) navlinks.querySelector('[data-page="reisen.html"]')?.classList.add('active');
+    if(location.pathname.includes('/Reisearten/')){
+      const target=location.pathname.includes('individual')?'individualreisen.html':'reisen.html';
+      navlinks.querySelector(`[data-page="${target}"]`)?.classList.add('active');
+    }
+
+    const dropdowns=[...navlinks.querySelectorAll('.nav-dropdown')];
+    const closeDropdowns=(except=null)=>dropdowns.forEach(d=>{if(d!==except)d.classList.remove('is-open')});
+    const menuBtn=document.querySelector('.menuBtn');
+    const closeMobileMenu=()=>{
+      navlinks.classList.remove('open');
+      menuBtn?.classList.remove('menu-open');
+      menuBtn?.setAttribute('aria-expanded','false');
+      menuBtn?.setAttribute('aria-label','Menü öffnen');
+      document.body.classList.remove('menu-locked');
+      closeDropdowns();
+    };
+
+    dropdowns.forEach(drop=>{
+      const main=drop.querySelector(':scope > .nav-main-link');
+      main?.addEventListener('click',e=>{
+        if(innerWidth<=768){
+          e.preventDefault();
+          const willOpen=!drop.classList.contains('is-open');
+          closeDropdowns(drop);
+          drop.classList.toggle('is-open',willOpen);
+        }
+      });
+      drop.querySelectorAll('.drop-group > .drop-row').forEach(row=>{
+        row.addEventListener('click',e=>{
+          if(innerWidth<=768){
+            e.preventDefault();
+            const group=row.parentElement;
+            const willOpen=!group.classList.contains('is-open');
+            drop.querySelectorAll('.drop-group').forEach(g=>{if(g!==group)g.classList.remove('is-open')});
+            group.classList.toggle('is-open',willOpen);
+          }
+        });
+      });
+    });
+
+    navlinks.querySelectorAll('.drop-submenu a,.nav-dropdown-menu>a.drop-row').forEach(a=>a.addEventListener('click',closeMobileMenu));
+    document.addEventListener('click',e=>{if(innerWidth>768 && !e.target.closest('.nav-dropdown'))closeDropdowns()});
+    window.addEventListener('resize',closeDropdowns,{passive:true});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDropdowns()});
+
+    try{ if(typeof window.applyLang==='function') window.applyLang(localStorage.getItem('aj_lang')||document.documentElement.lang||'de'); }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',syncIndexNavigation);
+  else syncIndexNavigation();
+})();
+</script>
 
 </body></html>
