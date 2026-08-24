@@ -3190,11 +3190,15 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
 #reisearten .reiseart-card:hover .reiseart-card-media img{transform:scale(1.055);}
 #reisearten .reiseart-card-badge{display:none;}
 #reisearten .reiseart-card-info{position:relative;display:flex;flex-direction:column;flex:1;padding:10px 15px 0;background:#fff;min-height:auto;}
-#reisearten .reiseart-card-topline{display:flex;align-items:center;gap:6px;min-height:21px;margin-bottom:8px;}
+#reisearten .reiseart-card-topline{display:flex;align-items:center;gap:6px;min-height:26px;margin-bottom:8px;padding-right:31px;}
 #reisearten .reiseart-card-stars{display:inline-flex;align-items:center;gap:1px;color:var(--gold);font:800 .70rem 'Manrope',sans-serif;letter-spacing:.04em;}
 #reisearten .reiseart-card-mini{margin-left:auto;padding:2px 4px;border-radius:0;background:#f6f6f6;color:var(--clay);font:800 .52rem 'Manrope',sans-serif;letter-spacing:.06em;text-transform:uppercase;}
-#reisearten .reiseart-card-fav{position:absolute;top:8px;right:10px;width:23px;height:23px;padding:0;border:0;background:transparent;color:#d7dde1;display:grid;place-items:center;cursor:pointer;}
-#reisearten .reiseart-card-fav svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+#reisearten .reiseart-card-fav{position:absolute;z-index:6;top:8px;right:10px;width:27px;height:27px;padding:0;border:1px solid #e5e9ec;border-radius:50%;background:#fff;color:#aeb8bf;display:grid;place-items:center;cursor:pointer;box-shadow:0 3px 10px rgba(16,42,61,.08);transition:color .2s ease,background .2s ease,border-color .2s ease,transform .2s ease;}
+#reisearten .reiseart-card-fav:hover{color:var(--clay);background:#fff7f4;border-color:rgba(185,91,66,.28);transform:scale(1.06);}
+#reisearten .reiseart-card-fav svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+#reisearten .reiseart-card-fav[aria-pressed="true"],#reisearten .reiseart-card-fav.is-active{color:var(--clay);background:#fff4f1;border-color:rgba(185,91,66,.28);}
+#reisearten .reiseart-card-fav[aria-pressed="true"] svg,#reisearten .reiseart-card-fav.is-active svg{fill:currentColor;}
+#reisearten .reiseart-card-mini{max-width:calc(100% - 42px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 #reisearten .reiseart-card-place{margin:0 0 5px;color:var(--ink);font-size:.71rem;line-height:1.35;}
 #reisearten .reiseart-card-title-row{display:block;}
 #reisearten .reiseart-card-title-row h3{margin:0;font:800 .90rem 'Manrope',sans-serif;line-height:1.32;letter-spacing:-.025em;color:var(--clay);}
@@ -4853,6 +4857,48 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
 .footer-socials-ref{display:flex!important;flex-wrap:wrap!important;gap:10px!important;align-items:center!important}
 @media(max-width:700px){.footer-socials-ref{gap:8px!important;max-width:330px!important}}
 </style>
+<link rel="stylesheet" href="aj-client-enhancements.css?v=5"><style id="reisearten-heart-match-ausgewaehlte-v1">
+/* Reisearten: heart control intentionally matches Ausgewählte Reisen. */
+#reisearten .reiseart-card-fav{
+  top:7px;
+  right:9px;
+  width:24px;
+  height:24px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:transparent;
+  color:#9ca7ae;
+  box-shadow:none;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  transition:transform .2s ease,color .2s ease,background .2s ease,border-color .2s ease;
+}
+#reisearten .reiseart-card-fav:hover{
+  transform:scale(1.07);
+  color:var(--clay);
+  border-color:rgba(185,91,66,.22);
+  background:#fff8f5;
+}
+#reisearten .reiseart-card-fav svg{
+  width:14px;
+  height:14px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#reisearten .reiseart-card-fav[aria-pressed="true"],
+#reisearten .reiseart-card-fav.is-active{
+  color:var(--clay);
+  background:#fff4f1;
+  border-color:rgba(185,91,66,.22);
+}
+#reisearten .reiseart-card-fav[aria-pressed="true"] svg,
+#reisearten .reiseart-card-fav.is-active svg{fill:currentColor;}
+</style>
 </head>
 <body>
   <div data-shell="header"></div>
@@ -5148,7 +5194,7 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
         <div class="reisearten-card-heading">
           <div class="reisearten-card-kicker">Reisearten</div>
           <h2 id="reiseartenTitle">Wie möchten Sie Äthiopien erleben?</h2>
-          <p>Wählen Sie Ihren Reisestil – Kultur, Trekking, Abenteuer, Natur oder ganz individuell.</p>
+          <p>Wählen Sie Ihren Reisestil – von Kultur und Trekking bis zu Seniorenreisen sowie Hochzeits- und Verlobungsreisen.</p>
         </div>
 
         <div class="reisearten-card-carousel" data-reisearten-card-carousel>
@@ -5259,7 +5305,40 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
                   <a class="reiseart-card-link" href="reisen.html?cat=Reisen%20f%C3%BCr%20Personen%20mit%20k%C3%B6rperlicher%20Beeintr%C3%A4chtigung">Zur Reiseart <span aria-hidden="true">→</span></a>
                 </div>
               </article>
-            </div>
+            
+              <article class="reiseart-card aj-new-trip-type" data-aj-new-type="senioren">
+                <a class="reiseart-card-media" href="Reisearten/reiseart-senioren.html" aria-label="Seniorenreisen entdecken">
+                  <img src="https://images.unsplash.com/photo-1642505367898-cab7a3542cb3f?auto=format&fit=crop&fm=jpg&q=86&w=1200" alt="Komfortabel geplante Äthiopien-Reise" loading="lazy">
+                  <span class="reiseart-card-badge badge-individual">Senioren</span>
+                </a>
+                <div class="reiseart-card-info">
+                  <div class="reiseart-card-topline"><span class="reiseart-card-stars">★★★★★</span><span class="reiseart-card-mini">Komfort</span></div>
+                  <button class="reiseart-card-fav" type="button" aria-label="Seniorenreisen merken" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"></path></svg></button>
+                  <p class="reiseart-card-place">Äthiopien | Reiseart</p>
+                  <div class="reiseart-card-title-row"><h3><a href="Reisearten/reiseart-senioren.html">Seniorenreisen</a></h3></div>
+                  <p>Mehr Komfort, ausgewogene Etappen, zusätzliche Pausen und sorgfältig ausgewählte Unterkünfte.</p>
+                  <div class="reiseart-card-kind">Ruhigeres Tempo und persönliche Betreuung</div>
+                  <div class="reiseart-card-bottom"><span class="reiseart-card-price"><small>Schwerpunkt</small><strong>Komfort</strong></span><span class="reiseart-card-duration">Entspannt &amp;<br>persönlich</span></div>
+                  <a class="reiseart-card-link" href="Reisearten/reiseart-senioren.html">Zur Reiseart <span aria-hidden="true">→</span></a>
+                </div>
+              </article>
+              <article class="reiseart-card aj-new-trip-type" data-aj-new-type="hochzeit">
+                <a class="reiseart-card-media" href="Reisearten/reiseart-hochzeit-verlobung.html" aria-label="Hochzeits- und Verlobungsreisen entdecken">
+                  <img src="https://images.unsplash.com/photo-1508914127305-fa5114b81b3f?auto=format&fit=crop&fm=jpg&q=86&w=1200" alt="Besondere Reise für Hochzeit und Verlobung in Äthiopien" loading="lazy">
+                  <span class="reiseart-card-badge badge-culture">Hochzeit</span>
+                </a>
+                <div class="reiseart-card-info">
+                  <div class="reiseart-card-topline"><span class="reiseart-card-stars">★★★★★</span><span class="reiseart-card-mini">Zu zweit</span></div>
+                  <button class="reiseart-card-fav" type="button" aria-label="Hochzeits- und Verlobungsreisen merken" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"></path></svg></button>
+                  <p class="reiseart-card-place">Äthiopien | Reiseart</p>
+                  <div class="reiseart-card-title-row"><h3><a href="Reisearten/reiseart-hochzeit-verlobung.html">Hochzeits- &amp; Verlobungsreisen</a></h3></div>
+                  <p>Individuelle Reisen für Hochzeitsreise, Verlobung oder einen besonderen gemeinsamen Anlass.</p>
+                  <div class="reiseart-card-kind">Private Momente, besondere Unterkünfte und flexible Planung</div>
+                  <div class="reiseart-card-bottom"><span class="reiseart-card-price"><small>Schwerpunkt</small><strong>Romantik</strong></span><span class="reiseart-card-duration">Privat &amp;<br>besonders</span></div>
+                  <a class="reiseart-card-link" href="Reisearten/reiseart-hochzeit-verlobung.html">Zur Reiseart <span aria-hidden="true">→</span></a>
+                </div>
+              </article>
+</div>
           </div>
 
           <button class="reisearten-card-arrow reisearten-card-next" type="button" aria-label="Nächste Reiseart">
@@ -5393,8 +5472,9 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
       {id:'photo',title:'Licht des Hochlands',subtitle:'Fotoreise mit Zeit für Motive, Märkte und Landschaft',category:'Foto',days:11,price:3490,group:'3–8',image:REAL.coffee,level:'Leicht',rating:'5.0',tag:'Foto'},
       {id:'family',title:'Seen, Natur & Familie',subtitle:'Entspanntes Tempo mit Natur, Boot und Tierbeobachtung',category:'Familie',days:10,price:2790,group:'2–8',image:REAL.arba,level:'Familienfreundlich',rating:'4.8',tag:'Familie'},
       {id:'private',title:'Äthiopien Privat',subtitle:'Eigener Guide, flexible Route und ausgewählte Hotels',category:'VIP',days:12,price:4690,group:'2–4',image:REAL.addis,level:'Individuell',rating:'4.9',tag:'Private'},
-      {id:'comfort',title:'Äthiopien komfortabel',subtitle:'Weniger Transfers, mehr Komfort und barrierearme Planung',category:'Komfort',days:9,price:3390,group:'2–8',image:REAL.coffee,level:'Komfort',rating:'4.8',tag:'Komfort'}
-    ];
+      {id:'comfort',title:'Äthiopien komfortabel',subtitle:'Weniger Transfers, mehr Komfort und barrierearme Planung',category:'Komfort',days:9,price:3390,group:'2–8',image:REAL.coffee,level:'Komfort',rating:'4.8',tag:'Komfort'},
+{id:'senior',title:'Äthiopien entspannt genießen',subtitle:'Komfortable Etappen, ausgewählte Unterkünfte, persönliche Begleitung und genügend Pausen',category:'Seniorenreisen',days:10,price:3290,group:'2–8',image:REAL.arba,level:'Entspannt',rating:'4.9',tag:'Senioren'},
+{id:'romance',title:'Zu zweit durch Äthiopien',subtitle:'Hochzeitsreise, Verlobung oder Jubiläum mit privater Route und besonderen gemeinsamen Momenten',category:'Hochzeits- & Verlobungsreisen',days:12,price:4290,group:'2–2',image:REAL.lalibela,level:'Privat & romantisch',rating:'5.0',tag:'Für zwei'},];
 
     const I18N={
       de:{groups:'Gruppenreisen',private:'Individualreisen',modules:'Reisebausteine',tips:'Reisetipps',info:'Infos',builder:'Reise planen'},
@@ -5408,9 +5488,8 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
       pt:{groups:'Viagens em grupo',private:'Viagens privadas',modules:'Monte sua viagem',tips:'Dicas de viagem',info:'Informações',builder:'Planejar viagem'},
       ru:{groups:'Групповые туры',private:'Индивидуальные туры',modules:'Конструктор тура',tips:'Советы туристам',info:'Информация',builder:'Спланировать поездку'},
       es:{groups:'Viajes en grupo',private:'Viajes privados',modules:'Diseña tu viaje',tips:'Consejos de viaje',info:'Información',builder:'Planificar viaje'},
-      am:{groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',builder:'ጉዞ አቅድ'}
-    };
-
+      am:{groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',builder:'ጉዞ አቅድ'},tr:{home:'Etiyopya',groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',login:'Giriş',builder:'Seyahat planla'}
+};
     const LANGS={
       de:{name:'Deutsch',flag:'de'},en:{name:'English',flag:'gb'},ar:{name:'العربية',flag:'sa'},zh:{name:'中文',flag:'cn'},fr:{name:'Français',flag:'fr'},it:{name:'Italiano',flag:'it'},ja:{name:'日本語',flag:'jp'},ko:{name:'한국어',flag:'kr'},pt:{name:'Português',flag:'pt'},ru:{name:'Русский',flag:'ru'},es:{name:'Español',flag:'es'},am:{name:'አማርኛ',flag:'et'}
     };
@@ -6212,6 +6291,39 @@ document.addEventListener('DOMContentLoaded',function(){
 </script>
 
 
+<script id="reisearten-favorite-fix-v1">
+(function(){
+  function safeList(){
+    try{const value=JSON.parse(localStorage.getItem('aj_reisearten_favs')||'[]');return Array.isArray(value)?value:[]}catch(_){return []}
+  }
+  function keyFor(button){
+    const card=button.closest('.reiseart-card');
+    return card?.querySelector('a.reiseart-card-media[href], a.reiseart-card-link[href]')?.getAttribute('href')||button.getAttribute('aria-label')||'';
+  }
+  function sync(){
+    const favs=safeList();
+    document.querySelectorAll('#reisearten .reiseart-card-fav').forEach(button=>{
+      const active=favs.includes(keyFor(button));
+      button.classList.toggle('is-active',active);
+      button.setAttribute('aria-pressed',String(active));
+    });
+  }
+  document.addEventListener('click',function(event){
+    const button=event.target.closest('#reisearten .reiseart-card-fav');
+    if(!button)return;
+    event.preventDefault();
+    event.stopPropagation();
+    const key=keyFor(button);
+    if(!key)return;
+    let favs=safeList();
+    favs=favs.includes(key)?favs.filter(item=>item!==key):[...favs,key];
+    localStorage.setItem('aj_reisearten_favs',JSON.stringify(favs));
+    sync();
+  });
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync,{once:true});else sync();
+})();
+</script>
+
 <script id="newsletter-form-v2-official">
 (function(){
   function initNewsletter(){
@@ -6305,7 +6417,8 @@ document.addEventListener('DOMContentLoaded',function(){
     es:{name:'Español',flags:['es']},
     am:{name:'አማርኛ',flags:['et']},
     el:{name:'Ελληνικά',flags:['gr']},
-    he:{name:'עברית',flags:['il']}
+    he:{name:'עברית',flags:['il']},
+    tr:{name:'Türkçe',flags:['tr']}
   };
   const NAV_I18N={
     de:{groups:'Gruppenreisen',private:'Individualreisen',modules:'Reisebausteine',tips:'Reisetipps',info:'Infos',builder:'Reise planen',login:'Einloggen',home:'Äthiopien'},
@@ -6321,7 +6434,8 @@ document.addEventListener('DOMContentLoaded',function(){
     es:{groups:'Viajes en grupo',private:'Viajes privados',modules:'Diseña tu viaje',tips:'Consejos de viaje',info:'Información',builder:'Planificar viaje',login:'Iniciar sesión',home:'Etiopía'},
     am:{groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',builder:'ጉዞ አቅድ',login:'ግባ',home:'ኢትዮጵያ'},
     el:{groups:'Ομαδικά ταξίδια',private:'Ιδιωτικά ταξίδια',modules:'Σχεδιασμός ταξιδιού',tips:'Ταξιδιωτικές συμβουλές',info:'Πληροφορίες',builder:'Σχεδιάστε ταξίδι',login:'Σύνδεση',home:'Αιθιοπία'},
-    he:{groups:'טיולים קבוצתיים',private:'טיולים פרטיים',modules:'בניית מסלול',tips:'טיפים למטיילים',info:'מידע',builder:'תכנון טיול',login:'התחברות',home:'אתיופיה'}
+    he:{groups:'טיולים קבוצתיים',private:'טיולים פרטיים',modules:'בניית מסלול',tips:'טיפים למטיילים',info:'מידע',builder:'תכנון טיול',login:'התחברות',home:'אתיופיה'},
+    tr:{groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',builder:'Seyahat planla',login:'Giriş',home:'Etiyopya'}
   };
   const flagImg=(code,alt='')=>`<img src="https://flagcdn.com/28x21/${code}.png" srcset="https://flagcdn.com/56x42/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}">`;
   const flagMarkup=(lang,compact=false)=>{
@@ -6740,5 +6854,5 @@ document.addEventListener('DOMContentLoaded',function(){
 }
 </style>
 
-</body>
+<script src="aj-client-enhancements.js?v=5"></script></body>
 </html>

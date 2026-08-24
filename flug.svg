@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#183c5a" aria-label="Flug">
+  <path d="M256 0c17.7 0 32 14.3 32 32v32l176 80v48l-176-48v112l48 32v32l-80-16-80 16v-32l48-32V144L48 192v-48l176-80V32c0-17.7 14.3-32 32-32Z" transform="rotate(45 256 256)"/>
+</svg>

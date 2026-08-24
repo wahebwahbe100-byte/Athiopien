@@ -4853,7 +4853,7 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
 .footer-socials-ref{display:flex!important;flex-wrap:wrap!important;gap:10px!important;align-items:center!important}
 @media(max-width:700px){.footer-socials-ref{gap:8px!important;max-width:330px!important}}
 </style>
-</head>
+<link rel="stylesheet" href="aj-client-enhancements.css?v=5"></head>
 <body>
   <div data-shell="header"></div>
 
@@ -5393,8 +5393,9 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
       {id:'photo',title:'Licht des Hochlands',subtitle:'Fotoreise mit Zeit für Motive, Märkte und Landschaft',category:'Foto',days:11,price:3490,group:'3–8',image:REAL.coffee,level:'Leicht',rating:'5.0',tag:'Foto'},
       {id:'family',title:'Seen, Natur & Familie',subtitle:'Entspanntes Tempo mit Natur, Boot und Tierbeobachtung',category:'Familie',days:10,price:2790,group:'2–8',image:REAL.arba,level:'Familienfreundlich',rating:'4.8',tag:'Familie'},
       {id:'private',title:'Äthiopien Privat',subtitle:'Eigener Guide, flexible Route und ausgewählte Hotels',category:'VIP',days:12,price:4690,group:'2–4',image:REAL.addis,level:'Individuell',rating:'4.9',tag:'Private'},
-      {id:'comfort',title:'Äthiopien komfortabel',subtitle:'Weniger Transfers, mehr Komfort und barrierearme Planung',category:'Komfort',days:9,price:3390,group:'2–8',image:REAL.coffee,level:'Komfort',rating:'4.8',tag:'Komfort'}
-    ];
+      {id:'comfort',title:'Äthiopien komfortabel',subtitle:'Weniger Transfers, mehr Komfort und barrierearme Planung',category:'Komfort',days:9,price:3390,group:'2–8',image:REAL.coffee,level:'Komfort',rating:'4.8',tag:'Komfort'},
+{id:'senior',title:'Äthiopien entspannt genießen',subtitle:'Komfortable Etappen, ausgewählte Unterkünfte, persönliche Begleitung und genügend Pausen',category:'Seniorenreisen',days:10,price:3290,group:'2–8',image:REAL.arba,level:'Entspannt',rating:'4.9',tag:'Senioren'},
+{id:'romance',title:'Zu zweit durch Äthiopien',subtitle:'Hochzeitsreise, Verlobung oder Jubiläum mit privater Route und besonderen gemeinsamen Momenten',category:'Hochzeits- & Verlobungsreisen',days:12,price:4290,group:'2–2',image:REAL.lalibela,level:'Privat & romantisch',rating:'5.0',tag:'Für zwei'},];
 
     const I18N={
       de:{groups:'Gruppenreisen',private:'Individualreisen',modules:'Reisebausteine',tips:'Reisetipps',info:'Infos',builder:'Reise planen'},
@@ -5408,9 +5409,8 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
       pt:{groups:'Viagens em grupo',private:'Viagens privadas',modules:'Monte sua viagem',tips:'Dicas de viagem',info:'Informações',builder:'Planejar viagem'},
       ru:{groups:'Групповые туры',private:'Индивидуальные туры',modules:'Конструктор тура',tips:'Советы туристам',info:'Информация',builder:'Спланировать поездку'},
       es:{groups:'Viajes en grupo',private:'Viajes privados',modules:'Diseña tu viaje',tips:'Consejos de viaje',info:'Información',builder:'Planificar viaje'},
-      am:{groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',builder:'ጉዞ አቅድ'}
-    };
-
+      am:{groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',builder:'ጉዞ አቅድ'},tr:{home:'Etiyopya',groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',login:'Giriş',builder:'Seyahat planla'}
+};
     const LANGS={
       de:{name:'Deutsch',flag:'de'},en:{name:'English',flag:'gb'},ar:{name:'العربية',flag:'sa'},zh:{name:'中文',flag:'cn'},fr:{name:'Français',flag:'fr'},it:{name:'Italiano',flag:'it'},ja:{name:'日本語',flag:'jp'},ko:{name:'한국어',flag:'kr'},pt:{name:'Português',flag:'pt'},ru:{name:'Русский',flag:'ru'},es:{name:'Español',flag:'es'},am:{name:'አማርኛ',flag:'et'}
     };
@@ -6305,7 +6305,8 @@ document.addEventListener('DOMContentLoaded',function(){
     es:{name:'Español',flags:['es']},
     am:{name:'አማርኛ',flags:['et']},
     el:{name:'Ελληνικά',flags:['gr']},
-    he:{name:'עברית',flags:['il']}
+    he:{name:'עברית',flags:['il']},
+    tr:{name:'Türkçe',flags:['tr']}
   };
   const NAV_I18N={
     de:{groups:'Gruppenreisen',private:'Individualreisen',modules:'Reisebausteine',tips:'Reisetipps',info:'Infos',builder:'Reise planen',login:'Einloggen',home:'Äthiopien'},
@@ -6321,7 +6322,8 @@ document.addEventListener('DOMContentLoaded',function(){
     es:{groups:'Viajes en grupo',private:'Viajes privados',modules:'Diseña tu viaje',tips:'Consejos de viaje',info:'Información',builder:'Planificar viaje',login:'Iniciar sesión',home:'Etiopía'},
     am:{groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',builder:'ጉዞ አቅድ',login:'ግባ',home:'ኢትዮጵያ'},
     el:{groups:'Ομαδικά ταξίδια',private:'Ιδιωτικά ταξίδια',modules:'Σχεδιασμός ταξιδιού',tips:'Ταξιδιωτικές συμβουλές',info:'Πληροφορίες',builder:'Σχεδιάστε ταξίδι',login:'Σύνδεση',home:'Αιθιοπία'},
-    he:{groups:'טיולים קבוצתיים',private:'טיולים פרטיים',modules:'בניית מסלול',tips:'טיפים למטיילים',info:'מידע',builder:'תכנון טיול',login:'התחברות',home:'אתיופיה'}
+    he:{groups:'טיולים קבוצתיים',private:'טיולים פרטיים',modules:'בניית מסלול',tips:'טיפים למטיילים',info:'מידע',builder:'תכנון טיול',login:'התחברות',home:'אתיופיה'},
+    tr:{groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',builder:'Seyahat planla',login:'Giriş',home:'Etiyopya'}
   };
   const flagImg=(code,alt='')=>`<img src="https://flagcdn.com/28x21/${code}.png" srcset="https://flagcdn.com/56x42/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}">`;
   const flagMarkup=(lang,compact=false)=>{
@@ -6740,5 +6742,5 @@ document.addEventListener('DOMContentLoaded',function(){
 }
 </style>
 
-</body>
+<script src="aj-client-enhancements.js?v=5"></script></body>
 </html>

@@ -1,0 +1,126 @@
+/* Abyssinia Journeys – client-requested enhancements (2026-08) */
+:root{
+  --aj-green:#2f7a49;
+  --aj-yellow:#d5a620;
+  --aj-orange:#d9782d;
+  --aj-red:#a33e35;
+}
+
+/* Animated promotion banner */
+.promo-banner{position:relative;overflow:hidden}
+.promo-banner::after{content:"";position:absolute;inset:-80% auto -80% -28%;width:24%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:ajPromoShine 6.5s ease-in-out infinite;pointer-events:none}
+.promo-badge{animation:ajPromoPulse 2.8s ease-in-out infinite}
+.promo-title,.promo-copy{transition:opacity .28s ease,transform .28s ease}
+.promo-banner.aj-changing .promo-title,.promo-banner.aj-changing .promo-copy{opacity:.15;transform:translateY(3px)}
+@keyframes ajPromoShine{0%,58%{left:-32%}82%,100%{left:120%}}
+@keyframes ajPromoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.055)}}
+@media(prefers-reduced-motion:reduce){.promo-banner::after,.promo-badge{animation:none!important}.promo-title,.promo-copy{transition:none!important}}
+
+/* Header wishlist */
+.aj-wishlist-trigger{position:relative;width:42px;height:42px;border:1px solid var(--line,#dfe5df);border-radius:12px;background:#fff;color:var(--forest,#183c5a);display:grid;place-items:center;cursor:pointer;flex:0 0 auto}
+.aj-wishlist-trigger svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.aj-wishlist-count{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:var(--clay,#b24d37);color:#fff;font:800 10px/19px 'Manrope',sans-serif;text-align:center;border:2px solid #fff}
+.aj-wishlist-count:empty{display:none}
+.aj-wishlist-overlay{position:fixed;inset:0;background:rgba(7,24,37,.48);z-index:260;display:none;justify-content:flex-end}
+.aj-wishlist-overlay.is-open{display:flex}
+.aj-wishlist-drawer{width:min(440px,94vw);height:100%;overflow:auto;background:#fff;box-shadow:-20px 0 60px rgba(0,0,0,.2);padding:24px}
+.aj-wishlist-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line,#dfe5df)}
+.aj-wishlist-head h2{font-size:1.55rem;margin:0}
+.aj-wishlist-close{width:40px;height:40px;border:1px solid var(--line,#dfe5df);background:#fff;border-radius:12px;font-size:1.45rem;cursor:pointer}
+.aj-wishlist-list{display:grid;gap:12px;padding-top:18px}
+.aj-wishlist-item{display:grid;grid-template-columns:84px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line,#dfe5df);border-radius:16px;padding:10px;background:#fff}
+.aj-wishlist-item img{width:84px;height:70px;border-radius:12px;object-fit:cover}
+.aj-wishlist-item strong{display:block;font-size:.9rem;line-height:1.3}.aj-wishlist-item small{display:block;color:var(--muted,#6b746f);margin-top:4px}
+.aj-wishlist-remove{border:0;background:transparent;color:var(--clay,#b24d37);font-size:1.25rem;cursor:pointer;padding:7px}
+.aj-wishlist-empty{padding:30px 10px;text-align:center;color:var(--muted,#6b746f)}
+body.aj-modal-open{overflow:hidden}
+
+/* Trip-specific sticky navigation */
+.aj-trip-subnav{position:sticky;top:82px;z-index:78;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-top:1px solid rgba(24,60,90,.08);border-bottom:1px solid rgba(24,60,90,.12);box-shadow:0 8px 24px rgba(24,60,90,.06)}
+.aj-trip-subnav-inner{width:min(calc(100% - 40px),1240px);margin:auto;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.aj-trip-subnav-links{display:flex;align-items:center;gap:4px;overflow:auto;scrollbar-width:none}.aj-trip-subnav-links::-webkit-scrollbar{display:none}
+.aj-trip-subnav-links a{white-space:nowrap;padding:18px 11px 16px;font:800 .78rem 'Manrope',sans-serif;color:#38505f;border-bottom:2px solid transparent}
+.aj-trip-subnav-links a:hover,.aj-trip-subnav-links a.is-active{color:var(--clay,#b24d37);border-bottom-color:var(--clay,#b24d37)}
+.aj-trip-action{position:relative;flex:0 0 auto}.aj-trip-action>button{border:0;border-radius:12px;background:var(--clay,#b24d37);color:#fff;padding:11px 14px;font:800 .78rem 'Manrope',sans-serif;cursor:pointer}
+.aj-trip-action-menu{display:none;position:absolute;right:0;top:48px;min-width:190px;background:#fff;border:1px solid var(--line,#dfe5df);border-radius:14px;box-shadow:0 18px 48px rgba(24,60,90,.18);padding:6px}
+.aj-trip-action.is-open .aj-trip-action-menu{display:grid}.aj-trip-action-menu a{padding:10px 12px;border-radius:9px;font-weight:800;font-size:.8rem}.aj-trip-action-menu a:hover{background:var(--soft,#eef3f7)}
+@media(max-width:1080px){.aj-trip-subnav{top:74px}}
+@media(max-width:700px){.aj-trip-subnav-inner{width:min(calc(100% - 20px),1240px);min-height:52px}.aj-trip-subnav-links a{padding:15px 8px 13px;font-size:.7rem}.aj-trip-action>button{padding:9px 10px;font-size:.7rem}}
+
+/* Trip header media support */
+.trip-photo-gallery{position:relative}
+.aj-trip-media-caption{position:absolute;left:clamp(14px,3vw,42px);bottom:18px;z-index:6;display:flex;align-items:center;gap:8px;background:rgba(7,29,46,.78);color:#fff;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);border-radius:999px;padding:8px 12px;font:800 .72rem 'Manrope',sans-serif;pointer-events:none}
+.trip-hero-media video{width:100%;height:100%;object-fit:cover;display:block;background:#0d2537}
+
+/* Hero booking actions */
+.trip-hero .hero-btns{display:flex;flex-wrap:wrap;gap:10px}
+.aj-btn-request{background:transparent!important;color:#fff!important;border-color:rgba(255,255,255,.42)!important}
+.aj-btn-video{background:rgba(255,255,255,.1)!important;color:#fff!important;border-color:rgba(255,255,255,.25)!important}
+
+/* Overview: highlights + details */
+#ueberblick .overview-grid{align-items:start}
+#ueberblick .overview-image{height:auto!important;min-height:0!important;overflow:visible!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+.aj-trip-details-card{background:#fff;border:1px solid rgba(24,60,90,.13);border-radius:24px;box-shadow:0 16px 50px rgba(24,60,90,.09);padding:26px}
+.aj-trip-details-card h3{margin:0 0 18px;font-size:1.28rem;color:var(--forest,#183c5a)}
+.aj-detail-list{display:grid;gap:0;margin:0}.aj-detail-row{display:grid;grid-template-columns:118px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--line,#dfe5df)}.aj-detail-row:last-child{border-bottom:0}.aj-detail-row dt{font:800 .72rem 'Manrope',sans-serif;color:#71818b}.aj-detail-row dd{margin:0;font-size:.86rem;color:#263c49}.aj-detail-row small{display:block;color:var(--muted,#6b746f);margin-top:3px}
+.aj-transport-icons{display:flex;gap:8px;flex-wrap:wrap}.aj-transport-icons span{display:inline-grid;place-items:center;min-width:36px;height:34px;border-radius:10px;background:var(--soft,#eef3f7);font-size:1rem}
+.aj-detail-actions{display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-top:18px}.aj-price-cta{min-height:48px!important;text-align:center}.aj-icon-btn{width:48px;height:48px;border:1px solid var(--line,#dfe5df);background:#fff;border-radius:13px;display:grid;place-items:center;cursor:pointer;color:var(--forest,#183c5a)}.aj-icon-btn.on{color:var(--clay,#b24d37);background:#fff8f6}.aj-icon-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.aj-icon-btn.on .aj-heart-shape{fill:currentColor}
+@media(max-width:700px){.aj-detail-row{grid-template-columns:1fr;gap:3px}.aj-detail-actions{grid-template-columns:1fr auto auto}}
+
+/* Availability / years / traffic light */
+.aj-date-toolbar{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:-8px 0 22px;padding:16px 18px;border:1px solid var(--line,#dfe5df);border-radius:16px;background:#fafcfd}
+.aj-year-filter strong,.aj-traffic-legend strong{display:block;margin-bottom:8px;font:800 .76rem 'Manrope',sans-serif;color:#405866}
+.aj-year-checks,.aj-legend-items{display:flex;gap:8px 14px;flex-wrap:wrap}.aj-year-checks label,.aj-legend-item{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;color:#4b5f6a}.aj-year-checks input{accent-color:var(--forest,#183c5a)}
+.aj-status-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:0 0 auto}.aj-status-green{background:var(--aj-green)}.aj-status-yellow{background:var(--aj-yellow)}.aj-status-orange{background:var(--aj-orange)}
+.aj-date-head,.date-row.aj-date-row{grid-template-columns:1.2fr .62fr .62fr 1.35fr minmax(188px,auto)!important}
+.aj-date-head{display:grid;gap:16px;padding:0 18px 8px;color:#70818c;font:800 .68rem 'Manrope',sans-serif;text-transform:uppercase;letter-spacing:.06em}
+.date-row.aj-date-row .availability{display:flex;align-items:center;gap:8px;color:#334c59!important;line-height:1.35}.date-row.aj-date-row .availability-dot{display:none}
+.aj-date-actions{display:flex;gap:7px;justify-content:flex-end}.aj-date-actions .btn{min-height:40px;padding:9px 12px;font-size:.75rem}.aj-date-actions .aj-book{background:var(--clay,#b24d37);color:#fff}.aj-date-actions .aj-request{background:#fff;color:var(--forest,#183c5a);border-color:rgba(24,60,90,.24)}
+.aj-date-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:18px;padding:17px 18px;border-radius:16px;background:var(--soft,#eef3f7)}.aj-date-footer p{margin:0;color:#546975;font-size:.84rem}.aj-no-dates{display:none;margin:12px 0 0;padding:18px;border:1px dashed #b8c7d0;border-radius:14px;color:#5c6f79;text-align:center;background:#fbfcfc}.aj-no-dates.is-visible{display:block}
+@media(max-width:900px){.aj-date-head{display:none}.date-row.aj-date-row{grid-template-columns:1fr 1fr!important}.date-row.aj-date-row>:nth-child(4),.date-row.aj-date-row>:nth-child(5){grid-column:1/-1}.aj-date-actions{justify-content:flex-start}}
+@media(max-width:560px){.date-row.aj-date-row{grid-template-columns:1fr!important}.date-row.aj-date-row>*{grid-column:auto!important}.aj-date-actions{display:grid;grid-template-columns:1fr 1fr}.aj-date-actions .btn{width:100%}}
+
+/* Contact video consultation */
+.contact-methods.aj-three-methods{grid-template-columns:repeat(3,1fr)!important}.contact-method.aj-video-method{cursor:pointer;border-color:rgba(215,170,73,.35)}.contact-method.aj-video-method:hover{transform:translateY(-2px)}
+.aj-video-note{margin-top:12px;padding:12px 14px;border-radius:12px;background:#f8f2df;color:#5d4a1d;font-size:.82rem}
+@media(max-width:700px){.contact-methods.aj-three-methods{grid-template-columns:1fr!important}}
+
+/* New travel types */
+.aj-new-trip-type{position:relative}.aj-new-trip-type::before{content:"Neu";position:absolute;z-index:5;top:10px;left:10px;background:var(--gold,#d7aa49);color:#282116;border-radius:999px;padding:5px 8px;font:800 .58rem 'Manrope',sans-serif;text-transform:uppercase;letter-spacing:.06em}
+
+/* Accessible anchors under sticky nav */
+#ueberblick,#termine,#verlauf,#leistungen,#faq,.aj-hinweise-anchor{scroll-margin-top:156px}
+.aj-price-cta small{font:700 .68rem 'DM Sans',sans-serif;opacity:.82}
+
+/* Consistent language flags + SVG-only pictographic UI */
+#langMenu.langmenu{direction:ltr!important}
+#langMenu.langmenu button{direction:ltr!important}
+#langMenu.langmenu button>span{unicode-bidi:isolate}
+#langMenu.langmenu button[data-lang="he"]>span,#langMenu.langmenu button[data-lang="ar"]>span{direction:rtl;text-align:left}
+#langMenu.langmenu button img,.aj-flag-img{flex:0 0 auto}
+.aj-flag-img{width:28px;height:21px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.langbtn .aj-flag-img{width:24px;height:18px}
+.aj-transport-icons{align-items:center}
+.aj-transport-icon{display:inline-grid!important;place-items:center;width:36px;height:34px;border-radius:10px;background:var(--soft,#eef3f7);color:var(--forest,#183c5a)}
+.aj-transport-icon svg{width:21px;height:21px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;shape-rendering:geometricPrecision}.aj-transport-icon .aj-plane-svg{width:22px;height:22px;display:block;fill:currentColor;stroke:none;shape-rendering:geometricPrecision}
+.aj-check-icon{width:19px;height:19px;display:inline-block;vertical-align:-4px;margin-right:7px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.point strong{display:flex;align-items:flex-start;gap:2px}
+html[dir="rtl"] #langMenu.langmenu button{direction:ltr!important}
+
+/* Transport icons supplied by client — direct PNG rendering for maximum browser compatibility */
+.aj-transport-icon .aj-transport-img{
+  display:block!important;
+  width:25px!important;
+  height:25px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  pointer-events:none;
+  user-select:none;
+}
+.aj-transport-icon .aj-transport-plane,
+.aj-transport-icon .aj-transport-car,
+.aj-transport-icon .aj-transport-bus{
+  width:25px!important;
+  height:25px!important;
+}
+.aj-transport-icon[aria-label="Flug"]::before,.aj-transport-icon[aria-label="Auto"]::before,.aj-transport-icon[aria-label="Bus"]::before{content:none!important;display:none!important}
