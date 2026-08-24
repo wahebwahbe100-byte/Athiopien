@@ -1,0 +1,8 @@
+Favorites / Saved Trips update
+
+- Clicking a trip heart now stores the full available trip record in localStorage key: aj_saved_trips.
+- The legacy aj_favs ID list remains supported for backward compatibility.
+- The heart icon in the top navigation opens "Gespeicherte Reisen" with image, title, subtitle, duration, group, price, and trip link.
+- Removing a trip from the top saved list keeps card-heart state synchronized.
+- Saved trip links are recalculated for root/subdirectory pages so they work throughout the site.
+- Shared enhancement assets were bumped from v=5 to v=6 in all pages that load them.

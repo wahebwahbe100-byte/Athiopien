@@ -48,27 +48,108 @@
     let i=0;setInterval(()=>{i=(i+1)%messages.length;banner.classList.add('aj-changing');setTimeout(()=>{title.textContent=messages[i][0];copy.textContent=messages[i][1];banner.classList.remove('aj-changing')},240)},5600);
   }
 
-  function getFavs(){return safeJSON('aj_favs',[])}
-  function setFavs(favs){localStorage.setItem('aj_favs',JSON.stringify([...new Set(favs)]));window.dispatchEvent(new CustomEvent('aj:favs-changed'))}
-  function toggleFav(id){if(!id)return;let favs=getFavs();favs=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id];setFavs(favs);toastMessage(favs.includes(id)?'Reise gespeichert':'Aus Merkliste entfernt');return favs.includes(id)}
+  function getFavs(){
+    const favs=safeJSON('aj_favs',[]);
+    return Array.isArray(favs)?favs.map(String).filter(Boolean):[];
+  }
+  function getSavedTrips(){
+    const saved=safeJSON('aj_saved_trips',[]);
+    return Array.isArray(saved)?saved.filter(x=>x&&x.id):[];
+  }
+  function cloneTrip(t){
+    if(!t||typeof t!=='object')return null;
+    try{return JSON.parse(JSON.stringify(t))}catch(e){return {...t}}
+  }
+  function cardTripData(id,sourceEl){
+    const button=sourceEl?.closest?.('[data-fav]')||[...document.querySelectorAll('[data-fav]')].find(b=>String(b.dataset.fav)===String(id));
+    const card=button?.closest?.('.trip-card');if(!card)return null;
+    const details=card.querySelector('.trip-foot a[href],a.btn[href]');
+    const img=card.querySelector('img');
+    const meta=[...card.querySelectorAll('.trip-meta span')].map(x=>x.textContent.trim()).filter(Boolean);
+    const kicker=card.querySelector('.kicker')?.textContent?.trim()||'';
+    const priceText=card.querySelector('.trip-price strong')?.textContent?.trim()||'';
+    const numericPrice=Number(priceText.replace(/\./g,'').replace(/,/g,'.').replace(/[^0-9.]/g,''))||0;
+    return {
+      id:String(id),
+      title:card.querySelector('h3')?.textContent?.trim()||String(id),
+      subtitle:card.querySelector('.muted')?.textContent?.trim()||'',
+      category:kicker.split('·')[0]?.trim()||'',
+      days:Number((meta[0]||'').match(/\d+/)?.[0])||'',
+      group:(meta[1]||'').replace(/\s*Pers\.?/i,'').trim(),
+      level:meta[2]||'',
+      image:img?.getAttribute('src')||'',
+      tag:card.querySelector('.trip-badge')?.textContent?.trim()||'',
+      price:numericPrice,
+      priceText,
+      href:details?.getAttribute('href')||tripPage(id)
+    };
+  }
+  function resolveTripRecord(id,sourceEl){
+    id=String(id||'');if(!id)return null;
+    const all=tripList();
+    let t=Array.isArray(all)?all.find(x=>x&&String(x.id)===id):null;
+    const cur=currentTrip();if(!t&&cur&&String(cur.id)===id)t=cur;
+    const dom=cardTripData(id,sourceEl);
+    const existing=getSavedTrips().find(x=>String(x.id)===id);
+    const merged={...(existing||{}),...(cloneTrip(t)||{}),...(dom||{}),id};
+    if(!merged.title)merged.title=id;
+    if(!merged.href)merged.href=tripPage(id);
+    if(!merged.savedAt)merged.savedAt=new Date().toISOString();
+    return merged;
+  }
+  function syncSavedTrips(favs=getFavs(),sourceEl){
+    const ids=[...new Set((Array.isArray(favs)?favs:[]).map(String).filter(Boolean))];
+    const existing=new Map(getSavedTrips().map(t=>[String(t.id),t]));
+    const records=ids.map(id=>resolveTripRecord(id,sourceEl)||existing.get(id)||{id,title:id,href:tripPage(id),savedAt:new Date().toISOString()});
+    try{localStorage.setItem('aj_saved_trips',JSON.stringify(records))}catch(e){}
+    return records;
+  }
+  function setFavs(favs,sourceEl){
+    const clean=[...new Set((Array.isArray(favs)?favs:[]).map(String).filter(Boolean))];
+    localStorage.setItem('aj_favs',JSON.stringify(clean));
+    syncSavedTrips(clean,sourceEl);
+    window.dispatchEvent(new CustomEvent('aj:favs-changed'));
+  }
+  function toggleFav(id,sourceEl){
+    if(!id)return;
+    id=String(id);let favs=getFavs();
+    favs=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id];
+    setFavs(favs,sourceEl);
+    toastMessage(favs.includes(id)?'Reise vollständig gespeichert':'Aus Merkliste entfernt');
+    return favs.includes(id);
+  }
 
   function setupWishlist(){
     const actions=document.querySelector('.nav-actions');if(!actions||document.querySelector('.aj-wishlist-trigger'))return;
-    const trigger=document.createElement('button');trigger.type='button';trigger.className='aj-wishlist-trigger';trigger.setAttribute('aria-label','Merkliste öffnen');trigger.innerHTML=heartSvg+'<span class="aj-wishlist-count"></span>';
+    const trigger=document.createElement('button');trigger.type='button';trigger.className='aj-wishlist-trigger';trigger.setAttribute('aria-label','Gespeicherte Reisen öffnen');trigger.setAttribute('title','Gespeicherte Reisen');trigger.innerHTML=heartSvg+'<span class="aj-wishlist-count"></span>';
     const lang=actions.querySelector('.langwrap');actions.insertBefore(trigger,lang||actions.firstChild);
-    const overlay=document.createElement('div');overlay.className='aj-wishlist-overlay';overlay.setAttribute('aria-hidden','true');overlay.innerHTML='<aside class="aj-wishlist-drawer" role="dialog" aria-modal="true" aria-label="Merkliste"><div class="aj-wishlist-head"><h2>Merkliste</h2><button class="aj-wishlist-close" type="button" aria-label="Merkliste schließen">×</button></div><div class="aj-wishlist-list"></div></aside>';document.body.appendChild(overlay);
+    const overlay=document.createElement('div');overlay.className='aj-wishlist-overlay';overlay.setAttribute('aria-hidden','true');overlay.innerHTML='<aside class="aj-wishlist-drawer" role="dialog" aria-modal="true" aria-label="Gespeicherte Reisen"><div class="aj-wishlist-head"><div><span class="aj-wishlist-eyebrow">Reise-Speicher</span><h2>Gespeicherte Reisen</h2></div><button class="aj-wishlist-close" type="button" aria-label="Gespeicherte Reisen schließen">×</button></div><p class="aj-wishlist-intro">Alle Reisen, die Sie mit dem Herz markieren, werden hier mit ihren Reisedaten gespeichert.</p><div class="aj-wishlist-list"></div></aside>';document.body.appendChild(overlay);
     const list=overlay.querySelector('.aj-wishlist-list');
+    function esc(v){return String(v??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
     function render(){
-      const favs=getFavs(),all=tripList(),count=trigger.querySelector('.aj-wishlist-count');count.textContent=favs.length?String(favs.length):'';
-      document.querySelectorAll('[data-fav]').forEach(b=>{const on=favs.includes(b.dataset.fav);b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on))});
-      document.querySelectorAll('[data-aj-current-fav]').forEach(b=>{const id=b.dataset.ajCurrentFav,on=favs.includes(id);b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on))});
-      if(!favs.length){list.innerHTML='<div class="aj-wishlist-empty"><strong>Noch keine Reise gemerkt.</strong><br><small>Mit dem Herz können Reisen hier gesammelt werden.</small></div>';return}
-      list.innerHTML=favs.map(id=>{const t=all.find(x=>x.id===id);if(!t)return `<div class="aj-wishlist-item"><div></div><div><strong>${id}</strong><small>Gespeicherte Reise</small></div><button class="aj-wishlist-remove" data-remove-fav="${id}" aria-label="Entfernen">×</button></div>`;return `<div class="aj-wishlist-item"><a href="${tripPage(id)}"><img src="${t.image||''}" alt="${t.title||id}" loading="lazy"></a><div><a href="${tripPage(id)}"><strong>${t.title||id}</strong></a><small>${t.days||''} Tage · ab ${money(t.price)}</small></div><button class="aj-wishlist-remove" data-remove-fav="${id}" aria-label="Aus Merkliste entfernen">×</button></div>`}).join('');
+      const favs=getFavs(),saved=syncSavedTrips(favs),all=tripList(),count=trigger.querySelector('.aj-wishlist-count');count.textContent=favs.length?String(favs.length):'';trigger.classList.toggle('on',favs.length>0);
+      document.querySelectorAll('[data-fav]').forEach(b=>{const on=favs.includes(String(b.dataset.fav));b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on))});
+      document.querySelectorAll('[data-aj-current-fav]').forEach(b=>{const id=String(b.dataset.ajCurrentFav),on=favs.includes(id);b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on))});
+      if(!favs.length){list.innerHTML='<div class="aj-wishlist-empty"><strong>Noch keine Reise gespeichert.</strong><br><small>Drücken Sie bei einer Reise auf das Herz. Die komplette Reise wird dann hier im oberen Speicher abgelegt.</small></div>';return}
+      const savedMap=new Map(saved.map(x=>[String(x.id),x]));
+      list.innerHTML=favs.map(id=>{
+        const live=Array.isArray(all)?all.find(x=>x&&String(x.id)===String(id)):null;
+        const t={...(savedMap.get(String(id))||{}),...(cloneTrip(live)||{}),id:String(id)};
+        const href=tripPage(id),title=t.title||id,img=t.image||'',days=t.days?`${esc(t.days)} Tage`:'';
+        const group=t.group?`${esc(t.group)} Pers.`:'',price=t.price?`ab ${esc(money(t.price))}`:(t.priceText?esc(t.priceText):'');
+        const meta=[days,group,price].filter(Boolean).join(' · ');
+        const sub=t.subtitle||t.category||'Gespeicherte Reise';
+        return `<article class="aj-wishlist-item" data-saved-trip="${esc(id)}"><a class="aj-wishlist-image" href="${esc(href)}">${img?`<img src="${esc(img)}" alt="${esc(title)}" loading="lazy" onerror="this.style.display='none'">`:'<span class="aj-wishlist-image-fallback" aria-hidden="true">♥</span>'}</a><div class="aj-wishlist-copy"><a href="${esc(href)}"><strong>${esc(title)}</strong></a><p>${esc(sub)}</p>${meta?`<small>${meta}</small>`:''}<a class="aj-wishlist-details" href="${esc(href)}">Reise öffnen →</a></div><button class="aj-wishlist-remove" type="button" data-remove-fav="${esc(id)}" aria-label="Aus gespeicherten Reisen entfernen">×</button></article>`
+      }).join('');
     }
     function open(){render();overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');document.body.classList.add('aj-modal-open');overlay.querySelector('.aj-wishlist-close')?.focus()}
     function close(){overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');document.body.classList.remove('aj-modal-open')}
-    trigger.addEventListener('click',open);overlay.querySelector('.aj-wishlist-close').addEventListener('click',close);overlay.addEventListener('click',e=>{if(e.target===overlay)close();const rem=e.target.closest('[data-remove-fav]');if(rem){setFavs(getFavs().filter(x=>x!==rem.dataset.removeFav));render()}});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-    document.addEventListener('click',e=>{if(e.target.closest('[data-fav]'))setTimeout(render,30)},true);window.addEventListener('aj:favs-changed',render);window.addEventListener('storage',render);render();
+    trigger.addEventListener('click',open);
+    overlay.querySelector('.aj-wishlist-close').addEventListener('click',close);
+    overlay.addEventListener('click',e=>{if(e.target===overlay)close();const rem=e.target.closest('[data-remove-fav]');if(rem){setFavs(getFavs().filter(x=>x!==String(rem.dataset.removeFav)),rem);render()}});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+    document.addEventListener('click',e=>{const favButton=e.target.closest('[data-fav]');if(!favButton)return;e.preventDefault();e.stopImmediatePropagation();toggleFav(favButton.dataset.fav,favButton)},true);
+    window.addEventListener('aj:favs-changed',render);window.addEventListener('storage',render);render();
   }
 
   function enhanceNavCategories(){

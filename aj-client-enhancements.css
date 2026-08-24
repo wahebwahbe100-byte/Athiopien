@@ -124,3 +124,18 @@ html[dir="rtl"] #langMenu.langmenu button{direction:ltr!important}
   height:25px!important;
 }
 .aj-transport-icon[aria-label="Flug"]::before,.aj-transport-icon[aria-label="Auto"]::before,.aj-transport-icon[aria-label="Bus"]::before{content:none!important;display:none!important}
+
+/* Saved trips: full records behind the heart in the top navigation */
+.aj-wishlist-trigger.on,.aj-wishlist-trigger:hover{color:var(--clay,#b24d37);border-color:rgba(178,77,55,.28);background:#fff8f6}
+.aj-wishlist-eyebrow{display:block;margin-bottom:4px;color:var(--clay,#b24d37);font:800 .66rem 'Manrope',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.aj-wishlist-intro{margin:14px 0 0;padding:12px 14px;border-radius:13px;background:var(--soft,#eef3f7);color:var(--muted,#667681);font-size:.8rem;line-height:1.55}
+.aj-wishlist-item{grid-template-columns:100px minmax(0,1fr) auto;align-items:start;padding:11px}
+.aj-wishlist-image{display:block;width:100px;height:88px;border-radius:13px;overflow:hidden;background:var(--soft,#eef3f7)}
+.aj-wishlist-item img{width:100%;height:100%;border-radius:0;object-fit:cover}
+.aj-wishlist-image-fallback{width:100%;height:100%;display:grid;place-items:center;color:var(--clay,#b24d37);font-size:1.7rem}
+.aj-wishlist-copy{min-width:0;padding-top:2px}.aj-wishlist-copy strong{font-size:.94rem;color:var(--forest,#183c5a)}
+.aj-wishlist-copy p{margin:4px 0 5px;color:var(--muted,#667681);font-size:.76rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.aj-wishlist-copy small{font-size:.7rem;line-height:1.45}
+.aj-wishlist-details{display:inline-block;margin-top:7px;color:var(--clay,#b24d37);font:800 .7rem 'Manrope',sans-serif}
+.aj-wishlist-remove{margin-top:1px}
+@media(max-width:520px){.aj-wishlist-drawer{width:100%;padding:18px}.aj-wishlist-item{grid-template-columns:82px minmax(0,1fr) auto}.aj-wishlist-image{width:82px;height:78px}.aj-wishlist-copy p{-webkit-line-clamp:1}}
