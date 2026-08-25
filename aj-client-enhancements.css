@@ -21,12 +21,12 @@
 .aj-wishlist-trigger svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .aj-wishlist-count{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:var(--clay,#b24d37);color:#fff;font:800 10px/19px 'Manrope',sans-serif;text-align:center;border:2px solid #fff}
 .aj-wishlist-count:empty{display:none}
-.aj-wishlist-overlay{position:fixed;inset:0;background:rgba(7,24,37,.48);z-index:260;display:none;justify-content:flex-end}
+.aj-wishlist-overlay{position:fixed;inset:0;background:rgba(7,24,37,.48);z-index:10000!important;display:none;justify-content:flex-end;align-items:stretch;isolation:isolate;overscroll-behavior:contain}
 .aj-wishlist-overlay.is-open{display:flex}
-.aj-wishlist-drawer{width:min(440px,94vw);height:100%;overflow:auto;background:#fff;box-shadow:-20px 0 60px rgba(0,0,0,.2);padding:24px}
-.aj-wishlist-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line,#dfe5df)}
-.aj-wishlist-head h2{font-size:1.55rem;margin:0}
-.aj-wishlist-close{width:40px;height:40px;border:1px solid var(--line,#dfe5df);background:#fff;border-radius:12px;font-size:1.45rem;cursor:pointer}
+.aj-wishlist-drawer{position:relative;box-sizing:border-box;width:min(440px,94vw);max-width:100vw;height:100vh;height:100dvh;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;background:#fff;box-shadow:-20px 0 60px rgba(0,0,0,.2);padding:24px}
+.aj-wishlist-head{position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line,#dfe5df);background:#fff}
+.aj-wishlist-head>div{min-width:0}.aj-wishlist-head h2{font-size:1.55rem;margin:0;overflow-wrap:anywhere}
+.aj-wishlist-close{width:44px;height:44px;min-width:44px;min-height:44px;flex:0 0 44px;display:grid;place-items:center;border:1px solid var(--line,#dfe5df);background:#fff;border-radius:12px;color:var(--forest,#183c5a);font-size:1.55rem;line-height:1;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .aj-wishlist-list{display:grid;gap:12px;padding-top:18px}
 .aj-wishlist-item{display:grid;grid-template-columns:84px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line,#dfe5df);border-radius:16px;padding:10px;background:#fff}
 .aj-wishlist-item img{width:84px;height:70px;border-radius:12px;object-fit:cover}
@@ -138,4 +138,4 @@ html[dir="rtl"] #langMenu.langmenu button{direction:ltr!important}
 .aj-wishlist-copy small{font-size:.7rem;line-height:1.45}
 .aj-wishlist-details{display:inline-block;margin-top:7px;color:var(--clay,#b24d37);font:800 .7rem 'Manrope',sans-serif}
 .aj-wishlist-remove{margin-top:1px}
-@media(max-width:520px){.aj-wishlist-drawer{width:100%;padding:18px}.aj-wishlist-item{grid-template-columns:82px minmax(0,1fr) auto}.aj-wishlist-image{width:82px;height:78px}.aj-wishlist-copy p{-webkit-line-clamp:1}}
+@media(max-width:520px){.aj-wishlist-overlay{justify-content:stretch}.aj-wishlist-drawer{width:100vw;max-width:100vw;padding:max(18px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));box-shadow:none}.aj-wishlist-head{gap:10px}.aj-wishlist-head h2{font-size:clamp(1.25rem,7vw,1.55rem)}.aj-wishlist-item{grid-template-columns:82px minmax(0,1fr) auto}.aj-wishlist-image{width:82px;height:78px}.aj-wishlist-copy p{-webkit-line-clamp:1}}

@@ -6,3 +6,11 @@ Favorites / Saved Trips update
 - Removing a trip from the top saved list keeps card-heart state synchronized.
 - Saved trip links are recalculated for root/subdirectory pages so they work throughout the site.
 - Shared enhancement assets were bumped from v=5 to v=6 in all pages that load them.
+
+Responsive close fix (v7)
+
+- Saved-trips overlay now sits above every navigation/promo layer on desktop and mobile.
+- Drawer uses viewport-safe sizing (100dvh / 100vw) and safe-area padding on phones.
+- Close control stays visible in a sticky drawer header and has a 44px touch target.
+- Close works by X button, backdrop click, and Escape; focus returns to the heart button.
+- Shared enhancement assets bumped to v=7 to avoid stale browser cache.

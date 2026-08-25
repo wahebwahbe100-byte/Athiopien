@@ -121,9 +121,9 @@
 
   function setupWishlist(){
     const actions=document.querySelector('.nav-actions');if(!actions||document.querySelector('.aj-wishlist-trigger'))return;
-    const trigger=document.createElement('button');trigger.type='button';trigger.className='aj-wishlist-trigger';trigger.setAttribute('aria-label','Gespeicherte Reisen öffnen');trigger.setAttribute('title','Gespeicherte Reisen');trigger.innerHTML=heartSvg+'<span class="aj-wishlist-count"></span>';
+    const trigger=document.createElement('button');trigger.type='button';trigger.className='aj-wishlist-trigger';trigger.setAttribute('aria-label','Gespeicherte Reisen öffnen');trigger.setAttribute('title','Gespeicherte Reisen');trigger.setAttribute('aria-expanded','false');trigger.setAttribute('aria-controls','aj-wishlist-overlay');trigger.innerHTML=heartSvg+'<span class="aj-wishlist-count"></span>';
     const lang=actions.querySelector('.langwrap');actions.insertBefore(trigger,lang||actions.firstChild);
-    const overlay=document.createElement('div');overlay.className='aj-wishlist-overlay';overlay.setAttribute('aria-hidden','true');overlay.innerHTML='<aside class="aj-wishlist-drawer" role="dialog" aria-modal="true" aria-label="Gespeicherte Reisen"><div class="aj-wishlist-head"><div><span class="aj-wishlist-eyebrow">Reise-Speicher</span><h2>Gespeicherte Reisen</h2></div><button class="aj-wishlist-close" type="button" aria-label="Gespeicherte Reisen schließen">×</button></div><p class="aj-wishlist-intro">Alle Reisen, die Sie mit dem Herz markieren, werden hier mit ihren Reisedaten gespeichert.</p><div class="aj-wishlist-list"></div></aside>';document.body.appendChild(overlay);
+    const overlay=document.createElement('div');overlay.id='aj-wishlist-overlay';overlay.className='aj-wishlist-overlay';overlay.setAttribute('aria-hidden','true');overlay.innerHTML='<aside class="aj-wishlist-drawer" role="dialog" aria-modal="true" aria-label="Gespeicherte Reisen"><div class="aj-wishlist-head"><div><span class="aj-wishlist-eyebrow">Reise-Speicher</span><h2>Gespeicherte Reisen</h2></div><button class="aj-wishlist-close" type="button" aria-label="Gespeicherte Reisen schließen">×</button></div><p class="aj-wishlist-intro">Alle Reisen, die Sie mit dem Herz markieren, werden hier mit ihren Reisedaten gespeichert.</p><div class="aj-wishlist-list"></div></aside>';document.body.appendChild(overlay);
     const list=overlay.querySelector('.aj-wishlist-list');
     function esc(v){return String(v??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
     function render(){
@@ -142,12 +142,22 @@
         return `<article class="aj-wishlist-item" data-saved-trip="${esc(id)}"><a class="aj-wishlist-image" href="${esc(href)}">${img?`<img src="${esc(img)}" alt="${esc(title)}" loading="lazy" onerror="this.style.display='none'">`:'<span class="aj-wishlist-image-fallback" aria-hidden="true">♥</span>'}</a><div class="aj-wishlist-copy"><a href="${esc(href)}"><strong>${esc(title)}</strong></a><p>${esc(sub)}</p>${meta?`<small>${meta}</small>`:''}<a class="aj-wishlist-details" href="${esc(href)}">Reise öffnen →</a></div><button class="aj-wishlist-remove" type="button" data-remove-fav="${esc(id)}" aria-label="Aus gespeicherten Reisen entfernen">×</button></article>`
       }).join('');
     }
-    function open(){render();overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');document.body.classList.add('aj-modal-open');overlay.querySelector('.aj-wishlist-close')?.focus()}
-    function close(){overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');document.body.classList.remove('aj-modal-open')}
+    let lastWishlistFocus=null;
+    function open(){
+      if(overlay.classList.contains('is-open'))return;
+      lastWishlistFocus=document.activeElement;render();overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');trigger.setAttribute('aria-expanded','true');document.body.classList.add('aj-modal-open');
+      requestAnimationFrame(()=>overlay.querySelector('.aj-wishlist-close')?.focus());
+    }
+    function close(){
+      if(!overlay.classList.contains('is-open'))return;
+      overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');trigger.setAttribute('aria-expanded','false');document.body.classList.remove('aj-modal-open');
+      const focusTarget=lastWishlistFocus&&document.contains(lastWishlistFocus)?lastWishlistFocus:trigger;
+      requestAnimationFrame(()=>focusTarget?.focus?.());
+    }
     trigger.addEventListener('click',open);
-    overlay.querySelector('.aj-wishlist-close').addEventListener('click',close);
-    overlay.addEventListener('click',e=>{if(e.target===overlay)close();const rem=e.target.closest('[data-remove-fav]');if(rem){setFavs(getFavs().filter(x=>x!==String(rem.dataset.removeFav)),rem);render()}});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+    overlay.querySelector('.aj-wishlist-close').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();close()});
+    overlay.addEventListener('click',e=>{if(e.target===overlay){close();return}const rem=e.target.closest('[data-remove-fav]');if(rem){setFavs(getFavs().filter(x=>x!==String(rem.dataset.removeFav)),rem);render()}});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('is-open')){e.preventDefault();close()}});
     document.addEventListener('click',e=>{const favButton=e.target.closest('[data-fav]');if(!favButton)return;e.preventDefault();e.stopImmediatePropagation();toggleFav(favButton.dataset.fav,favButton)},true);
     window.addEventListener('aj:favs-changed',render);window.addEventListener('storage',render);render();
   }
