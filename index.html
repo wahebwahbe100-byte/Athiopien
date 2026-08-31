@@ -7215,5 +7215,100 @@ body.top-strip-collapsed .site-nav .nav-actions .langbtn{
 }
 </style>
 
+
+
+<style id="aj-pt-dual-flags-premium-v1">
+/* Portuguese selector: Portugal + Brazil as a clean layered flag pair. */
+#langMenu.langmenu button[data-lang="pt"] .aj-flag-pair,
+.langmenu button[data-lang="pt"] .aj-flag-pair{
+  position:relative!important;
+  display:inline-block!important;
+  width:52px!important;
+  height:27px!important;
+  min-width:52px!important;
+  flex:0 0 52px!important;
+  overflow:visible!important;
+  direction:ltr!important;
+}
+#langMenu.langmenu button[data-lang="pt"] .aj-flag-pair img,
+.langmenu button[data-lang="pt"] .aj-flag-pair img{
+  position:absolute!important;
+  top:3px!important;
+  width:31px!important;
+  height:21px!important;
+  max-width:31px!important;
+  margin:0!important;
+  object-fit:cover!important;
+  border-radius:4px!important;
+  outline:1.5px solid rgba(255,255,255,.92)!important;
+  box-shadow:0 3px 8px rgba(5,22,35,.22)!important;
+  transform-origin:center!important;
+}
+#langMenu.langmenu button[data-lang="pt"] .aj-flag-pair img:first-child,
+.langmenu button[data-lang="pt"] .aj-flag-pair img:first-child{
+  left:1px!important;
+  z-index:2!important;
+  transform:rotate(-3deg)!important;
+}
+#langMenu.langmenu button[data-lang="pt"] .aj-flag-pair img+img,
+.langmenu button[data-lang="pt"] .aj-flag-pair img+img{
+  left:20px!important;
+  z-index:1!important;
+  transform:rotate(3deg)!important;
+}
+
+/* Compact layered pair inside the active language button. */
+.site-nav .nav-actions .langbtn .aj-flag-pair{
+  position:relative!important;
+  display:inline-block!important;
+  width:34px!important;
+  height:22px!important;
+  min-width:34px!important;
+  flex:0 0 34px!important;
+  overflow:visible!important;
+  direction:ltr!important;
+}
+.site-nav .nav-actions .langbtn .aj-flag-pair img{
+  position:absolute!important;
+  top:3px!important;
+  width:22px!important;
+  height:16px!important;
+  max-width:22px!important;
+  margin:0!important;
+  object-fit:cover!important;
+  border-radius:3px!important;
+  outline:1px solid rgba(255,255,255,.96)!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.24)!important;
+  transform-origin:center!important;
+}
+.site-nav .nav-actions .langbtn .aj-flag-pair img:first-child{
+  left:0!important;
+  z-index:2!important;
+  transform:rotate(-4deg)!important;
+}
+.site-nav .nav-actions .langbtn .aj-flag-pair img+img{
+  left:12px!important;
+  z-index:1!important;
+  transform:rotate(4deg)!important;
+}
+
+@media(max-width:768px){
+  .site-nav .nav-actions .langbtn .aj-flag-pair{
+    width:32px!important;
+    min-width:32px!important;
+    height:21px!important;
+  }
+  .site-nav .nav-actions .langbtn .aj-flag-pair img{
+    top:3px!important;
+    width:21px!important;
+    height:15px!important;
+    max-width:21px!important;
+  }
+  .site-nav .nav-actions .langbtn .aj-flag-pair img+img{
+    left:11px!important;
+  }
+}
+</style>
+
 </body>
 </html>
