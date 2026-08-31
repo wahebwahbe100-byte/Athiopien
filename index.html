@@ -4844,7 +4844,7 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
 .footer-socials-ref{display:flex!important;flex-wrap:wrap!important;gap:10px!important;align-items:center!important}
 @media(max-width:700px){.footer-socials-ref{gap:8px!important;max-width:330px!important}}
 </style>
-<link rel="stylesheet" href="aj-client-enhancements.css?v=14"><style id="reisearten-heart-match-ausgewaehlte-v1">
+<link rel="stylesheet" href="aj-client-enhancements.css?v=15"><style id="reisearten-heart-match-ausgewaehlte-v1">
 /* Reisearten: heart control intentionally matches Ausgewählte Reisen. */
 #reisearten .reiseart-card-fav{
   top:7px;
@@ -4932,6 +4932,169 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
 .popular-trip-fav.is-active svg,#reisearten .reiseart-card-fav.is-active svg,#reisearten .reiseart-card-fav[aria-pressed="true"] svg{fill:currentColor!important}
 @media(prefers-reduced-motion:reduce){.home-section-link,.popular-carousel-arrow,.reisearten-card-arrow,.site-nav .aj-wishlist-trigger,.popular-trip-fav,#reisearten .reiseart-card-fav{transition:none!important}.popular-trips-viewport,.reisearten-card-viewport{scroll-behavior:auto!important}}
 </style>
+
+<style id="home-all-trips-reference-button-v1">
+/* Homepage “Alle Reisen ansehen” button — matched to the supplied reference. */
+#popularTrips .popular-trips-actions{
+  margin-top:30px!important;
+  display:flex;
+  justify-content:center;
+  padding-inline:12px;
+}
+#popularTrips .popular-all-link{
+  box-sizing:border-box;
+  width:min(100%,344px);
+  min-height:56px;
+  padding:0 25px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  border:2px solid rgba(202,165,82,.62)!important;
+  border-radius:999px;
+  background:rgba(4,23,38,.18);
+  color:#d5b363!important;
+  font:800 14px/1 'Manrope',sans-serif;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+  text-decoration:none;
+  box-shadow:inset 0 0 0 1px rgba(255,224,151,.05),0 0 0 1px rgba(88,69,31,.08);
+  transition:border-color .22s ease,background .22s ease,color .22s ease,transform .22s ease,box-shadow .22s ease;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+#popularTrips .popular-all-link span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-left:2px;
+  color:inherit;
+  font-size:22px;
+  font-weight:500;
+  line-height:1;
+  transform:translateY(-1px);
+  transition:transform .22s ease;
+}
+#popularTrips .popular-all-link:hover{
+  color:#f0cf7d!important;
+  border-color:rgba(229,191,104,.92)!important;
+  background:rgba(221,184,94,.07);
+  box-shadow:inset 0 0 0 1px rgba(255,224,151,.08),0 7px 22px rgba(0,0,0,.14);
+  transform:translateY(-1px);
+}
+#popularTrips .popular-all-link:hover span{transform:translate(3px,-1px)}
+#popularTrips .popular-all-link:focus-visible{
+  outline:3px solid rgba(241,211,138,.38);
+  outline-offset:4px;
+}
+@media(max-width:520px){
+  #popularTrips .popular-trips-actions{margin-top:24px!important;padding-inline:4px}
+  #popularTrips .popular-all-link{
+    width:min(100%,332px);
+    min-height:52px;
+    padding:0 19px;
+    gap:12px;
+    font-size:12.5px;
+    letter-spacing:.045em;
+  }
+  #popularTrips .popular-all-link span{font-size:19px}
+}
+@media(max-width:360px){
+  #popularTrips .popular-all-link{min-height:50px;padding-inline:15px;font-size:11.5px;gap:10px}
+  #popularTrips .popular-all-link span{font-size:19px}
+}
+</style>
+
+
+<style id="home-heart-match-reisen-v1">
+/* Homepage card hearts: match the compact /reisen favorite control. */
+#popularTrips .popular-trip-fav,
+#reisearten .reiseart-card-fav{
+  width:34px!important;
+  height:34px!important;
+  padding:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#fff!important;
+  background:rgba(9,34,52,.38)!important;
+  border:1px solid rgba(255,255,255,.34)!important;
+  border-radius:50%!important;
+  box-shadow:0 3px 10px rgba(5,24,38,.18)!important;
+  backdrop-filter:blur(5px)!important;
+  -webkit-backdrop-filter:blur(5px)!important;
+  line-height:1!important;
+  cursor:pointer!important;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease!important;
+}
+#popularTrips .popular-trip-fav{top:12px!important;right:12px!important;}
+#reisearten .reiseart-card-fav{top:10px!important;right:10px!important;}
+#popularTrips .popular-trip-fav svg,
+#reisearten .reiseart-card-fav svg{
+  width:18px!important;
+  height:18px!important;
+  margin:0!important;
+  color:inherit!important;
+  fill:none!important;
+  stroke:currentColor!important;
+  stroke-width:2!important;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.2));
+}
+#popularTrips .popular-trip-fav:hover,
+#reisearten .reiseart-card-fav:hover{
+  transform:scale(1.07)!important;
+  color:#fff!important;
+  background:rgba(9,34,52,.58)!important;
+  border-color:rgba(255,255,255,.55)!important;
+  box-shadow:0 4px 12px rgba(5,24,38,.25)!important;
+}
+#popularTrips .popular-trip-fav:focus-visible,
+#reisearten .reiseart-card-fav:focus-visible{
+  outline:2px solid #fff!important;
+  outline-offset:2px!important;
+}
+#popularTrips .popular-trip-fav.on,
+#popularTrips .popular-trip-fav.is-active,
+#popularTrips .popular-trip-fav[aria-pressed="true"],
+#reisearten .reiseart-card-fav.on,
+#reisearten .reiseart-card-fav.is-active,
+#reisearten .reiseart-card-fav[aria-pressed="true"]{
+  color:#fff!important;
+  background:rgba(156,47,67,.94)!important;
+  border-color:rgba(255,255,255,.50)!important;
+  box-shadow:0 4px 12px rgba(94,20,40,.28)!important;
+}
+#popularTrips .popular-trip-fav.on svg,
+#popularTrips .popular-trip-fav.is-active svg,
+#popularTrips .popular-trip-fav[aria-pressed="true"] svg,
+#reisearten .reiseart-card-fav.on svg,
+#reisearten .reiseart-card-fav.is-active svg,
+#reisearten .reiseart-card-fav[aria-pressed="true"] svg{
+  color:#fff!important;
+  fill:currentColor!important;
+  stroke:currentColor!important;
+  filter:none!important;
+}
+@media(max-width:680px){
+  #popularTrips .popular-trip-fav,
+  #reisearten .reiseart-card-fav{
+    width:27px!important;
+    height:27px!important;
+    background:rgba(9,34,52,.40)!important;
+    border-width:1px!important;
+    box-shadow:0 2px 7px rgba(5,24,38,.18)!important;
+  }
+  #popularTrips .popular-trip-fav{top:7px!important;right:7px!important;}
+  #reisearten .reiseart-card-fav{top:7px!important;right:7px!important;}
+  #popularTrips .popular-trip-fav svg,
+  #reisearten .reiseart-card-fav svg{
+    width:15px!important;
+    height:15px!important;
+    stroke-width:2.1!important;
+  }
+}
+</style>
+
 </head>
 <body>
   <div data-shell="header"></div>
@@ -6846,7 +7009,7 @@ document.addEventListener('DOMContentLoaded',function(){
 }
 </style>
 
-<script src="aj-client-enhancements.js?v=12"></script>
+<script src="aj-client-enhancements.js?v=13"></script>
 <script src="aj-mega-menu.js?v=17"></script>
 
 <style id="aj-header-flag-only-v1">
