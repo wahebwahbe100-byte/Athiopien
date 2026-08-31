@@ -1,0 +1,5 @@
+Mobile fixed header bar update
+
+The mobile navigation/header is now fixed at the top on every HTML page.
+It keeps the same height and full logo size while scrolling instead of compacting.
+Language, currency and navigation menus open below the fixed bar.

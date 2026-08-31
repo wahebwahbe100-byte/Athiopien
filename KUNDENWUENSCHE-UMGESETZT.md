@@ -47,3 +47,19 @@ Statuswerte in `dates.status` können z. B. `green`, `yellow` oder `orange` sein
 - `aj-client-enhancements.css`
 - `aj-client-enhancements.js`
 - `REISE-DATEN-VORLAGE.json`
+
+
+## Anpassungen v8 – Kundenfeedback
+- Individualreisen-Menü: Fotografie, Familienreisen, Seniorenreisen, Hochzeits- & Verlobungsreisen, Rundreisen, Spezialreisen (z.B. VIP).
+- Gruppenreisen / Region: Zentraläthiopien entfernt, Westäthiopien ergänzt.
+- Gruppenreisen / Thema: „Kultur & Begegnungen“ entfernt; Fotografie, Kurzreisen, UNESCO-Welterbe, Camping-Reisen und Familienreisen ergänzt.
+- Seniorenreisen und Hochzeits-/Verlobungsreisen werden nicht mehr automatisch in Region, Thema und Dauer eingefügt.
+- Merkliste/Herz im Header optisch ruhiger gestaltet.
+- Reise-Tracker direkt unter dem Mainheader positioniert.
+- Header bleibt beim Scrollen stabil und wird nicht mehr klein geschoben.
+- Rotierende/Laufleisten-Animation im oberen Promo-Bereich deaktiviert.
+- Reise-Detailkopf und Bilderbereich deutlich verkleinert.
+- „Finden Sie Ihre Route“-Hero deutlich verkleinert.
+- Reise-Untermenü „Überblick“ scrollt sicher innerhalb derselben Detailseite.
+- Jahresfilter bei Termine/Preise blendet Zeilen zuverlässig ein/aus.
+- Verfügbarkeit um „leider ausgebucht“ ergänzt.

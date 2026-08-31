@@ -105,7 +105,7 @@
     .langmenu.open{display:grid;animation:popIn .2s ease both}
     .langmenu button{display:flex;align-items:center;gap:10px;border:0;background:transparent;color:#465763;text-align:left;padding:11px 12px;border-radius:11px;font-weight:700;cursor:pointer}
     .langmenu button:hover{background:#edf3f8;color:var(--forest)}
-    .langmenu img{width:28px;height:20px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.1)}
+    .langmenu img{width:28px;height:20px;object-fit:cover;border-radius:2px;box-shadow:none;}
     .nav-cta{background:var(--gold);color:#182936;border-color:var(--gold)}
     .menuBtn{display:none;width:46px;height:46px;border:1px solid rgba(255,255,255,.25);border-radius:14px;background:rgba(255,255,255,.08);cursor:pointer;place-items:center}
     .menu-icon{position:relative;width:22px;height:18px;display:block}
@@ -430,7 +430,7 @@
       #langMenu.langmenu.open{display:grid!important}
       #langMenu.langmenu button{min-width:0!important;min-height:76px!important;padding:9px 5px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:6px!important;color:#fff!important;text-align:center!important;white-space:normal!important;font-size:.72rem!important;line-height:1.12!important;border:1px solid rgba(255,255,255,.14)!important;border-radius:12px!important;background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.04))!important}
       #langMenu.langmenu button:hover{color:#f2cf74!important;border-color:rgba(242,207,116,.36)!important;background:rgba(215,170,73,.15)!important}
-      #langMenu.langmenu button img{width:32px!important;height:23px!important;object-fit:cover!important;display:block!important;border-radius:2px!important;box-shadow:0 0 0 1px rgba(255,255,255,.30)!important}
+      #langMenu.langmenu button img{width:32px!important;height:23px!important;object-fit:cover!important;display:block!important;border-radius:2px!important;box-shadow:none!important;}
       #langMenu.langmenu button span{display:block!important;width:100%!important;color:inherit!important}
 
       body{padding-top:0!important}main,.home-hero{margin-top:0!important}
@@ -4853,7 +4853,7 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
 .footer-socials-ref{display:flex!important;flex-wrap:wrap!important;gap:10px!important;align-items:center!important}
 @media(max-width:700px){.footer-socials-ref{gap:8px!important;max-width:330px!important}}
 </style>
-<link rel="stylesheet" href="aj-client-enhancements.css?v=7"></head>
+<link rel="stylesheet" href="aj-client-enhancements.css?v=14"></head>
 <body>
   <div data-shell="header"></div>
 
@@ -5457,7 +5457,7 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
         // Keep the cached/fallback rate when the exchange-rate service is unavailable.
       }
     }
-    const flagImg=(code,alt='')=>`<img src="https://flagcdn.com/28x21/${code}.png" srcset="https://flagcdn.com/56x42/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}">`;
+    const flagImg=(code,alt='')=>`<img src="flags/${code}.png" srcset="flags/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}">`;
     const currentPage=()=>(location.pathname.split('/').pop()||'index.html').toLowerCase();
     const SVG_ICONS={
       phone:`<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>`,
@@ -5514,7 +5514,7 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
                         <a href="reisen.html?region=nord">Nordäthiopien-Rundreisen</a>
                         <a href="reisen.html?region=sued">Südäthiopien-Rundreisen</a>
                         <a href="reisen.html?region=ost">Ostäthiopien-Rundreisen</a>
-                        <a href="reisen.html?region=zentral">Zentraläthiopien-Rundreisen</a>
+                        <a href="reisen.html?region=west">Westäthiopien-Rundreisen</a>
                       </div>
                     </div>
                     <div class="drop-group">
@@ -5522,7 +5522,7 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
                       <div class="drop-submenu">
                         <a href="reisen.html?cat=Kultur">Kulturreisen</a>
                         <a href="reisen.html?cat=Wandern">Natur &amp; Trekking</a>
-                        <a href="reisen.html?cat=Begegnungen">Kultur &amp; Begegnungen</a>
+                        <a href="reisen.html?cat=Foto">Fotografie</a><a href="reisen.html?thema=kurzreisen">Kurzreisen</a><a href="reisen.html?thema=unesco">UNESCO-Welterbe</a><a href="reisen.html?thema=camping">Campingreisen</a><a href="reisen.html?cat=Familie">Familienreisen</a>
                         <a href="reisen.html?cat=Abenteuer">Abenteuerreisen</a>
                         <a href="reisen.html?cat=Reisen%20f%C3%BCr%20Personen%20mit%20k%C3%B6rperlicher%20Beeintr%C3%A4chtigung">Reisen für Personen mit körperlicher Beeinträchtigung</a>
                       </div>
@@ -5544,10 +5544,13 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
                 </div>
                 <div class="nav-dropdown">
                   <a class="nav-main-link" href="individualreisen.html" data-page="individualreisen.html"><span data-i18n="private">Individualreisen</span><i class="nav-arrow" aria-hidden="true"></i></a>
-                  <div class="nav-dropdown-menu compact">
-                    <a class="drop-row" href="individualreisen.html"><span>Private Rundreisen</span></a>
-                    <a class="drop-row" href="baukasten.html"><span>Individuell planen</span></a>
-                    <a class="drop-row" href="kontakt.html"><span>Persönliche Beratung</span></a>
+                  <div class="nav-dropdown-menu aj-private-travel-menu">
+                    <a class="drop-row" href="Ausgewaehlte-Reisen/reise-photo.html"><span>Fotografie</span></a>
+                    <a class="drop-row" href="Ausgewaehlte-Reisen/reise-family.html"><span>Familienreisen</span></a>
+                    <a class="drop-row" href="Reisearten/reiseart-senioren.html"><span>Seniorenreisen</span></a>
+                    <a class="drop-row" href="Reisearten/reiseart-hochzeit-verlobung.html"><span>Hochzeits- &amp; Verlobungsreisen</span></a>
+                    <a class="drop-row" href="individualreisen.html"><span>Rundreisen</span></a>
+                    <a class="drop-row" href="reisen.html?cat=VIP"><span>Spezialreisen (z. B. VIP)</span></a>
                   </div>
                 </div>
                 <div class="nav-dropdown">
@@ -6249,7 +6252,7 @@ document.addEventListener('DOMContentLoaded',function(){
 /* Global language + currency controls: Greek/Hebrew, dual Portuguese flags, EUR/USD on every page. */
 .aj-flag-pair{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:2px!important;direction:ltr!important;flex:0 0 auto}
 .langmenu .aj-flag-pair{width:58px!important;gap:3px!important}
-.langmenu .aj-flag-pair img{width:27px!important;height:19px!important;max-width:27px!important;object-fit:cover!important;border-radius:2px!important;margin:0!important;box-shadow:0 0 0 1px rgba(0,0,0,.10)!important}
+.langmenu .aj-flag-pair img{width:27px!important;height:19px!important;max-width:27px!important;object-fit:cover!important;border-radius:2px!important;margin:0!important;box-shadow:none!important;}
 .langbtn .aj-flag-pair{width:34px!important;gap:0!important}
 .langbtn .aj-flag-pair img{width:20px!important;height:15px!important;max-width:20px!important;object-fit:cover!important;border-radius:2px!important;margin:0!important;box-shadow:0 0 0 1px rgba(0,0,0,.12)!important}
 .langbtn .aj-flag-pair img+img{margin-left:-6px!important}
@@ -6325,7 +6328,7 @@ document.addEventListener('DOMContentLoaded',function(){
     he:{groups:'טיולים קבוצתיים',private:'טיולים פרטיים',modules:'בניית מסלול',tips:'טיפים למטיילים',info:'מידע',builder:'תכנון טיול',login:'התחברות',home:'אתיופיה'},
     tr:{groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',builder:'Seyahat planla',login:'Giriş',home:'Etiyopya'}
   };
-  const flagImg=(code,alt='')=>`<img src="https://flagcdn.com/28x21/${code}.png" srcset="https://flagcdn.com/56x42/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}">`;
+  const flagImg=(code,alt='')=>`<img src="flags/${code}.png" srcset="flags/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}">`;
   const flagMarkup=(lang,compact=false)=>{
     const item=LANGS[lang]||LANGS.de;
     if(item.flags.length===1)return flagImg(item.flags[0],item.name);
@@ -6742,5 +6745,440 @@ document.addEventListener('DOMContentLoaded',function(){
 }
 </style>
 
-<script src="aj-client-enhancements.js?v=7"></script></body>
+<script src="aj-client-enhancements.js?v=12"></script>
+<script src="aj-mega-menu.js?v=17"></script>
+
+<style id="aj-header-flag-only-v1">
+/* Header language control: show only the flag, with no visible layer behind it. */
+.site-nav .nav-actions .langbtn,
+.site-nav:not(.scrolled) .nav-actions .langbtn,
+.site-nav.scrolled .nav-actions .langbtn,
+body.top-strip-collapsed .site-nav .nav-actions .langbtn{
+  width:44px!important;
+  min-width:44px!important;
+  height:44px!important;
+  min-height:44px!important;
+  padding:0!important;
+  margin:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  color:inherit!important;
+}
+.site-nav .nav-actions .langbtn:hover,
+.site-nav .nav-actions .langbtn:active,
+.site-nav .nav-actions .langbtn[aria-expanded="true"]{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.site-nav .nav-actions .langbtn>span,
+.site-nav .nav-actions .langbtn>.ui-icon,
+.site-nav .nav-actions .langbtn>svg{
+  display:none!important;
+}
+.site-nav .nav-actions .langbtn>img,
+.site-nav .nav-actions .langbtn .aj-flag-img,
+.site-nav .nav-actions .langbtn .aj-flag-pair img{
+  border:0!important;
+  box-shadow:none!important;
+  outline:0!important;
+  background:transparent!important;
+}
+.site-nav .nav-actions .langbtn .aj-flag-pair{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+@media (max-width:768px){
+  .site-nav .nav-actions .langbtn,
+  .site-nav:not(.scrolled) .nav-actions .langbtn,
+  .site-nav.scrolled .nav-actions .langbtn,
+  body.top-strip-collapsed .site-nav .nav-actions .langbtn{
+    width:42px!important;
+    min-width:42px!important;
+    height:42px!important;
+    min-height:42px!important;
+    padding:0!important;
+    background:transparent!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+  }
+}
+</style>
+
+
+<style id="aj-language-flags-no-background-v1">
+/* Language flags: keep the flag itself and language text; remove only the visual layer/outline behind flag images. */
+#langMenu.langmenu button > img,
+#langMenu.langmenu .aj-flag-img,
+#langMenu.langmenu .aj-flag-pair img,
+.langmenu button > img,
+.langmenu .aj-flag-img,
+.langmenu .aj-flag-pair img,
+.aj-flag-svg{
+  background:transparent!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+#langMenu.langmenu .aj-flag-pair,
+.langmenu .aj-flag-pair{
+  background:transparent!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+</style>
+
+<style id="aj-logo-full-contained-v19">
+/* Logo correction: show the complete artwork, never crop/zoom it, and keep it
+   visually contained inside the blue navigation bar on every page. */
+.site-nav .brand,
+.site-nav .brand-emblem,
+.site-nav .brand-logo{
+  border:0!important;
+  outline:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.site-nav .brand,
+.site-nav .brand-emblem{
+  overflow:visible!important;
+}
+.site-nav .brand-logo,
+.site-nav.scrolled .brand-logo,
+body.top-strip-collapsed .site-nav .brand-logo{
+  display:block!important;
+  clip-path:none!important;
+  -webkit-clip-path:none!important;
+  mask:none!important;
+  -webkit-mask:none!important;
+  transform:none!important;
+  transform-origin:center!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  max-width:none!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  filter:none!important;
+}
+
+/* Large desktop: full logo centered inside the main navigation, not in the promo strip. */
+@media (min-width:1181px){
+  .site-nav:not(.scrolled) .nav-inner{padding-left:174px!important;}
+  .site-nav:not(.scrolled) .brand{
+    position:absolute!important;
+    left:14px!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+    width:140px!important;
+    height:76px!important;
+    min-width:140px!important;
+    min-height:76px!important;
+    max-height:76px!important;
+    margin:0!important;
+    padding:0!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  .site-nav:not(.scrolled) .brand-emblem,
+  .site-nav:not(.scrolled) .brand-logo{
+    width:140px!important;
+    height:76px!important;
+    min-width:140px!important;
+    min-height:76px!important;
+    max-width:140px!important;
+    max-height:76px!important;
+  }
+
+  .site-nav.scrolled .nav-inner,
+  body.top-strip-collapsed .site-nav .nav-inner{padding-left:150px!important;}
+  .site-nav.scrolled .brand,
+  body.top-strip-collapsed .site-nav .brand{
+    position:absolute!important;
+    left:14px!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+    width:118px!important;
+    height:64px!important;
+    min-width:118px!important;
+    min-height:64px!important;
+    max-height:64px!important;
+    margin:0!important;
+    padding:0!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  .site-nav.scrolled .brand-emblem,
+  .site-nav.scrolled .brand-logo,
+  body.top-strip-collapsed .site-nav .brand-emblem,
+  body.top-strip-collapsed .site-nav .brand-logo{
+    width:118px!important;
+    height:64px!important;
+    min-width:118px!important;
+    min-height:64px!important;
+    max-width:118px!important;
+    max-height:64px!important;
+  }
+}
+
+/* Laptop / tablet landscape. */
+@media (min-width:769px) and (max-width:1180px){
+  .site-nav:not(.scrolled) .nav-inner{padding-left:150px!important;}
+  .site-nav:not(.scrolled) .brand{
+    position:absolute!important;
+    left:10px!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+    width:122px!important;
+    height:68px!important;
+    min-width:122px!important;
+    min-height:68px!important;
+    max-height:68px!important;
+    margin:0!important;
+    padding:0!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  .site-nav:not(.scrolled) .brand-emblem,
+  .site-nav:not(.scrolled) .brand-logo{
+    width:122px!important;
+    height:68px!important;
+    min-width:122px!important;
+    min-height:68px!important;
+    max-width:122px!important;
+    max-height:68px!important;
+  }
+  .site-nav.scrolled .nav-inner,
+  body.top-strip-collapsed .site-nav .nav-inner{padding-left:128px!important;}
+  .site-nav.scrolled .brand,
+  body.top-strip-collapsed .site-nav .brand{
+    left:10px!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+    width:104px!important;
+    height:58px!important;
+    min-width:104px!important;
+    min-height:58px!important;
+    max-height:58px!important;
+  }
+  .site-nav.scrolled .brand-emblem,
+  .site-nav.scrolled .brand-logo,
+  body.top-strip-collapsed .site-nav .brand-emblem,
+  body.top-strip-collapsed .site-nav .brand-logo{
+    width:104px!important;
+    height:58px!important;
+    min-width:104px!important;
+    min-height:58px!important;
+    max-width:104px!important;
+    max-height:58px!important;
+  }
+}
+
+/* Phone: complete logo, no bottom clipping. */
+@media (max-width:768px){
+  .site-nav .nav-inner,
+  .site-nav:not(.scrolled) .nav-inner{padding-left:122px!important;}
+  .site-nav .brand,
+  .site-nav:not(.scrolled) .brand{
+    position:absolute!important;
+    left:4px!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+    width:108px!important;
+    height:60px!important;
+    min-width:108px!important;
+    min-height:60px!important;
+    max-height:60px!important;
+    margin:0!important;
+    padding:0!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  .site-nav .brand-emblem,
+  .site-nav .brand-logo,
+  .site-nav:not(.scrolled) .brand-emblem,
+  .site-nav:not(.scrolled) .brand-logo{
+    width:108px!important;
+    height:60px!important;
+    min-width:108px!important;
+    min-height:60px!important;
+    max-width:108px!important;
+    max-height:60px!important;
+  }
+  .site-nav.scrolled .nav-inner,
+  body.top-strip-collapsed .site-nav .nav-inner{padding-left:106px!important;}
+  .site-nav.scrolled .brand,
+  body.top-strip-collapsed .site-nav .brand{
+    left:4px!important;
+    top:50%!important;
+    transform:translateY(-50%)!important;
+    width:92px!important;
+    height:52px!important;
+    min-width:92px!important;
+    min-height:52px!important;
+    max-height:52px!important;
+  }
+  .site-nav.scrolled .brand-emblem,
+  .site-nav.scrolled .brand-logo,
+  body.top-strip-collapsed .site-nav .brand-emblem,
+  body.top-strip-collapsed .site-nav .brand-logo{
+    width:92px!important;
+    height:52px!important;
+    min-width:92px!important;
+    min-height:52px!important;
+    max-width:92px!important;
+    max-height:52px!important;
+  }
+}
+
+@media (max-width:390px){
+  .site-nav .nav-inner,
+  .site-nav:not(.scrolled) .nav-inner{padding-left:108px!important;}
+  .site-nav .brand,
+  .site-nav:not(.scrolled) .brand{
+    width:96px!important;
+    height:54px!important;
+    min-width:96px!important;
+    min-height:54px!important;
+    max-height:54px!important;
+  }
+  .site-nav .brand-emblem,
+  .site-nav .brand-logo,
+  .site-nav:not(.scrolled) .brand-emblem,
+  .site-nav:not(.scrolled) .brand-logo{
+    width:96px!important;
+    height:54px!important;
+    min-width:96px!important;
+    min-height:54px!important;
+    max-width:96px!important;
+    max-height:54px!important;
+  }
+}
+</style>
+
+
+<style id="aj-mobile-logo-full-visible-v1">
+/* Mobile logo fix: always show the complete Abyssinia Journeys logo artwork. */
+@media (max-width: 768px){
+  .site-nav,
+  .site-nav .container,
+  .site-nav .nav-inner,
+  .site-nav .brand,
+  .site-nav .brand-emblem{
+    overflow: visible !important;
+  }
+
+  .site-nav .brand,
+  .site-nav:not(.scrolled) .brand,
+  .site-nav.scrolled .brand,
+  body.top-strip-collapsed .site-nav .brand,
+  .site-nav .brand-index-logo,
+  .site-nav.scrolled .brand-index-logo{
+    position: absolute !important;
+    left: 2px !important;
+    margin: 0 !important;
+    transform: none !important;
+    display: block !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Full-size logo at the top of the page. The natural 1672:941 ratio is preserved. */
+  .site-nav:not(.scrolled) .brand,
+  body:not(.top-strip-collapsed) .site-nav .brand,
+  .site-nav:not(.scrolled) .brand-index-logo{
+    top: 1px !important;
+    width: 132px !important;
+    min-width: 132px !important;
+    height: auto !important;
+  }
+
+  .site-nav .brand-emblem,
+  .site-nav:not(.scrolled) .brand-emblem,
+  .site-nav .brand-index-logo .brand-emblem{
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .site-nav .brand-logo,
+  .site-nav:not(.scrolled) .brand-logo,
+  .site-nav.scrolled .brand-logo,
+  body.top-strip-collapsed .site-nav .brand-logo,
+  .site-nav .brand-index-logo .brand-logo{
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    mask: none !important;
+    -webkit-mask: none !important;
+    transform: none !important;
+    transform-origin: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Compact logo after scrolling, still with the complete artwork visible. */
+  .site-nav.scrolled .brand,
+  body.top-strip-collapsed .site-nav .brand,
+  .site-nav.scrolled .brand-index-logo{
+    top: 2px !important;
+    width: 104px !important;
+    min-width: 104px !important;
+    height: auto !important;
+  }
+
+  .site-nav.scrolled .brand-emblem,
+  body.top-strip-collapsed .site-nav .brand-emblem,
+  .site-nav.scrolled .brand-logo,
+  body.top-strip-collapsed .site-nav .brand-logo{
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 390px){
+  .site-nav:not(.scrolled) .brand,
+  body:not(.top-strip-collapsed) .site-nav .brand,
+  .site-nav:not(.scrolled) .brand-index-logo{
+    width: 116px !important;
+    min-width: 116px !important;
+  }
+
+  .site-nav.scrolled .brand,
+  body.top-strip-collapsed .site-nav .brand,
+  .site-nav.scrolled .brand-index-logo{
+    width: 98px !important;
+    min-width: 98px !important;
+  }
+}
+</style>
+
+</body>
 </html>

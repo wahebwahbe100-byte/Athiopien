@@ -1,0 +1,12 @@
+Abyssinia Journeys — Header V10 Fix
+30.08.2026
+
+- Main Header is always the first/top bar.
+- Tracker / promotion bar is always directly below the Main Header.
+- Both bars use the full page width on every page.
+- The two-bar stack stays fixed and does not collapse or jump while scrolling.
+- Same header rules are applied to root pages, Reisearten pages, and Ausgewaehlte-Reisen pages.
+- Mobile keeps both bars visible in a compact layout.
+- Trip sub-navigation is positioned below the complete two-bar header.
+- Page content receives the correct header spacer so it does not start underneath the fixed bars.
+- Cache versions for the shared header CSS/JS were bumped to v10.
