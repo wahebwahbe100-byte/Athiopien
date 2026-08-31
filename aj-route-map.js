@@ -41,7 +41,8 @@ const UI={
  zh:{title:'行程与地图',desc:'逐日游览埃塞俄比亚，地图保持固定，路线会随着页面滚动逐步展开。',itinerary:'行程',map:'地图',play:'播放路线',pause:'暂停',overview:'完整路线',open:'在 Google 地图中打开',loading:'正在加载 Google 地图…',unavailable:'无法加载 Google 地图。',key:'请在 aj-google-maps-config.js 中添加 Google Maps API Key。',day:'第',route:'路线'},
  ja:{title:'旅程と地図',desc:'エチオピアを日ごとに巡り、地図は固定されたまま、スクロールに合わせてルートが進みます。',itinerary:'旅程',map:'地図',play:'ルート再生',pause:'一時停止',overview:'全ルート',open:'Google マップで開く',loading:'Google マップを読み込み中…',unavailable:'Google マップを読み込めませんでした。',key:'aj-google-maps-config.js に Google Maps API Key を追加してください。',day:'日目',route:'ルート'},
  ko:{title:'일정과 지도',desc:'에티오피아 여행 일정 동안 지도는 고정되고 스크롤에 따라 경로가 진행됩니다.',itinerary:'여행 일정',map:'지도',play:'경로 재생',pause:'일시정지',overview:'전체 경로',open:'Google 지도에서 열기',loading:'Google 지도를 불러오는 중…',unavailable:'Google 지도를 불러올 수 없습니다.',key:'aj-google-maps-config.js에 Google Maps API Key를 추가하세요.',day:'일차',route:'여행 경로'},
- am:{title:'የጉዞ መርሃ ግብር እና ካርታ',desc:'በኢትዮጵያ ቀን በቀን — ካርታው ቋሚ ሆኖ መስመሩ ሲወርዱ ቀስ በቀስ ይታያል።',itinerary:'የጉዞ መርሃ ግብር',map:'ካርታ',play:'መስመሩን አጫውት',pause:'አቁም',overview:'ሙሉ መስመር',open:'በGoogle Maps ክፈት',loading:'Google Maps በመጫን ላይ…',unavailable:'Google Maps መጫን አልተቻለም።',key:'Google Maps API Key በ aj-google-maps-config.js ውስጥ ያስገቡ።',day:'ቀን',route:'የጉዞ መስመር'}
+ am:{title:'የጉዞ መርሃ ግብር እና ካርታ',desc:'በኢትዮጵያ ቀን በቀን — ካርታው ቋሚ ሆኖ መስመሩ ሲወርዱ ቀስ በቀስ ይታያል።',itinerary:'የጉዞ መርሃ ግብር',map:'ካርታ',play:'መስመሩን አጫውት',pause:'አቁም',overview:'ሙሉ መስመር',open:'በGoogle Maps ክፈት',loading:'Google Maps በመጫን ላይ…',unavailable:'Google Maps መጫን አልተቻለም።',key:'Google Maps API Key በ aj-google-maps-config.js ውስጥ ያስገቡ።',day:'ቀን',route:'የጉዞ መስመር'},
+ tr:{title:'Rota ve harita',desc:'Etiyopya’da gün gün ilerlerken harita sabit kalır ve kaydırdıkça rota adım adım oluşur.',itinerary:'Gezi programı',map:'Harita',play:'Rotayı oynat',pause:'Duraklat',overview:'Tüm rota',open:'Google Maps’te aç',loading:'Google Maps yükleniyor…',unavailable:'Google Maps yüklenemedi.',key:'Lütfen Google Maps API Key değerini aj-google-maps-config.js dosyasına ekleyin.',day:'Gün',route:'Rota'}
 };
 
 const ico={
@@ -103,7 +104,7 @@ function insert(){
 function embedLanguage(){
  const l=lang();
  if(l==='he')return 'iw';
- return ['de','en','ar','el','fr','it','es','pt','ru','zh','ja','ko','am'].includes(l)?l:'de';
+ return ['de','en','ar','el','fr','it','es','pt','ru','zh','ja','ko','am','tr'].includes(l)?l:'de';
 }
 function mercator(lat,lng){
  const x=(lng+180)/360;

@@ -98,7 +98,7 @@ body.aj-modal-open{overflow:hidden}
 #langMenu.langmenu button>span{unicode-bidi:isolate}
 #langMenu.langmenu button[data-lang="he"]>span,#langMenu.langmenu button[data-lang="ar"]>span{direction:rtl;text-align:left}
 #langMenu.langmenu button img,.aj-flag-img{flex:0 0 auto}
-.aj-flag-img{width:28px;height:21px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.aj-flag-img{width:28px;height:21px;object-fit:cover;border-radius:2px;box-shadow:none;border:0;outline:0;background:transparent}
 .langbtn .aj-flag-img{width:24px;height:18px}
 .aj-transport-icons{align-items:center}
 .aj-transport-icon{display:inline-grid!important;place-items:center;width:36px;height:34px;border-radius:10px;background:var(--soft,#eef3f7);color:var(--forest,#183c5a)}
@@ -139,3 +139,326 @@ html[dir="rtl"] #langMenu.langmenu button{direction:ltr!important}
 .aj-wishlist-details{display:inline-block;margin-top:7px;color:var(--clay,#b24d37);font:800 .7rem 'Manrope',sans-serif}
 .aj-wishlist-remove{margin-top:1px}
 @media(max-width:520px){.aj-wishlist-overlay{justify-content:stretch}.aj-wishlist-drawer{width:100vw;max-width:100vw;padding:max(18px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));box-shadow:none}.aj-wishlist-head{gap:10px}.aj-wishlist-head h2{font-size:clamp(1.25rem,7vw,1.55rem)}.aj-wishlist-item{grid-template-columns:82px minmax(0,1fr) auto}.aj-wishlist-image{width:82px;height:78px}.aj-wishlist-copy p{-webkit-line-clamp:1}}
+
+
+/* =========================================================
+   Client-requested UI refinements v8
+   ========================================================= */
+
+/* Heart in the header: calmer glass background instead of a stark white tile. */
+.site-nav .aj-wishlist-trigger{
+  width:44px!important;
+  height:44px!important;
+  border-radius:13px!important;
+  border:1px solid rgba(255,255,255,.22)!important;
+  background:rgba(255,255,255,.08)!important;
+  color:#f6dfa1!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.site-nav .aj-wishlist-trigger:hover,
+.site-nav .aj-wishlist-trigger.on{
+  background:rgba(255,255,255,.14)!important;
+  color:#fff0ba!important;
+  border-color:rgba(246,223,161,.46)!important;
+}
+.site-nav .aj-wishlist-count{
+  background:var(--clay,#b24d37)!important;
+  border-color:#0c2942!important;
+}
+
+/* No animated "running strip" behind the sticky header. */
+.promo-banner::after{display:none!important;animation:none!important}
+.promo-badge{animation:none!important}
+.promo-title,.promo-copy{transition:none!important}
+
+/* Keep the upper header stable instead of shrinking/collapsing while navigating/scrolling. */
+body.top-strip-collapsed .site-top{
+  transform:none!important;
+  max-height:none!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+body.top-strip-collapsed .site-nav,
+body.top-strip-collapsed .site-nav.scrolled{top:0!important}
+
+@media (max-width:768px){
+  .site-nav.scrolled .nav-inner,
+  body.top-strip-collapsed .site-nav .nav-inner,
+  body.top-strip-collapsed .site-nav.scrolled .nav-inner{
+    height:76px!important;
+    min-height:76px!important;
+    padding:0 8px 0 128px!important;
+  }
+  .site-nav.scrolled .brand,
+  body.top-strip-collapsed .site-nav .brand,
+  body.top-strip-collapsed .site-nav.scrolled .brand{
+    left:2px!important;
+    top:3px!important;
+    width:132px!important;
+    height:96px!important;
+    min-width:132px!important;
+  }
+  .site-nav.scrolled .brand-emblem,
+  .site-nav.scrolled .brand-logo,
+  body.top-strip-collapsed .site-nav .brand-emblem,
+  body.top-strip-collapsed .site-nav .brand-logo{
+    width:132px!important;
+    height:96px!important;
+    min-width:132px!important;
+  }
+  .site-nav .navlinks{top:76px!important}
+}
+@media (max-width:390px){
+  .site-nav.scrolled .nav-inner,
+  body.top-strip-collapsed .site-nav .nav-inner{
+    padding-left:112px!important;
+    padding-right:5px!important;
+  }
+  .site-nav.scrolled .brand,
+  body.top-strip-collapsed .site-nav .brand{
+    width:116px!important;
+    height:86px!important;
+    min-width:116px!important;
+  }
+  .site-nav.scrolled .brand-emblem,
+  .site-nav.scrolled .brand-logo,
+  body.top-strip-collapsed .site-nav .brand-emblem,
+  body.top-strip-collapsed .site-nav .brand-logo{
+    width:116px!important;
+    height:86px!important;
+    min-width:116px!important;
+  }
+}
+
+/* Tracker sits directly below the main header and stays visually separated. */
+.aj-trip-subnav{
+  top:var(--aj-main-nav-height,78px)!important;
+  z-index:260!important;
+  background:#fff!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  box-shadow:0 8px 20px rgba(24,60,90,.08)!important;
+}
+
+/* Detail pages: substantially reduce the large area before useful trip information. */
+.trip-photo-grid{
+  height:clamp(170px,13vw,245px)!important;
+}
+.trip-hero-copy{
+  padding:22px 20px 24px!important;
+}
+.trip-hero-copy h1{
+  font-size:clamp(2rem,3.2vw,3.35rem)!important;
+  margin:7px 0 9px!important;
+}
+.trip-hero-copy>p{
+  margin-bottom:10px!important;
+  line-height:1.45!important;
+}
+.trip-facts{
+  margin:12px 0!important;
+  gap:7px!important;
+}
+.trip-fact{
+  padding:9px 11px!important;
+}
+.trip-hero .hero-btns .btn{
+  min-height:40px!important;
+  padding:9px 13px!important;
+}
+.trip-photo-gallery .aj-trip-media-caption{
+  bottom:10px!important;
+  padding:6px 10px!important;
+}
+
+/* Smaller route/listing hero after choosing Region, Theme or Duration. */
+.listing-hero{
+  padding:30px 0 24px!important;
+}
+.listing-hero h1{
+  font-size:clamp(2.15rem,4.4vw,3.8rem)!important;
+  margin:7px 0 9px!important;
+}
+.listing-hero .lead{
+  font-size:.98rem!important;
+  line-height:1.45!important;
+  margin-bottom:0!important;
+}
+.listing-stat{
+  padding:11px 13px!important;
+  border-radius:14px!important;
+}
+.listing-stat strong{font-size:1.4rem!important}
+.listing-hero:after{
+  font-size:6.2rem!important;
+  bottom:-42px!important;
+}
+
+/* Availability: force year selection to hide/show rows immediately and add sold-out state. */
+.date-row.aj-date-row.is-filtered-out,
+.date-row.aj-date-row[hidden]{
+  display:none!important;
+}
+.aj-status-red{background:#a53f3f!important}
+.aj-legend-items{align-items:center}
+.date-row.aj-date-row .availability{min-width:0}
+
+/* Individual travel dropdown with the requested six travel types. */
+.nav-dropdown-menu.aj-private-travel-menu{
+  width:min(440px,calc(100vw - 28px))!important;
+  grid-template-columns:1fr 1fr!important;
+}
+@media(max-width:768px){
+  .nav-dropdown-menu.aj-private-travel-menu{
+    width:100%!important;
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+/* =========================================================
+   Final client corrections v9 — authoritative overrides
+   ========================================================= */
+/* Heart: clear, intentional background in the upper header. */
+.site-nav .aj-wishlist-trigger{
+  background:rgba(10,42,66,.94)!important;
+  color:#f2cf74!important;
+  border:1px solid rgba(242,207,116,.55)!important;
+  box-shadow:0 6px 16px rgba(4,24,38,.16)!important;
+}
+.site-nav .aj-wishlist-trigger:hover,.site-nav .aj-wishlist-trigger.on{
+  background:#173f5f!important;color:#fff0ba!important;border-color:#f2cf74!important;
+}
+
+/* The main header never collapses or changes size after opening a trip. */
+body.top-strip-collapsed .site-top{transform:none!important;max-height:none!important;opacity:1!important;visibility:visible!important}
+@media (min-width:769px){
+  .site-nav .nav-inner,.site-nav.scrolled .nav-inner,body.top-strip-collapsed .site-nav .nav-inner{height:80px!important;min-height:80px!important}
+}
+@media (max-width:768px){
+  .site-nav .nav-inner,.site-nav.scrolled .nav-inner,body.top-strip-collapsed .site-nav .nav-inner{height:76px!important;min-height:76px!important;padding-left:128px!important}
+  .site-nav .brand,.site-nav.scrolled .brand,body.top-strip-collapsed .site-nav .brand{left:2px!important;top:3px!important;width:132px!important;height:96px!important;min-width:132px!important}
+  .site-nav .brand-emblem,.site-nav .brand-logo,.site-nav.scrolled .brand-emblem,.site-nav.scrolled .brand-logo,body.top-strip-collapsed .site-nav .brand-emblem,body.top-strip-collapsed .site-nav .brand-logo{width:132px!important;height:96px!important;min-width:132px!important}
+  .site-nav .navlinks{top:76px!important}
+}
+
+/* The tracker belongs directly below the main navigation. */
+.aj-trip-subnav{top:var(--aj-main-nav-height,80px)!important;margin-top:0!important}
+#ueberblick,#termine,#verlauf,#leistungen,#hinweise{scroll-margin-top:calc(var(--aj-main-nav-height,80px) + 72px)}
+
+/* Trip details: at least ~50% less vertical space before the useful information. */
+.trip-photo-grid{height:clamp(145px,11vw,205px)!important}
+.trip-hero-copy{padding:16px 20px 18px!important}
+.trip-hero-copy h1{font-size:clamp(1.9rem,3vw,3rem)!important;margin:4px 0 6px!important}
+.trip-hero-copy>p{font-size:.94rem!important;line-height:1.38!important;margin-bottom:7px!important}
+.trip-facts{margin:8px 0!important;gap:6px!important}
+.trip-fact{padding:7px 9px!important}
+.trip-hero .hero-btns .btn{min-height:38px!important;padding:8px 12px!important}
+@media(max-width:700px){.trip-photo-grid{height:170px!important}.trip-hero-copy{padding:14px 14px 17px!important}}
+
+/* Region / theme / duration landing header is deliberately compact. */
+.listing-hero{padding:20px 0 18px!important}
+.listing-hero h1{font-size:clamp(1.95rem,3.8vw,3.35rem)!important;margin:4px 0 6px!important}
+.listing-hero .lead{font-size:.92rem!important;line-height:1.4!important}
+.listing-stat{padding:8px 10px!important}.listing-stat strong{font-size:1.22rem!important}
+.listing-hero:after{font-size:5rem!important;bottom:-36px!important}
+
+/* Year selection always hides/shows matching departures immediately. */
+#dates .aj-date-row[hidden],#dates .aj-date-row.is-filtered-out{display:none!important}
+.aj-status-red{background:#a53f3f!important}
+
+
+/* V11 — trip detail navigation uses the original main header; no third bar. */
+.aj-trip-subnav{display:none!important}
+#ueberblick,#termine,#verlauf,#leistungen,#hinweise{scroll-margin-top:calc(var(--aj-main-nav-height,80px) + 16px)!important}
+.site-nav .navlinks.aj-trip-main-links{gap:22px}
+.site-nav .navlinks.aj-trip-main-links>a{white-space:nowrap}
+@media (max-width:1180px) and (min-width:821px){
+  .site-nav .navlinks.aj-trip-main-links{gap:14px}
+  .site-nav .navlinks.aj-trip-main-links>a{font-size:.76rem}
+}
+@media (max-width:820px){
+  .site-nav .navlinks.aj-trip-main-links>a{white-space:normal}
+}
+
+
+/* =========================================================
+   Refined wishlist hearts v10 — cleaner circular control
+   ========================================================= */
+.site-nav .aj-wishlist-trigger{
+  width:46px!important;height:46px!important;border-radius:50%!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.055))!important;
+  color:#f2d477!important;border:1px solid rgba(242,212,119,.44)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 7px 20px rgba(3,22,36,.16)!important;
+  transition:transform .25s cubic-bezier(.22,1,.36,1),background .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease!important;
+}
+.site-nav .aj-wishlist-trigger svg{width:21px!important;height:21px!important;stroke-width:1.8!important;transition:transform .28s cubic-bezier(.22,1,.36,1),fill .22s ease!important}
+.site-nav .aj-wishlist-trigger:hover{transform:translateY(-1px) scale(1.045);background:rgba(255,255,255,.16)!important;color:#ffe8a6!important;border-color:rgba(255,232,166,.70)!important;box-shadow:0 9px 24px rgba(3,22,36,.21)!important}
+.site-nav .aj-wishlist-trigger.on{background:linear-gradient(145deg,#b95b42,#9f4633)!important;color:#fff!important;border-color:rgba(255,255,255,.42)!important;box-shadow:0 8px 24px rgba(185,91,66,.28)!important}
+.site-nav .aj-wishlist-trigger.on .aj-heart-shape{fill:currentColor;stroke:currentColor}
+.site-nav .aj-wishlist-trigger.on svg{transform:scale(1.08)}
+.site-nav .aj-wishlist-count{top:-4px!important;right:-4px!important;min-width:18px!important;height:18px!important;line-height:16px!important;padding:0 4px!important;background:#fff!important;color:#9f4633!important;border:1px solid rgba(159,70,51,.18)!important;box-shadow:0 3px 10px rgba(0,0,0,.14)!important}
+
+/* Matching hearts on homepage cards. */
+.popular-trip-fav,#reisearten .reiseart-card-fav{
+  width:32px!important;height:32px!important;border-radius:50%!important;
+  background:rgba(255,255,255,.96)!important;color:#7d8c96!important;
+  border:1px solid rgba(24,60,90,.12)!important;box-shadow:0 5px 16px rgba(13,43,65,.12)!important;
+  transition:transform .24s cubic-bezier(.22,1,.36,1),color .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease!important
+}
+.popular-trip-fav:hover,#reisearten .reiseart-card-fav:hover{transform:translateY(-1px) scale(1.07)!important;color:#b95b42!important;background:#fff8f5!important;border-color:rgba(185,91,66,.28)!important;box-shadow:0 7px 19px rgba(13,43,65,.15)!important}
+.popular-trip-fav svg,#reisearten .reiseart-card-fav svg{width:16px!important;height:16px!important;stroke-width:1.85!important;transition:transform .22s ease,fill .22s ease!important}
+.popular-trip-fav.is-active,#reisearten .reiseart-card-fav.is-active,#reisearten .reiseart-card-fav[aria-pressed="true"]{color:#b95b42!important;background:#fff1ed!important;border-color:rgba(185,91,66,.30)!important}
+.popular-trip-fav.is-active svg,#reisearten .reiseart-card-fav.is-active svg,#reisearten .reiseart-card-fav[aria-pressed="true"] svg{fill:currentColor!important;transform:scale(1.05)}
+@media(prefers-reduced-motion:reduce){.site-nav .aj-wishlist-trigger,.site-nav .aj-wishlist-trigger svg,.popular-trip-fav,#reisearten .reiseart-card-fav{transition:none!important}}
+
+
+/* Client correction v11 — initial header heart is white and translucent only inside the heart. */
+.site-nav .aj-wishlist-trigger:not(.on){
+  background:transparent!important;
+  border-color:transparent!important;
+  color:rgba(255,255,255,.96)!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.site-nav .aj-wishlist-trigger:not(.on) .aj-heart-shape{
+  fill:rgba(255,255,255,.18)!important;
+  stroke:rgba(255,255,255,.96)!important;
+  stroke-width:1.8!important;
+}
+.site-nav .aj-wishlist-trigger:not(.on):hover{
+  background:rgba(255,255,255,.06)!important;
+  border-color:rgba(255,255,255,.16)!important;
+}
+.site-nav .aj-wishlist-trigger:not(.on):hover .aj-heart-shape{
+  fill:rgba(255,255,255,.28)!important;
+  stroke:#fff!important;
+}
+
+/* Mobile language menu: keep the same 3-column layout as desktop. */
+@media (max-width: 820px){
+  #langMenu.langmenu{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  #langMenu.langmenu button{
+    min-width:0!important;
+  }
+  #langMenu.langmenu .aj-lang-short{
+    display:block!important;
+    width:100%!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+  }
+}
+@media (max-width: 390px){
+  #langMenu.langmenu{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  #langMenu.langmenu button{
+    padding-left:4px!important;
+    padding-right:4px!important;
+  }
+}
