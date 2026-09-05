@@ -1475,7 +1475,8 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
   }
 }
 </style>
-<link rel="stylesheet" href="../aj-client-enhancements.css?v=14"></head><body class="aj-index-shell-page" data-aj-route="reiseart-abenteuer"><div data-shell="header"></div><main>
+<link rel="stylesheet" href="../aj-client-enhancements.css?v=15"><link rel="stylesheet" href="../aj-compact-ui-v1.css?v=1">
+</head><body class="aj-index-shell-page" data-aj-route="reiseart-abenteuer"><div data-shell="header"></div><main>
 
 <section class="trip-photo-gallery" id="tripPhotoGallery" aria-label="Reisebilder">
   <div class="trip-photo-grid" id="tripPhotoGrid"></div>
@@ -1488,7 +1489,7 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
   <div class="trip-lightbox-counter" id="tripLightboxCounter"></div>
 </div>
 
-<section class="trip-hero"><div class="trip-hero-media" id="dimg"></div><div class="trip-hero-copy"><div class="kicker" id="dcat"></div><h1 id="dtitle"></h1><p id="dsub"></p><div class="trip-facts"><div class="trip-fact"><span>Dauer</span><strong id="ddays"></strong></div><div class="trip-fact"><span>Gruppe</span><strong id="dgroup"></strong></div><div class="trip-fact"><span>Niveau</span><strong id="dlevel"></strong></div><div class="trip-fact"><span>ab</span><strong id="dprice"></strong></div></div><div class="hero-btns"><a class="btn gold" id="book" href="../buchung.html">Termin anfragen</a><a class="btn dark-outline" href="../kontakt.html">Beratung buchen</a><a class="btn dark-outline" href="../index.html#reisearten">← Reisearten</a></div></div></section>
+<section class="trip-hero"><div class="trip-hero-media" id="dimg"></div><div class="trip-hero-copy"><div class="kicker" id="dcat"></div><h1 id="dtitle"></h1><p id="dsub"></p><div class="trip-facts"><div class="trip-fact"><span>Dauer</span><strong id="ddays"></strong></div><div class="trip-fact"><span>Gruppe</span><strong id="dgroup"></strong></div><div class="trip-fact"><span>Niveau</span><strong id="dlevel"></strong></div><div class="trip-fact"><span>ab</span><strong id="dprice"></strong></div></div><div class="hero-btns"><a class="btn gold" id="book" href="../kontakt.html?mode=request#beratungForm">Termin anfragen</a><a class="btn dark-outline" href="../kontakt.html">Beratung buchen</a><a class="btn dark-outline" href="../index.html#reisearten">← Reisearten</a></div></div></section>
 <section class="section white prices-first" id="termine"><div class="container"><div class="section-head"><div><div class="kicker">Reiseart & Richtpreise</div><h2>Orientierung für Ihre Reiseplanung.</h2></div></div><div class="date-list" id="dates"></div></div></section>
 <section class="section white" id="ueberblick"><div class="container overview-grid"><div><div class="kicker">Reiseart</div><h2>So kann diese Reiseart aussehen.</h2><p class="lead">Diese Reiseart wird flexibel an Saison, Route und persönliche Interessen angepasst. Die Beispiele zeigen den möglichen Charakter Ihrer Äthiopien-Reise.</p><div class="points"><div class="point"><strong><svg class="ui-icon inline-page-icon check-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Kleine Gruppe</strong><span class="muted small">Persönliche Atmosphäre und flexible Stops.</span></div><div class="point"><strong><svg class="ui-icon inline-page-icon check-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Lokale Begegnungen</strong><span class="muted small">Kultur respektvoll und nah erleben.</span></div><div class="point"><strong><svg class="ui-icon inline-page-icon check-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Flugberatung</strong><span class="muted small">Optional zur Reiseanfrage ergänzen.</span></div><div class="point"><strong><svg class="ui-icon inline-page-icon check-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> VISA-Support</strong><span class="muted small">Checkliste und Dokumenthinweise.</span></div></div></div><div class="overview-image" id="overviewImg"></div></div></section>
 <section class="section sand" id="verlauf"><div class="container"><div class="section-head"><div><div class="kicker">Reiseverlauf</div><h2>Tag für Tag.</h2></div><p class="lead">Ein beispielhafter Ablauf. Das finale Programm kann je nach Saison und Reisetermin angepasst werden.</p></div><div class="itinerary-grid"><div class="day-list" id="daysList"></div></div></div></section>
@@ -1528,7 +1529,7 @@ const DEMO_TRIPS=[
 {id:'south',title:'Völker des Südens',subtitle:'Omo-Tal, Seenlandschaften und intensive Begegnungen',category:'Kultur',days:14,price:2890,group:'4–10',image:REAL.hamar,level:'Leicht',rating:'4.8',tag:'Begegnung'},
 {id:'simien',title:'Dach Afrikas',subtitle:'Trekking und Panoramen im Simien-Gebirge',category:'Wandern',days:10,price:2490,group:'4–8',image:REAL.simien,level:'Aktiv',rating:'4.9',tag:'Trekking'},
 {id:'danakil',title:'Feuer & Salz',subtitle:'Danakil-Senke, Dallol und vulkanische Landschaften',category:'Abenteuer',days:7,price:2190,group:'4–10',image:REAL.dallol,level:'Anspruchsvoll',rating:'4.8',tag:'Expedition'},
-{id:'harar',title:'Harar & Bale',subtitle:'Historische Gassen, Hochland und wilde Natur',category:'Natur',days:12,price:2990,group:'4–10',image:REAL.harar,level:'Mittel',rating:'4.7',tag:'Ost-Äthiopien'},
+{id:'harar',title:'Harar & Ostäthiopien',subtitle:'UNESCO-Weltkulturerbe, wilde Elefanten & die legendären Hyänen',category:'Kultur & Natur',days:3,price:899,group:'6–12',image:REAL.harar,level:'Normale Fitness',rating:'Neu',tag:'Ost-Äthiopien'},
 {id:'photo',title:'Licht des Hochlands',subtitle:'Fotoreise mit Zeit für Motive, Märkte und Landschaft',category:'Foto',days:11,price:3490,group:'3–8',image:REAL.coffee,level:'Leicht',rating:'5.0',tag:'Foto'},
 {id:'family',title:'Seen, Natur & Familie',subtitle:'Entspanntes Tempo mit Natur, Boot und Tierbeobachtung',category:'Familie',days:10,price:2790,group:'2–8',image:REAL.arba,level:'Familienfreundlich',rating:'4.8',tag:'Familie'},
 {id:'private',title:'Äthiopien Privat',subtitle:'Eigener Guide, flexible Route und ausgewählte Hotels',category:'VIP',days:12,price:4690,group:'2–4',image:REAL.addis,level:'Individuell',rating:'4.9',tag:'Private'},
@@ -1551,7 +1552,7 @@ const I18N={
  am:{home:'ኢትዮጵያ',groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',login:'ግባ',builder:'ጉዞ አቅድ'},tr:{home:'Etiyopya',groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',login:'Giriş',builder:'Seyahat planla'}
 };
 function safeJSON(k,fb){try{return JSON.parse(localStorage.getItem(k))||fb}catch(e){return fb}}
-function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!stored.some(y=>y&&y.id===x.id));return required.length?[...stored,...required]:stored}
+function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const canonicalHarar=DEMO_TRIPS.find(x=>x.id==='harar');let merged=stored.map(x=>x&&x.id==='harar'?canonicalHarar:x);if(canonicalHarar&&!merged.some(x=>x&&x.id==='harar'))merged.push(canonicalHarar);const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!merged.some(y=>y&&y.id===x.id));return required.length?[...merged,...required]:merged}
 function company(){return safeJSON('aj_company',{name:'Abyssinia Journeys',email:'reisen@example.de',phone:'+49 (0) 000 000000'})}
 function euro(n){return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(n)||0)}
 function imgTag(src,alt,cls=''){return `<img class="${cls}" src="${src}" alt="${alt}" loading="lazy" decoding="async">`}
@@ -1579,7 +1580,7 @@ function demoForms(){document.querySelectorAll('[data-demo]').forEach(f=>f.addEv
 document.addEventListener('DOMContentLoaded',()=>{renderShell();demoForms()});
 
 </script><script>
-document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.getElementById('dcat').innerHTML=`${t.category} · ${window.ajPageIcon('star')} ${t.rating}`;document.getElementById('dtitle').textContent=t.title;document.getElementById('dsub').textContent=t.subtitle;document.getElementById('ddays').textContent=`${t.days} Tage`;document.getElementById('dgroup').textContent=t.group;document.getElementById('dlevel').textContent=t.level;document.getElementById('dprice').textContent=euro(t.price);document.getElementById('dimg').innerHTML=imgTag(t.image,t.title);document.getElementById('overviewImg').innerHTML=imgTag(t.image,t.title);document.getElementById('book').href='../buchung.html?reiseart=abenteuer';const ds=[['Anreise nach Addis Abeba','Ankommen, Begrüßung und entspanntes Kennenlernen.'],['Hochland & erste Begegnungen','Fahrt durch abwechslungsreiche Landschaften mit ausgewählten Stopps.'],['Kultur & Geschichte','Historische Orte, Märkte und lokale Begegnungen.'],['Naturtag','Wanderung oder Naturerlebnis passend zum Reisethema.'],['Freie Zeit & Vertiefung','Mehr Zeit für Fotografie, Gespräche oder eigene Interessen.'],['Weiterreise','Nächste Region mit landschaftlich reizvoller Route.'],['Höhepunkt der Reise','Ein besonderer Programmtag mit genügend Zeit vor Ort.'],['Rückkehr & Abschied','Rückfahrt nach Addis Abeba und optionale Verlängerung.']];document.getElementById('daysList').innerHTML=ds.map((d,i)=>`<article class="day${i===0?' day-first':''}"><div class="daynum">${i+1}. Tag</div><h3>${d[0]}</h3>${i===0?imgTag(REAL.addis,'Addis Abeba – Anreise'):''}<p class="muted">${d[1]} Das finale Tagesprogramm wird mit dem bestätigten Termin abgestimmt.</p></article>`).join('');const rows=[['10.10.2026 – 22.10.2026',t.price,'Mindestteilnehmerzahl erreicht'],['07.11.2026 – 19.11.2026',t.price,'Nur noch wenige Plätze'],['19.12.2026 – 31.12.2026',t.price+200,'Verfügbar'],['09.01.2027 – 21.01.2027',t.price,'Verfügbar'],['13.02.2027 – 25.02.2027',t.price,'Verfügbar']];document.getElementById('dates').innerHTML=rows.map(r=>`<div class="date-row"><strong>${r[0]}</strong><strong>${euro(r[1])}</strong><span class="availability"><span class="availability-dot"></span>${r[2]}</span><a class="btn forest" href="../buchung.html?reiseart=abenteuer">Anfragen</a></div>`).join('')});
+document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.getElementById('dcat').innerHTML=`${t.category} · ${window.ajPageIcon('star')} ${t.rating}`;document.getElementById('dtitle').textContent=t.title;document.getElementById('dsub').textContent=t.subtitle;document.getElementById('ddays').textContent=`${t.days} Tage`;document.getElementById('dgroup').textContent=t.group;document.getElementById('dlevel').textContent=t.level;document.getElementById('dprice').textContent=euro(t.price);document.getElementById('dimg').innerHTML=imgTag(t.image,t.title);document.getElementById('overviewImg').innerHTML=imgTag(t.image,t.title);document.getElementById('book').href='../kontakt.html?reiseart=abenteuer&mode=request#beratungForm';const ds=[['Anreise nach Addis Abeba','Ankommen, Begrüßung und entspanntes Kennenlernen.'],['Hochland & erste Begegnungen','Fahrt durch abwechslungsreiche Landschaften mit ausgewählten Stopps.'],['Kultur & Geschichte','Historische Orte, Märkte und lokale Begegnungen.'],['Naturtag','Wanderung oder Naturerlebnis passend zum Reisethema.'],['Freie Zeit & Vertiefung','Mehr Zeit für Fotografie, Gespräche oder eigene Interessen.'],['Weiterreise','Nächste Region mit landschaftlich reizvoller Route.'],['Höhepunkt der Reise','Ein besonderer Programmtag mit genügend Zeit vor Ort.'],['Rückkehr & Abschied','Rückfahrt nach Addis Abeba und optionale Verlängerung.']];document.getElementById('daysList').innerHTML=ds.map((d,i)=>`<article class="day${i===0?' day-first':''}"><div class="daynum">${i+1}. Tag</div><h3>${d[0]}</h3>${i===0?imgTag(REAL.addis,'Addis Abeba – Anreise'):''}<p class="muted">${d[1]} Das finale Tagesprogramm wird mit dem bestätigten Termin abgestimmt.</p></article>`).join('');const rows=[['09.01.2027 – 21.01.2027',t.price,'Verfügbar'],['13.02.2027 – 25.02.2027',t.price,'Verfügbar']];document.getElementById('dates').innerHTML=rows.map(r=>`<div class="date-row"><strong>${r[0]}</strong><strong>${euro(r[1])}</strong><span class="availability"><span class="availability-dot"></span>${r[2]}</span><a class="btn forest" href="../kontakt.html?reiseart=abenteuer&mode=request#beratungForm">Anfragen</a></div>`).join('')});
 </script>
 <script id="trip-gallery-mosaic-js">
 (function(){
@@ -1936,12 +1937,20 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
     USD:{code:'USD',symbol:'$',locale:'en-US',label:'US Dollar'}
   };
   let currentCurrency=CURRENCIES[localStorage.getItem('aj_currency')]?localStorage.getItem('aj_currency'):'EUR';
-  let eurToUsdRate=Number(localStorage.getItem('aj_eur_usd_rate'))||1.16;
+  // Never invent an exchange rate. Use only the last successfully fetched real EUR→USD rate.
+  let eurToUsdRate=Number(localStorage.getItem('aj_eur_usd_rate'))||null;
+  let eurToUsdRateDate=localStorage.getItem('aj_eur_usd_rate_date')||'';
 
   function formatCurrency(eur,currency=currentCurrency){
     const meta=CURRENCIES[currency]||CURRENCIES.EUR;
-    const value=(Number(eur)||0)*(currency==='USD'?eurToUsdRate:1);
-    return new Intl.NumberFormat(meta.locale,{style:'currency',currency:meta.code,maximumFractionDigits:0}).format(value);
+    const amount=Number(eur);
+    if(!Number.isFinite(amount))return '';
+    // If USD was selected before the first live rate arrives, show a loading placeholder
+    // instead of a made-up conversion. updateCurrencyPrices() replaces it after fetch().
+    if(currency==='USD'&&!(Number.isFinite(eurToUsdRate)&&eurToUsdRate>0))return '$…';
+    const value=amount*(currency==='USD'?eurToUsdRate:1);
+    const usd=currency==='USD';
+    return new Intl.NumberFormat(meta.locale,{style:'currency',currency:meta.code,minimumFractionDigits:usd?2:0,maximumFractionDigits:usd?2:0}).format(value);
   }
 
   function wrapEuroText(root=document.body){
@@ -1988,15 +1997,31 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
     if(currency==='USD')refreshUsdRate();
   }
 
-  async function refreshUsdRate(){
+  async function refreshUsdRate(force=false){
     const last=Number(localStorage.getItem('aj_eur_usd_rate_time'))||0;
-    if(Date.now()-last<12*60*60*1000)return;
+    const hasRealRate=Number.isFinite(eurToUsdRate)&&eurToUsdRate>0;
+    // ECB reference rates are published on working days. Re-check every 4 hours so a page
+    // opened before the daily publication can still pick up the newest rate later that day.
+    if(!force&&hasRealRate&&Date.now()-last<4*60*60*1000)return eurToUsdRate;
     try{
-      const res=await fetch('https://api.frankfurter.app/latest?from=EUR&to=USD',{cache:'no-store'});
-      if(!res.ok)return;
-      const data=await res.json();const rate=Number(data&&data.rates&&data.rates.USD);
-      if(Number.isFinite(rate)&&rate>0){eurToUsdRate=rate;localStorage.setItem('aj_eur_usd_rate',String(rate));localStorage.setItem('aj_eur_usd_rate_time',String(Date.now()));if(currentCurrency==='USD')updateCurrencyPrices()}
-    }catch(_){/* cached fallback stays active */}
+      const res=await fetch('https://api.frankfurter.dev/v2/rate/EUR/USD?providers=ECB',{cache:'no-store'});
+      if(!res.ok)throw new Error('USD exchange-rate request failed');
+      const data=await res.json();
+      const rate=Number(data&&data.rate);
+      if(Number.isFinite(rate)&&rate>0){
+        eurToUsdRate=rate;
+        eurToUsdRateDate=String((data&&data.date)||'');
+        localStorage.setItem('aj_eur_usd_rate',String(rate));
+        localStorage.setItem('aj_eur_usd_rate_date',eurToUsdRateDate);
+        localStorage.setItem('aj_eur_usd_rate_time',String(Date.now()));
+        if(currentCurrency==='USD')updateCurrencyPrices();
+      }
+    }catch(_){
+      // Keep the last successfully fetched real rate. If there is none yet, prices remain $…
+      // rather than displaying a false fixed conversion.
+      if(currentCurrency==='USD')updateCurrencyPrices();
+    }
+    return eurToUsdRate;
   }
 
   function ensureCurrencyControl(){
@@ -2043,7 +2068,8 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
 })();
 </script>
 
-<script src="../aj-full-translate.js"></script>
+<script src="../aj-azure-translator-config.js"></script>
+<script src="../aj-full-translate.js?v=3"></script>
 <script src="../aj-route-map.js?v=9"></script>
 <script id="promotion-banner-global-v8">
 (function(){
@@ -2451,7 +2477,7 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
 })();
 </script>
 
-<script src="../aj-client-enhancements.js?v=12"></script>
+<script src="../aj-client-enhancements.js?v=15"></script>
 
 <style id="aj-header-flag-only-v1">
 /* Header language control: show only the flag, with no visible layer behind it. */
@@ -2964,6 +2990,6 @@ body.top-strip-collapsed .site-nav .brand-logo{
 </style>
 
 
-<link rel="stylesheet" href="../aj-trip-mobile-detail-fix.css?v=1">
-<script src="../aj-trip-mobile-detail-fix.js?v=1"></script>
+<link rel="stylesheet" href="../aj-trip-mobile-detail-fix.css?v=7">
+<script src="../aj-trip-mobile-detail-fix.js?v=3"></script>
 </body></html>

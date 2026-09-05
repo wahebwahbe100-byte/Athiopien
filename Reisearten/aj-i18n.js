@@ -1,1 +1,1 @@
-/* Compatibility placeholder: full translation is handled by aj-full-translate.js. */
+/* Compatibility shim: language switching is handled online by aj-full-translate.js using Microsoft Azure Translator. */
