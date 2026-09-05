@@ -1475,7 +1475,59 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
   }
 }
 </style>
-<link rel="stylesheet" href="../aj-client-enhancements.css?v=14"></head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
+<link rel="stylesheet" href="aj-client-enhancements.css?v=15"><style id="trip-prices-2027-unified">
+/* Unified Reisepreis & Termine 2027 across all trip detail pages */
+.prices-first{position:relative;overflow:hidden;background:linear-gradient(180deg,#fff 0%,#f7f2e8 100%)!important}
+.prices-first:before,.prices-first:after{content:"";position:absolute;border-radius:999px;pointer-events:none;filter:blur(2px)}
+.prices-first:before{width:360px;height:360px;right:-150px;top:-180px;background:rgba(198,157,69,.10)}
+.prices-first:after{width:280px;height:280px;left:-140px;bottom:-160px;background:rgba(24,60,90,.06)}
+.prices-first .container{position:relative;z-index:1}
+.prices-head{margin-bottom:24px}
+.price-overview{display:grid;grid-template-columns:1.35fr .8fr .8fr;gap:14px;margin:0 0 22px}
+.price-overview-main,.price-overview-card{position:relative;overflow:hidden;border-radius:22px;padding:22px 24px;border:1px solid rgba(24,60,90,.10);box-shadow:0 14px 40px rgba(24,60,90,.08)}
+.price-overview-main{background:#183c5a;color:#fff}
+.price-overview-main:after{content:"€";position:absolute;right:14px;bottom:-34px;font:800 8rem/1 Manrope,sans-serif;color:rgba(255,255,255,.055)}
+.price-overview-card{background:rgba(255,255,255,.88);backdrop-filter:blur(5px)}
+.price-overview span{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin-bottom:7px;color:#6e777f}
+.price-overview-main span{color:#f2cf74}
+.price-overview strong{display:block;font:800 1.65rem/1.1 Manrope,sans-serif;color:#183c5a}
+.price-overview-main strong{font-size:2.35rem;color:#fff}
+.price-overview small{display:block;margin-top:7px;color:#6e777f;line-height:1.45}
+.price-overview-main small{color:rgba(255,255,255,.76)}
+.prices-first .date-list{display:grid;grid-template-columns:1fr!important;gap:12px}
+.prices-first .date-row{position:relative;display:grid;grid-template-columns:minmax(180px,1.45fr) minmax(150px,1fr) minmax(150px,.95fr) auto auto;gap:14px;align-items:center;padding:17px 18px;border-radius:18px;border:1px solid rgba(24,60,90,.11);background:rgba(255,255,255,.94);box-shadow:0 10px 28px rgba(24,60,90,.055);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.prices-first .date-row.generic-date-row{grid-template-columns:minmax(200px,1.6fr) minmax(170px,1fr) minmax(110px,.55fr) auto}
+.prices-first .date-row:hover{transform:translateY(-2px);border-color:rgba(198,157,69,.45);box-shadow:0 16px 34px rgba(24,60,90,.09)}
+.prices-first .date-row>strong:first-child{font-size:1rem;color:#183c5a;line-height:1.35;white-space:nowrap}
+.prices-first .date-row>strong:nth-of-type(2){padding:6px 10px;border-radius:999px;background:#f6edd9;color:#7c5b14;font-size:.9rem;white-space:nowrap;justify-self:start}
+.prices-first .date-row .booking-code{display:inline-flex;align-items:center;margin:0;color:#6e777f;font-size:.78rem;font-weight:700;letter-spacing:.01em;white-space:nowrap}
+.prices-first .date-row .availability{display:inline-flex;align-items:center;width:max-content;padding:7px 10px;border-radius:999px;background:#edf6f0;color:#2d6b45;font-size:.78rem;font-weight:800;white-space:nowrap}
+.prices-first .date-row .btn{justify-self:end;min-width:116px;text-align:center;white-space:nowrap}
+@media(max-width:1100px){
+  .prices-first .date-row{grid-template-columns:minmax(170px,1.25fr) minmax(135px,.9fr) minmax(140px,.9fr) auto auto;gap:10px;padding:16px 14px}
+  .prices-first .date-row.generic-date-row{grid-template-columns:minmax(180px,1.45fr) minmax(155px,1fr) minmax(100px,.55fr) auto}
+  .prices-first .date-row .booking-code,.prices-first .date-row .availability{font-size:.72rem}
+  .prices-first .date-row>strong:first-child{font-size:.92rem}
+  .prices-first .date-row .btn{min-width:104px;padding-left:14px;padding-right:14px}
+}
+@media(max-width:900px){
+  .price-overview{grid-template-columns:1fr 1fr}
+  .price-overview-main{grid-column:1/-1}
+  .prices-first .date-row,.prices-first .date-row.generic-date-row{grid-template-columns:1.3fr 1fr;gap:10px 14px}
+  .prices-first .date-row .booking-code,.prices-first .date-row .availability{justify-self:start}
+  .prices-first .date-row>strong:nth-of-type(2),.prices-first .date-row .btn{justify-self:end}
+}
+@media(max-width:560px){
+  .price-overview{grid-template-columns:1fr}
+  .price-overview-main{grid-column:auto}
+  .price-overview-main,.price-overview-card{padding:19px 20px;border-radius:18px}
+  .prices-first .date-row,.prices-first .date-row.generic-date-row{grid-template-columns:1fr;gap:10px;padding:17px}
+  .prices-first .date-row>strong:nth-of-type(2),.prices-first .date-row .btn{justify-self:start}
+  .prices-first .date-row .btn{width:100%}
+}
+</style>
+<link rel="stylesheet" href="aj-compact-ui-v1.css?v=1">
+</head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
 
 <section class="trip-photo-gallery" id="tripPhotoGallery" aria-label="Reisebilder">
   <div class="trip-photo-grid" id="tripPhotoGrid">
@@ -1501,8 +1553,8 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
   <div class="trip-lightbox-counter" id="tripLightboxCounter"></div>
 </div>
 
-<section class="trip-hero"><div class="trip-hero-media" id="dimg"></div><div class="trip-hero-copy"><div class="kicker" id="dcat"></div><h1 id="dtitle"></h1><p id="dsub"></p><div class="trip-facts"><div class="trip-fact"><span>Dauer</span><strong id="ddays"></strong></div><div class="trip-fact"><span>Gruppe</span><strong id="dgroup"></strong></div><div class="trip-fact"><span>Niveau</span><strong id="dlevel"></strong></div><div class="trip-fact"><span>ab</span><strong id="dprice"></strong></div></div><div class="hero-btns"><a class="btn gold" id="book" href="../buchung.html">Termin anfragen</a><a class="btn dark-outline" href="../kontakt.html">Beratung buchen</a></div></div></section>
-<section class="section white prices-first" id="termine"><div class="container"><div class="section-head"><div><div class="kicker">Termine & Preise</div><h2>Verfügbarkeit auf einen Blick.</h2></div></div><div class="date-list" id="dates"></div></div></section>
+<section class="trip-hero"><div class="trip-hero-media" id="dimg"></div><div class="trip-hero-copy"><div class="kicker" id="dcat"></div><h1 id="dtitle"></h1><p id="dsub"></p><div class="trip-facts"><div class="trip-fact"><span>Dauer</span><strong id="ddays"></strong></div><div class="trip-fact"><span>Gruppe</span><strong id="dgroup"></strong></div><div class="trip-fact"><span>Niveau</span><strong id="dlevel"></strong></div><div class="trip-fact"><span>ab</span><strong id="dprice"></strong></div></div><div class="hero-btns"><a class="btn gold" id="book" href="kontakt.html?mode=request#beratungForm">Termin anfragen</a><a class="btn dark-outline" href="../kontakt.html">Beratung buchen</a></div></div></section>
+<section class="section white prices-first" id="termine"><div class="container"><div class="section-head prices-head"><div><div class="kicker">Reisepreis &amp; Termine 2027</div><h2>Feste Reisetermine auf einen Blick.</h2><p class="lead">Wählen Sie Ihren Wunschtermin. Preis und Verfügbarkeit sind direkt pro Termin sichtbar.</p></div></div><div class="price-overview" aria-label="Preisübersicht"><div class="price-overview-main"><span>Reisepreis ab</span><strong class="trip-term-price">–</strong><small>pro Person · gemäß Reisebeschreibung</small></div><div class="price-overview-card"><span>Reisetermine</span><strong class="trip-term-count">–</strong><small class="trip-term-range">Feste Termine 2027</small></div><div class="price-overview-card"><span>Reisejahr</span><strong>2027</strong><small>Termine direkt anfragen</small></div></div><div class="date-list" id="dates"></div></div></section>
 <section class="section white" id="ueberblick"><div class="container overview-grid"><div><div class="kicker">Reiseprofil</div><h2>Eine Reise mit Tiefe, nicht mit Tempo.</h2><p class="lead">Ausgewählte Höhepunkte werden mit Zeit für Landschaft, Kultur und persönliche Begegnungen verbunden. Der Tagesablauf bleibt bewusst flexibel.</p><div class="points"><div class="point"><strong><svg class="ui-icon inline-page-icon check-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Kleine Gruppe</strong><span class="muted small">Persönliche Atmosphäre und flexible Stops.</span></div><div class="point"><strong><svg class="ui-icon inline-page-icon check-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Lokale Begegnungen</strong><span class="muted small">Kultur respektvoll und nah erleben.</span></div><div class="point"><strong><svg class="ui-icon inline-page-icon check-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> Flugberatung</strong><span class="muted small">Optional zur Reiseanfrage ergänzen.</span></div><div class="point"><strong><svg class="ui-icon inline-page-icon check-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4L19 6"/></svg> VISA-Support</strong><span class="muted small">Checkliste und Dokumenthinweise.</span></div></div></div><div class="overview-image" id="overviewImg"></div></div></section>
 <section class="section sand" id="verlauf"><div class="container"><div class="section-head"><div><div class="kicker">Reiseverlauf</div><h2>Tag für Tag.</h2></div><p class="lead">Ein beispielhafter Ablauf. Das finale Programm kann je nach Saison und Reisetermin angepasst werden.</p></div><div class="itinerary-grid"><div class="day-list" id="daysList"></div></div></div></section>
 <section class="section sand" id="leistungen"><div class="container"><div class="section-head"><div><div class="kicker">Leistungen</div><h2>Was enthalten ist.</h2></div></div><div class="grid included-grid"><div class="included-box"><h3>Im Reisepreis enthalten</h3><ul><li>Deutsch-/englischsprachige Reiseleitung</li><li>Transfers und lokale Transporte laut Programm</li><li>Ausgewählte Unterkünfte mit Frühstück</li><li>Eintritte laut Reiseprogramm</li><li>Persönliche Reisevorbereitung</li></ul></div><div class="included-box"><h3>Optional ergänzbar</h3><ul><li>Unterstützung bei internationaler Flugbuchung</li><li>VISA-Unterstützung und Dokumentcheck</li><li>Reiseversicherung / Einzelzimmer / Zusatznächte</li><li>Private Verlängerung</li><li>Video-Beratung vor Abreise</li></ul></div></div></div></section>
@@ -1519,7 +1571,7 @@ const REAL={
  lalibela:'https://images.unsplash.com/photo-1508914127305-fa5114b81b3f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  danakil:'https://images.unsplash.com/photo-1564101151838-630e722d7b1f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  dallol:'https://images.unsplash.com/photo-1603456771349-07ea0241821f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
- harar:'https://images.unsplash.com/photo-1628973961166-6e319909398e?auto=format&fit=crop&fm=jpg&q=82&w=1800',
+ harar:'https://commons.wikimedia.org/wiki/Special:FilePath/City%20Gate%2C%20Harar%20Jugol%20%2814464345823%29.jpg?width=1800',
  coffee:'https://images.unsplash.com/photo-1630861412977-de9bd8944f97?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  arba:'https://images.unsplash.com/photo-1712553935892-1c537df3e96c?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  hamar:'https://images.unsplash.com/photo-1631878929191-f193a89819c1?auto=format&fit=crop&fm=jpg&q=82&w=1800'
@@ -1530,7 +1582,7 @@ const DEMO_TRIPS=[
 {id:'south',title:'Völker des Südens',subtitle:'Omo-Tal, Seenlandschaften und intensive Begegnungen',category:'Kultur',days:14,price:2890,group:'4–10',image:REAL.hamar,level:'Leicht',rating:'4.8',tag:'Begegnung'},
 {id:'simien',title:'Dach Afrikas',subtitle:'Trekking und Panoramen im Simien-Gebirge',category:'Wandern',days:10,price:2490,group:'4–8',image:REAL.simien,level:'Aktiv',rating:'4.9',tag:'Trekking'},
 {id:'danakil',title:'Feuer & Salz',subtitle:'Danakil-Senke, Dallol und vulkanische Landschaften',category:'Abenteuer',days:7,price:2190,group:'4–10',image:REAL.dallol,level:'Anspruchsvoll',rating:'4.8',tag:'Expedition'},
-{id:'harar',title:'Harar & Bale',subtitle:'Historische Gassen, Hochland und wilde Natur',category:'Natur',days:12,price:2990,group:'4–10',image:REAL.harar,level:'Mittel',rating:'4.7',tag:'Ost-Äthiopien'},
+{id:'harar',title:'Harar & Ostäthiopien',subtitle:'UNESCO-Weltkulturerbe, wilde Elefanten & die legendären Hyänen',category:'Kultur & Natur',days:3,price:899,group:'6–12',image:REAL.harar,level:'Normale Fitness',rating:'Neu',tag:'Ost-Äthiopien'},
 {id:'photo',title:'Licht des Hochlands',subtitle:'Fotoreise mit Zeit für Motive, Märkte und Landschaft',category:'Foto',days:11,price:3490,group:'3–8',image:REAL.coffee,level:'Leicht',rating:'5.0',tag:'Foto'},
 {id:'family',title:'Seen, Natur & Familie',subtitle:'Entspanntes Tempo mit Natur, Boot und Tierbeobachtung',category:'Familie',days:10,price:2790,group:'2–8',image:REAL.arba,level:'Familienfreundlich',rating:'4.8',tag:'Familie'},
 {id:'private',title:'Äthiopien Privat',subtitle:'Eigener Guide, flexible Route und ausgewählte Hotels',category:'VIP',days:12,price:4690,group:'2–4',image:REAL.addis,level:'Individuell',rating:'4.9',tag:'Private'},
@@ -1553,7 +1605,7 @@ const I18N={
  am:{home:'ኢትዮጵያ',groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',login:'ግባ',builder:'ጉዞ አቅድ'},tr:{home:'Etiyopya',groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',login:'Giriş',builder:'Seyahat planla'}
 };
 function safeJSON(k,fb){try{return JSON.parse(localStorage.getItem(k))||fb}catch(e){return fb}}
-function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!stored.some(y=>y&&y.id===x.id));return required.length?[...stored,...required]:stored}
+function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const canonicalHarar=DEMO_TRIPS.find(x=>x.id==='harar');let merged=stored.map(x=>x&&x.id==='harar'?canonicalHarar:x);if(canonicalHarar&&!merged.some(x=>x&&x.id==='harar'))merged.push(canonicalHarar);const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!merged.some(y=>y&&y.id===x.id));return required.length?[...merged,...required]:merged}
 function company(){return safeJSON('aj_company',{name:'Abyssinia Journeys',email:'reisen@example.de',phone:'+49 (0) 000 000000'})}
 function euro(n){return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(n)||0)}
 function imgTag(src,alt,cls=''){return `<img class="${cls}" src="${src}" alt="${alt}" loading="lazy" decoding="async">`}
@@ -1581,7 +1633,7 @@ function demoForms(){document.querySelectorAll('[data-demo]').forEach(f=>f.addEv
 document.addEventListener('DOMContentLoaded',()=>{renderShell();demoForms()});
 
 </script><script>
-document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.getElementById('dcat').innerHTML=`${t.category} · ${window.ajPageIcon('star')} ${t.rating}`;document.getElementById('dtitle').textContent=t.title;document.getElementById('dsub').textContent=t.subtitle;document.getElementById('ddays').textContent=`${t.days} Tage`;document.getElementById('dgroup').textContent=t.group;document.getElementById('dlevel').textContent=t.level;document.getElementById('dprice').textContent=euro(t.price);document.getElementById('dimg').innerHTML=imgTag(t.image,t.title);document.getElementById('overviewImg').innerHTML=imgTag(t.image,t.title);document.getElementById('book').href=`../buchung.html?id=${t.id}`;const ds=[['Anreise nach Addis Abeba','Ankommen, Begrüßung und entspanntes Kennenlernen.'],['Hochland & erste Begegnungen','Fahrt durch abwechslungsreiche Landschaften mit ausgewählten Stopps.'],['Kultur & Geschichte','Historische Orte, Märkte und lokale Begegnungen.'],['Naturtag','Wanderung oder Naturerlebnis passend zum Reisethema.'],['Freie Zeit & Vertiefung','Mehr Zeit für Fotografie, Gespräche oder eigene Interessen.'],['Weiterreise','Nächste Region mit landschaftlich reizvoller Route.'],['Höhepunkt der Reise','Ein besonderer Programmtag mit genügend Zeit vor Ort.'],['Rückkehr & Abschied','Rückfahrt nach Addis Abeba und optionale Verlängerung.']];document.getElementById('daysList').innerHTML=ds.map((d,i)=>`<article class="day${i===0?' day-first':''}"><div class="daynum">${i+1}. Tag</div><h3>${d[0]}</h3>${i===0?imgTag(REAL.addis,'Addis Abeba – Anreise'):''}<p class="muted">${d[1]} Das finale Tagesprogramm wird mit dem bestätigten Termin abgestimmt.</p></article>`).join('');const rows=[['10.10.2026 – 22.10.2026',t.price,'findet statt'],['07.11.2026 – 19.11.2026',t.price,'nur noch wenige Plätze frei'],['19.12.2026 – 31.12.2026',t.price+200,'leider ausgebucht'],['09.01.2027 – 21.01.2027',t.price,'mit Ihnen Mindestzahl'],['13.02.2027 – 25.02.2027',t.price,'findet statt']];document.getElementById('dates').innerHTML=rows.map(r=>`<div class="date-row"><strong>${r[0]}</strong><strong>${euro(r[1])}</strong><span class="availability"><span class="availability-dot"></span>${r[2]}</span><a class="btn forest" href="../buchung.html?id=${t.id}">Anfragen</a></div>`).join('')});
+document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.getElementById('dcat').innerHTML=`${t.category} · ${window.ajPageIcon('star')} ${t.rating}`;document.getElementById('dtitle').textContent=t.title;document.getElementById('dsub').textContent=t.subtitle;document.getElementById('ddays').textContent=`${t.days} Tage`;document.getElementById('dgroup').textContent=t.group;document.getElementById('dlevel').textContent=t.level;document.getElementById('dprice').textContent=euro(t.price);document.getElementById('dimg').innerHTML=imgTag(t.image,t.title);document.getElementById('overviewImg').innerHTML=imgTag(t.image,t.title);document.getElementById('book').href=`kontakt.html?id=${t.id}&mode=request#beratungForm`;const ds=[['Anreise nach Addis Abeba','Ankommen, Begrüßung und entspanntes Kennenlernen.'],['Hochland & erste Begegnungen','Fahrt durch abwechslungsreiche Landschaften mit ausgewählten Stopps.'],['Kultur & Geschichte','Historische Orte, Märkte und lokale Begegnungen.'],['Naturtag','Wanderung oder Naturerlebnis passend zum Reisethema.'],['Freie Zeit & Vertiefung','Mehr Zeit für Fotografie, Gespräche oder eigene Interessen.'],['Weiterreise','Nächste Region mit landschaftlich reizvoller Route.'],['Höhepunkt der Reise','Ein besonderer Programmtag mit genügend Zeit vor Ort.'],['Rückkehr & Abschied','Rückfahrt nach Addis Abeba und optionale Verlängerung.']];document.getElementById('daysList').innerHTML=ds.map((d,i)=>`<article class="day${i===0?' day-first':''}"><div class="daynum">${i+1}. Tag</div><h3>${d[0]}</h3>${i===0?imgTag(REAL.addis,'Addis Abeba – Anreise'):''}<p class="muted">${d[1]} Das finale Tagesprogramm wird mit dem bestätigten Termin abgestimmt.</p></article>`).join('');const rows=[['09.01.2027 – 21.01.2027',t.price,'mit Ihnen Mindestzahl'],['13.02.2027 – 25.02.2027',t.price,'findet statt']];document.getElementById('dates').innerHTML=rows.map(r=>`<div class="date-row generic-date-row"><strong>${r[0]}</strong><span class="availability"><span class="availability-dot"></span>${r[2]}</span><strong>${euro(r[1])}</strong><a class="btn forest" href="kontakt.html?id=${t.id}&mode=request&termin=${encodeURIComponent(r[0])}#beratungForm">Anfragen</a></div>`).join('')});
 </script>
 <script id="trip-gallery-mosaic-js">
 (function(){
@@ -1835,7 +1887,7 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
     if(c.email)contactBlocks.push(`<div class="footer-contact-item"><span class="footer-contact-icon">${ajIcon('mail')}</span><div><span class="footer-contact-label">Email Us:</span><a class="footer-contact-value" href="mailto:${c.email}">${c.email}</a></div></div>`);
     if(c.address)contactBlocks.push(`<div class="footer-contact-item"><span class="footer-contact-icon">${ajIcon('location')}</span><div><span class="footer-contact-label">Address:</span><span class="footer-contact-value">${c.address}</span></div></div>`);
     if(!contactBlocks.length){contactBlocks.push(`<div class="footer-contact-item"><span class="footer-contact-icon">${ajIcon('phone')}</span><div><span class="footer-contact-label">Call Us:</span><span class="footer-contact-value">+49 (0) 000 000000</span></div></div>`);contactBlocks.push(`<div class="footer-contact-item"><span class="footer-contact-icon">${ajIcon('mail')}</span><div><span class="footer-contact-label">Email Us:</span><span class="footer-contact-value">reisen@example.de</span></div></div>`)}
-    if(footer){footer.innerHTML=`<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-col"><h4>Navigation</h4><div class="footer-links"><a href="../index.html">Startseite</a><a href="../info.html">Über uns</a><a href="../reisetipps.html">Reisetipps</a><a href="../reisen.html">Alle Reisen</a><a href="../baukasten.html">Reise planen</a><a href="../kontakt.html">Kontakt</a></div></div><div class="footer-col"><h4>Reiseangebote</h4><div class="footer-links"><a href="../reisen.html?cat=Kultur">Kulturreisen</a><a href="../reisen.html?cat=Wandern">Natur, Abenteuer & Trekking</a><a href="../individualreisen.html">Private Rundreisen</a><a href="../reisen.html">Historische Routen</a><a href="../reisen.html">Nordäthiopien</a><a href="../reisen.html">Südäthiopien</a></div></div><div class="footer-col"><h4>Äthiopien entdecken</h4><div class="footer-links"><a href="../reisetipps.html">Historische Sehenswürdigkeiten</a><a href="../reisetipps.html">Natur & Nationalparks</a><a href="../reisetipps.html">Kultur & Begegnungen</a><a href="../reisetipps.html">Feste & Traditionen</a></div><div class="footer-socials-ref" aria-label="Soziale Medien"><span aria-label="Facebook" title="Facebook">${ajIcon('facebook')}</span><span aria-label="Instagram" title="Instagram">${ajIcon('instagram')}</span><span aria-label="YouTube" title="YouTube">${ajIcon('youtube')}</span><span aria-label="X" title="X">${ajIcon('x')}</span><span aria-label="Tripadvisor" title="Tripadvisor">${ajIcon('tripadvisor')}</span><span aria-label="LinkedIn" title="LinkedIn">${ajIcon('linkedin')}</span><span aria-label="TikTok" title="TikTok">${ajIcon('tiktok')}</span></div></div><div class="footer-col"><h4>Contact Us</h4><div class="footer-contact">${contactBlocks.join('')}</div><a class="footer-contact-cta" href="../kontakt.html">Beratung anfragen ${ajIcon('arrowRight')}</a></div></div><div class="footer-bottom"><span>© 2026 ${c.name||'Abyssinia Journeys'}. Alle Rechte vorbehalten.</span><span>·</span><a href="../datenschutz.html">Datenschutz</a><span>·</span><a href="../impressum.html">Impressum</a></div></div></footer>`}
+    if(footer){footer.innerHTML=`<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-col"><h4>Navigation</h4><div class="footer-links"><a href="../index.html">Startseite</a><a href="../info.html">Über uns</a><a href="../reisetipps.html">Reisetipps</a><a href="../reisen.html">Alle Reisen</a><a href="../baukasten.html">Reise planen</a><a href="../kontakt.html">Kontakt</a></div></div><div class="footer-col"><h4>Reiseangebote</h4><div class="footer-links"><a href="../reisen.html?cat=Kultur">Kulturreisen</a><a href="../reisen.html?cat=Wandern">Natur, Abenteuer & Trekking</a><a href="../individualreisen.html">Private Rundreisen</a><a href="../reisen.html">Historische Routen</a><a href="../reisen.html">Nordäthiopien</a><a href="../reisen.html">Südäthiopien</a></div></div><div class="footer-col"><h4>Äthiopien entdecken</h4><div class="footer-links"><a href="../reisetipps.html">Historische Sehenswürdigkeiten</a><a href="../reisetipps.html">Natur & Nationalparks</a><a href="../reisetipps.html">Kultur & Begegnungen</a><a href="../reisetipps.html">Feste & Traditionen</a></div><div class="footer-socials-ref" aria-label="Soziale Medien"><span aria-label="Facebook" title="Facebook">${ajIcon('facebook')}</span><span aria-label="Instagram" title="Instagram">${ajIcon('instagram')}</span><span aria-label="YouTube" title="YouTube">${ajIcon('youtube')}</span><span aria-label="X" title="X">${ajIcon('x')}</span><span aria-label="Tripadvisor" title="Tripadvisor">${ajIcon('tripadvisor')}</span><span aria-label="LinkedIn" title="LinkedIn">${ajIcon('linkedin')}</span><span aria-label="TikTok" title="TikTok">${ajIcon('tiktok')}</span></div></div><div class="footer-col"><h4>Contact Us</h4><div class="footer-contact">${contactBlocks.join('')}</div><a class="footer-contact-cta" href="kontakt.html">Beratung anfragen ${ajIcon('arrowRight')}</a></div></div><div class="footer-bottom"><span>© 2026 ${c.name||'Abyssinia Journeys'}. Alle Rechte vorbehalten.</span><span>·</span><a href="../datenschutz.html">Datenschutz</a><span>·</span><a href="../impressum.html">Impressum</a></div></div></footer>`}
     document.querySelector(`[data-page="${page}"]`)?.classList.add('active');document.querySelector(`[data-page="${page}"]`)?.setAttribute('aria-current','page');
     window.setupHeader();window.buildLang();
   };
@@ -1987,12 +2039,20 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
     USD:{code:'USD',symbol:'$',locale:'en-US',label:'US Dollar'}
   };
   let currentCurrency=CURRENCIES[localStorage.getItem('aj_currency')]?localStorage.getItem('aj_currency'):'EUR';
-  let eurToUsdRate=Number(localStorage.getItem('aj_eur_usd_rate'))||1.16;
+  // Never invent an exchange rate. Use only the last successfully fetched real EUR→USD rate.
+  let eurToUsdRate=Number(localStorage.getItem('aj_eur_usd_rate'))||null;
+  let eurToUsdRateDate=localStorage.getItem('aj_eur_usd_rate_date')||'';
 
   function formatCurrency(eur,currency=currentCurrency){
     const meta=CURRENCIES[currency]||CURRENCIES.EUR;
-    const value=(Number(eur)||0)*(currency==='USD'?eurToUsdRate:1);
-    return new Intl.NumberFormat(meta.locale,{style:'currency',currency:meta.code,maximumFractionDigits:0}).format(value);
+    const amount=Number(eur);
+    if(!Number.isFinite(amount))return '';
+    // If USD was selected before the first live rate arrives, show a loading placeholder
+    // instead of a made-up conversion. updateCurrencyPrices() replaces it after fetch().
+    if(currency==='USD'&&!(Number.isFinite(eurToUsdRate)&&eurToUsdRate>0))return '$…';
+    const value=amount*(currency==='USD'?eurToUsdRate:1);
+    const usd=currency==='USD';
+    return new Intl.NumberFormat(meta.locale,{style:'currency',currency:meta.code,minimumFractionDigits:usd?2:0,maximumFractionDigits:usd?2:0}).format(value);
   }
 
   function wrapEuroText(root=document.body){
@@ -2039,15 +2099,31 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
     if(currency==='USD')refreshUsdRate();
   }
 
-  async function refreshUsdRate(){
+  async function refreshUsdRate(force=false){
     const last=Number(localStorage.getItem('aj_eur_usd_rate_time'))||0;
-    if(Date.now()-last<12*60*60*1000)return;
+    const hasRealRate=Number.isFinite(eurToUsdRate)&&eurToUsdRate>0;
+    // ECB reference rates are published on working days. Re-check every 4 hours so a page
+    // opened before the daily publication can still pick up the newest rate later that day.
+    if(!force&&hasRealRate&&Date.now()-last<4*60*60*1000)return eurToUsdRate;
     try{
-      const res=await fetch('https://api.frankfurter.app/latest?from=EUR&to=USD',{cache:'no-store'});
-      if(!res.ok)return;
-      const data=await res.json();const rate=Number(data&&data.rates&&data.rates.USD);
-      if(Number.isFinite(rate)&&rate>0){eurToUsdRate=rate;localStorage.setItem('aj_eur_usd_rate',String(rate));localStorage.setItem('aj_eur_usd_rate_time',String(Date.now()));if(currentCurrency==='USD')updateCurrencyPrices()}
-    }catch(_){/* cached fallback stays active */}
+      const res=await fetch('https://api.frankfurter.dev/v2/rate/EUR/USD?providers=ECB',{cache:'no-store'});
+      if(!res.ok)throw new Error('USD exchange-rate request failed');
+      const data=await res.json();
+      const rate=Number(data&&data.rate);
+      if(Number.isFinite(rate)&&rate>0){
+        eurToUsdRate=rate;
+        eurToUsdRateDate=String((data&&data.date)||'');
+        localStorage.setItem('aj_eur_usd_rate',String(rate));
+        localStorage.setItem('aj_eur_usd_rate_date',eurToUsdRateDate);
+        localStorage.setItem('aj_eur_usd_rate_time',String(Date.now()));
+        if(currentCurrency==='USD')updateCurrencyPrices();
+      }
+    }catch(_){
+      // Keep the last successfully fetched real rate. If there is none yet, prices remain $…
+      // rather than displaying a false fixed conversion.
+      if(currentCurrency==='USD')updateCurrencyPrices();
+    }
+    return eurToUsdRate;
   }
 
   function ensureCurrencyControl(){
@@ -2094,7 +2170,8 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
 })();
 </script>
 
-<script src="../aj-full-translate.js"></script>
+<script src="aj-azure-translator-config.js"></script>
+<script src="aj-full-translate.js?v=3"></script>
 <script>window.AJ_ROUTE_ID='private';</script>
 <script src="../aj-route-map.js?v=9"></script>
 <script id="promotion-banner-global-v8">
@@ -2504,7 +2581,7 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
 })();
 </script>
 
-<script src="../aj-client-enhancements.js?v=12"></script>
+<script src="aj-client-enhancements.js?v=15"></script>
 
 <style id="aj-header-flag-only-v1">
 /* Header language control: show only the flag, with no visible layer behind it. */
@@ -3017,6 +3094,25 @@ body.top-strip-collapsed .site-nav .brand-logo{
 </style>
 
 
-<link rel="stylesheet" href="../aj-trip-mobile-detail-fix.css?v=5">
-<script src="../aj-trip-mobile-detail-fix.js?v=2"></script>
+<link rel="stylesheet" href="aj-trip-mobile-detail-fix.css?v=7">
+<script src="aj-trip-mobile-detail-fix.js?v=3"></script>
+<script id="trip-prices-2027-sync">
+document.addEventListener('DOMContentLoaded',()=>{
+  const priceTarget=document.querySelector('.trip-term-price');
+  const heroPrice=document.getElementById('dprice');
+  if(priceTarget&&heroPrice&&heroPrice.textContent.trim()) priceTarget.textContent=heroPrice.textContent.trim();
+  const rows=[...document.querySelectorAll('#dates .date-row')];
+  const countTarget=document.querySelector('.trip-term-count');
+  if(countTarget) countTarget.textContent=String(rows.length);
+  const rangeTarget=document.querySelector('.trip-term-range');
+  if(rangeTarget&&rows.length){
+    const months=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+    const starts=rows.map(row=>{const m=(row.querySelector('strong')?.textContent||'').match(/\d{2}\.(\d{2})\.(\d{4})/);return m?{month:+m[1],year:+m[2]}:null}).filter(Boolean);
+    if(starts.length){
+      const a=starts[0],b=starts[starts.length-1];
+      rangeTarget.textContent=a.month===b.month&&a.year===b.year?`${months[a.month-1]} ${a.year}`:`${months[a.month-1]} – ${months[b.month-1]} ${b.year}`;
+    }
+  }
+});
+</script>
 </body></html>

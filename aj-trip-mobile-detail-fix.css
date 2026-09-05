@@ -616,3 +616,41 @@
     padding-top:0!important;
   }
 }
+
+/* v6 — keep year/availability filters functional on mobile.
+   The mobile table layout forces rows to display:grid!important, so filtered
+   rows need an equally specific hidden rule. Visual layout is unchanged. */
+@media (max-width:768px){
+  #termine .date-row.aj-date-row[hidden],
+  #termine .date-row.aj-date-row.is-filtered-out{
+    display:none!important;
+  }
+}
+
+
+/* v7 — reliable touch interaction for year filters on phones.
+   No visual design changes: only hit-testing/touch behavior is reinforced. */
+@media (max-width:768px){
+  #termine .aj-date-toolbar,
+  #termine .aj-year-filter,
+  #termine .aj-year-checks,
+  #termine .aj-year-checks label,
+  #termine .aj-year-checks input,
+  #termine .aj-available-only,
+  #termine .aj-available-only input{
+    pointer-events:auto!important;
+    touch-action:manipulation;
+  }
+  #termine .aj-year-checks label,
+  #termine .aj-available-only{
+    position:relative;
+    z-index:2;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+  #termine .aj-year-checks input,
+  #termine .aj-available-only input{
+    position:relative;
+    z-index:3;
+  }
+}

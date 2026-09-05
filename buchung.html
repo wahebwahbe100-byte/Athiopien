@@ -73,7 +73,7 @@ h1,h2,h3,h4,p{margin-top:0}h1,h2,h3,h4{font-family:'Manrope',sans-serif;line-hei
    PAGE-SPECIFIC DESIGN: buchung
    ========================================================= */
 
-.booking-head{background:#fff;padding:56px 0 32px}.booking-head .crumbs{font-size:.78rem;color:var(--muted);margin-bottom:18px}.booking-head h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.8rem,6vw,4.9rem);margin:10px 0 12px}.booking-layout{display:grid;grid-template-columns:1fr 360px;gap:30px;align-items:start}.booking-form{display:grid;gap:18px}.form-section{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm)}.form-section-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:20px}.form-section-head .num{width:38px;height:38px;border-radius:12px;background:var(--forest);color:#fff;display:grid;place-items:center;font:800 .82rem 'Manrope',sans-serif}.form-section-head h3{margin:0 0 4px}.form-section-head p{margin:0;color:var(--muted);font-size:.85rem}.pay-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.pay{padding:16px 10px;border:1px solid var(--line);border-radius:13px;background:#fff;text-align:center;font-weight:800;cursor:pointer}.pay input{display:none}.pay:has(input:checked){border-color:var(--forest);box-shadow:inset 0 0 0 1px var(--forest);background:#f2f6f9}.booking-summary{position:sticky;top:104px;background:var(--forest-3);color:#fff;border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}.summary-image{height:190px;background:#244b69}.summary-image img{width:100%;height:100%;object-fit:cover}.summary-copy{padding:25px}.summary-copy .kicker{color:#f2cf74}.summary-copy h2{font-size:1.65rem;margin:10px 0 15px}.summary-row{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-top:1px solid rgba(255,255,255,.13);font-size:.84rem}.summary-row span{color:#bbccd7}.summary-row strong{text-align:right}.booking-summary .notice{margin-top:18px;background:rgba(255,245,221,.1);border-color:rgba(242,207,116,.25);color:#e8d9b7}.booking-submit{width:100%;margin-top:18px}.secure-note{text-align:center;color:#a1b7c6;font-size:.73rem;margin:12px 0 0}
+.booking-head{background:#fff;padding:56px 0 32px}.booking-head .crumbs{font-size:.78rem;color:var(--muted);margin-bottom:18px}.booking-head h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.8rem,6vw,4.9rem);margin:10px 0 12px}.booking-layout{display:grid;grid-template-columns:1fr 360px;gap:30px;align-items:start}.booking-form{display:grid;gap:18px}.form-section{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow-sm)}.form-section-head{display:flex;gap:15px;align-items:flex-start;margin-bottom:20px}.form-section-head .num{width:52px;height:52px;flex:0 0 52px;border-radius:15px;background:#f2f6f9;border:1px solid rgba(24,60,90,.13);display:grid;place-items:center;box-shadow:0 6px 16px rgba(24,60,90,.08)}.form-section-head .num img{width:32px;height:32px;object-fit:contain;display:block}.form-section-head .num[aria-label]{position:relative}.form-section-head h3{margin:0 0 4px}.form-section-head p{margin:0;color:var(--muted);font-size:.85rem}.pay-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.pay{padding:16px 10px;border:1px solid var(--line);border-radius:13px;background:#fff;text-align:center;font-weight:800;cursor:pointer}.pay input{display:none}.pay:has(input:checked){border-color:var(--forest);box-shadow:inset 0 0 0 1px var(--forest);background:#f2f6f9}.booking-summary{position:sticky;top:104px;background:var(--forest-3);color:#fff;border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}.summary-image{height:190px;background:#244b69}.summary-image img{width:100%;height:100%;object-fit:cover}.summary-copy{padding:25px}.summary-copy .kicker{color:#f2cf74}.summary-copy h2{font-size:1.65rem;margin:10px 0 15px}.summary-row{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-top:1px solid rgba(255,255,255,.13);font-size:.84rem}.summary-row span{color:#bbccd7}.summary-row strong{text-align:right}.booking-summary .notice{margin-top:18px;background:rgba(255,245,221,.1);border-color:rgba(242,207,116,.25);color:#e8d9b7}.booking-submit{width:100%;margin-top:18px}.secure-note{text-align:center;color:#a1b7c6;font-size:.73rem;margin:12px 0 0}
 @media(max-width:1080px){.booking-layout{grid-template-columns:1fr}.booking-summary{position:relative;top:0;order:-1}.booking-summary{display:grid;grid-template-columns:260px 1fr}.summary-image{height:100%}}
 @media(max-width:700px){.booking-head{padding:44px 0 24px}.form-section{padding:20px}.form-grid,.pay-grid{grid-template-columns:1fr}.booking-summary{display:block}.summary-image{height:180px}}
 
@@ -1283,13 +1283,398 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
   }
 }
 </style>
-<link rel="stylesheet" href="aj-client-enhancements.css?v=15"></head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
-<section class="booking-head"><div class="container"><div class="crumbs">Reisen › Anfrage › Persönliche Daten</div><div class="kicker">Buchung & Anfrage</div><h1>Ihre Reiseanfrage.</h1><p class="lead">Noch keine verbindliche Buchung: Senden Sie Ihre Wünsche, anschließend prüfen wir Termin, Verfügbarkeit und Leistungen persönlich.</p></div></section>
-<section class="section sand" style="padding-top:34px"><div class="container booking-layout"><form class="booking-form" id="bookForm" data-demo data-message="Danke! Die Reiseanfrage wurde im Demo-Modus erfasst."><section class="form-section"><div class="form-section-head"><span class="num">01</span><div><h3>Reise & Termin</h3><p>Welche Reise und welcher Termin interessieren Sie?</p></div></div><div class="form-grid"><div class="form-control full"><label>Ausgewählte Reise</label><input id="tourName" readonly></div><div class="form-control"><label>Wunschtermin</label><input type="date" required></div><div class="form-control"><label>Teilnehmer</label><input type="number" min="1" value="2"></div></div></section>
-<section class="form-section"><div class="form-section-head"><span class="num">02</span><div><h3>Kontaktdaten</h3><p>Damit wir Rückfragen und das Angebot senden können.</p></div></div><div class="form-grid"><div class="form-control"><label>Vorname</label><input required></div><div class="form-control"><label>Nachname</label><input required></div><div class="form-control"><label>E-Mail</label><input type="email" required></div><div class="form-control"><label>Telefon</label><input></div><div class="form-control"><label>Geburtsdatum</label><input type="date"></div><div class="form-control"><label>Staatsangehörigkeit</label><input></div></div></section>
-<section class="form-section"><div class="form-section-head"><span class="num">03</span><div><h3>Reisepräferenzen</h3><p>Zusatzleistungen und besondere Anforderungen.</p></div></div><div class="form-grid"><div class="form-control"><label>Abflughafen</label><select><option>Frankfurt (FRA)</option><option>Berlin (BER)</option><option>München (MUC)</option><option>Wien (VIE)</option><option>Zürich (ZRH)</option><option>Anderer</option></select></div><div class="form-control"><label>Zimmer</label><select><option>Doppelzimmer</option><option>Einzelzimmer</option><option>Familienzimmer</option></select></div><div class="full"><div class="choice-grid"><label class="choice"><input id="bflight" type="checkbox"><span><svg class="ui-icon inline-page-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2L9.5 14.5M22 2l-7 20-4.2-8.8L2 9z"/></svg> Flugberatung</span></label><label class="choice"><input id="bvisa" type="checkbox"><span><svg class="ui-icon inline-page-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="9" r="2.4"/><path d="M8 16c1-2 2.4-3 4-3s3 1 4 3"/></svg> VISA-Unterstützung</span></label><label class="choice"><input type="checkbox"><span><svg class="ui-icon inline-page-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-5"/></svg> Versicherungsberatung</span></label><label class="choice"><input type="checkbox"><span><svg class="ui-icon inline-page-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10l6-3v10l-6-3z"/></svg> Video-Beratung</span></label><label class="choice"><input type="checkbox"><span><svg class="ui-icon inline-page-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="4.5" r="2"/><path d="M9 8l2 5h5l2 5M8.5 10.5A6 6 0 1 0 15 18"/></svg> Mobilität beachten</span></label><label class="choice"><input type="checkbox"><span><svg class="ui-icon inline-page-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11h16c-.8 6-4 9-8 9s-7.2-3-8-9z"/><path d="M8 10c0-3 2-5 4-6 0 3-1 5-4 6zM13 10c1-3 3-4 6-4-1 3-3 4-6 4z"/></svg> Ernährung / Allergien</span></label></div></div><div class="form-control full"><label>Besondere Wünsche</label><textarea rows="5"></textarea></div></div></section>
-<div class="form-section"><label class="choice"><input required type="checkbox"><span>Ich akzeptiere die Demo-AGB und Datenschutz-Hinweise.</span></label><button class="btn primary booking-submit">Unverbindliche Anfrage senden →</button></div></form>
-<aside class="booking-summary"><div class="summary-image" id="summaryImage"></div><div class="summary-copy"><div class="kicker">Ihre Auswahl</div><h2 id="sumTitle">Reiseanfrage</h2><div class="summary-row"><span>Status</span><strong>Unverbindliche Anfrage</strong></div><div class="summary-row"><span>Nächster Schritt</span><strong>Persönliche Prüfung</strong></div><div class="summary-row"><span>Support</span><strong>Telefon · Video</strong></div><div class="notice">Frontend-Prototyp: keine echte Buchung.</div><a class="btn gold" href="kontakt.html" style="width:100%;margin-top:16px">Vorher beraten lassen</a><p class="secure-note">Ihre Daten werden in diesem Demo-Prototyp nicht an einen Server gesendet.</p></div></aside></div></section>
+<link rel="stylesheet" href="aj-client-enhancements.css?v=15"><style id="booking-passenger-v1">
+.participant-stepper{display:grid;grid-template-columns:42px minmax(80px,1fr) 42px;gap:7px}.participant-stepper button{border:1px solid var(--line);border-radius:10px;background:#f5f8fa;color:var(--forest);font-size:1.25rem;font-weight:900;cursor:pointer}.participant-stepper input{text-align:center}.passenger-forms{display:grid;gap:18px}.passenger-card{border:1px solid rgba(24,60,90,.14);border-radius:18px;padding:20px;background:#f9fbfc}.passenger-card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.passenger-card-head h4{margin:0;color:var(--forest);font-size:1.05rem}.passenger-card-head span{font-size:.75rem;color:var(--muted);font-weight:800}.passenger-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.passenger-grid .full{grid-column:1/-1}.flight-data-notice{margin:0 0 20px;padding:18px;border-radius:16px;background:#fff8e8;border:1px solid rgba(198,157,69,.32)}.flight-data-notice strong{color:var(--forest)}.flight-data-notice p{margin:5px 0 10px}.flight-data-notice ol{margin:0;padding-left:20px;color:#53616a;font-size:.82rem;line-height:1.55}.flight-data-notice li{margin:5px 0}.flight-docs{margin-top:16px;padding-top:14px;border-top:1px solid rgba(24,60,90,.12)}.flight-docs>strong{display:block;margin-bottom:10px;color:var(--forest);font-size:.88rem}.doc-choice-grid{display:grid;gap:8px}.doc-choice{display:flex;gap:9px;align-items:flex-start;font-size:.82rem;line-height:1.4}.doc-choice input{margin-top:3px;accent-color:var(--forest)}.ticket-extra{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.ticket-extra[hidden]{display:none!important}.flight-docs[hidden]{display:none!important}.consent-section{display:grid;gap:14px}.consent-choice a{text-decoration:underline}.form-live-note{margin:0;color:var(--muted);font-size:.8rem}.form-live-note.is-error{color:#9d3e35}.form-live-note.is-ok{color:#2f6c52}@media(max-width:680px){.passenger-grid,.ticket-extra{grid-template-columns:1fr}.passenger-card{padding:15px}.flight-data-notice{padding:14px}.form-section-head .num{width:46px;height:46px;flex-basis:46px}.form-section-head .num img{width:28px;height:28px}}
+</style>
+
+<style id="booking-wizard-v2">
+.booking-wizard-section{overflow:visible}
+.booking-step-panel{display:none;min-height:520px;animation:bookingStepIn .24s ease}
+.booking-step-panel.is-active{display:block}
+
+/* Moderner, kompakter Buchungsfortschritt – auf Desktop bewusst nur ca. eine halbe Seite breit */
+.booking-progress{
+  position:relative;
+  top:auto;
+  z-index:1;
+  width:min(720px,52vw);
+  max-width:100%;
+  justify-self:center;
+  margin:0 auto 24px;
+  padding:15px 18px 14px;
+  border:1px solid rgba(24,60,90,.10);
+  border-radius:20px;
+  background:linear-gradient(145deg,#ffffff 0%,#fbfcfd 58%,#f6f9fa 100%);
+  box-shadow:0 10px 28px rgba(17,45,66,.08);
+}
+.booking-progress::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.booking-progress-top{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:center;
+  margin-bottom:11px;
+  color:var(--muted);
+  line-height:1.2;
+}
+.booking-progress-top>span{
+  color:var(--forest);
+  font-size:.72rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.075em;
+}
+.booking-progress-top strong{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:6px 10px;
+  border:1px solid rgba(198,157,69,.22);
+  border-radius:999px;
+  background:#fffaf0;
+  color:var(--forest);
+  font-size:.72rem;
+  font-weight:850;
+  white-space:nowrap;
+}
+.booking-progress-track{
+  height:4px;
+  margin:0 3px 12px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e7ecef;
+}
+.booking-progress-track span{
+  display:block;
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--gold),#d6ae55);
+  box-shadow:0 0 10px rgba(198,157,69,.22);
+  transition:width .3s ease;
+}
+.booking-progress ol{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:6px;
+  padding:0;
+  margin:0;
+}
+.booking-progress li{min-width:0;position:relative}
+.booking-progress button{
+  width:100%;
+  min-height:62px;
+  padding:7px 4px 6px;
+  border:1px solid transparent;
+  border-radius:13px;
+  background:transparent;
+  color:#75828a;
+  font:inherit;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:6px;
+  transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease;
+}
+.booking-progress button:not(:disabled):hover{background:#f4f7f8;transform:translateY(-1px)}
+.booking-progress button:disabled{cursor:default;opacity:.55}
+.booking-progress li.is-active button{
+  background:#f3f7f8;
+  border-color:rgba(24,60,90,.12);
+  color:var(--forest);
+}
+.booking-progress li.is-complete button{color:var(--forest)}
+.booking-progress-icon{
+  position:relative;
+  width:31px;
+  height:31px;
+  flex:0 0 31px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(24,60,90,.12);
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 3px 9px rgba(17,45,66,.05);
+  transition:.2s ease;
+}
+.booking-progress-icon img{width:20px;height:20px;object-fit:contain;display:block}
+.booking-progress li.is-active .booking-progress-icon{
+  border-color:rgba(198,157,69,.68);
+  box-shadow:0 0 0 3px rgba(198,157,69,.11),0 4px 10px rgba(17,45,66,.06);
+}
+.booking-progress li.is-complete:not(.is-active) .booking-progress-icon{
+  border-color:rgba(61,111,84,.28);
+  background:#f5faf7;
+}
+.booking-progress li.is-complete:not(.is-active) .booking-progress-icon::after{
+  content:"✓";
+  position:absolute;
+  right:-4px;
+  top:-5px;
+  width:14px;
+  height:14px;
+  display:grid;
+  place-items:center;
+  border:2px solid #fff;
+  border-radius:50%;
+  background:var(--forest);
+  color:#fff;
+  font-size:.52rem;
+  font-weight:950;
+  line-height:1;
+}
+.booking-progress-finish{font-weight:950;font-size:1rem;color:var(--forest)}
+.booking-progress-title{
+  max-width:100%;
+  color:inherit;
+  font-size:.63rem;
+  line-height:1.18;
+  font-weight:850;
+  text-align:center;
+  white-space:normal;
+  overflow:visible;
+}
+
+.booking-step-eyebrow{font-size:.69rem;line-height:1.2;text-transform:uppercase;letter-spacing:.09em;font-weight:900;color:#9b792d;margin-bottom:5px}
+.booking-wizard-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:24px;padding-top:19px;border-top:1px solid rgba(24,60,90,.11)}
+.booking-wizard-actions .btn{min-width:155px;justify-content:center}
+.booking-wizard-actions-first{justify-content:space-between}
+.booking-step-hint{color:var(--muted);font-size:.77rem;max-width:55%}
+.booking-finish-icon{font-size:1.45rem;font-weight:950;color:var(--forest)}
+.selected-term-card{padding:14px 16px;border-radius:14px;background:#f3f7f9;border:1px solid rgba(24,60,90,.13);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.selected-term-card[hidden]{display:none!important}
+.selected-term-card span{font-size:.78rem;color:var(--muted);font-weight:800}
+.selected-term-card strong{color:var(--forest);text-align:right}
+.booking-review{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin-bottom:18px}
+.booking-review-item{border:1px solid rgba(24,60,90,.12);border-radius:14px;padding:13px 14px;background:#f8fafb}
+.booking-review-item span{display:block;color:var(--muted);font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.booking-review-item strong{display:block;color:var(--forest);font-size:.88rem;line-height:1.4;overflow-wrap:anywhere}
+.passenger-card.wizard-field-error{border-color:#b95c52;box-shadow:0 0 0 2px rgba(185,92,82,.1)}
+.booking-step-panel input:invalid:not(:placeholder-shown),.booking-step-panel select:invalid{border-color:rgba(157,62,53,.55)}
+@keyframes bookingStepIn{from{opacity:.35;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+@media(max-width:1180px){
+  .booking-progress{width:min(760px,100%)}
+}
+@media(max-width:1080px){
+  .booking-step-panel{min-height:0}
+  .booking-summary{order:0}
+  .booking-progress{width:min(720px,82vw)}
+}
+@media(max-width:700px){
+  .booking-progress{
+    width:100%;
+    max-width:none;
+    margin-bottom:14px;
+    padding:11px 9px 10px;
+    border-radius:15px;
+    box-shadow:0 5px 16px rgba(17,45,66,.06);
+  }
+  .booking-progress-top{margin:0 3px 8px;gap:8px}
+  .booking-progress-top>span{display:block;font-size:.59rem;letter-spacing:.045em}
+  .booking-progress-top strong{min-height:24px;padding:4px 7px;font-size:.59rem}
+  .booking-progress-track{height:3px;margin:0 3px 8px}
+  .booking-progress ol{gap:2px}
+  .booking-progress button{min-height:51px;padding:4px 1px 3px;border-radius:9px;gap:4px}
+  .booking-progress button:not(:disabled):hover{transform:none}
+  .booking-progress-icon{width:25px;height:25px;flex-basis:25px;border-radius:8px}
+  .booking-progress-icon img{width:16px;height:16px}
+  .booking-progress li.is-complete:not(.is-active) .booking-progress-icon::after{right:-4px;top:-5px;width:12px;height:12px;font-size:.44rem}
+  .booking-progress-finish{font-size:.82rem}
+  .booking-progress-title{font-size:.49rem;line-height:1.08;overflow-wrap:anywhere}
+  .booking-wizard-actions{position:sticky;bottom:0;z-index:8;background:linear-gradient(180deg,rgba(255,255,255,.72),#fff 22%);margin-left:-20px;margin-right:-20px;margin-bottom:-20px;padding:18px 20px 20px}
+  .booking-wizard-actions .btn{min-width:0;flex:1;padding-left:10px;padding-right:10px}
+  .booking-step-hint{display:none}
+  .booking-review{grid-template-columns:1fr}
+  .selected-term-card{display:block}
+  .selected-term-card strong{margin-top:4px;text-align:left}
+  .booking-step-panel{padding-bottom:28px}
+  .booking-final-step .booking-wizard-actions{margin-top:18px}
+}
+@media(max-width:430px){
+  .booking-progress{padding:9px 6px 8px}
+  .booking-progress-top>span{font-size:.55rem}
+  .booking-progress-top strong{font-size:.55rem}
+  .booking-progress button{min-height:48px}
+  .booking-progress-icon{width:23px;height:23px;flex-basis:23px}
+  .booking-progress-icon img{width:15px;height:15px}
+  .booking-progress-title{font-size:.45rem}
+}
+</style>
+<style id="booking-progress-connected-v3">
+/* Fortschritt und aktueller Buchungsschritt bilden eine gemeinsame, verbundene Karte. */
+.booking-form{
+  gap:0!important;
+  align-content:start;
+}
+.booking-progress{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:18px 24px 16px!important;
+  border:1px solid var(--line)!important;
+  border-bottom:0!important;
+  border-radius:24px 24px 0 0!important;
+  background:#fff!important;
+  box-shadow:0 -4px 18px rgba(17,45,66,.035)!important;
+}
+.booking-progress::before{
+  border-radius:24px 24px 0 0!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
+.booking-progress-top{
+  margin:0 0 12px!important;
+  padding:0 2px!important;
+}
+.booking-progress-top>span{
+  font-size:.69rem!important;
+  letter-spacing:.075em!important;
+}
+.booking-progress-top strong{
+  min-height:29px!important;
+  padding:6px 11px!important;
+  font-size:.7rem!important;
+  background:#fff8e8!important;
+  border-color:rgba(198,157,69,.28)!important;
+}
+.booking-progress-track{
+  height:4px!important;
+  margin:0 2px 13px!important;
+}
+.booking-progress ol{
+  gap:7px!important;
+}
+.booking-progress button{
+  min-height:58px!important;
+  padding:6px 4px 5px!important;
+  border-radius:12px!important;
+}
+.booking-progress-icon{
+  width:30px!important;
+  height:30px!important;
+  flex-basis:30px!important;
+}
+.booking-progress-icon img{
+  width:19px!important;
+  height:19px!important;
+}
+.booking-progress-title{
+  font-size:.61rem!important;
+  line-height:1.16!important;
+}
+
+/* Aktive Seite direkt an den Fortschrittskopf anschließen. */
+.booking-step-panel.is-active{
+  margin:0!important;
+  border-top:1px solid rgba(24,60,90,.09)!important;
+  border-radius:0 0 24px 24px!important;
+  box-shadow:0 12px 28px rgba(17,45,66,.075)!important;
+  animation:bookingStepConnectedIn .22s ease!important;
+}
+.booking-step-panel.is-active .form-section-head{
+  position:relative;
+  margin-top:0;
+  padding-top:1px;
+}
+.booking-step-panel.is-active .booking-step-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  margin:0 0 5px;
+  padding:4px 9px;
+  border-radius:999px;
+  background:#f5f8f9;
+  border:1px solid rgba(24,60,90,.09);
+  color:var(--forest);
+  font-size:.64rem;
+  letter-spacing:.075em;
+}
+@keyframes bookingStepConnectedIn{
+  from{opacity:.55;transform:translateY(3px)}
+  to{opacity:1;transform:none}
+}
+
+@media(max-width:700px){
+  .booking-progress{
+    padding:12px 12px 11px!important;
+    border-radius:18px 18px 0 0!important;
+    box-shadow:none!important;
+  }
+  .booking-progress::before{border-radius:18px 18px 0 0!important}
+  .booking-progress-top{
+    align-items:flex-start!important;
+    gap:7px!important;
+    margin-bottom:9px!important;
+  }
+  .booking-progress-top>span{
+    font-size:.57rem!important;
+    letter-spacing:.045em!important;
+  }
+  .booking-progress-top strong{
+    min-height:23px!important;
+    padding:4px 7px!important;
+    font-size:.56rem!important;
+    white-space:normal!important;
+    text-align:right;
+  }
+  .booking-progress-track{height:3px!important;margin-bottom:8px!important}
+  .booking-progress ol{gap:2px!important}
+  .booking-progress button{min-height:50px!important;padding:4px 1px 3px!important}
+  .booking-progress-icon{width:24px!important;height:24px!important;flex-basis:24px!important;border-radius:8px!important}
+  .booking-progress-icon img{width:15px!important;height:15px!important}
+  .booking-progress-title{font-size:.47rem!important;line-height:1.07!important}
+  .booking-step-panel.is-active{
+    border-radius:0 0 18px 18px!important;
+    box-shadow:0 8px 18px rgba(17,45,66,.06)!important;
+  }
+  .booking-step-panel.is-active .booking-step-eyebrow{
+    min-height:22px;
+    padding:3px 7px;
+    font-size:.59rem;
+  }
+}
+@media(max-width:430px){
+  .booking-progress{padding:10px 8px 9px!important}
+  .booking-progress-top strong{font-size:.52rem!important}
+  .booking-progress-title{font-size:.43rem!important}
+  .booking-progress-icon{width:22px!important;height:22px!important;flex-basis:22px!important}
+  .booking-progress-icon img{width:14px!important;height:14px!important}
+}
+</style>
+<link rel="stylesheet" href="aj-compact-ui-v1.css?v=1">
+</head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
+<section class="booking-head"><div class="container"><div class="crumbs">Reisen › Buchung › Reisedaten</div><div class="kicker">Buchung & Anfrage</div><h1>Ihre Reisebuchung.</h1><p class="lead">Bitte tragen Sie alle Angaben sorgfältig ein. Bei Reisen mit eingeschlossenem Flug werden die Passagierdaten exakt nach dem gültigen Ausweisdokument benötigt.</p></div></section>
+<section class="section sand booking-wizard-section" style="padding-top:34px"><div class="container booking-layout"><form class="booking-form" id="bookForm" novalidate>
+<nav class="booking-progress" id="bookingProgress" aria-label="Buchungsfortschritt">
+  <div class="booking-progress-top"><span>Ihr Buchungsfortschritt</span><strong>Schritt <span id="bookingCurrentStep">1</span> von 5 · <span id="bookingCurrentLabel">Reise &amp; Termin</span></strong></div>
+  <div class="booking-progress-track" aria-hidden="true"><span id="bookingProgressFill"></span></div>
+  <ol>
+    <li class="is-active" data-progress-step="1"><button type="button" data-step-target="1" aria-current="step"><span class="booking-progress-icon"><img src="booking-icon-reise-termin.png" alt=""></span><span class="booking-progress-title">Reise &amp; Termin</span></button></li>
+    <li data-progress-step="2"><button type="button" data-step-target="2" disabled><span class="booking-progress-icon"><img src="booking-icon-kontaktdaten.png" alt=""></span><span class="booking-progress-title">Kontaktdaten</span></button></li>
+    <li data-progress-step="3"><button type="button" data-step-target="3" disabled><span class="booking-progress-icon"><img src="booking-icon-flug-reisende.png" alt=""></span><span class="booking-progress-title">Reiseteilnehmer</span></button></li>
+    <li data-progress-step="4"><button type="button" data-step-target="4" disabled><span class="booking-progress-icon"><img src="booking-icon-praeferenzen.png" alt=""></span><span class="booking-progress-title">Präferenzen</span></button></li>
+    <li data-progress-step="5"><button type="button" data-step-target="5" disabled><span class="booking-progress-icon booking-progress-finish">✓</span><span class="booking-progress-title">Abschluss</span></button></li>
+  </ol>
+</nav>
+<section class="form-section booking-step-panel is-active" data-booking-step="1" id="bookingStep1"><div class="form-section-head"><span class="num" aria-label="Schritt 1 – Reise und Termin"><img src="booking-icon-reise-termin.png" alt="" aria-hidden="true"></span><div><div class="booking-step-eyebrow">Schritt 1 von 5</div><h3>Reise & Termin</h3><p>Ausgewählte Reise, Reisetermin und Anzahl der Reiseteilnehmer.</p></div></div><div class="form-grid"><div class="form-control full"><label>Ausgewählte Reise</label><input id="tourName" name="reise" readonly></div><div class="selected-term-card full" id="selectedTermCard" hidden><span>Ausgewählter Reisetermin</span><strong id="selectedTermLabel"></strong></div><div class="form-control"><label>Wunschtermin</label><input id="travelDate" name="reisetermin" type="date" required></div><div class="form-control"><label>Anzahl Reiseteilnehmer</label><div class="participant-stepper"><button type="button" id="participantMinus" aria-label="Eine Person weniger">−</button><input id="participantCount" name="teilnehmer" type="number" min="1" max="12" value="2" required><button type="button" id="participantPlus" aria-label="Eine weitere Person hinzufügen">+</button></div></div><div class="form-control full"><label>Buchungscode</label><input id="bookingCode" name="buchungscode" readonly placeholder="Wird bei Auswahl eines festen Reisetermins übernommen"></div></div><div class="booking-wizard-actions booking-wizard-actions-first"><span class="booking-step-hint">Ihre Auswahl wird für die nächsten Schritte übernommen.</span><button class="btn primary" type="button" data-step-next>Nächster Schritt →</button></div></section>
+<section class="form-section booking-step-panel" data-booking-step="2" id="bookingStep2"><div class="form-section-head"><span class="num" aria-label="Schritt 2 – Kontaktdaten"><img src="booking-icon-kontaktdaten.png" alt="" aria-hidden="true"></span><div><div class="booking-step-eyebrow">Schritt 2 von 5</div><h3>Kontaktdaten</h3><p>An wen dürfen wir Buchungsbestätigung und Rückfragen senden?</p></div></div><div class="form-grid"><div class="form-control"><label>Vorname</label><input name="kontakt_vorname" required autocomplete="given-name"></div><div class="form-control"><label>Nachname</label><input name="kontakt_nachname" required autocomplete="family-name"></div><div class="form-control"><label>E-Mail</label><input name="kontakt_email" type="email" required autocomplete="email"></div><div class="form-control"><label>Kontaktnummer</label><input name="kontakt_telefon" type="tel" required autocomplete="tel"></div></div><div class="booking-wizard-actions"><button class="btn dark-outline" type="button" data-step-prev>← Zurück</button><button class="btn primary" type="button" data-step-next>Nächster Schritt →</button></div></section>
+<section class="form-section passenger-section booking-step-panel" data-booking-step="3" id="passengerSection"><div class="form-section-head"><span class="num" aria-label="Schritt 3 – Reiseteilnehmer und Flugbuchungsdaten"><img src="booking-icon-flug-reisende.png" alt="" aria-hidden="true"></span><div><div class="booking-step-eyebrow">Schritt 3 von 5</div><h3>Reiseteilnehmer & Flugbuchungsdaten</h3><p id="passengerIntro">Bitte geben Sie die Daten für jede reisende Person vollständig an.</p></div></div>
+<div class="flight-data-notice" id="flightDataNotice" hidden><strong>Daten für die Flugbuchung</strong><p><b>Alle Angaben müssen mit den gültigen Ausweisdokumenten übereinstimmen.</b></p><ol><li>Bitte machen Sie alle Angaben sorgfältig und gewissenhaft, um Unannehmlichkeiten zu vermeiden.</li><li>Das gültige Ausweisdokument ist während der Reise mitzuführen und insbesondere beim Check-in am Flughafen vorzulegen.</li><li>Fehlerhafte Daten können zum Ausschluss vom Flug oder zu kostenpflichtigen Änderungen führen.</li><li>Wenn Sie eine der genannten äthiopischen Aufenthalts- oder Identitätsberechtigungen besitzen, ist der entsprechende Nachweis beim Check-in vorzulegen. Andernfalls kann eine Nachzahlung verlangt werden.</li><li>Bei einem internationalen Ethiopian-Airlines-Flugticket ist der Nachweis beim Check-in ebenfalls vorzulegen. Kann der Nachweis nicht erbracht werden, kann eine Nachzahlung verlangt werden.</li><li>Bei Ethiopian Airlines sind auf Inlandsflügen grundsätzlich 20 kg aufgegebenes Gepäck und 7 kg Handgepäck vorgesehen. Mehrgepäck kann kostenpflichtig sein.</li></ol></div>
+<div id="passengerForms" class="passenger-forms"></div><div class="booking-wizard-actions"><button class="btn dark-outline" type="button" data-step-prev>← Zurück</button><button class="btn primary" type="button" data-step-next>Nächster Schritt →</button></div>
+</section>
+<section class="form-section booking-step-panel" data-booking-step="4" id="bookingStep4"><div class="form-section-head"><span class="num" aria-label="Schritt 4 – Reisepräferenzen"><img src="booking-icon-praeferenzen.png" alt="" aria-hidden="true"></span><div><div class="booking-step-eyebrow">Schritt 4 von 5</div><h3>Reisepräferenzen</h3><p>Zimmer, Zusatzleistungen und besondere Anforderungen.</p></div></div><div class="form-grid"><div class="form-control"><label>Abflughafen</label><select name="abflughafen"><option>Frankfurt (FRA)</option><option>Berlin (BER)</option><option>München (MUC)</option><option>Wien (VIE)</option><option>Zürich (ZRH)</option><option>Anderer</option></select></div><div class="form-control"><label>Zimmer</label><select name="zimmer"><option>Doppelzimmer</option><option>Einzelzimmer</option><option>Familienzimmer</option></select></div><div class="full"><div class="choice-grid"><label class="choice"><input id="bflight" name="flugberatung" type="checkbox"><span>Flugberatung</span></label><label class="choice"><input id="bvisa" name="visa" type="checkbox"><span>VISA-Unterstützung</span></label><label class="choice"><input name="versicherung" type="checkbox"><span>Versicherungsberatung</span></label><label class="choice"><input name="video" type="checkbox"><span>Video-Beratung</span></label><label class="choice"><input name="mobilitaet" type="checkbox"><span>Mobilität beachten</span></label><label class="choice"><input name="ernaehrung" type="checkbox"><span>Ernährung / Allergien</span></label></div></div><div class="form-control full"><label>Besondere Wünsche</label><textarea name="wuensche" rows="5"></textarea></div></div><div class="booking-wizard-actions"><button class="btn dark-outline" type="button" data-step-prev>← Zurück</button><button class="btn primary" type="button" data-step-next>Angaben prüfen →</button></div></section>
+<section class="form-section consent-section booking-step-panel booking-final-step" data-booking-step="5" id="bookingStep5"><div class="form-section-head"><span class="num booking-finish-icon" aria-label="Schritt 5 – Abschluss">✓</span><div><div class="booking-step-eyebrow">Schritt 5 von 5</div><h3>Abschluss</h3><p>Prüfen Sie die wichtigsten Angaben und bestätigen Sie anschließend Ihre Buchungsanfrage.</p></div></div><div class="booking-review" id="bookingReview" aria-live="polite"></div><label class="choice consent-choice"><input id="dataConsent" name="datenverarbeitung" required type="checkbox"><span>Mit der Angabe meiner Daten erkläre ich mich mit der Verarbeitung im Rahmen meiner Reise einverstanden. Es gelten die <a href="datenschutz.html">Datenschutzhinweise</a>.</span></label><label class="choice consent-choice"><input id="termsConsent" name="bedingungen" required type="checkbox"><span>Ich bestätige, dass die Angaben – insbesondere die Daten für eine Flugbuchung – vollständig und nach den gültigen Ausweisdokumenten eingetragen wurden.</span></label><div class="booking-wizard-actions booking-wizard-actions-final"><button class="btn dark-outline" type="button" data-step-prev>← Zurück</button><button class="btn primary booking-submit" type="submit">Buchungsanfrage prüfen & senden →</button></div><p class="form-live-note" id="bookingFormStatus" aria-live="polite"></p></section></form>
+<aside class="booking-summary"><div class="summary-image" id="summaryImage"></div><div class="summary-copy"><div class="kicker">Ihre Auswahl</div><h2 id="sumTitle">Reisebuchung</h2><div class="summary-row"><span>Status</span><strong id="sumStatus">Buchungsanfrage</strong></div><div class="summary-row"><span>Teilnehmer</span><strong id="sumParticipants">2 Personen</strong></div><div class="summary-row"><span>Flug</span><strong id="sumFlight">Je nach Reise</strong></div><div class="notice" id="summaryNotice">Ihre Angaben werden vor einer verbindlichen Bestätigung geprüft.</div><a class="btn gold" href="kontakt.html" style="width:100%;margin-top:16px">Vorher beraten lassen</a><p class="secure-note">Hinweis: Für den tatsächlichen Versand muss die Website noch mit dem Buchungs-/E-Mail-Backend verbunden werden.</p></div></aside></div></section>
 </main><div data-shell="footer"></div><div class="toast"></div><script>
 const REAL={
  simien:'https://images.unsplash.com/photo-1637594976068-5eed79a13212?auto=format&fit=crop&fm=jpg&q=82&w=1800',
@@ -1297,7 +1682,7 @@ const REAL={
  lalibela:'https://images.unsplash.com/photo-1508914127305-fa5114b81b3f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  danakil:'https://images.unsplash.com/photo-1564101151838-630e722d7b1f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  dallol:'https://images.unsplash.com/photo-1603456771349-07ea0241821f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
- harar:'https://images.unsplash.com/photo-1628973961166-6e319909398e?auto=format&fit=crop&fm=jpg&q=82&w=1800',
+ harar:'https://commons.wikimedia.org/wiki/Special:FilePath/City%20Gate%2C%20Harar%20Jugol%20%2814464345823%29.jpg?width=1800',
  coffee:'https://images.unsplash.com/photo-1630861412977-de9bd8944f97?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  arba:'https://images.unsplash.com/photo-1712553935892-1c537df3e96c?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  hamar:'https://images.unsplash.com/photo-1631878929191-f193a89819c1?auto=format&fit=crop&fm=jpg&q=82&w=1800'
@@ -1308,7 +1693,7 @@ const DEMO_TRIPS=[
 {id:'south',title:'Völker des Südens',subtitle:'Omo-Tal, Seenlandschaften und intensive Begegnungen',category:'Kultur',days:14,price:2890,group:'4–10',image:REAL.hamar,level:'Leicht',rating:'4.8',tag:'Begegnung'},
 {id:'simien',title:'Dach Afrikas',subtitle:'Trekking und Panoramen im Simien-Gebirge',category:'Wandern',days:10,price:2490,group:'4–8',image:REAL.simien,level:'Aktiv',rating:'4.9',tag:'Trekking'},
 {id:'danakil',title:'Feuer & Salz',subtitle:'Danakil-Senke, Dallol und vulkanische Landschaften',category:'Abenteuer',days:7,price:2190,group:'4–10',image:REAL.dallol,level:'Anspruchsvoll',rating:'4.8',tag:'Expedition'},
-{id:'harar',title:'Harar & Bale',subtitle:'Historische Gassen, Hochland und wilde Natur',category:'Natur',days:12,price:2990,group:'4–10',image:REAL.harar,level:'Mittel',rating:'4.7',tag:'Ost-Äthiopien'},
+{id:'harar',title:'Harar & Ostäthiopien',subtitle:'UNESCO-Weltkulturerbe, wilde Elefanten & die legendären Hyänen',category:'Kultur & Natur',days:3,price:899,group:'6–12',image:REAL.harar,level:'Normale Fitness',rating:'Neu',tag:'Ost-Äthiopien'},
 {id:'photo',title:'Licht des Hochlands',subtitle:'Fotoreise mit Zeit für Motive, Märkte und Landschaft',category:'Foto',days:11,price:3490,group:'3–8',image:REAL.coffee,level:'Leicht',rating:'5.0',tag:'Foto'},
 {id:'family',title:'Seen, Natur & Familie',subtitle:'Entspanntes Tempo mit Natur, Boot und Tierbeobachtung',category:'Familie',days:10,price:2790,group:'2–8',image:REAL.arba,level:'Familienfreundlich',rating:'4.8',tag:'Familie'},
 {id:'private',title:'Äthiopien Privat',subtitle:'Eigener Guide, flexible Route und ausgewählte Hotels',category:'VIP',days:12,price:4690,group:'2–4',image:REAL.addis,level:'Individuell',rating:'4.9',tag:'Private'},
@@ -1331,7 +1716,7 @@ const I18N={
  am:{home:'ኢትዮጵያ',groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',login:'ግባ',builder:'ጉዞ አቅድ'},tr:{home:'Etiyopya',groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',login:'Giriş',builder:'Seyahat planla'}
 };
 function safeJSON(k,fb){try{return JSON.parse(localStorage.getItem(k))||fb}catch(e){return fb}}
-function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!stored.some(y=>y&&y.id===x.id));return required.length?[...stored,...required]:stored}
+function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const canonicalHarar=DEMO_TRIPS.find(x=>x.id==='harar');let merged=stored.map(x=>x&&x.id==='harar'?canonicalHarar:x);if(canonicalHarar&&!merged.some(x=>x&&x.id==='harar'))merged.push(canonicalHarar);const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!merged.some(y=>y&&y.id===x.id));return required.length?[...merged,...required]:merged}
 function company(){return safeJSON('aj_company',{name:'Abyssinia Journeys',email:'reisen@example.de',phone:'+49 (0) 000 000000'})}
 function euro(n){return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(n)||0)}
 function imgTag(src,alt,cls=''){return `<img class="${cls}" src="${src}" alt="${alt}" loading="lazy">`}
@@ -1354,8 +1739,84 @@ function getTrip(){const id=new URLSearchParams(location.search).get('id')||'nor
 function demoForms(){document.querySelectorAll('[data-demo]').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();toast(f.dataset.message||'Danke! Ihre Anfrage wurde im Demo-Modus erfasst.')}))}
 document.addEventListener('DOMContentLoaded',()=>{renderShell();demoForms()});
 
-</script><script>
-document.addEventListener('DOMContentLoaded',()=>{const p=new URLSearchParams(location.search),t=p.get('custom')?{title:'Individuelle Reise aus dem Baukasten',image:REAL.addis}:getTrip();document.getElementById('tourName').value=t.title;document.getElementById('sumTitle').textContent=t.title;document.getElementById('summaryImage').innerHTML=imgTag(t.image,t.title);if(p.get('flight')==='1')document.getElementById('bflight').checked=true;if(p.get('visa')==='1')document.getElementById('bvisa').checked=true});
+</script><script id="booking-passengers-v1">
+(function(){
+const FLIGHT_TRIPS=new Set(['harar']);
+function esc(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function passengerMarkup(i,flightRequired){const n=i+1,p=`reisender_${n}`;return `<article class="passenger-card" data-passenger="${n}"><div class="passenger-card-head"><h4>Reiseteilnehmer ${n}</h4><span>Daten gemäß Ausweisdokument</span></div><div class="passenger-grid"><div class="form-control"><label>Titel</label><select name="${p}_titel"><option value="">Ohne Titel</option><option>Dr.</option><option>Prof.</option><option>Prof. Dr.</option></select></div><div class="form-control"><label>Geschlecht</label><select name="${p}_geschlecht" required><option value="">Bitte wählen</option><option>weiblich</option><option>männlich</option><option>divers</option><option>keine Angabe</option></select></div><div class="form-control"><label>Vorname</label><input name="${p}_vorname" required autocomplete="off"></div><div class="form-control"><label>Nachname</label><input name="${p}_nachname" required autocomplete="off"></div><div class="form-control"><label>Geburtsname</label><input name="${p}_geburtsname" autocomplete="off"></div><div class="form-control"><label>Geburtsdatum</label><input name="${p}_geburtsdatum" type="date" required></div><div class="form-control"><label>Nationalität</label><input name="${p}_nationalitaet" required></div><div class="form-control"><label>Kontaktnummer</label><input name="${p}_kontakt" type="tel" required></div></div><div class="flight-docs" ${flightRequired?'':'hidden'}><strong>Zum Anklicken für jeden Reisenden: Ich besitze eines der folgenden Dokumente / Nachweise:</strong><div class="doc-choice-grid"><label class="doc-choice"><input type="checkbox" data-doc-choice name="${p}_aufenthalt" value="1"> <span>Ich besitze eine gültige Aufenthaltsgenehmigung für Äthiopien.</span></label><label class="doc-choice"><input type="checkbox" data-doc-choice name="${p}_ethiopian_pass" value="1"> <span>Ich besitze einen äthiopischen Pass.</span></label><label class="doc-choice"><input type="checkbox" data-doc-choice name="${p}_yellow_id" value="1"> <span>Ich besitze eine äthiopische gelbe ID.</span></label><label class="doc-choice"><input type="checkbox" data-doc-choice name="${p}_kebele_id" value="1"> <span>Ich besitze eine erneuerte Kebele ID.</span></label><label class="doc-choice"><input type="checkbox" data-et-ticket name="${p}_et_ticket" value="1"> <span>Internationales Flugticket von Ethiopian Airlines (max. 4 Wochen alt).</span></label><div class="ticket-extra" hidden><div class="form-control"><label>E-Ticket Nummer</label><input name="${p}_eticket_nummer" inputmode="numeric" minlength="10" maxlength="30" placeholder="z. B. 13-stellige Ticketnummer"></div><div class="form-control"><label>ShebaMiles Nummer</label><input name="${p}_shebamiles" minlength="5" maxlength="30"></div></div><label class="doc-choice"><input type="checkbox" data-no-doc name="${p}_keines" value="1"> <span>Nein, ich habe keines dieser Dokumente bzw. keinen der genannten Nachweise.</span></label></div></div></article>`}
+function init(){const params=new URLSearchParams(location.search),t=params.get('custom')?{id:'custom',title:'Individuelle Reise aus dem Baukasten',image:REAL.addis}:getTrip(),flightRequired=FLIGHT_TRIPS.has(String(t.id))||params.get('flight')==='1';const tour=document.getElementById('tourName'),sumTitle=document.getElementById('sumTitle'),sumImage=document.getElementById('summaryImage'),travelDate=document.getElementById('travelDate'),bookingCode=document.getElementById('bookingCode'),count=document.getElementById('participantCount'),forms=document.getElementById('passengerForms'),notice=document.getElementById('flightDataNotice'),intro=document.getElementById('passengerIntro'),sumP=document.getElementById('sumParticipants'),sumF=document.getElementById('sumFlight'),form=document.getElementById('bookForm'),status=document.getElementById('bookingFormStatus');tour.value=t.title;sumTitle.textContent=t.title;sumImage.innerHTML=imgTag(t.image,t.title);if(params.get('date'))travelDate.value=params.get('date');if(params.get('code'))bookingCode.value=params.get('code');if(params.get('flight')==='1'||flightRequired)document.getElementById('bflight').checked=true;if(params.get('visa')==='1')document.getElementById('bvisa').checked=true;notice.hidden=!flightRequired;intro.textContent=flightRequired?'Für diese Reise ist ein Inlandsflug eingeschlossen. Die folgenden Daten werden für jede reisende Person gemäß gültigem Ausweisdokument benötigt.':'Bitte geben Sie die Daten für jede reisende Person vollständig an.';sumF.textContent=flightRequired?'Inlandsflug eingeschlossen':'Nach Reiseleistung';
+function render(){let n=Math.max(1,Math.min(12,Number(count.value)||1));count.value=n;const old=[...forms.querySelectorAll('.passenger-card')].map(card=>Object.fromEntries([...card.querySelectorAll('input,select')].map(x=>[x.name,x.type==='checkbox'?x.checked:x.value])));forms.innerHTML=Array.from({length:n},(_,i)=>passengerMarkup(i,flightRequired)).join('');old.forEach((vals,i)=>{const card=forms.children[i];if(!card)return;Object.entries(vals).forEach(([name,val])=>{const el=card.querySelector(`[name="${CSS.escape(name)}"]`);if(!el)return;if(el.type==='checkbox')el.checked=Boolean(val);else el.value=val})});sumP.textContent=n+(n===1?' Person':' Personen');bindPassengerLogic()}
+function bindPassengerLogic(){forms.querySelectorAll('.passenger-card').forEach(card=>{const no=card.querySelector('[data-no-doc]'),choices=[...card.querySelectorAll('[data-doc-choice], [data-et-ticket]')],ticket=card.querySelector('[data-et-ticket]'),extra=card.querySelector('.ticket-extra');function sync(){if(no?.checked)choices.forEach(x=>x.checked=false);else if(choices.some(x=>x.checked)&&no)no.checked=false;if(extra)extra.hidden=!ticket?.checked;const et=extra?.querySelector('input[name$="_eticket_nummer"]');if(et)et.required=Boolean(flightRequired&&ticket?.checked)};[no,...choices].filter(Boolean).forEach(x=>x.addEventListener('change',sync));sync()})}
+count.addEventListener('input',render);document.getElementById('participantMinus').addEventListener('click',()=>{count.value=Math.max(1,(Number(count.value)||1)-1);render()});document.getElementById('participantPlus').addEventListener('click',()=>{count.value=Math.min(12,(Number(count.value)||1)+1);render()});render();
+form.addEventListener('submit',e=>{e.preventDefault();status.className='form-live-note';if(!form.checkValidity()){form.reportValidity();status.textContent='Bitte prüfen Sie die markierten Pflichtfelder.';status.classList.add('is-error');return}if(flightRequired){for(const card of forms.querySelectorAll('.passenger-card')){const any=[...card.querySelectorAll('[data-doc-choice], [data-et-ticket], [data-no-doc]')].some(x=>x.checked);if(!any){status.textContent='Bitte wählen Sie für jeden Reiseteilnehmer mindestens eine Dokument-/Ticketoption oder „Nein“ aus.';status.classList.add('is-error');card.scrollIntoView({behavior:'smooth',block:'center'});return}}}status.textContent='Alle Pflichtangaben sind vollständig. Für den echten Versand muss jetzt noch das Buchungs-/E-Mail-Backend angeschlossen werden.';status.classList.add('is-ok')})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script><script id="booking-wizard-v2">
+(function(){
+function ready(fn){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fn,{once:true});else fn()}
+ready(function(){
+  const form=document.getElementById('bookForm');if(!form)return;
+  const panels=[...form.querySelectorAll('[data-booking-step]')];
+  const progress=document.getElementById('bookingProgress');
+  const items=[...progress.querySelectorAll('[data-progress-step]')];
+  const fill=document.getElementById('bookingProgressFill');
+  const currentEl=document.getElementById('bookingCurrentStep');
+  const currentLabel=document.getElementById('bookingCurrentLabel');
+  const selectedTermCard=document.getElementById('selectedTermCard');
+  const selectedTermLabel=document.getElementById('selectedTermLabel');
+  const review=document.getElementById('bookingReview');
+  let current=1,completedThrough=0;
+  const params=new URLSearchParams(location.search);
+  const fixedTerm=params.get('termin');
+  if(fixedTerm&&selectedTermCard&&selectedTermLabel){selectedTermLabel.textContent=fixedTerm;selectedTermCard.hidden=false}const dateInput=document.getElementById('travelDate');if(fixedTerm&&params.get('date')&&params.get('code')&&dateInput){dateInput.readOnly=true;dateInput.setAttribute('aria-readonly','true');const dateLabel=dateInput.closest('.form-control')?.querySelector('label');if(dateLabel)dateLabel.textContent='Reisebeginn'}
+  function labelFor(step){return items[step-1]?.querySelector('.booking-progress-title')?.textContent?.trim()||''}
+  function updateProgress(){
+    panels.forEach((p,i)=>p.classList.toggle('is-active',i+1===current));
+    items.forEach((li,i)=>{const step=i+1,btn=li.querySelector('button');li.classList.toggle('is-active',step===current);li.classList.toggle('is-complete',step<=completedThrough);if(btn){btn.disabled=step>Math.max(current,completedThrough+1);if(step===current)btn.setAttribute('aria-current','step');else btn.removeAttribute('aria-current')}});
+    if(fill)fill.style.width=((current-1)/4*100)+'%';
+    if(currentEl)currentEl.textContent=current;
+    if(currentLabel)currentLabel.textContent=labelFor(current);
+    const active=items[current-1];active?.scrollIntoView?.({behavior:'smooth',block:'nearest',inline:'center'});
+  }
+  function invalidateFrom(step){if(completedThrough>=step)completedThrough=step-1;updateProgress()}
+  function firstInvalid(panel){return [...panel.querySelectorAll('input,select,textarea')].find(el=>!el.disabled&&el.type!=='hidden'&&!el.checkValidity())||null}
+  function validatePassengerDocuments(panel){
+    const notice=document.getElementById('flightDataNotice');if(!notice||notice.hidden)return true;
+    for(const card of panel.querySelectorAll('.passenger-card')){
+      card.classList.remove('wizard-field-error');
+      const choices=[...card.querySelectorAll('[data-doc-choice],[data-et-ticket],[data-no-doc]')];
+      if(choices.length&&!choices.some(x=>x.checked)){card.classList.add('wizard-field-error');card.scrollIntoView({behavior:'smooth',block:'center'});return false}
+    }
+    return true;
+  }
+  function validateStep(step){
+    const panel=panels[step-1];if(!panel)return true;
+    panel.querySelectorAll('.wizard-field-error').forEach(x=>x.classList.remove('wizard-field-error'));
+    const invalid=firstInvalid(panel);
+    if(invalid){invalid.reportValidity();invalid.scrollIntoView({behavior:'smooth',block:'center'});return false}
+    if(step===3&&!validatePassengerDocuments(panel))return false;
+    return true;
+  }
+  function reviewValue(name){const el=form.elements[name];return el?.value?.trim?.()||''}
+  function niceDate(v){if(!v)return '–';const m=String(v).match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?`${m[3]}.${m[2]}.${m[1]}`:v}
+  function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+  function buildReview(){
+    if(!review)return;const count=Number(document.getElementById('participantCount')?.value)||1;
+    const contact=[reviewValue('kontakt_vorname'),reviewValue('kontakt_nachname')].filter(Boolean).join(' ');
+    const term=fixedTerm||niceDate(document.getElementById('travelDate')?.value);
+    const code=document.getElementById('bookingCode')?.value||'–';
+    const flight=document.getElementById('flightDataNotice')?.hidden?'nach Reiseleistung':'Inlandsflug eingeschlossen';
+    const data=[['Reise',document.getElementById('tourName')?.value||'–'],['Reisetermin',term||'–'],['Buchungscode',code],['Reiseteilnehmer',count+(count===1?' Person':' Personen')],['Kontakt',contact||'–'],['E-Mail',reviewValue('kontakt_email')||'–'],['Kontaktnummer',reviewValue('kontakt_telefon')||'–'],['Flug',flight]];
+    review.innerHTML=data.map(([k,v])=>`<div class="booking-review-item"><span>${esc(k)}</span><strong>${esc(v)}</strong></div>`).join('');
+  }
+  function goTo(step,scroll=true){current=Math.max(1,Math.min(5,step));if(current===5)buildReview();updateProgress();if(scroll){const y=(progress?.getBoundingClientRect().top||0)+window.scrollY-90;window.scrollTo({top:Math.max(0,y),behavior:'smooth'})}}
+  form.addEventListener('click',e=>{const next=e.target.closest('[data-step-next]'),prev=e.target.closest('[data-step-prev]'),jump=e.target.closest('[data-step-target]');if(next){e.preventDefault();if(!validateStep(current))return;completedThrough=Math.max(completedThrough,current);goTo(current+1);return}if(prev){e.preventDefault();goTo(current-1);return}if(jump){e.preventDefault();const target=Number(jump.dataset.stepTarget);if(target<=completedThrough+1)goTo(target)}});
+  panels.forEach((panel,i)=>panel.addEventListener('input',()=>{const step=i+1;if(step<=completedThrough){completedThrough=step-1;updateProgress()}}));
+  document.getElementById('participantCount')?.addEventListener('change',()=>invalidateFrom(3));
+  form.addEventListener('submit',e=>{for(let step=1;step<=5;step++){const panel=panels[step-1],invalid=firstInvalid(panel);let docsOk=true;if(step===3){const notice=document.getElementById('flightDataNotice');if(notice&&!notice.hidden){docsOk=[...panel.querySelectorAll('.passenger-card')].every(card=>[...card.querySelectorAll('[data-doc-choice],[data-et-ticket],[data-no-doc]')].some(x=>x.checked))}}if(invalid||!docsOk){e.preventDefault();e.stopImmediatePropagation();goTo(step);setTimeout(()=>validateStep(step),40);const status=document.getElementById('bookingFormStatus');if(status){status.className='form-live-note is-error';status.textContent='Bitte prüfen Sie die Angaben in diesem Schritt.'}return}}completedThrough=5;updateProgress()},true);
+  updateProgress();
+});
+})();
 </script><script id="exact-index-shell-js">
 (function(){
   const AJ_LANGS={
@@ -1610,12 +2071,20 @@ document.addEventListener('DOMContentLoaded',()=>{const p=new URLSearchParams(lo
     USD:{code:'USD',symbol:'$',locale:'en-US',label:'US Dollar'}
   };
   let currentCurrency=CURRENCIES[localStorage.getItem('aj_currency')]?localStorage.getItem('aj_currency'):'EUR';
-  let eurToUsdRate=Number(localStorage.getItem('aj_eur_usd_rate'))||1.16;
+  // Never invent an exchange rate. Use only the last successfully fetched real EUR→USD rate.
+  let eurToUsdRate=Number(localStorage.getItem('aj_eur_usd_rate'))||null;
+  let eurToUsdRateDate=localStorage.getItem('aj_eur_usd_rate_date')||'';
 
   function formatCurrency(eur,currency=currentCurrency){
     const meta=CURRENCIES[currency]||CURRENCIES.EUR;
-    const value=(Number(eur)||0)*(currency==='USD'?eurToUsdRate:1);
-    return new Intl.NumberFormat(meta.locale,{style:'currency',currency:meta.code,maximumFractionDigits:0}).format(value);
+    const amount=Number(eur);
+    if(!Number.isFinite(amount))return '';
+    // If USD was selected before the first live rate arrives, show a loading placeholder
+    // instead of a made-up conversion. updateCurrencyPrices() replaces it after fetch().
+    if(currency==='USD'&&!(Number.isFinite(eurToUsdRate)&&eurToUsdRate>0))return '$…';
+    const value=amount*(currency==='USD'?eurToUsdRate:1);
+    const usd=currency==='USD';
+    return new Intl.NumberFormat(meta.locale,{style:'currency',currency:meta.code,minimumFractionDigits:usd?2:0,maximumFractionDigits:usd?2:0}).format(value);
   }
 
   function wrapEuroText(root=document.body){
@@ -1662,15 +2131,31 @@ document.addEventListener('DOMContentLoaded',()=>{const p=new URLSearchParams(lo
     if(currency==='USD')refreshUsdRate();
   }
 
-  async function refreshUsdRate(){
+  async function refreshUsdRate(force=false){
     const last=Number(localStorage.getItem('aj_eur_usd_rate_time'))||0;
-    if(Date.now()-last<12*60*60*1000)return;
+    const hasRealRate=Number.isFinite(eurToUsdRate)&&eurToUsdRate>0;
+    // ECB reference rates are published on working days. Re-check every 4 hours so a page
+    // opened before the daily publication can still pick up the newest rate later that day.
+    if(!force&&hasRealRate&&Date.now()-last<4*60*60*1000)return eurToUsdRate;
     try{
-      const res=await fetch('https://api.frankfurter.app/latest?from=EUR&to=USD',{cache:'no-store'});
-      if(!res.ok)return;
-      const data=await res.json();const rate=Number(data&&data.rates&&data.rates.USD);
-      if(Number.isFinite(rate)&&rate>0){eurToUsdRate=rate;localStorage.setItem('aj_eur_usd_rate',String(rate));localStorage.setItem('aj_eur_usd_rate_time',String(Date.now()));if(currentCurrency==='USD')updateCurrencyPrices()}
-    }catch(_){/* cached fallback stays active */}
+      const res=await fetch('https://api.frankfurter.dev/v2/rate/EUR/USD?providers=ECB',{cache:'no-store'});
+      if(!res.ok)throw new Error('USD exchange-rate request failed');
+      const data=await res.json();
+      const rate=Number(data&&data.rate);
+      if(Number.isFinite(rate)&&rate>0){
+        eurToUsdRate=rate;
+        eurToUsdRateDate=String((data&&data.date)||'');
+        localStorage.setItem('aj_eur_usd_rate',String(rate));
+        localStorage.setItem('aj_eur_usd_rate_date',eurToUsdRateDate);
+        localStorage.setItem('aj_eur_usd_rate_time',String(Date.now()));
+        if(currentCurrency==='USD')updateCurrencyPrices();
+      }
+    }catch(_){
+      // Keep the last successfully fetched real rate. If there is none yet, prices remain $…
+      // rather than displaying a false fixed conversion.
+      if(currentCurrency==='USD')updateCurrencyPrices();
+    }
+    return eurToUsdRate;
   }
 
   function ensureCurrencyControl(){
@@ -1717,7 +2202,8 @@ document.addEventListener('DOMContentLoaded',()=>{const p=new URLSearchParams(lo
 })();
 </script>
 
-<script src="aj-full-translate.js"></script>
+<script src="aj-azure-translator-config.js"></script>
+<script src="aj-full-translate.js?v=3"></script>
 <script id="promotion-banner-global-v8">
 (function(){
   const promoMarkup=(href)=>`<div class="container promo-top-container"><aside class="promo-banner" id="promoBanner" aria-label="Aktuelle Angebote und Spezialreisen"><div class="promo-banner-inner"><span class="promo-badge">Aktuell</span><strong class="promo-title">Spezialreisen &amp; Rabattaktionen</strong><span class="promo-copy">Besondere Reisetermine, Restplätze und zeitlich begrenzte Angebote auf einen Blick.</span><a class="promo-link" href="${href}">Angebote ansehen <span aria-hidden="true">→</span></a></div></aside></div>`;
@@ -2124,8 +2610,8 @@ document.addEventListener('DOMContentLoaded',()=>{const p=new URLSearchParams(lo
 })();
 </script>
 
-<script src="aj-client-enhancements.js?v=13"></script>
-<script src="aj-mega-menu.js?v=17"></script>
+<script src="aj-client-enhancements.js?v=15"></script>
+<script src="aj-mega-menu.js?v=18"></script>
 
 <style id="aj-header-flag-only-v1">
 /* Header language control: show only the flag, with no visible layer behind it. */

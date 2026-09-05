@@ -1,0 +1,109 @@
+/* =========================================================
+   Compact UI refinement v1
+   Slightly smaller page copy + more compact tables/cards.
+   Keeps the existing design, colors and structure unchanged.
+   ========================================================= */
+
+@media (min-width: 901px){
+  /* Slightly smaller content text across the site, without changing the layout. */
+  body{font-size:15px!important}
+  .section .lead,
+  .listing-hero .lead{font-size:1rem!important;line-height:1.5!important}
+  .harar-copy p{font-size:.97rem!important;line-height:1.68!important}
+  .section h3,
+  .harar-highlight h3,
+  .harar-info-box h3{font-size:1.24rem!important}
+  .trip-body h3{font-size:1.27rem!important}
+  .trip-meta{font-size:.77rem!important}
+
+  /* Make ordinary tables a little tighter without changing their look. */
+  table th,
+  table td{padding:10px 9px!important}
+  .harar-booking-table th,
+  .harar-booking-table td{padding:10px 8px!important}
+
+  /* Travel-date table: fixed columns keep every amount perfectly aligned. */
+  .aj-date-head,
+  .date-row.aj-date-row{
+    grid-template-columns:minmax(220px,1.35fr) 112px 88px minmax(220px,1.30fr) minmax(188px,205px)!important;
+    gap:12px!important;
+  }
+  .aj-date-head{
+    padding:0 15px 7px!important;
+    font-size:.64rem!important;
+  }
+  .date-row.aj-date-row,
+  .prices-first .date-row.aj-date-row{
+    padding:13px 15px!important;
+    border-radius:16px!important;
+  }
+  .date-row.aj-date-row > strong:first-child,
+  .prices-first .date-row.aj-date-row > strong:first-child{
+    font-size:.89rem!important;
+  }
+  .date-row.aj-date-row .booking-code,
+  .prices-first .date-row.aj-date-row .booking-code{
+    font-size:.70rem!important;
+  }
+
+  /* Price and EZZ columns: equal width, centered and tabular numerals. */
+  .aj-date-head > span:nth-child(2),
+  .aj-date-head > span:nth-child(3){text-align:center!important}
+  .date-row.aj-date-row > strong:nth-of-type(2),
+  .date-row.aj-date-row > strong:nth-of-type(3),
+  .prices-first .date-row.aj-date-row > strong:nth-of-type(2),
+  .prices-first .date-row.aj-date-row > strong:nth-of-type(3){
+    justify-self:center!important;
+    text-align:center!important;
+    font-variant-numeric:tabular-nums!important;
+    white-space:nowrap!important;
+  }
+  .date-row.aj-date-row > strong:nth-of-type(2),
+  .prices-first .date-row.aj-date-row > strong:nth-of-type(2){
+    width:76px!important;
+    min-width:76px!important;
+    padding:5px 8px!important;
+    font-size:.82rem!important;
+  }
+  .date-row.aj-date-row > strong:nth-of-type(3),
+  .prices-first .date-row.aj-date-row > strong:nth-of-type(3){
+    width:72px!important;
+    min-width:72px!important;
+    font-size:.82rem!important;
+  }
+  .date-row.aj-date-row .availability,
+  .prices-first .date-row.aj-date-row .availability{
+    font-size:.72rem!important;
+    padding:6px 9px!important;
+  }
+  .aj-date-actions .btn,
+  .prices-first .date-row.aj-date-row .btn{
+    min-height:38px!important;
+    padding:8px 11px!important;
+    font-size:.72rem!important;
+  }
+  .aj-date-toolbar{padding:14px 16px!important;margin-bottom:18px!important}
+  .aj-year-filter strong,
+  .aj-traffic-legend strong{font-size:.72rem!important}
+  .aj-year-checks label,
+  .aj-legend-item{font-size:.73rem!important}
+
+  /* Slightly compact price summary cards on all trip pages. */
+  .price-overview-main,
+  .price-overview-card{padding:19px 21px!important}
+  .price-overview span{font-size:.68rem!important}
+  .price-overview strong{font-size:1.5rem!important}
+  .price-overview-main strong{font-size:2.15rem!important}
+  .price-overview small{font-size:.78rem!important}
+}
+
+/* Keep desktop alignment stable on medium screens without touching the mobile design. */
+@media (min-width: 901px) and (max-width: 1100px){
+  .aj-date-head,
+  .date-row.aj-date-row{
+    grid-template-columns:minmax(180px,1.30fr) 104px 82px minmax(180px,1.18fr) minmax(172px,190px)!important;
+    gap:9px!important;
+  }
+  .date-row.aj-date-row,
+  .prices-first .date-row.aj-date-row{padding:12px 12px!important}
+}

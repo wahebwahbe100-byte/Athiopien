@@ -7,6 +7,44 @@
 
   // Each top-level item owns ONLY its own dropdown.
   // Every submenu entry points to the matching existing page/section.
+  // Curated, compact top-level labels. These are intentionally short so a
+  // language switch never makes the desktop header collide or become unreadable.
+  const TOP_LABELS = {
+    de:{ethiopia:'Äthiopien',offers:'Reiseangebote',private:'Individualreisen',modules:'Reisebausteine',tips:'Reisetipps',info:'Info'},
+    en:{ethiopia:'Ethiopia',offers:'Tours',private:'Private tours',modules:'Trip builder',tips:'Travel tips',info:'Info'},
+    ar:{ethiopia:'إثيوبيا',offers:'الرحلات',private:'رحلات خاصة',modules:'تصميم الرحلة',tips:'نصائح السفر',info:'معلومات'},
+    zh:{ethiopia:'埃塞俄比亚',offers:'旅行',private:'私人旅行',modules:'行程定制',tips:'旅行贴士',info:'信息'},
+    fr:{ethiopia:'Éthiopie',offers:'Voyages',private:'Privé',modules:'Sur mesure',tips:'Conseils',info:'Infos'},
+    it:{ethiopia:'Etiopia',offers:'Viaggi',private:'Privati',modules:'Crea viaggio',tips:'Consigli',info:'Info'},
+    ja:{ethiopia:'エチオピア',offers:'ツアー',private:'個人旅行',modules:'旅行プラン',tips:'旅行情報',info:'情報'},
+    ko:{ethiopia:'에티오피아',offers:'여행',private:'개인 여행',modules:'여행 설계',tips:'여행 팁',info:'정보'},
+    pt:{ethiopia:'Etiópia',offers:'Viagens',private:'Privadas',modules:'Monte a viagem',tips:'Dicas',info:'Info'},
+    ru:{ethiopia:'Эфиопия',offers:'Туры',private:'Частные туры',modules:'Маршруты',tips:'Советы',info:'Инфо'},
+    es:{ethiopia:'Etiopía',offers:'Viajes',private:'Privados',modules:'Diseña viaje',tips:'Consejos',info:'Info'},
+    am:{ethiopia:'ኢትዮጵያ',offers:'ጉዞዎች',private:'የግል ጉዞ',modules:'ጉዞ እቅድ',tips:'ምክሮች',info:'መረጃ'},
+    el:{ethiopia:'Αιθιοπία',offers:'Ταξίδια',private:'Ιδιωτικά',modules:'Σχεδιασμός',tips:'Συμβουλές',info:'Πληροφορίες'},
+    he:{ethiopia:'אתיופיה',offers:'טיולים',private:'טיולים פרטיים',modules:'בניית מסלול',tips:'טיפים',info:'מידע'},
+    tr:{ethiopia:'Etiyopya',offers:'Turlar',private:'Özel turlar',modules:'Seyahat planı',tips:'İpuçları',info:'Bilgi'}
+  };
+
+  const currentLanguage = () => {
+    const htmlLang=(document.documentElement.lang||'').toLowerCase().split('-')[0];
+    if(TOP_LABELS[htmlLang]) return htmlLang;
+    try{
+      const saved=(localStorage.getItem('aj_lang')||'').toLowerCase().split('-')[0];
+      if(TOP_LABELS[saved]) return saved;
+    }catch(e){}
+    return 'de';
+  };
+
+  function applyTopLabels(links, lang=currentLanguage()){
+    const dict=TOP_LABELS[lang]||TOP_LABELS.de;
+    links?.querySelectorAll('[data-aj-nav-label]').forEach(el=>{
+      const key=el.dataset.ajNavLabel;
+      if(dict[key]) el.textContent=dict[key];
+    });
+  }
+
   const MENU = [
     {
       title: 'Äthiopien', href: 'index.html', key: 'ethiopia', className: 'aj-menu-ethiopia',
@@ -75,7 +113,7 @@
     {
       title: 'Info', href: 'info.html', key: 'info', className: 'aj-menu-info',
       items: [
-        ['Über uns', 'info.html#ueber-uns'],
+        ['Über uns', 'ueber-uns.html'],
         ['Kontaktieren Sie uns', 'kontakt.html#beratung']
       ]
     }
@@ -91,6 +129,10 @@
     return 'ethiopia';
   }
 
+  function isDrawerMode(nav){
+    return innerWidth <= 820 || !!nav?.classList.contains('aj-nav-compact');
+  }
+
   function closeMobileDrawer(nav, links){
     links.classList.remove('open');
     const btn = nav.querySelector('.menuBtn');
@@ -101,7 +143,7 @@
   }
 
   function fitDropdown(drop){
-    if (innerWidth <= 820 || !drop) return;
+    if (isDrawerMode(drop?.closest('.site-nav')) || !drop) return;
     const panel=drop.querySelector(':scope > .nav-dropdown-menu');
     if(!panel) return;
     panel.style.setProperty('--aj-menu-shift-x','0px');
@@ -141,7 +183,7 @@
     // also attach click listeners to this button; stopping them here prevents a
     // double-toggle (open -> immediately closed) while keeping desktop untouched.
     btn.addEventListener('click', (e) => {
-      if (innerWidth > 820) return;
+      if (!isDrawerMode(nav)) return;
       e.preventDefault();
       e.stopImmediatePropagation();
       const open = !links.classList.contains('open');
@@ -196,7 +238,7 @@
       main.setAttribute('aria-expanded', 'false');
 
       main.addEventListener('click', (e) => {
-        if (innerWidth <= 820) {
+        if (isDrawerMode(nav)) {
           // Mobile: the top-level word is a pure accordion control.
           // Tap once to open, tap the same word again to close.
           // This avoids the old behavior where the second tap unexpectedly navigated away.
@@ -208,7 +250,7 @@
       });
 
       main.addEventListener('keydown', (e) => {
-        if (innerWidth > 820 && (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ')) {
+        if (!isDrawerMode(nav) && (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ')) {
           if (e.key !== 'Enter') e.preventDefault();
           openDrop(drop);
           panel?.querySelector('a')?.focus();
@@ -218,24 +260,24 @@
       // Desktop: keep the dropdown open while the pointer moves from the heading
       // into the panel. The small delay also makes diagonal mouse movement forgiving.
       drop.addEventListener('mouseenter', () => {
-        if (innerWidth > 820) openDrop(drop);
+        if (!isDrawerMode(nav)) openDrop(drop);
       });
       panel?.addEventListener('mouseenter', () => {
-        if (innerWidth > 820) {
+        if (!isDrawerMode(nav)) {
           cancelClose(drop);
           drop.classList.add('is-open');
           main.setAttribute('aria-expanded', 'true');
         }
       });
       drop.addEventListener('mouseleave', () => {
-        if (innerWidth > 820) {
+        if (!isDrawerMode(nav)) {
           cancelClose(drop);
           const timer = setTimeout(() => closeDrop(drop), 320);
           closeTimers.set(drop, timer);
         }
       });
       panel?.addEventListener('mouseleave', () => {
-        if (innerWidth > 820) {
+        if (!isDrawerMode(nav)) {
           cancelClose(drop);
           const timer = setTimeout(() => closeDrop(drop), 220);
           closeTimers.set(drop, timer);
@@ -245,13 +287,13 @@
 
     links.querySelectorAll('.nav-dropdown-menu a').forEach(a => a.addEventListener('click', () => {
       closeOthers();
-      if (innerWidth <= 820) closeMobileDrawer(nav, links);
+      if (isDrawerMode(nav)) closeMobileDrawer(nav, links);
     }));
 
     document.addEventListener('click', (e) => {
       if (!links.contains(e.target)) {
         closeOthers();
-        if (innerWidth <= 820 && links.classList.contains('open') && !nav.contains(e.target)) {
+        if (isDrawerMode(nav) && links.classList.contains('open') && !nav.contains(e.target)) {
           closeMobileDrawer(nav, links);
         }
       }
@@ -259,13 +301,98 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeOthers();
-        if (innerWidth <= 820 && links.classList.contains('open')) closeMobileDrawer(nav, links);
+        if (isDrawerMode(nav) && links.classList.contains('open')) closeMobileDrawer(nav, links);
       }
     });
     window.addEventListener('resize', () => {
       closeOthers();
       dropdowns.forEach(fitDropdown);
     }, {passive:true});
+  }
+
+  function measureNaturalLinksWidth(links){
+    if(!links || !document.body) return 0;
+    const clone=links.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.classList.remove('open');
+    clone.querySelectorAll('.nav-dropdown-menu').forEach(el=>el.remove());
+    clone.setAttribute('aria-hidden','true');
+    const st=clone.style;
+    st.setProperty('position','fixed','important');
+    st.setProperty('left','-10000px','important');
+    st.setProperty('top','0','important');
+    st.setProperty('display','flex','important');
+    st.setProperty('flex-direction','row','important');
+    st.setProperty('align-items','center','important');
+    st.setProperty('width','max-content','important');
+    st.setProperty('max-width','none','important');
+    st.setProperty('min-width','0','important');
+    st.setProperty('height','auto','important');
+    st.setProperty('max-height','none','important');
+    st.setProperty('padding','0','important');
+    st.setProperty('margin','0','important');
+    st.setProperty('overflow','visible','important');
+    st.setProperty('opacity','0','important');
+    st.setProperty('visibility','hidden','important');
+    st.setProperty('pointer-events','none','important');
+    st.setProperty('transform','none','important');
+    const host=links.closest('.site-nav')||document.body;
+    host.appendChild(clone);
+    const width=Math.ceil(clone.getBoundingClientRect().width);
+    clone.remove();
+    return width;
+  }
+
+  function availableDesktopLinksWidth(nav){
+    const inner=nav?.querySelector('.nav-inner');
+    const actions=nav?.querySelector('.nav-actions');
+    if(!inner) return 0;
+    const cs=getComputedStyle(inner);
+    const px=v=>Number.parseFloat(v)||0;
+    const gap=px(cs.columnGap||cs.gap);
+    return Math.max(0,
+      inner.clientWidth-px(cs.paddingLeft)-px(cs.paddingRight)-
+      (actions?.getBoundingClientRect().width||0)-gap-8
+    );
+  }
+
+  function setupAdaptiveNavigation(nav, links){
+    if(!nav || !links || nav.dataset.ajAdaptiveReady==='1') return;
+    nav.dataset.ajAdaptiveReady='1';
+    let timer=0;
+    const sync=()=>{
+      clearTimeout(timer);
+      timer=setTimeout(()=>{
+        if(innerWidth<=820){
+          nav.classList.remove('aj-nav-compact');
+          return;
+        }
+        const required=measureNaturalLinksWidth(links);
+        const available=availableDesktopLinksWidth(nav);
+        if(!required || !available) return;
+        const compact=nav.classList.contains('aj-nav-compact');
+        const shouldCompact=compact ? required>available-34 : required>available-8;
+        if(shouldCompact!==compact){
+          nav.classList.toggle('aj-nav-compact',shouldCompact);
+          closeMobileDrawer(nav,links);
+          links.querySelectorAll('.nav-dropdown.is-open').forEach(d=>d.classList.remove('is-open'));
+          links.querySelectorAll('.nav-main-link[aria-expanded="true"]').forEach(a=>a.setAttribute('aria-expanded','false'));
+        }
+      },30);
+    };
+    nav._ajSyncAdaptiveNav=sync;
+    window.addEventListener('resize',sync,{passive:true});
+    window.addEventListener('pageshow',sync,{passive:true});
+    window.addEventListener('aj:languagechange',sync);
+    const langObserver=new MutationObserver(()=>{
+      applyTopLabels(links,currentLanguage());
+      sync();
+    });
+    langObserver.observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+    if(document.fonts?.ready) document.fonts.ready.then(sync).catch(()=>{});
+    sync();
+    setTimeout(sync,180);
+    setTimeout(sync,700);
   }
 
   function build(){
@@ -279,15 +406,21 @@
     links.innerHTML = MENU.map(group => `
       <div class="nav-dropdown aj-menu-group ${group.className || ''}" data-menu-key="${group.key}">
         <a class="nav-main-link" href="${url(group.href)}" data-menu-top="${group.key}"${group.key === active ? ' aria-current="page"' : ''}>
-          <span>${group.title}</span><i class="nav-arrow" aria-hidden="true"></i>
+          <span class="notranslate aj-nav-top-label" translate="no" data-aj-nav-label="${group.key}">${group.title}</span><i class="nav-arrow" aria-hidden="true"></i>
         </a>
         <div class="nav-dropdown-menu" aria-label="${group.title} Untermenü">
           ${group.items.map(([label, href]) => `<a class="drop-row" href="${url(href)}"><span>${label}</span></a>`).join('')}
         </div>
       </div>`).join('');
 
+    applyTopLabels(links,currentLanguage());
+    setupAdaptiveNavigation(nav,links);
     bindMobileMenuButton(nav, links);
     bindMenus(nav, links);
+    window.addEventListener('aj:languagechange',e=>{
+      applyTopLabels(links,(e.detail?.language||currentLanguage()).toLowerCase().split('-')[0]);
+      nav._ajSyncAdaptiveNav?.();
+    });
   }
 
   function injectStyles(){
@@ -552,6 +685,76 @@
         .site-nav .navlinks.aj-separate-menus .nav-dropdown-menu .drop-row:focus-visible::before{
           height:22px!important;
           opacity:1!important;
+        }
+      }
+
+
+      /* Automatic translated-header fallback. If the six labels no longer fit,
+         switch only the navigation links to a clean drawer while keeping the
+         desktop logo, wishlist and language controls in place. */
+      @media (min-width:821px){
+        .site-nav.aj-nav-compact .menuBtn{
+          display:grid!important;order:3!important;flex:0 0 44px!important;
+          width:44px!important;height:44px!important;min-width:44px!important;
+          margin-left:4px!important;border:0!important;border-radius:12px!important;
+          background:rgba(12,41,66,.06)!important;box-shadow:none!important;
+        }
+        .site-nav.aj-nav-compact:not(.scrolled) .menu-icon::before,
+        .site-nav.aj-nav-compact:not(.scrolled) .menu-icon::after{background:#0b2942!important}
+        .site-nav.aj-nav-compact.scrolled .menu-icon::before,
+        .site-nav.aj-nav-compact.scrolled .menu-icon::after{background:#fff!important}
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus{
+          position:absolute!important;top:calc(100% + 8px)!important;right:10px!important;left:auto!important;
+          z-index:1200!important;width:min(390px,calc(100vw - 24px))!important;max-width:calc(100vw - 24px)!important;
+          display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;
+          gap:4px!important;margin:0!important;padding:0 12px!important;max-height:0!important;
+          overflow:hidden!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+          background:linear-gradient(180deg,#ffffff,#faf7f0)!important;
+          border:1px solid rgba(23,58,85,.13)!important;border-radius:16px!important;
+          box-shadow:0 24px 60px rgba(7,29,46,.20)!important;
+          transition:max-height .28s ease,opacity .18s ease,padding .22s ease,visibility 0s linear .28s!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus.open{
+          max-height:min(74vh,680px)!important;padding:12px!important;overflow:auto!important;
+          opacity:1!important;visibility:visible!important;pointer-events:auto!important;
+          transition:max-height .32s ease,opacity .18s ease,padding .22s ease,visibility 0s!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus > .nav-dropdown{
+          display:block!important;width:100%!important;height:auto!important;margin:0!important;position:relative!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus > .nav-dropdown > .nav-main-link{
+          width:100%!important;min-height:43px!important;padding:10px 11px!important;justify-content:space-between!important;
+          color:#123752!important;background:transparent!important;border:0!important;border-radius:10px!important;
+          box-shadow:none!important;transform:none!important;font-size:.79rem!important;line-height:1.2!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus > .nav-dropdown > .nav-main-link:hover,
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus > .nav-dropdown.is-open > .nav-main-link{
+          color:#0b2942!important;background:#eef3f6!important;box-shadow:none!important;transform:none!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-arrow{
+          color:#b57a18!important;margin-left:auto!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown-menu,
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown:hover > .nav-dropdown-menu,
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown:focus-within > .nav-dropdown-menu{
+          position:static!important;left:auto!important;right:auto!important;top:auto!important;
+          width:100%!important;max-width:100%!important;max-height:0!important;margin:0!important;padding:0 6px!important;
+          overflow:hidden!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;
+          transform:none!important;background:#f3f6f8!important;border:0!important;border-radius:11px!important;
+          box-shadow:none!important;transition:max-height .28s ease,padding .22s ease,margin .22s ease!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown.is-open > .nav-dropdown-menu{
+          max-height:50vh!important;margin:3px 0 7px!important;padding:6px!important;overflow:auto!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown-menu::before,
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown-menu::after{display:none!important}
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown-menu .drop-row{
+          min-height:39px!important;padding:8px 10px!important;color:#24465f!important;background:transparent!important;
+          border:0!important;border-radius:8px!important;font-size:.75rem!important;line-height:1.3!important;transform:none!important;
+        }
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown-menu .drop-row:hover,
+        .site-nav.aj-nav-compact .navlinks.aj-separate-menus .nav-dropdown-menu .drop-row:focus-visible{
+          color:#0b2942!important;background:#fff!important;box-shadow:none!important;transform:none!important;
         }
       }
 

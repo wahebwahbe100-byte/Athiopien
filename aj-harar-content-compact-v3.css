@@ -1,0 +1,280 @@
+/* =========================================================
+   Harar detail page — compact content matched to price/termine visual scale
+   Requested refinement: slightly smaller text/cards/tables while preserving
+   the existing structure, colors, spacing rhythm and visual design.
+   ========================================================= */
+
+@media (min-width: 901px){
+  /* Start at "Harar & Ostäthiopien kompakt." / Highlights and continue downward. */
+  #ueberblick,
+  #ueberblick ~ .section{
+    padding-top:56px!important;
+    padding-bottom:56px!important;
+  }
+
+  #ueberblick .section-head,
+  #ueberblick ~ .section .section-head{
+    margin-bottom:22px!important;
+    gap:24px!important;
+  }
+
+  #ueberblick h2,
+  #ueberblick ~ .section h2{
+    font-size:clamp(1.75rem,2.65vw,2.35rem)!important;
+    line-height:1.08!important;
+  }
+
+  #ueberblick h3,
+  #ueberblick ~ .section h3{
+    font-size:1.02rem!important;
+    line-height:1.16!important;
+  }
+
+  #ueberblick h4,
+  #ueberblick ~ .section h4{
+    font-size:.89rem!important;
+    line-height:1.2!important;
+  }
+
+  #ueberblick .lead,
+  #ueberblick ~ .section .lead{
+    font-size:.86rem!important;
+    line-height:1.5!important;
+  }
+
+  #ueberblick p,
+  #ueberblick ~ .section p,
+  #ueberblick li,
+  #ueberblick ~ .section li{
+    font-size:.86rem!important;
+    line-height:1.56!important;
+  }
+
+  #ueberblick .kicker,
+  #ueberblick ~ .section .kicker{
+    font-size:.68rem!important;
+  }
+
+  /* Overview / highlights / information cards. */
+  #ueberblick .harar-overview-grid{
+    gap:10px!important;
+    margin-top:16px!important;
+  }
+  #ueberblick .harar-fact-card{
+    padding:14px 15px!important;
+    border-radius:14px!important;
+  }
+  #ueberblick .harar-fact-card span{
+    font-size:.68rem!important;
+    margin-bottom:5px!important;
+  }
+  #ueberblick .harar-fact-card strong{
+    font-size:.86rem!important;
+    line-height:1.35!important;
+  }
+
+  #highlights .harar-highlight-grid{
+    gap:10px!important;
+    margin-top:16px!important;
+  }
+  #highlights .harar-highlight{
+    padding:14px 15px!important;
+    border-radius:14px!important;
+  }
+  #highlights .harar-highlight h3{
+    margin-bottom:5px!important;
+    font-size:.96rem!important;
+  }
+  #highlights .harar-highlight p{
+    font-size:.86rem!important;
+    line-height:1.48!important;
+  }
+
+  /* Description + itinerary. */
+  #beschreibung.harer-copy,
+  #beschreibung .harar-copy{
+    max-width:860px!important;
+  }
+  #beschreibung p{
+    font-size:.89rem!important;
+    line-height:1.55!important;
+    margin-bottom:12px!important;
+  }
+
+  #verlauf .day{
+    padding:0 0 18px 30px!important;
+    margin-bottom:16px!important;
+  }
+  #verlauf .day .daynum{
+    font-size:.68rem!important;
+  }
+  #verlauf .day h3{
+    margin:5px 0 6px!important;
+    font-size:1.00rem!important;
+  }
+  #verlauf .harar-subline{
+    font-size:.78rem!important;
+    margin-top:2px!important;
+  }
+  #verlauf .harar-day-detail{
+    gap:8px!important;
+  }
+  #verlauf .harar-day-detail h4{
+    margin-top:7px!important;
+  }
+  #verlauf .harar-day-detail ul,
+  #verlauf .harar-list{
+    margin-top:6px!important;
+  }
+  #verlauf .harar-day-detail li,
+  #verlauf .harar-list li{
+    margin:4px 0!important;
+    font-size:.86rem!important;
+    line-height:1.47!important;
+  }
+  #verlauf .harar-note{
+    margin-top:10px!important;
+    padding:11px 13px!important;
+    font-size:.81rem!important;
+  }
+
+  /* Transport, services, flight data, notes and conditions. */
+  #transport .harar-info-grid,
+  #hinweise .harar-info-grid,
+  #buchungsbedingungen .harar-info-grid{
+    gap:11px!important;
+  }
+  #leistungen .harar-service-grid{
+    gap:11px!important;
+  }
+  #transport .harar-info-box,
+  #leistungen .included-box,
+  #flugbuchung .harar-info-box,
+  #hinweise .harar-info-box,
+  #buchungsbedingungen .harar-info-box{
+    padding:14px!important;
+    border-radius:14px!important;
+  }
+  #transport .harar-info-box h3,
+  #leistungen h3,
+  #flugbuchung .harar-info-box h3,
+  #hinweise .harar-info-box h3,
+  #buchungsbedingungen .harar-info-box h3{
+    margin-bottom:8px!important;
+  }
+  #leistungen ul,
+  #flugbuchung ol,
+  #hinweise ul,
+  #buchungsbedingungen ul{
+    margin-top:7px!important;
+    margin-bottom:7px!important;
+  }
+  #leistungen li,
+  #flugbuchung li,
+  #hinweise li,
+  #buchungsbedingungen li{
+    margin:5px 0!important;
+    font-size:.86rem!important;
+    line-height:1.48!important;
+  }
+
+  /* All tables below this point: slightly smaller and tighter. */
+  #ueberblick ~ .section table{
+    font-size:.81rem!important;
+  }
+  #ueberblick ~ .section table th,
+  #ueberblick ~ .section table td{
+    padding:7px 7px!important;
+    line-height:1.4!important;
+  }
+  #ueberblick ~ .section .harar-booking-table{
+    margin-top:12px!important;
+  }
+  #ueberblick ~ .section .harar-booking-table th,
+  #ueberblick ~ .section .harar-booking-table td{
+    padding:7px 6px!important;
+    font-size:.76rem!important;
+  }
+
+  /* Promise + FAQ stay visually identical, only a little more compact. */
+  #versprechen .harar-promise{
+    padding:19px!important;
+    border-radius:18px!important;
+  }
+  #versprechen .harar-promise p{
+    font-size:.86rem!important;
+    line-height:1.54!important;
+    margin-bottom:11px!important;
+  }
+  #versprechen .hero-btns{
+    margin-top:14px!important;
+  }
+  #versprechen .btn{
+    min-height:41px!important;
+    padding:10px 15px!important;
+    font-size:.76rem!important;
+  }
+
+  #faq details{
+    padding:12px 0!important;
+  }
+  #faq summary{
+    font-size:.86rem!important;
+  }
+  #faq details p{
+    font-size:.81rem!important;
+    line-height:1.5!important;
+    margin:8px 0 0!important;
+  }
+}
+
+@media (max-width: 900px){
+  #ueberblick,
+  #ueberblick ~ .section{
+    padding-top:46px!important;
+    padding-bottom:46px!important;
+  }
+  #ueberblick .section-head,
+  #ueberblick ~ .section .section-head{
+    margin-bottom:22px!important;
+  }
+  #ueberblick h2,
+  #ueberblick ~ .section h2{
+    font-size:clamp(1.45rem,6vw,1.95rem)!important;
+  }
+  #ueberblick p,
+  #ueberblick ~ .section p,
+  #ueberblick li,
+  #ueberblick ~ .section li{
+    font-size:.86rem!important;
+    line-height:1.52!important;
+  }
+  #ueberblick .lead,
+  #ueberblick ~ .section .lead{
+    font-size:.88rem!important;
+  }
+  #ueberblick .harar-fact-card,
+  #highlights .harar-highlight,
+  #transport .harar-info-box,
+  #leistungen .included-box,
+  #flugbuchung .harar-info-box,
+  #hinweise .harar-info-box,
+  #buchungsbedingungen .harar-info-box{
+    padding:14px!important;
+  }
+  #verlauf .day{
+    padding-bottom:19px!important;
+    margin-bottom:17px!important;
+  }
+  #ueberblick ~ .section table th,
+  #ueberblick ~ .section table td{
+    padding:8px 6px!important;
+    font-size:.76rem!important;
+  }
+  #versprechen .harar-promise{
+    padding:18px!important;
+  }
+  #faq details{
+    padding:11px 0!important;
+  }
+}

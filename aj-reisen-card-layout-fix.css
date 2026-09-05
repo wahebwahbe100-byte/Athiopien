@@ -295,3 +295,17 @@
     stroke-width:2.1;
   }
 }
+
+/* 2026-09 client refinement: more image, less text detail on travel cards. */
+@media (min-width:981px){
+  #allTrips .trip-media{aspect-ratio:16 / 11;min-height:285px}
+  #allTrips .trip-body{padding:16px 17px 17px}
+  #allTrips .trip-body .kicker{font-size:.58rem;min-height:1.35em}
+  #allTrips .trip-body h3{font-size:1.18rem;min-height:2.3em;margin:7px 0 6px}
+  #allTrips .trip-body > p.muted{font-size:.78rem;line-height:1.43;min-height:4.1em}
+  #allTrips .trip-meta{font-size:.7rem;margin:11px 0;min-height:2.85em;gap:5px}
+  #allTrips .trip-foot{min-height:58px;padding-top:12px}
+  #allTrips .trip-price small{font-size:.66rem}
+  #allTrips .trip-price strong{font-size:1.24rem}
+  #allTrips .trip-foot .btn{min-height:39px;padding:9px 12px;font-size:.75rem}
+}

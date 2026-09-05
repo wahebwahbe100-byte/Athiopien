@@ -462,3 +462,10 @@ body.top-strip-collapsed .site-top{transform:none!important;max-height:none!impo
     padding-right:4px!important;
   }
 }
+
+/* 2026-09 price/date filter refinements */
+.aj-year-filter{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.aj-year-filter>strong{flex:0 0 100%}
+.aj-available-only{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid rgba(24,60,90,.14);border-radius:999px;background:#fff;color:#183c5a;font:800 .76rem 'Manrope',sans-serif;cursor:pointer}
+.aj-available-only input{accent-color:#183c5a}
+@media(max-width:680px){.aj-available-only{width:100%;justify-content:center;border-radius:12px}}

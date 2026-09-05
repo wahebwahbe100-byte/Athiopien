@@ -22,6 +22,7 @@
   function currentTrip(){try{return typeof window.getTrip==='function'?window.getTrip():null}catch(e){return null}}
   function money(n){try{return typeof window.euro==='function'?window.euro(n):new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(n)||0)}catch(e){return `${Number(n)||0} €`}}
   function toastMessage(msg){try{if(typeof window.toast==='function'){window.toast(msg);return}}catch(e){} const old=document.querySelector('.toast');if(old){old.textContent=msg;old.classList.add('show');setTimeout(()=>old.classList.remove('show'),2100)}}
+  function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))}
   function tripPage(id){
     const reisearten={
       'reiseart-kultur':'Reisearten/reiseart-kultur.html',
@@ -39,8 +40,17 @@
     const file={north:'reise-north.html',south:'reise-south.html',simien:'reise-simien.html',danakil:'reise-danakil.html',harar:'reise-harar.html',photo:'reise-photo.html',family:'reise-family.html',private:'reise-private.html',comfort:'reise-comfort.html'}[id]||'reise.html';
     return isSubdir&&/\/Ausgewaehlte-Reisen\//i.test(location.pathname)?file:rootPrefix+'Ausgewaehlte-Reisen/'+file
   }
-  function bookingHref(t,mode='book'){const q=new URLSearchParams();if(t?.id)q.set('id',t.id);q.set('mode',mode);return rootPrefix+'buchung.html?'+q.toString()}
-  function contactHref(type='video'){return rootPrefix+'kontakt.html?art='+encodeURIComponent(type)}
+  function bookingHref(t,mode='book'){
+    const q=new URLSearchParams();
+    if(t?.id)q.set('id',t.id);
+    q.set('mode',mode);
+    if(String(t?.id||'')==='harar')q.set('flight','1');
+    /* Buchung stays in the booking flow. Requests and date proposals belong to Kontakt & Beratung. */
+    const target=(mode==='request'||mode==='term')?'kontakt.html':'buchung.html';
+    const hash=(mode==='request'||mode==='term')?'#beratungForm':'';
+    return rootPrefix+target+'?'+q.toString()+hash;
+  }
+  function contactHref(type='video'){return rootPrefix+'kontakt.html?art='+encodeURIComponent(type)+'#beratungForm'}
 
   function patchLanguageMenu(){
     const menu=document.getElementById('langMenu');
@@ -83,6 +93,10 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
 .listing-stat{padding:11px 13px!important;border-radius:14px!important}.listing-stat strong{font-size:1.4rem!important}.listing-hero:after{font-size:6.2rem!important;bottom:-42px!important}
 .date-row.aj-date-row.is-filtered-out,.date-row.aj-date-row[hidden]{display:none!important}.aj-status-red{background:#a53f3f!important}
 .nav-dropdown-menu.aj-private-travel-menu{width:min(440px,calc(100vw - 28px))!important;grid-template-columns:1fr 1fr!important}
+.aj-contact-trip-context{display:grid;gap:8px;margin:0 0 22px;padding:16px 18px;border:1px solid rgba(24,60,90,.14);border-left:4px solid var(--gold,#d7aa49);border-radius:16px;background:#fbf8f2;color:#17252f}
+.aj-contact-trip-context strong{font:800 .98rem 'Manrope',sans-serif;color:#0c2942}
+.aj-contact-trip-context span{font-size:.9rem;color:#5e6d68}
+.aj-contact-trip-context .aj-contact-trip-code{font-weight:700;color:#24577a}
 @media(max-width:768px){
  .site-nav.scrolled .nav-inner,body.top-strip-collapsed .site-nav .nav-inner,body.top-strip-collapsed .site-nav.scrolled .nav-inner{height:76px!important;min-height:76px!important;padding:0 8px 0 128px!important}
  .site-nav.scrolled .brand,body.top-strip-collapsed .site-nav .brand,body.top-strip-collapsed .site-nav.scrolled .brand{left:2px!important;top:3px!important;width:132px!important;height:96px!important;min-width:132px!important}
@@ -103,8 +117,11 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
   function enhanceBanner(){
     const banner=document.querySelector('.promo-banner');if(!banner||banner.dataset.ajEnhanced)return;
     banner.dataset.ajEnhanced='1';
-    /* Keep the promotional strip calm and readable; no rotating copy behind sticky headers. */
+    /* A calm static travel notice replaces the former ticker-style promotion. */
     banner.classList.remove('aj-changing');
+    const inner=banner.querySelector('.promo-banner-inner');
+    if(inner)inner.innerHTML=`<span class="promo-badge">Neu 2027</span><strong class="promo-title">Harar &amp; Ostäthiopien</strong><span class="promo-copy">3 Tage / 2 Nächte · ab 899 € p. P. im DZ · Inlandsflug inklusive</span><a class="promo-link" href="${tripPage('harar')}#termine">Termine ansehen <span aria-hidden="true">→</span></a>`;
+    banner.setAttribute('aria-label','Aktueller Reisehinweis');
   }
 
   function getFavs(){
@@ -285,14 +302,81 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
 
   function enhanceContact(){
     const form=document.querySelector('.contact-form');let select=null;
+    const params=new URLSearchParams(location.search);
     if(form){
       form.id=form.id||'beratungForm';
       select=[...form.querySelectorAll('select')].find(s=>s.closest('.form-control')?.querySelector('label')?.textContent.includes('Beratungsart'))||null;
       if(select&&!([...select.options].some(o=>/Video/i.test(o.textContent)))){const o=document.createElement('option');o.textContent='Videoberatung';o.value='Videoberatung';select.appendChild(o)}
-      const requested=new URLSearchParams(location.search).get('art');
+      const requested=params.get('art');
       if(select&&requested==='video'){
         const opt=[...select.options].find(o=>/Video/i.test(o.textContent));if(opt)select.value=opt.value;
         if(!form.querySelector('.aj-video-note')){const note=document.createElement('div');note.className='aj-video-note full';note.textContent='Videoberatung ausgewählt – bitte Wunschtermin und Uhrzeit angeben.';select.closest('.form-grid')?.appendChild(note)}
+      }
+
+      /* Carry the selected trip/date from every "Anfragen" button into Kontakt & Beratung. */
+      const mode=params.get('mode');
+      const tripId=params.get('id');
+      const reiseart=params.get('reiseart');
+      const termin=params.get('termin');
+      const code=params.get('code');
+      const startDate=params.get('date');
+      if(mode==='request'||mode==='term'||tripId||reiseart){
+        const known={
+          north:'Felsenkirchen & Kaiserstädte',
+          south:'Völker des Südens',
+          simien:'Dach Afrikas',
+          danakil:'Feuer & Salz',
+          harar:'Harar & Ostäthiopien',
+          photo:'Licht des Hochlands',
+          family:'Seen, Natur & Familie',
+          private:'Äthiopien Privat',
+          comfort:'Äthiopien komfortabel',
+          'reiseart-individual':'Individualreisen in Äthiopien',
+          'reiseart-trekking':'Trekkingreisen in Äthiopien',
+          'reiseart-kultur':'Kulturreisen in Äthiopien',
+          'reiseart-abenteuer':'Abenteuerreisen in Äthiopien',
+          'reiseart-senioren':'Seniorenreisen in Äthiopien',
+          'reiseart-natur':'Naturreisen in Äthiopien',
+          'reiseart-hochzeit-verlobung':'Hochzeits- & Verlobungsreisen in Äthiopien',
+          individual:'Individualreisen in Äthiopien',
+          trekking:'Trekkingreisen in Äthiopien',
+          kultur:'Kulturreisen in Äthiopien',
+          abenteuer:'Abenteuerreisen in Äthiopien',
+          senioren:'Seniorenreisen in Äthiopien',
+          natur:'Naturreisen in Äthiopien',
+          'hochzeit-verlobung':'Hochzeits- & Verlobungsreisen in Äthiopien'
+        };
+        let tripTitle='';
+        try{tripTitle=tripList().find(x=>x.id===tripId)?.title||''}catch(e){}
+        tripTitle=tripTitle||known[tripId]||known[reiseart]||tripId||reiseart||'Reiseanfrage';
+
+        const kicker=form.querySelector('.kicker');
+        const heading=form.querySelector('h2');
+        if(kicker)kicker.textContent=mode==='term'?'Termin abstimmen':'Reise anfragen';
+        if(heading)heading.textContent='Kontakt & Beratung';
+
+        let context=form.querySelector('.aj-contact-trip-context');
+        if(!context){
+          context=document.createElement('div');
+          context.className='aj-contact-trip-context';
+          const grid=form.querySelector('.form-grid');
+          if(grid)form.insertBefore(context,grid);
+        }
+        const meta=[];
+        if(termin)meta.push(`<span><b>Reisetermin:</b> ${escapeHtml(termin)}</span>`);
+        else if(startDate)meta.push(`<span><b>Startdatum:</b> ${escapeHtml(startDate)}</span>`);
+        if(code)meta.push(`<span class="aj-contact-trip-code">Buchungscode: ${escapeHtml(code)}</span>`);
+        context.innerHTML=`<strong>${escapeHtml(tripTitle)}</strong>${meta.join('')}`;
+
+        const area=form.querySelector('textarea');
+        if(area&&!area.value.trim()){
+          const intro=[`Reise: ${tripTitle}`];
+          if(termin)intro.push(`Reisetermin: ${termin}`);
+          else if(startDate)intro.push(`Startdatum: ${startDate}`);
+          if(code)intro.push(`Buchungscode: ${code}`);
+          intro.push('',mode==='term'?'Mein gewünschter Termin / meine Nachricht:':'Meine Frage / Wünsche:');
+          area.value=intro.join('\n');
+        }
       }
     }
     const methods=document.querySelector('.contact-methods');
@@ -306,10 +390,13 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
 
   function enhanceBooking(){
     const params=new URLSearchParams(location.search),mode=params.get('mode');if(!mode)return;
+    /* Legacy request URLs must never open the booking form. Preserve all context and redirect to Beratung. */
+    if(mode==='request'||mode==='term'){
+      location.replace(rootPrefix+'kontakt.html?'+params.toString()+'#beratungForm');
+      return;
+    }
     const heading=document.querySelector('h1');const submit=document.querySelector('.booking-submit');
     if(mode==='book'){if(heading)heading.textContent='Ihre Buchung.';if(submit)submit.textContent='Buchung verbindlich anfragen →'}
-    if(mode==='request'){if(heading)heading.textContent='Ihre Reiseanfrage.';if(submit)submit.textContent='Unverbindliche Anfrage senden →'}
-    if(mode==='term'){if(heading)heading.textContent='Termin vorschlagen.';if(submit)submit.textContent='Terminvorschlag senden →'}
   }
 
   const DETAIL_CONFIG={
@@ -318,7 +405,7 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
     simien:{ezz:320,stay:'Lodges, Camps & Hotels',transport:['plane','car','hike'],highlights:['Panoramen im Simien-Gebirge','Aktive Trekkingtage mit Guide','Geladas und Hochlandnatur','Kleine Gruppe für flexible Etappen']},
     danakil:{ezz:280,stay:'Einfache Lodges, Camps & Hotels',transport:['plane','car','hike'],highlights:['Danakil-Senke und Dallol','Vulkanische Landschaften','Salzfelder und außergewöhnliche Lichtstimmungen','Expeditionscharakter in kleiner Gruppe']},
     'reiseart-abenteuer':{ezz:280,stay:'Einfache Lodges, Camps & Hotels',transport:['plane','car','hike'],highlights:['Danakil-Senke und Dallol','Vulkanische Landschaften und Salzfelder','Expeditionscharakter in kleiner Gruppe','Außergewöhnliche Naturerlebnisse abseits klassischer Routen']},
-    harar:{ezz:390,stay:'Landestypische Hotels & Lodges',transport:['plane','car','bus'],highlights:['Historische Gassen von Harar','Bale-Hochland und Natur','Märkte und lokale Begegnungen','Kultur und Natur in einer Route']},
+    harar:{ezz:90,stay:'Landestypische Hotels & Lodges',transport:['plane','car','bus'],highlights:['Historische Gassen von Harar','Bale-Hochland und Natur','Märkte und lokale Begegnungen','Kultur und Natur in einer Route']},
     photo:{ezz:420,stay:'Ausgewählte Hotels & Lodges',transport:['plane','car','bus'],highlights:['Mehr Zeit für Motive und Licht','Märkte, Landschaften und Begegnungen','Fotostopps ohne Zeitdruck','Kleine Gruppe für kreative Flexibilität']},
     family:{ezz:350,stay:'Familienfreundliche Hotels & Lodges',transport:['plane','car','boat'],highlights:['Entspanntes Reisetempo','Seen, Natur und Tierbeobachtung','Bootserlebnisse für die ganze Familie','Flexible Pausen und familiengerechte Etappen']},
     private:{ezz:590,stay:'Ausgewählte Hotels, Lodges & Resorts',transport:['plane','car','boat'],highlights:['Eigener Guide und flexible Route','Ihr persönliches Reisetempo','Ausgewählte Unterkünfte','Individuelle Verlängerungen möglich']},
@@ -379,7 +466,7 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
     }
   }
 
-  function enhanceTripMedia(t){const gallery=document.querySelector('#tripPhotoGallery');if(gallery&&!gallery.querySelector('.aj-trip-media-caption')){const cap=document.createElement('div');cap.className='aj-trip-media-caption';cap.textContent='Bilder & Video dieser Reise';gallery.appendChild(cap)}const video=t?.heroVideo||t?.video;if(video){const media=document.querySelector('.trip-hero-media');if(media)media.innerHTML=`<video src="${video}" poster="${t.image||''}" muted loop autoplay playsinline controls aria-label="Video: ${t.title||'Reise'}"></video>`}}
+  function enhanceTripMedia(t){const gallery=document.querySelector('#tripPhotoGallery');if(t?.id!=='harar'&&gallery&&!gallery.querySelector('.aj-trip-media-caption')){const cap=document.createElement('div');cap.className='aj-trip-media-caption';cap.textContent='Bilder & Video dieser Reise';gallery.appendChild(cap)}const video=t?.heroVideo||t?.video;if(video){const media=document.querySelector('.trip-hero-media');if(media)media.innerHTML=`<video src="${video}" poster="${t.image||''}" muted loop autoplay playsinline controls aria-label="Video: ${t.title||'Reise'}"></video>`}}
 
   function enhanceHeroActions(t){const buttons=document.querySelector('.trip-hero .hero-btns');if(!buttons)return;buttons.innerHTML=`<a class="btn gold" href="${bookingHref(t,'book')}">Buchen</a><a class="btn dark-outline aj-btn-request" href="${bookingHref(t,'request')}">Anfragen</a><a class="btn dark-outline aj-btn-video" href="${contactHref('video')}">Videoberatung</a>`}
 
@@ -396,15 +483,24 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
   function enhanceDates(t){
     const wrap=document.getElementById('dates');if(!wrap||wrap.dataset.ajEnhanced)return;wrap.dataset.ajEnhanced='1';
     const base=DETAIL_CONFIG[t.id]||{ezz:390},defaultEzz=Number(t.ezz)||base.ezz;
-    const domRaw=[...wrap.querySelectorAll('.date-row')].map((row,i)=>{const strong=row.querySelectorAll('strong'),date=strong[0]?.textContent.trim()||'',price=parsePrice(strong[1]?.textContent,t.price),status=statusFor(row.querySelector('.availability')?.textContent),year=(date.match(/20\d{2}/g)||[]).pop()||'';return {date,price,ezz:defaultEzz,status,year,index:i}});
+    const domRaw=[...wrap.querySelectorAll('.date-row')].map((row,i)=>{const strong=row.querySelectorAll('strong'),date=strong[0]?.childNodes?.[0]?.textContent?.trim()||strong[0]?.textContent.trim()||'',price=parsePrice(strong[1]?.textContent,t.price),status=statusFor(row.querySelector('.availability')?.textContent),year=(date.match(/20\d{2}/g)||[]).pop()||'',link=row.querySelector('a[href]'),params=new URL(link?.getAttribute('href')||'',location.href).searchParams,code=row.querySelector('.booking-code')?.textContent?.replace(/^Buchungscode:\s*/i,'').trim()||params.get('code')||'',startDate=params.get('date')||'';return {date,price,ezz:defaultEzz,status,year,index:i,code,startDate}});
     const supplied=Array.isArray(t.dates)?t.dates.filter(Boolean):[];
-    const raw=supplied.length?supplied.map((d,i)=>{const date=d.label||[d.start,d.end].filter(Boolean).join(' – ')||d.date||'',year=String(d.year||(String(date).match(/20\d{2}/g)||[]).pop()||'');return {date,price:Number(d.price)||Number(t.price)||0,ezz:Number(d.ezz)||defaultEzz,status:statusFor(d.status||d.availability),year,index:i}}):domRaw;
-    const toolbar=document.createElement('div');toolbar.className='aj-date-toolbar';toolbar.innerHTML='<div class="aj-year-filter"><strong>Reisejahr auswählen</strong><div class="aj-year-checks">'+[2026,2027,2028,2029,2030].map(y=>`<label><input type="checkbox" value="${y}" checked> ${y}</label>`).join('')+'</div></div><div class="aj-traffic-legend"><strong>Verfügbarkeit</strong><div class="aj-legend-items"><span class="aj-legend-item"><i class="aj-status-dot aj-status-green"></i> findet statt</span><span class="aj-legend-item"><i class="aj-status-dot aj-status-yellow"></i> mit Ihnen Mindestzahl</span><span class="aj-legend-item"><i class="aj-status-dot aj-status-orange"></i> nur noch wenige Plätze frei</span><span class="aj-legend-item"><i class="aj-status-dot aj-status-red"></i> leider ausgebucht</span></div></div>';wrap.before(toolbar);
-    const head=document.createElement('div');head.className='aj-date-head';head.innerHTML='<span>Termin</span><span>Preis p. P.</span><span>EZZ</span><span>Status</span><span>Aktion</span>';wrap.before(head);
-    wrap.innerHTML=raw.map(r=>`<div class="date-row aj-date-row" data-year="${r.year}"><strong>${r.date}</strong><strong>${money(r.price)}</strong><strong>+ ${money(r.ezz)}</strong><span class="availability"><i class="aj-status-dot aj-status-${r.status.cls}"></i>${r.status.label}</span><span class="aj-date-actions"><a class="btn aj-book" href="${bookingHref(t,'book')}&termin=${encodeURIComponent(r.date)}">Buchen</a><a class="btn aj-request" href="${bookingHref(t,'request')}&termin=${encodeURIComponent(r.date)}">Anfragen</a></span></div>`).join('');
-    const empty=document.createElement('div');empty.className='aj-no-dates';empty.innerHTML='Für die ausgewählten Jahre sind noch keine festen Termine hinterlegt. <strong>Nutzen Sie „Termin vorschlagen“ für Ihre Frühplanung.</strong>';wrap.after(empty);
-    const footer=document.createElement('div');footer.className='aj-date-footer';footer.innerHTML=`<p>Langfristige Planung für 2027–2030 ist vorgesehen. Weitere Termine können ergänzt werden, sobald die Termintabelle vorliegt.</p><a class="btn forest" href="${bookingHref(t,'term')}">Termin vorschlagen</a>`;empty.after(footer);
-    function filter(){const years=[...toolbar.querySelectorAll('input:checked')].map(x=>x.value);let visible=0;wrap.querySelectorAll('[data-year]').forEach(row=>{const show=years.includes(row.dataset.year);row.hidden=!show;row.classList.toggle('is-filtered-out',!show);row.setAttribute('aria-hidden',String(!show));if(show)visible++});empty.classList.toggle('is-visible',visible===0)}toolbar.addEventListener('change',filter);toolbar.addEventListener('input',filter);filter();
+    const raw=supplied.length?supplied.map((d,i)=>{const date=d.label||[d.start,d.end].filter(Boolean).join(' – ')||d.date||'',year=String(d.year||(String(date).match(/20\d{2}/g)||[]).pop()||'');return {date,price:Number(d.price)||Number(t.price)||0,ezz:Number(d.ezz)||defaultEzz,status:statusFor(d.status||d.availability),year,index:i,code:d.code||d.bookingCode||'',startDate:d.start||d.date||''}}):domRaw;
+    const toolbar=document.createElement('div');toolbar.className='aj-date-toolbar';toolbar.innerHTML='<div class="aj-year-filter"><strong>Reisejahr auswählen</strong><div class="aj-year-checks">'+[2027,2028,2029,2030].map(y=>`<label><input type="checkbox" value="${y}" checked> ${y}</label>`).join('')+'</div><label class="aj-available-only"><input type="checkbox" id="ajAvailableOnly"> <span>Nur verfügbare Reisen anzeigen</span></label></div><div class="aj-traffic-legend"><strong>Verfügbarkeit</strong><div class="aj-legend-items"><span class="aj-legend-item"><i class="aj-status-dot aj-status-green"></i> findet statt</span><span class="aj-legend-item"><i class="aj-status-dot aj-status-yellow"></i> mit Ihnen Mindestzahl</span><span class="aj-legend-item"><i class="aj-status-dot aj-status-orange"></i> nur noch wenige Plätze frei</span><span class="aj-legend-item"><i class="aj-status-dot aj-status-red"></i> leider ausgebucht</span></div></div>';wrap.before(toolbar);
+    const head=document.createElement('div');head.className='aj-date-head';head.innerHTML='<span>Termin</span><span>Preis p. P. im DZ</span><span>EZZ</span><span>Status</span><span>Aktion</span>';wrap.before(head);
+    const actionHref=(r,mode)=>{
+      let h=bookingHref(t,mode),hash='';
+      const hashAt=h.indexOf('#');
+      if(hashAt>=0){hash=h.slice(hashAt);h=h.slice(0,hashAt)}
+      h+=`${h.includes('?')?'&':'?'}termin=${encodeURIComponent(r.date)}`;
+      if(r.startDate)h+=`&date=${encodeURIComponent(r.startDate)}`;
+      if(r.code)h+=`&code=${encodeURIComponent(r.code)}`;
+      return h+hash;
+    };
+    wrap.innerHTML=raw.map(r=>`<div class="date-row aj-date-row" data-year="${r.year}" data-status="${r.status.cls}"><strong>${r.date}${r.code?`<small class="booking-code">Buchungscode: ${r.code}</small>`:''}</strong><strong>${money(r.price)}</strong><strong>+ ${money(r.ezz)}</strong><span class="availability"><i class="aj-status-dot aj-status-${r.status.cls}"></i>${r.status.label}</span><span class="aj-date-actions"><a class="btn aj-book" href="${actionHref(r,'book')}">Buchen</a><a class="btn aj-request" href="${actionHref(r,'request')}">Anfragen</a></span></div>`).join('');
+    const empty=document.createElement('div');empty.className='aj-no-dates';empty.innerHTML='Für die ausgewählten Filter sind aktuell keine Reisetermine hinterlegt. <strong>Nutzen Sie „Termin vorschlagen“ für Ihre Frühplanung.</strong>';wrap.after(empty);
+    const footer=document.createElement('div');footer.className='aj-date-footer';footer.innerHTML=`<p>Reisetermine ab 2027. Weitere Termine können ergänzt werden, sobald sie bestätigt sind.</p><a class="btn forest" href="${bookingHref(t,'term')}">Termin vorschlagen</a>`;empty.after(footer);
+    function filter(){const years=[...toolbar.querySelectorAll('.aj-year-checks input:checked')].map(x=>x.value),availableOnly=Boolean(toolbar.querySelector('#ajAvailableOnly')?.checked);let visible=0;wrap.querySelectorAll('[data-year]').forEach(row=>{const yearOk=years.includes(row.dataset.year),availableOk=!availableOnly||row.dataset.status!=='red',show=yearOk&&availableOk;row.hidden=!show;row.classList.toggle('is-filtered-out',!show);row.setAttribute('aria-hidden',String(!show));if(show){row.style.removeProperty('display');visible++}else row.style.setProperty('display','none','important')});empty.classList.toggle('is-visible',visible===0)}const queueFilter=()=>{if(typeof requestAnimationFrame==='function')requestAnimationFrame(filter);else setTimeout(filter,0)};toolbar.addEventListener('change',filter);toolbar.addEventListener('input',filter);toolbar.addEventListener('click',e=>{if(e.target.closest('.aj-year-checks label,.aj-year-checks input,.aj-available-only'))queueFilter()});toolbar.addEventListener('touchend',e=>{if(e.target.closest('.aj-year-checks label,.aj-year-checks input,.aj-available-only'))queueFilter()},{passive:true});filter();
   }
 
   function enhanceHints(){const faq=document.getElementById('faq');if(faq&&!document.getElementById('hinweise')){const anchor=document.createElement('div');anchor.id='hinweise';anchor.className='aj-hinweise-anchor';faq.before(anchor)}}
@@ -426,6 +522,11 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
     if(count)count.textContent=String(document.querySelectorAll('#allTrips .trip-card').length||9);
   }
 
+  function normalizePricePresentation(){
+    document.querySelectorAll('.trip-price small,.popular-trip-price small').forEach(el=>{el.textContent='ab p. P. im DZ'});
+    document.querySelectorAll('.trip-hero .trip-fact').forEach((fact,i,all)=>{if(i===all.length-1){const label=fact.querySelector('span');if(label)label.textContent='Preis p. P. im DZ'}});
+  }
+
   function stabilizeHeader(){
     const nav=document.querySelector('.site-nav');
     const sync=()=>{
@@ -439,6 +540,6 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
     window.addEventListener('scroll',()=>requestAnimationFrame(()=>document.body.classList.remove('top-strip-collapsed')),{passive:true});
   }
 
-  function boot(){applyClientV8LateStyles();patchLanguageMenu();enhanceBanner();stabilizeHeader();setupWishlist();enhanceNavCategories();enhanceContact();enhanceBooking();enhanceTripDetail();sanitizeGroupListingCategories();setTimeout(()=>{patchLanguageMenu();enhanceNavCategories();setupWishlist();sanitizeGroupListingCategories();stabilizeHeader()},180)}
+  function boot(){applyClientV8LateStyles();patchLanguageMenu();enhanceBanner();stabilizeHeader();setupWishlist();enhanceNavCategories();enhanceContact();enhanceBooking();enhanceTripDetail();sanitizeGroupListingCategories();normalizePricePresentation();setTimeout(()=>{patchLanguageMenu();enhanceNavCategories();setupWishlist();sanitizeGroupListingCategories();stabilizeHeader()},180)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();

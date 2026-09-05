@@ -1373,7 +1373,8 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
   }
 }
 </style>
-<link rel="stylesheet" href="aj-client-enhancements.css?v=15"><style id="aj-menu-target-offset-anfrage">#anfrage{scroll-margin-top:110px}</style></head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
+<link rel="stylesheet" href="aj-client-enhancements.css?v=15"><style id="aj-menu-target-offset-anfrage">#anfrage{scroll-margin-top:110px}</style><link rel="stylesheet" href="aj-compact-ui-v1.css?v=1">
+</head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
 <section class="private-hero"><div class="container private-hero-grid"><div><div class="kicker">Individualreisen</div><h1>Ihr Guide. Ihr Tempo. Ihre Route.</h1><p class="lead">Wer flexibel reisen möchte, kombiniert Regionen, Hotelstandard und Aktivitäten nach persönlichen Interessen. Wir bauen daraus eine sinnvolle, realistische Route.</p><div class="hero-actions"><a class="btn gold" href="#anfrage">Private Reise anfragen</a><a class="btn dark-outline" href="baukasten.html">Reisebausteine</a></div><div class="hero-proof"><span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-5"/></svg>Individuelle Planung</span><span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Bewusstes Tempo</span><span><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17l5-5 4 4 7-8"/><path d="M15 8h5v5"/></svg>Flexible Planung</span></div></div><div class="private-media"><figure><img src="https://images.unsplash.com/photo-1508914127305-fa5114b81b3f?auto=format&fit=crop&fm=jpg&q=86&w=1200" alt="Lalibela" loading="eager"><div class="media-note">Persönlich geplant. Lokal gedacht.<small>Individuelle Reise durch Äthiopien</small></div></figure><figure><img src="https://images.unsplash.com/photo-1637594976068-5eed79a13212?auto=format&fit=crop&fm=jpg&q=84&w=800" alt="Simien Mountains" loading="eager"></figure><figure><img src="https://images.unsplash.com/photo-1630861412977-de9bd8944f97?auto=format&fit=crop&fm=jpg&q=84&w=800" alt="Äthiopien" loading="eager"></figure></div></div></section>
 
 <section class="private-intro"><div class="container private-intro-grid"><div class="sticky-copy"><div class="kicker">Privat & flexibel</div><h2>Eine Reise mit Tiefe, nicht mit Tempo.</h2><p class="lead">Wir verbinden klassische Reiseplanung mit flexiblen Bausteinen, direkter Beratung und einer Route, die wirklich zu Ihnen passt.</p></div><div class="private-benefits"><article class="private-benefit"><div class="benefit-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div><h3>Flexible Planung</h3><p>Routen sollen zu Menschen passen – nicht Menschen in starre Abläufe zwingen.</p></article><article class="private-benefit"><div class="benefit-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20c7-2 11-7 14-15-8 2-13 7-14 15z"/><path d="M8 16c3-3 6-5 9-7"/></svg></div><h3>Bewusstes Tempo</h3><p>Weniger Hektik, mehr Zeit an ausgewählten Orten und für echte Gespräche.</p></article><article class="private-benefit"><div class="benefit-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20v-7a4 4 0 014-4h8a4 4 0 014 4v7"/><circle cx="12" cy="5" r="3"/></svg></div><h3>Persönliche Beratung</h3><p>Mehr Nähe, weniger Hektik und flexible Tagesgestaltung.</p></article></div></div></section>
@@ -1396,7 +1397,7 @@ const REAL={
  lalibela:'https://images.unsplash.com/photo-1508914127305-fa5114b81b3f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  danakil:'https://images.unsplash.com/photo-1564101151838-630e722d7b1f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  dallol:'https://images.unsplash.com/photo-1603456771349-07ea0241821f?auto=format&fit=crop&fm=jpg&q=82&w=1800',
- harar:'https://images.unsplash.com/photo-1628973961166-6e319909398e?auto=format&fit=crop&fm=jpg&q=82&w=1800',
+ harar:'https://commons.wikimedia.org/wiki/Special:FilePath/City%20Gate%2C%20Harar%20Jugol%20%2814464345823%29.jpg?width=1800',
  coffee:'https://images.unsplash.com/photo-1630861412977-de9bd8944f97?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  arba:'https://images.unsplash.com/photo-1712553935892-1c537df3e96c?auto=format&fit=crop&fm=jpg&q=82&w=1800',
  hamar:'https://images.unsplash.com/photo-1631878929191-f193a89819c1?auto=format&fit=crop&fm=jpg&q=82&w=1800'
@@ -1407,7 +1408,7 @@ const DEMO_TRIPS=[
 {id:'south',title:'Völker des Südens',subtitle:'Omo-Tal, Seenlandschaften und intensive Begegnungen',category:'Kultur',days:14,price:2890,group:'4–10',image:REAL.hamar,level:'Leicht',rating:'4.8',tag:'Begegnung'},
 {id:'simien',title:'Dach Afrikas',subtitle:'Trekking und Panoramen im Simien-Gebirge',category:'Wandern',days:10,price:2490,group:'4–8',image:REAL.simien,level:'Aktiv',rating:'4.9',tag:'Trekking'},
 {id:'danakil',title:'Feuer & Salz',subtitle:'Danakil-Senke, Dallol und vulkanische Landschaften',category:'Abenteuer',days:7,price:2190,group:'4–10',image:REAL.dallol,level:'Anspruchsvoll',rating:'4.8',tag:'Expedition'},
-{id:'harar',title:'Harar & Bale',subtitle:'Historische Gassen, Hochland und wilde Natur',category:'Natur',days:12,price:2990,group:'4–10',image:REAL.harar,level:'Mittel',rating:'4.7',tag:'Ost-Äthiopien'},
+{id:'harar',title:'Harar & Ostäthiopien',subtitle:'UNESCO-Weltkulturerbe, wilde Elefanten & die legendären Hyänen',category:'Kultur & Natur',days:3,price:899,group:'6–12',image:REAL.harar,level:'Normale Fitness',rating:'Neu',tag:'Ost-Äthiopien'},
 {id:'photo',title:'Licht des Hochlands',subtitle:'Fotoreise mit Zeit für Motive, Märkte und Landschaft',category:'Foto',days:11,price:3490,group:'3–8',image:REAL.coffee,level:'Leicht',rating:'5.0',tag:'Foto'},
 {id:'family',title:'Seen, Natur & Familie',subtitle:'Entspanntes Tempo mit Natur, Boot und Tierbeobachtung',category:'Familie',days:10,price:2790,group:'2–8',image:REAL.arba,level:'Familienfreundlich',rating:'4.8',tag:'Familie'},
 {id:'private',title:'Äthiopien Privat',subtitle:'Eigener Guide, flexible Route und ausgewählte Hotels',category:'VIP',days:12,price:4690,group:'2–4',image:REAL.addis,level:'Individuell',rating:'4.9',tag:'Private'},
@@ -1430,7 +1431,7 @@ const I18N={
  am:{home:'ኢትዮጵያ',groups:'የቡድን ጉዞዎች',private:'የግል ጉዞዎች',modules:'ጉዞዎን ያቅዱ',tips:'የጉዞ ምክሮች',info:'መረጃ',login:'ግባ',builder:'ጉዞ አቅድ'},tr:{home:'Etiyopya',groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',login:'Giriş',builder:'Seyahat planla'}
 };
 function safeJSON(k,fb){try{return JSON.parse(localStorage.getItem(k))||fb}catch(e){return fb}}
-function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!stored.some(y=>y&&y.id===x.id));return required.length?[...stored,...required]:stored}
+function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const canonicalHarar=DEMO_TRIPS.find(x=>x.id==='harar');let merged=stored.map(x=>x&&x.id==='harar'?canonicalHarar:x);if(canonicalHarar&&!merged.some(x=>x&&x.id==='harar'))merged.push(canonicalHarar);const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!merged.some(y=>y&&y.id===x.id));return required.length?[...merged,...required]:merged}
 function company(){return safeJSON('aj_company',{name:'Abyssinia Journeys',email:'reisen@example.de',phone:'+49 (0) 000 000000'})}
 function euro(n){return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(n)||0)}
 function imgTag(src,alt,cls=''){return `<img class="${cls}" src="${src}" alt="${alt}" loading="lazy">`}
@@ -1747,12 +1748,20 @@ document.addEventListener('aj:languagechange',e=>{
     USD:{code:'USD',symbol:'$',locale:'en-US',label:'US Dollar'}
   };
   let currentCurrency=CURRENCIES[localStorage.getItem('aj_currency')]?localStorage.getItem('aj_currency'):'EUR';
-  let eurToUsdRate=Number(localStorage.getItem('aj_eur_usd_rate'))||1.16;
+  // Never invent an exchange rate. Use only the last successfully fetched real EUR→USD rate.
+  let eurToUsdRate=Number(localStorage.getItem('aj_eur_usd_rate'))||null;
+  let eurToUsdRateDate=localStorage.getItem('aj_eur_usd_rate_date')||'';
 
   function formatCurrency(eur,currency=currentCurrency){
     const meta=CURRENCIES[currency]||CURRENCIES.EUR;
-    const value=(Number(eur)||0)*(currency==='USD'?eurToUsdRate:1);
-    return new Intl.NumberFormat(meta.locale,{style:'currency',currency:meta.code,maximumFractionDigits:0}).format(value);
+    const amount=Number(eur);
+    if(!Number.isFinite(amount))return '';
+    // If USD was selected before the first live rate arrives, show a loading placeholder
+    // instead of a made-up conversion. updateCurrencyPrices() replaces it after fetch().
+    if(currency==='USD'&&!(Number.isFinite(eurToUsdRate)&&eurToUsdRate>0))return '$…';
+    const value=amount*(currency==='USD'?eurToUsdRate:1);
+    const usd=currency==='USD';
+    return new Intl.NumberFormat(meta.locale,{style:'currency',currency:meta.code,minimumFractionDigits:usd?2:0,maximumFractionDigits:usd?2:0}).format(value);
   }
 
   function wrapEuroText(root=document.body){
@@ -1799,15 +1808,31 @@ document.addEventListener('aj:languagechange',e=>{
     if(currency==='USD')refreshUsdRate();
   }
 
-  async function refreshUsdRate(){
+  async function refreshUsdRate(force=false){
     const last=Number(localStorage.getItem('aj_eur_usd_rate_time'))||0;
-    if(Date.now()-last<12*60*60*1000)return;
+    const hasRealRate=Number.isFinite(eurToUsdRate)&&eurToUsdRate>0;
+    // ECB reference rates are published on working days. Re-check every 4 hours so a page
+    // opened before the daily publication can still pick up the newest rate later that day.
+    if(!force&&hasRealRate&&Date.now()-last<4*60*60*1000)return eurToUsdRate;
     try{
-      const res=await fetch('https://api.frankfurter.app/latest?from=EUR&to=USD',{cache:'no-store'});
-      if(!res.ok)return;
-      const data=await res.json();const rate=Number(data&&data.rates&&data.rates.USD);
-      if(Number.isFinite(rate)&&rate>0){eurToUsdRate=rate;localStorage.setItem('aj_eur_usd_rate',String(rate));localStorage.setItem('aj_eur_usd_rate_time',String(Date.now()));if(currentCurrency==='USD')updateCurrencyPrices()}
-    }catch(_){/* cached fallback stays active */}
+      const res=await fetch('https://api.frankfurter.dev/v2/rate/EUR/USD?providers=ECB',{cache:'no-store'});
+      if(!res.ok)throw new Error('USD exchange-rate request failed');
+      const data=await res.json();
+      const rate=Number(data&&data.rate);
+      if(Number.isFinite(rate)&&rate>0){
+        eurToUsdRate=rate;
+        eurToUsdRateDate=String((data&&data.date)||'');
+        localStorage.setItem('aj_eur_usd_rate',String(rate));
+        localStorage.setItem('aj_eur_usd_rate_date',eurToUsdRateDate);
+        localStorage.setItem('aj_eur_usd_rate_time',String(Date.now()));
+        if(currentCurrency==='USD')updateCurrencyPrices();
+      }
+    }catch(_){
+      // Keep the last successfully fetched real rate. If there is none yet, prices remain $…
+      // rather than displaying a false fixed conversion.
+      if(currentCurrency==='USD')updateCurrencyPrices();
+    }
+    return eurToUsdRate;
   }
 
   function ensureCurrencyControl(){
@@ -1854,7 +1879,8 @@ document.addEventListener('aj:languagechange',e=>{
 })();
 </script>
 
-<script src="aj-full-translate.js"></script>
+<script src="aj-azure-translator-config.js"></script>
+<script src="aj-full-translate.js?v=3"></script>
 <script id="promotion-banner-global-v8">
 (function(){
   const promoMarkup=(href)=>`<div class="container promo-top-container"><aside class="promo-banner" id="promoBanner" aria-label="Aktuelle Angebote und Spezialreisen"><div class="promo-banner-inner"><span class="promo-badge">Aktuell</span><strong class="promo-title">Spezialreisen &amp; Rabattaktionen</strong><span class="promo-copy">Besondere Reisetermine, Restplätze und zeitlich begrenzte Angebote auf einen Blick.</span><a class="promo-link" href="${href}">Angebote ansehen <span aria-hidden="true">→</span></a></div></aside></div>`;
@@ -2261,8 +2287,8 @@ document.addEventListener('aj:languagechange',e=>{
 })();
 </script>
 
-<script src="aj-client-enhancements.js?v=13"></script>
-<script src="aj-mega-menu.js?v=17"></script>
+<script src="aj-client-enhancements.js?v=15"></script>
+<script src="aj-mega-menu.js?v=18"></script>
 
 <style id="aj-header-flag-only-v1">
 /* Header language control: show only the flag, with no visible layer behind it. */
