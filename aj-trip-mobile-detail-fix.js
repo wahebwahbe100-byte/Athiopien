@@ -2,18 +2,9 @@
   'use strict';
 
   function addWordStrip(){
-    var category=document.getElementById('dcat');
-    if(!category || document.querySelector('.trip-word-strip')) return;
-    var strip=document.createElement('nav');
-    strip.className='trip-word-strip';
-    strip.setAttribute('aria-label','Reiseabschnitte');
-    strip.innerHTML=
-      '<a href="#termine">Termine &amp; Preise</a><span class="trip-word-dot">·</span>'+
-      '<a href="#ueberblick">Reiseprofil</a><span class="trip-word-dot">·</span>'+
-      '<a href="#verlauf">Reiseverlauf</a><span class="trip-word-dot">·</span>'+
-      '<a href="#leistungen">Leistungen</a><span class="trip-word-dot">·</span>'+
-      '<a href="#faq">FAQ</a>';
-    category.parentNode.insertBefore(strip,category);
+    // The section navigation now sits directly below the trip gallery on all
+    // screen sizes; remove the older mobile-only duplicate if present.
+    document.querySelectorAll('.trip-word-strip').forEach(function(el){el.remove();});
   }
 
   function removeLegacyDateHeader(){

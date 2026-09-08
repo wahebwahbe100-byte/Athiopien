@@ -1,0 +1,34 @@
+Abyssinia Journeys — I18N audit & fixes (2026-08-31)
+
+Coverage
+- 15 languages: de, en, ar, zh, fr, it, ja, ko, pt, ru, es, am, el, he, tr.
+- Arabic (ar) and Hebrew (he) switch the document to RTL; all others use LTR.
+- 28 HTML pages verified to load aj-full-translate.js.
+- No broken local JavaScript references were found.
+
+Translation data
+- 604 core source strings.
+- Every non-German core translation array contains all 604 entries.
+- 11 newly uncovered visible strings were added as static translations for all 14 translated languages.
+- New/dynamic site copy that is not yet in a static dictionary is handled by a safe automatic fallback and cached in localStorage. The browser-native Translator API is preferred when available; a network translation fallback is used otherwise. Only fixed website copy is eligible; user-entered form data is never sent for translation.
+
+Fixes
+- Corrected incomplete coverage introduced by newer Turkish-only content.
+- Added Turkish UI translations to aj-route-map.js (previously it could fall back to German).
+- Added dynamic route labels/metadata, wishlist messages, statuses, SEO/accessibility copy and newer UI strings to the safe translation source set.
+- Added translation handling for alt, title, aria-label, placeholders, button values and option text.
+- Added meta description / Open Graph title and description handling.
+- WhatsApp pre-filled enquiry text now follows the selected language.
+- Added i18n scripts to _transport-preview.html for consistent saved-language behavior.
+- Updated README.txt from 12-language to 15-language documentation and corrected RTL notes.
+- Kept all three aj-full-translate.js copies byte-identical.
+
+Validation
+- All external .js files pass node --check.
+- 15 language definitions are present and navigation dictionaries are complete.
+- 0 uncovered visible German-like text nodes in the static HTML audit.
+- 0 uncovered German-like accessibility/title attributes in the static HTML audit.
+- Non-Latin core translation arrays were checked for obvious German-fragment leakage; none was detected outside intentional proper names/codes.
+
+Note
+This audit verifies technical coverage and catches mixed-language/fallback problems. It is not a substitute for native-speaker editorial proofreading of every translated sentence.

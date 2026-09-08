@@ -1,0 +1,298 @@
+/* Abyssinia Journeys — cross-device stability layer
+   Purpose: prevent horizontal overflow / blank-looking layouts on iPhone/iPad
+   without changing the established visual design. */
+
+:root{
+  --aj-safe-vh: 100vh;
+  --aj-safe-top: env(safe-area-inset-top, 0px);
+  --aj-safe-right: env(safe-area-inset-right, 0px);
+  --aj-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --aj-safe-left: env(safe-area-inset-left, 0px);
+}
+@supports (height:100dvh){:root{--aj-safe-vh:100dvh}}
+
+html{
+  width:100%;
+  max-width:100%;
+  min-height:100%;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+body{
+  width:100%;
+  max-width:100%;
+  min-height:100%;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+*,*::before,*::after{box-sizing:border-box}
+
+/* Media must never create a viewport wider than the device. */
+img,picture,video,canvas,iframe,object,embed{max-width:100%}
+img{height:auto}
+video{display:block}
+
+/* Flex/grid children are allowed to shrink instead of pushing the page sideways. */
+main,header,footer,nav,section,article,aside,
+.container,.nav-inner,.navlinks,.nav-actions,
+[class*="grid"],[class*="row"],[class*="wrap"],[class*="inner"],
+[class*="card"],[class*="panel"],[class*="content"]{min-width:0}
+
+/* Long URLs / translated strings must wrap instead of widening the canvas. */
+p,li,dd,dt,td,th,label,.muted,.lead,.footer-contact-value,.footer-links a{
+  overflow-wrap:anywhere;
+  word-break:normal;
+}
+
+/* Forms are a frequent source of iOS overflow. */
+input,select,textarea,button{max-width:100%}
+textarea{resize:vertical}
+
+/* iOS Safari bfcache / fixed-header repaint guard. */
+.site-nav,.site-top{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+
+@media (max-width:1180px){
+  .container{max-width:100%}
+  .nav-inner{max-width:100%}
+  table{max-width:100%}
+}
+
+/* Tablet / iPad guard. Keeps existing breakpoints but removes accidental overflow. */
+@media (min-width:769px) and (max-width:1180px){
+  .site-nav,.site-top{left:0;right:0;width:100%}
+  .site-nav .nav-inner{min-width:0}
+  .site-nav .navlinks{min-width:0}
+  .site-nav .navlinks a{min-width:0}
+  .footer-grid>*{min-width:0}
+}
+
+@media (max-width:768px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  body{min-width:0}
+
+  .site-top,.site-nav{
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+  .site-nav .nav-inner{max-width:100%!important}
+
+  /* Open menus stay inside the visible device and remain scrollable. */
+  .site-nav .navlinks.open,
+  #langMenu.langmenu.open,
+  #currencyMenu.currmenu.open{
+    max-width:100vw!important;
+    max-height:calc(var(--aj-safe-vh) - 76px)!important;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  /* Avoid Safari zoom + layout jump when focusing fields. */
+  input,select,textarea{font-size:16px}
+
+  /* Generic two-/three-column blocks should not retain a hard desktop min width. */
+  [class*="grid"]>*,[class*="row"]>*,[class*="columns"]>*{min-width:0}
+
+  /* Safe-area room on modern iPhones; existing padding remains the base. */
+  .site-footer{padding-bottom:max(22px,var(--aj-safe-bottom))}
+}
+
+@media (max-width:430px){
+  .container{max-width:100%!important}
+  h1,h2,h3,h4,p{max-width:100%}
+}
+
+/* Printing / reduced motion should never leave content in a hidden transition state. */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+}
+
+/* ================================================================
+   Tablet / landscape navigation hardening (v2)
+   Fixes the 769–1080px legacy breakpoint where an open nav could
+   become a full-width cream/white sheet after rotation or BFCache.
+   The runtime stability script installs an equivalent late override
+   after dynamic menu styles, so this also serves as a no-JS fallback.
+   ================================================================ */
+@media (min-width:769px) and (max-width:1080px){
+  .site-nav .menuBtn{
+    display:grid!important;
+    place-items:center!important;
+    flex:0 0 46px!important;
+    width:46px!important;
+    min-width:46px!important;
+    height:44px!important;
+    min-height:44px!important;
+    order:3!important;
+    margin-left:4px!important;
+    z-index:1302!important;
+  }
+
+  .site-nav .navlinks,
+  .site-nav.aj-nav-compact .navlinks,
+  .site-nav .navlinks.aj-separate-menus,
+  .site-nav.aj-nav-compact .navlinks.aj-separate-menus{
+    position:fixed!important;
+    top:var(--aj-nav-drawer-top,78px)!important;
+    right:14px!important;
+    left:auto!important;
+    z-index:1300!important;
+    width:min(430px,calc(100vw - 28px))!important;
+    max-width:calc(100vw - 28px)!important;
+    height:auto!important;
+    max-height:0!important;
+    margin:0!important;
+    padding:0 12px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    gap:4px!important;
+    overflow:hidden!important;
+    opacity:0!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    transform:none!important;
+    background:linear-gradient(145deg,#183c5a 0%,#123752 48%,#0c2942 100%)!important;
+    border:1px solid rgba(255,255,255,.14)!important;
+    border-radius:0 0 18px 18px!important;
+    box-shadow:0 24px 60px rgba(3,20,34,.32)!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    transition:max-height .28s ease,opacity .18s ease,padding .22s ease,visibility 0s linear .28s!important;
+  }
+
+  .site-nav .navlinks.open,
+  .site-nav.aj-nav-compact .navlinks.open,
+  .site-nav .navlinks.aj-separate-menus.open,
+  .site-nav.aj-nav-compact .navlinks.aj-separate-menus.open{
+    max-height:min(calc(100dvh - var(--aj-nav-drawer-top,78px) - 14px),680px)!important;
+    padding:12px!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+    -webkit-overflow-scrolling:touch!important;
+    overscroll-behavior:contain!important;
+    transition:max-height .32s ease,opacity .18s ease,padding .22s ease,visibility 0s!important;
+  }
+
+  .site-nav .navlinks > a,
+  .site-nav .navlinks > .nav-dropdown > .nav-main-link,
+  .site-nav.aj-nav-compact .navlinks > .nav-dropdown > .nav-main-link{
+    width:100%!important;
+    min-width:0!important;
+    min-height:44px!important;
+    margin:0!important;
+    padding:11px 12px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    text-align:left!important;
+    white-space:normal!important;
+    color:#f7fafc!important;
+    background:transparent!important;
+    border:0!important;
+    border-radius:10px!important;
+    box-shadow:none!important;
+    transform:none!important;
+    font-size:.82rem!important;
+    line-height:1.3!important;
+  }
+  .site-nav .navlinks > a::after,
+  .site-nav .navlinks > .nav-dropdown > .nav-main-link::after{display:none!important}
+  .site-nav .navlinks > a:hover,
+  .site-nav .navlinks > a.active,
+  .site-nav .navlinks > .nav-dropdown > .nav-main-link:hover,
+  .site-nav .navlinks > .nav-dropdown.is-open > .nav-main-link{
+    color:#f2cf74!important;
+    background:rgba(255,255,255,.08)!important;
+  }
+
+  .site-nav .navlinks > .nav-dropdown{
+    display:block!important;
+    position:relative!important;
+    width:100%!important;
+    min-width:0!important;
+    height:auto!important;
+    margin:0!important;
+  }
+
+  .site-nav .navlinks .nav-dropdown-menu,
+  .site-nav.aj-nav-compact .navlinks .nav-dropdown-menu,
+  .site-nav .navlinks .nav-dropdown:hover > .nav-dropdown-menu,
+  .site-nav .navlinks .nav-dropdown:focus-within > .nav-dropdown-menu{
+    position:static!important;
+    inset:auto!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    height:auto!important;
+    max-height:0!important;
+    margin:0!important;
+    padding:0 6px!important;
+    display:block!important;
+    overflow:hidden!important;
+    opacity:1!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    transform:none!important;
+    background:rgba(255,255,255,.07)!important;
+    border:0!important;
+    border-radius:10px!important;
+    box-shadow:none!important;
+    transition:max-height .24s ease,padding .2s ease,margin .2s ease!important;
+  }
+  .site-nav .navlinks .nav-dropdown.is-open > .nav-dropdown-menu,
+  .site-nav.aj-nav-compact .navlinks .nav-dropdown.is-open > .nav-dropdown-menu{
+    max-height:min(48dvh,360px)!important;
+    margin:3px 0 7px!important;
+    padding:6px!important;
+    overflow:auto!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+  }
+  .site-nav .navlinks .nav-dropdown-menu::before,
+  .site-nav .navlinks .nav-dropdown-menu::after{display:none!important}
+  .site-nav .navlinks .nav-dropdown-menu a,
+  .site-nav .navlinks .nav-dropdown-menu .drop-row{
+    min-height:38px!important;
+    padding:8px 10px!important;
+    color:#eef5f9!important;
+    background:transparent!important;
+    border:0!important;
+    border-radius:8px!important;
+    font-size:.76rem!important;
+    line-height:1.3!important;
+    transform:none!important;
+  }
+  .site-nav .navlinks .nav-dropdown-menu a:hover,
+  .site-nav .navlinks .nav-dropdown-menu .drop-row:hover{
+    color:#f2cf74!important;
+    background:rgba(255,255,255,.07)!important;
+  }
+
+  /* Language/currency popovers must also remain inside tablet viewport. */
+  #langMenu.langmenu,
+  #currencyMenu.currmenu{
+    position:fixed!important;
+    top:var(--aj-nav-drawer-top,78px)!important;
+    right:14px!important;
+    left:auto!important;
+    max-width:calc(100vw - 28px)!important;
+    max-height:calc(100dvh - var(--aj-nav-drawer-top,78px) - 14px)!important;
+    overflow:auto!important;
+    z-index:1310!important;
+  }
+}
+
+/* Preserve usable header space on portrait tablets / large landscape phones. */
+@media (min-width:769px) and (max-width:920px){
+  .site-nav .nav-actions > .nav-cta,
+  .site-nav .nav-actions > a.btn.primary,
+  .site-nav .nav-actions > .nav-login{display:none!important}
+  .site-nav .nav-actions{margin-left:auto!important;gap:7px!important;min-width:0!important}
+}

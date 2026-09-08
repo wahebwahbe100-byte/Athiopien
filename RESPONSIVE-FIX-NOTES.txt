@@ -1,0 +1,11 @@
+Responsive stability fix — 2026-09-08
+
+- Added a shared iPhone/iPad stability stylesheet and script to all HTML pages.
+- Normalized viewport tags with viewport-fit=cover.
+- Prevented horizontal overflow and fixed Safari bfcache/mobile menu lock recovery.
+- Added safe media sizing and mobile form safeguards.
+- Added lazy loading/async image decoding where safe and playsinline for video.
+- Restored missing uberh.webp used by Info / Über uns.
+- Added working placeholder pages for Datenschutz, Impressum and AGB so footer links no longer open missing/blank pages.
+- Preserved the dedicated current trip navigation/layout on all 32 trip-detail pages.
+- Validation: 48 HTML pages; 0 missing local references; 0 inline/external JS syntax errors; 0 CSS parse errors.

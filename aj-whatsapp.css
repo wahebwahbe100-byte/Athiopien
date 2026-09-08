@@ -1,0 +1,105 @@
+/* Abyssinia Journeys – WhatsApp controls */
+/* Footer WhatsApp: exactly the same box size/style as the other social buttons. */
+.footer-socials-ref > span,
+.footer-socials-ref > .aj-whatsapp-footer{
+  width:40px!important;
+  height:40px!important;
+  box-sizing:border-box!important;
+  display:grid!important;
+  place-items:center!important;
+  flex:0 0 40px!important;
+  padding:0!important;
+  margin:0!important;
+  border:1px solid rgba(255,255,255,.20)!important;
+  border-radius:5px!important;
+  background:rgba(255,255,255,.10)!important;
+  color:#fff!important;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.02)!important;
+  text-decoration:none!important;
+}
+.footer-socials-ref > .aj-whatsapp-footer:hover,
+.footer-socials-ref > .aj-whatsapp-footer:focus-visible{
+  color:#fff!important;
+  background:rgba(37,211,102,.20)!important;
+  border-color:rgba(112,238,159,.55)!important;
+  outline:none!important;
+}
+.footer-socials-ref > span .ui-icon,
+.footer-socials-ref > .aj-whatsapp-footer svg{
+  width:18px!important;
+  height:18px!important;
+  display:block!important;
+}
+.footer-socials-ref > .aj-whatsapp-footer svg{fill:currentColor!important}
+
+/* Floating WhatsApp: keep the ORIGINAL round green design; only move left -> right. */
+.aj-whatsapp-float{
+  position:fixed!important;
+  right:max(18px,calc(env(safe-area-inset-right,0px) + 14px))!important;
+  left:auto!important;
+  bottom:max(18px,calc(env(safe-area-inset-bottom,0px) + 14px))!important;
+  width:58px!important;
+  height:58px!important;
+  display:grid!important;
+  place-items:center!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid rgba(255,255,255,.86)!important;
+  border-radius:50%!important;
+  background:#25d366!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  box-shadow:0 10px 28px rgba(7,35,24,.26),0 2px 8px rgba(7,35,24,.16)!important;
+  z-index:920!important;
+  transform:translateZ(0)!important;
+  -webkit-transform:translateZ(0)!important;
+  -webkit-tap-highlight-color:transparent!important;
+  touch-action:manipulation!important;
+  transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease!important;
+}
+.aj-whatsapp-float:hover,
+.aj-whatsapp-float:focus-visible{
+  color:#fff!important;
+  transform:translateY(-2px) scale(1.035)!important;
+  box-shadow:0 14px 34px rgba(7,35,24,.31),0 3px 9px rgba(7,35,24,.18)!important;
+  outline:3px solid rgba(37,211,102,.22)!important;
+  outline-offset:3px!important;
+}
+.aj-whatsapp-float svg{
+  width:30px!important;
+  height:30px!important;
+  display:block!important;
+  fill:currentColor!important;
+}
+body.menu-locked .aj-whatsapp-float,
+body.aj-mobile-menu-open .aj-whatsapp-float{
+  opacity:0!important;
+  pointer-events:none!important;
+}
+@supports selector(body:has(.navlinks.open)){
+  body:has(.navlinks.open) .aj-whatsapp-float{opacity:0!important;pointer-events:none!important}
+}
+@media (max-width:700px){
+  .footer-socials-ref > span,
+  .footer-socials-ref > .aj-whatsapp-footer{
+    width:40px!important;
+    height:40px!important;
+    flex-basis:40px!important;
+    border-radius:5px!important;
+  }
+  .footer-socials-ref > span .ui-icon,
+  .footer-socials-ref > .aj-whatsapp-footer svg{width:18px!important;height:18px!important}
+  .aj-whatsapp-float{
+    width:52px!important;
+    height:52px!important;
+    right:max(13px,calc(env(safe-area-inset-right,0px) + 10px))!important;
+    left:auto!important;
+    bottom:max(13px,calc(env(safe-area-inset-bottom,0px) + 10px))!important;
+  }
+  .aj-whatsapp-float svg{width:27px!important;height:27px!important}
+}
+@media (min-width:701px) and (max-width:1080px){
+  .aj-whatsapp-float{width:54px!important;height:54px!important}
+  .aj-whatsapp-float svg{width:28px!important;height:28px!important}
+}
+@media print{.aj-whatsapp-float{display:none!important}}

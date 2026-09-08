@@ -1,0 +1,6 @@
+Header-Fix PC + Mobil
+- Hauptnavigation bleibt auf Desktop und Smartphone fest stehen.
+- Desktop: Top-Leiste 42 px + Navigation 78 px, ohne Größen-/Positionssprung beim Scrollen.
+- Mobil: feste 94-px-Leiste, vollständiges Logo ohne Clip/Zoom, Herz/Sprache/Währung/Menü sauber angeordnet.
+- Der Header-Platz wird auf allen Seiten reserviert, damit Inhalte nicht verdeckt werden.
+- Dropdowns, Sprach-/Währungsmenüs und Sticky-Untermenüs beginnen unter dem festen Header.
