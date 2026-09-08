@@ -1,4 +1,4 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#183c5a"><meta name="description" content="Ihr Guide, Ihr Tempo und eine Route, die persönlich auf Ihre Wünsche abgestimmt wird."><title>Individualreisen in Äthiopien | Abyssinia Journeys</title><style>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#183c5a"><meta name="description" content="Ihr Guide, Ihr Tempo und eine Route, die persönlich auf Ihre Wünsche abgestimmt wird."><title>Individualreisen in Äthiopien | Abyssinia Journeys</title><style>
 /* =========================================================
    reise.css — COMPLETE STANDALONE PAGE STYLES
    This file contains ALL shared + page-specific styling.
@@ -1475,8 +1475,10 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
   }
 }
 </style>
-<link rel="stylesheet" href="../aj-client-enhancements.css?v=15"><link rel="stylesheet" href="../aj-compact-ui-v1.css?v=1">
-</head><body class="aj-index-shell-page" data-aj-route="reiseart-individual"><div data-shell="header"></div><main>
+<link rel="stylesheet" href="../aj-client-enhancements-trip.css?v=4"><link rel="stylesheet" href="../aj-compact-ui-v1.css?v=1">
+<link rel="stylesheet" href="../aj-responsive-stability.css?v=3">
+<link rel="stylesheet" href="../aj-whatsapp.css?v=3">
+</head><body class="aj-index-shell-page aj-no-global-promo" data-aj-route="reiseart-individual"><div data-shell="header"></div><main>
 
 <section class="trip-photo-gallery" id="tripPhotoGallery" aria-label="Reisebilder">
   <div class="trip-photo-grid" id="tripPhotoGrid"></div>
@@ -1484,7 +1486,7 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
 <div class="trip-lightbox" id="tripLightbox" role="dialog" aria-modal="true" aria-label="Reisebild vergrößert" aria-hidden="true">
   <button class="trip-lightbox-close" type="button" aria-label="Schließen">×</button>
   <button class="trip-lightbox-prev" type="button" aria-label="Vorheriges Bild">‹</button>
-  <img class="trip-lightbox-image" id="tripLightboxImage" src="" alt="">
+  <img class="trip-lightbox-image" id="tripLightboxImage" src="" alt="" decoding="async">
   <button class="trip-lightbox-next" type="button" aria-label="Nächstes Bild">›</button>
   <div class="trip-lightbox-counter" id="tripLightboxCounter"></div>
 </div>
@@ -1529,7 +1531,7 @@ const DEMO_TRIPS=[
 {id:'south',title:'Völker des Südens',subtitle:'Omo-Tal, Seenlandschaften und intensive Begegnungen',category:'Kultur',days:14,price:2890,group:'4–10',image:REAL.hamar,level:'Leicht',rating:'4.8',tag:'Begegnung'},
 {id:'simien',title:'Dach Afrikas',subtitle:'Trekking und Panoramen im Simien-Gebirge',category:'Wandern',days:10,price:2490,group:'4–8',image:REAL.simien,level:'Aktiv',rating:'4.9',tag:'Trekking'},
 {id:'danakil',title:'Feuer & Salz',subtitle:'Danakil-Senke, Dallol und vulkanische Landschaften',category:'Abenteuer',days:7,price:2190,group:'4–10',image:REAL.dallol,level:'Anspruchsvoll',rating:'4.8',tag:'Expedition'},
-{id:'harar',title:'Harar & Ostäthiopien',subtitle:'UNESCO-Weltkulturerbe, wilde Elefanten & die legendären Hyänen',category:'Kultur & Natur',days:3,price:899,group:'6–12',image:REAL.harar,level:'Normale Fitness',rating:'Neu',tag:'Ost-Äthiopien'},
+{id:'harar',title:'Harar & Ostäthiopien',subtitle:'mit Flug von Addis Abeba und zurück · UNESCO-Weltkulturerbe, wilde Elefanten & die legendären Hyänen',category:'Kultur & Natur',days:3,price:899,group:'6–12',image:REAL.harar,level:'Normale Fitness',rating:'Neu',tag:'Ost-Äthiopien'},
 {id:'photo',title:'Licht des Hochlands',subtitle:'Fotoreise mit Zeit für Motive, Märkte und Landschaft',category:'Foto',days:11,price:3490,group:'3–8',image:REAL.coffee,level:'Leicht',rating:'5.0',tag:'Foto'},
 {id:'family',title:'Seen, Natur & Familie',subtitle:'Entspanntes Tempo mit Natur, Boot und Tierbeobachtung',category:'Familie',days:10,price:2790,group:'2–8',image:REAL.arba,level:'Familienfreundlich',rating:'4.8',tag:'Familie'},
 {id:'private',title:'Äthiopien Privat',subtitle:'Eigener Guide, flexible Route und ausgewählte Hotels',category:'VIP',days:12,price:4690,group:'2–4',image:REAL.addis,level:'Individuell',rating:'4.9',tag:'Private'},
@@ -1560,7 +1562,7 @@ function toast(msg){let t=document.querySelector('.toast');if(!t){t=document.cre
 function currentPage(){return (location.pathname.split('/').pop()||'index.html').toLowerCase()}
 function renderShell(){
  const c=company(),h=document.querySelector('[data-shell="header"]'),f=document.querySelector('[data-shell="footer"]'),page=currentPage();
- if(h)h.innerHTML=`<div class="site-top"><div class="container"><div class="mini"><span> ${c.email}</span><span> ${c.phone}</span></div><div class="mini"><span>Persönliche Äthiopien-Beratung · Flug · VISA</span></div></div></div><nav class="site-nav"><div class="container nav-inner"><a class="brand brand-index-logo" href="../index.html" aria-label="${c.name} – Startseite"><span class="brand-emblem"><img class="brand-logo" src="../logo.png" alt="${c.name}" loading="eager"><span class="brand-fallback" aria-hidden="true"></span></span></a><button class="menuBtn" aria-label="Menü"></button><div class="navlinks"><a href="../index.html" data-page="../index.html" data-i18n="home">Äthiopien</a><a href="../reisen.html" data-page="../reisen.html" data-i18n="groups">Gruppenreisen</a><a href="../individualreisen.html" data-page="../individualreisen.html" data-i18n="private">Individualreisen</a><a href="../baukasten.html" data-page="../baukasten.html" data-i18n="modules">Reisebausteine</a><a href="../reisetipps.html" data-page="../reisetipps.html" data-i18n="tips">Reisetipps</a><a href="../info.html" data-page="../info.html" data-i18n="info">Infos</a></div><div class="nav-actions"><a class="nav-login" href="../kundenbereich.html" data-i18n="login">Einloggen</a><div class="langwrap"><button class="langbtn" id="langBtn">DE ▾</button><div class="langmenu" id="langMenu"><button data-lang="de">🇩🇪 Deutsch</button><button data-lang="en">🇬🇧 English</button><button data-lang="ar">🇸🇦 العربية</button></div></div><a class="btn primary" href="../baukasten.html" data-i18n="builder">Reise planen</a></div></div></nav>`;
+ if(h)h.innerHTML=`<div class="site-top"><div class="container"><div class="mini"><span> ${c.email}</span><span> ${c.phone}</span></div><div class="mini"><span>Persönliche Äthiopien-Beratung · Flug · VISA</span></div></div></div><nav class="site-nav"><div class="container nav-inner"><a class="brand brand-index-logo" href="../index.html" aria-label="${c.name} – Startseite"><span class="brand-emblem"><img class="brand-logo" src="../logo.png" alt="${c.name}" loading="eager" decoding="async"><span class="brand-fallback" aria-hidden="true"></span></span></a><button class="menuBtn" aria-label="Menü"></button><div class="navlinks"><a href="../index.html" data-page="../index.html" data-i18n="home">Äthiopien</a><a href="../reisen.html" data-page="../reisen.html" data-i18n="groups">Gruppenreisen</a><a href="../individualreisen.html" data-page="../individualreisen.html" data-i18n="private">Individualreisen</a><a href="../baukasten.html" data-page="../baukasten.html" data-i18n="modules">Reisebausteine</a><a href="../reisetipps.html" data-page="../reisetipps.html" data-i18n="tips">Reisetipps</a><a href="../info.html" data-page="../info.html" data-i18n="info">Infos</a></div><div class="nav-actions"><a class="nav-login" href="../kundenbereich.html" data-i18n="login">Einloggen</a><div class="langwrap"><button class="langbtn" id="langBtn">DE ▾</button><div class="langmenu" id="langMenu"><button data-lang="de">🇩🇪 Deutsch</button><button data-lang="en">🇬🇧 English</button><button data-lang="ar">🇸🇦 العربية</button></div></div><a class="btn primary" href="../baukasten.html" data-i18n="builder">Reise planen</a></div></div></nav>`;
  if(f)f.innerHTML=`<footer class="site-footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><span class="brand-mark">AJ</span>${c.name}</div><p>Persönlich geplante Äthiopien-Reisen: kleine Gruppen, private Routen und individuelle Bausteine.</p></div><div><h4>REISEN</h4><a href="../reisen.html">Gruppenreisen</a><a href="../individualreisen.html">Individualreisen</a><a href="../baukasten.html">Reisebaukasten</a></div><div><h4>SERVICE</h4><a href="../reisetipps.html#visa">VISA & Einreise</a><a href="../reisetipps.html#flug">Flugberatung</a><a href="../kundenbereich.html">Kundenbereich</a><a href="../kontakt.html">Beratung</a></div><div><h4>RECHT</h4><a href="../kontakt.html">Kontakt</a><a href="../agb.html">AGB</a><a href="../datenschutz.html">Datenschutz</a><a href="../impressum.html">Impressum</a></div></div><div class="footer-bottom"><span>© 2026 ${c.name} · Frontend-Prototyp</span><span>Äthiopien-Reisen · Beratung · Reiseplanung</span></div></div></footer>`;
  document.querySelector(`[data-page="${page}"]`)?.classList.add('active');
  document.querySelector('.menuBtn')?.addEventListener('click',()=>document.querySelector('.navlinks')?.classList.toggle('open'));
@@ -1704,7 +1706,7 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
     music:`<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>`
   };
   const ajIcon=(n)=>AJ_ICONS[n]||''; window.ajShellIcon=ajIcon;
-  const ajFlag=(code,alt='')=>{const cc=String(code||'').toLowerCase();const safe=String(alt||'').replace(/"/g,'&quot;');return `<img class="aj-flag-img" src="../flags/${cc}.png" srcset="../flags/${cc}.png 2x" alt="${safe}">`;};
+  const ajFlag=(code,alt='')=>{const cc=String(code||'').toLowerCase();const safe=String(alt||'').replace(/"/g,'&quot;');return `<img class="aj-flag-img" src="../flags/${cc}.png" srcset="../flags/${cc}.png 2x" alt="${safe}" decoding="async">`;};
   const ajPage=()=> (location.pathname.split('/').pop()||'index.html').toLowerCase();
   const ajCompany=()=>{try{return company()}catch(e){return {name:'Abyssinia Journeys',email:'reisen@example.de',phone:'+49 (0) 000 000000',address:''}}};
 
@@ -1774,7 +1776,7 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
     if(header){
       header.innerHTML=`<div class="site-top"><div class="container"><div class="mini">${topContact}</div><div class="mini top-service"><span>Individuelle Planung · Flug · VISA</span><a href="../kontakt.html">Kontakt & Beratung</a></div></div></div>
       <nav class="site-nav" aria-label="Hauptnavigation"><div class="container nav-inner">
-      <a class="brand" href="../index.html" aria-label="${c.name||'Abyssinia Journeys'} – Startseite"><span class="brand-emblem"><img class="brand-logo" src="../logo.png" alt="${c.name||'Abyssinia Journeys'}" onerror="this.onerror=null;this.src='image-fallback.svg'"></span></a>
+      <a class="brand" href="../index.html" aria-label="${c.name||'Abyssinia Journeys'} – Startseite"><span class="brand-emblem"><img class="brand-logo" src="../logo.png" alt="${c.name||'Abyssinia Journeys'}" onerror="this.onerror=null;this.src='image-fallback.svg'" decoding="async"></span></a>
       <button class="menuBtn" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainNav"><span class="menu-icon" aria-hidden="true"></span></button>
       <div class="navlinks" id="mainNav"><a href="../reisen.html" data-page="../reisen.html" data-i18n="groups">Gruppenreisen</a><a href="../individualreisen.html" data-page="../individualreisen.html" data-i18n="private">Individualreisen</a><a href="../baukasten.html" data-page="../baukasten.html" data-i18n="modules">Reisebausteine</a><a href="../reisetipps.html" data-page="../reisetipps.html" data-i18n="tips">Reisetipps</a><a href="../info.html" data-page="../info.html" data-i18n="info">Infos</a></div>
       <div class="nav-actions"><div class="langwrap"><button class="langbtn" id="langBtn" type="button" aria-label="Sprache auswählen" aria-expanded="false" aria-haspopup="true"></button><div class="langmenu" id="langMenu">${Object.entries(AJ_LANGS).map(([code,x])=>`<button type="button" data-lang="${code}">${ajFlag(x.flag,x.name)}<span>${x.name}</span></button>`).join('')}</div></div><a class="btn nav-cta" href="../baukasten.html" data-i18n="builder">Reise planen</a></div>
@@ -1892,7 +1894,7 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
     he:{groups:'טיולים קבוצתיים',private:'טיולים פרטיים',modules:'בניית מסלול',tips:'טיפים למטיילים',info:'מידע',builder:'תכנון טיול',login:'התחברות',home:'אתיופיה'},
     tr:{groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',builder:'Seyahat planla',login:'Giriş',home:'Etiyopya'}
   };
-  const flagImg=(code,alt='')=>`<img src="../flags/${code}.png" srcset="../flags/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}">`;
+  const flagImg=(code,alt='')=>`<img src="../flags/${code}.png" srcset="../flags/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}" decoding="async">`;
   const flagMarkup=(lang,compact=false)=>{
     const item=LANGS[lang]||LANGS.de;
     if(item.flags.length===1)return flagImg(item.flags[0],item.name);
@@ -2477,7 +2479,7 @@ document.addEventListener('DOMContentLoaded',()=>{const t=getTrip();document.get
 })();
 </script>
 
-<script src="../aj-client-enhancements.js?v=15"></script>
+<script src="../aj-client-enhancements-trip.js?v=3"></script>
 
 <style id="aj-header-flag-only-v1">
 /* Header language control: show only the flag, with no visible layer behind it. */
@@ -2990,6 +2992,8 @@ body.top-strip-collapsed .site-nav .brand-logo{
 </style>
 
 
-<link rel="stylesheet" href="../aj-trip-mobile-detail-fix.css?v=7">
-<script src="../aj-trip-mobile-detail-fix.js?v=3"></script>
+<link rel="stylesheet" href="../aj-trip-mobile-detail-fix.css?v=8">
+<script src="../aj-trip-mobile-detail-fix.js?v=4"></script>
+<script src="../aj-responsive-stability.js?v=3" defer></script>
+<script defer src="../aj-whatsapp.js?v=1"></script>
 </body></html>
