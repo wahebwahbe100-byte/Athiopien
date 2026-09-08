@@ -286,3 +286,45 @@ html[dir="rtl"] .aj-route-diamir .day{padding:20px 72px 20px 22px!important}html
     border-radius:7px!important;
   }
 }
+
+/* ================================================================
+   v12 — restore reliable pinned map in Reiseablauf / Karte
+   The map stays in place while the day-by-day itinerary scrolls.
+   ================================================================ */
+@media (min-width:761px){
+  body.aj-trip-detail-page #verlauf .aj-route-diamir-grid{
+    align-items:stretch!important;
+    overflow:visible!important;
+  }
+  body.aj-trip-detail-page #verlauf .aj-route-map-col{
+    position:relative!important;
+    align-self:stretch!important;
+    height:auto!important;
+    min-height:100%!important;
+    overflow:visible!important;
+    contain:none!important;
+  }
+  body.aj-trip-detail-page #verlauf .aj-route-map-card{
+    position:-webkit-sticky!important;
+    position:sticky!important;
+    top:92px!important;
+    bottom:auto!important;
+    align-self:start!important;
+    z-index:46!important;
+  }
+}
+@media (min-width:761px) and (max-width:980px){
+  body.aj-trip-detail-page #verlauf .aj-route-map-card{top:82px!important}
+}
+@media (max-width:760px){
+  body.aj-trip-detail-page #verlauf .aj-route-diamir-grid{
+    overflow:visible!important;
+    contain:none!important;
+  }
+  body.aj-trip-detail-page #verlauf .aj-route-map-card{
+    position:-webkit-sticky!important;
+    position:sticky!important;
+    top:calc(78px + env(safe-area-inset-top))!important;
+    z-index:46!important;
+  }
+}

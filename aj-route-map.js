@@ -1,4 +1,4 @@
-(function(){
+(function(){document.documentElement.classList.add('aj-route-map-page');
 'use strict';
 
 const P={

@@ -405,7 +405,7 @@
       .menuBtn .menu-icon{width:22px!important;height:18px!important;display:block!important;position:relative!important}
       .menuBtn .menu-icon::before,.menuBtn .menu-icon::after{content:''!important;position:absolute!important;left:0!important;height:2.5px!important;border-radius:999px!important;background:#fff!important;transition:top .34s cubic-bezier(.22,1,.36,1),left .34s cubic-bezier(.22,1,.36,1),width .34s cubic-bezier(.22,1,.36,1),transform .34s cubic-bezier(.22,1,.36,1),background .25s ease!important}
       .menuBtn .menu-icon::before{width:22px!important;top:4px!important}
-      .menuBtn .menu-icon::after{width:22px!important;left:0!important;top:12px!important}
+      .menuBtn .menu-icon::after{width:15px!important;left:7px!important;top:12px!important}
       .menuBtn.menu-open{background:rgba(215,170,73,.16)!important;border-color:rgba(242,207,116,.54)!important}
       .menuBtn.menu-open .menu-icon::before,.menuBtn.menu-open .menu-icon::after{width:22px!important;left:0!important;top:8px!important;background:#f2cf74!important}
       .menuBtn.menu-open .menu-icon::before{transform:rotate(45deg)!important}.menuBtn.menu-open .menu-icon::after{transform:rotate(-45deg)!important}
@@ -5096,8 +5096,23 @@ body.top-strip-collapsed .site-nav.scrolled .nav-actions .langbtn{
 </style>
 
 <link rel="stylesheet" href="aj-compact-ui-v1.css?v=1">
-<link rel="stylesheet" href="aj-responsive-stability.css?v=3">
+<link rel="stylesheet" href="aj-responsive-stability.css?v=5">
 <link rel="stylesheet" href="aj-whatsapp.css?v=3">
+
+<style id="home-ipad-menu-button-row-fix-v1">
+/* Homepage only: on iPad/tablet the action row is lifted at the top of the hero.
+   Lift the hamburger by the same amount so it stays on exactly the same baseline. */
+@media (min-width:769px) and (max-width:1080px){
+  html body:not(.top-strip-collapsed) .site-nav:not(.scrolled) .container.nav-inner > .menuBtn{
+    transform:translateY(-22px)!important;
+  }
+  html body .site-nav.scrolled .container.nav-inner > .menuBtn,
+  html body.top-strip-collapsed .site-nav .container.nav-inner > .menuBtn,
+  html body.top-strip-collapsed .site-nav.scrolled .container.nav-inner > .menuBtn{
+    transform:translateY(0)!important;
+  }
+}
+</style>
 </head>
 <body>
   <div data-shell="header"></div>
@@ -7496,7 +7511,7 @@ body.top-strip-collapsed .site-nav .nav-actions .langbtn{
 }
 </style>
 
-<script src="aj-responsive-stability.js?v=3" defer></script>
+<script src="aj-responsive-stability.js?v=4" defer></script>
 <script defer src="aj-whatsapp.js?v=1"></script>
 </body>
 </html>
