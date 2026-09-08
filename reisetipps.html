@@ -1,4 +1,4 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#183c5a"><meta name="description" content="Praktische Reisetipps für Äthiopien"><title>Reisetipps | Abyssinia Journeys</title><style>
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#183c5a"><meta name="description" content="Praktische Reisetipps für Äthiopien"><title>Reisetipps | Abyssinia Journeys</title><style>
 /* =========================================================
    reisetipps.css — COMPLETE STANDALONE PAGE STYLES
    This file contains ALL shared + page-specific styling.
@@ -1673,11 +1673,9 @@ body.aj-translated-language .hero-hotspot.notebook .hotspot-label{
     }
   }
   function apply(){
-    // The notebook text is part of the source image and intentionally stays German.
-    // Only the 3x3 board labels are replaced when the site language changes.
-    const lang=(document.documentElement.lang||'de').toLowerCase().split('-')[0];
+    const lang=(document.documentElement.lang||localStorage.getItem('aj_lang')||'de').toLowerCase().split('-')[0];
     const dict=TEXT[lang]||TEXT.de;
-    document.querySelectorAll('.hero-hotspot.tile [data-image-label]').forEach(el=>{
+    document.querySelectorAll('.hero-hotspot [data-image-label]').forEach(el=>{
       const key=el.getAttribute('data-image-label');
       el.textContent=dict[key]||TEXT.de[key]||'';
       fitOne(el);
@@ -1687,15 +1685,325 @@ body.aj-translated-language .hero-hotspot.notebook .hotspot-label{
     apply();
     new MutationObserver(muts=>{if(muts.some(m=>m.type==='attributes'&&m.attributeName==='lang')) requestAnimationFrame(apply);})
       .observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-    addEventListener('resize',()=>requestAnimationFrame(()=>document.querySelectorAll('.hero-hotspot.tile [data-image-label]').forEach(fitOne)),{passive:true});
+    addEventListener('resize',()=>requestAnimationFrame(()=>document.querySelectorAll('.hero-hotspot [data-image-label]').forEach(fitOne)),{passive:true});
     document.fonts?.ready?.then(apply).catch(()=>{});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
 </script>
 
+
+<style id="reisetipps-language-hero-images-v1">
+/* Each language now has its own baked Hero artwork. Keep hotspot labels accessible
+   to screen readers, but never paint translated text over the localized image. */
+#reisetipps-hero .hero-hotspot .hotspot-label,
+body.aj-translated-language #reisetipps-hero .hero-hotspot .hotspot-label{
+  position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+  overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;
+  white-space:nowrap!important;border:0!important;background:transparent!important;
+}
+/* Localized desktop artworks share a 1672×941 layout.
+   Hover/click areas follow the REAL visible panel dividers so the selection
+   frame sits exactly on the word/cell under the mouse. */
+@media (min-width:761px){
+  #reisetipps-hero .hero-hotspot.tile{box-sizing:border-box!important;transform:none!important}
+
+  /* Vertical panel boundaries: 1107 / 1295 / 1472 / 1653 px. */
+  #reisetipps-hero .hero-hotspot.tile.c1{left:66.208134%!important;width:11.244019%!important}
+  #reisetipps-hero .hero-hotspot.tile.c2{left:77.452153%!important;width:10.586124%!important}
+  #reisetipps-hero .hero-hotspot.tile.c3{left:88.038278%!important;width:10.825359%!important}
+
+  /* Horizontal panel boundaries: 427 / 543 / 659 / 794 px. */
+  #reisetipps-hero .hero-hotspot.tile.r1{top:45.377258%!important;height:12.327311%!important}
+  #reisetipps-hero .hero-hotspot.tile.r2{top:57.704570%!important;height:12.327311%!important}
+  #reisetipps-hero .hero-hotspot.tile.r3{top:70.031881%!important;height:14.346440%!important}
+
+  /* A clean selection marker without moving or resizing the cell. */
+  #reisetipps-hero .hero-hotspot.tile:hover{
+    box-shadow:inset 0 0 0 2px rgba(167,93,22,.72)!important;
+    background:rgba(255,246,226,.07)!important;
+    transform:none!important;
+  }
+  #reisetipps-hero .hero-hotspot.tile:focus-visible{
+    box-shadow:inset 0 0 0 3px rgba(167,93,22,.78)!important;
+    background:rgba(255,246,226,.09)!important;
+    transform:none!important;
+  }
+  #reisetipps-hero .hero-hotspot.tile:active{
+    box-shadow:inset 0 0 0 2px rgba(167,93,22,.82)!important;
+    background:rgba(255,246,226,.11)!important;
+    transform:none!important;
+  }
+
+  /* Notebook rows already match the localized artwork; keep their exact row geometry. */
+  #reisetipps-hero .hero-hotspot.notebook{left:18.5%!important;width:20.5%!important;height:3.05%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n1{top:55.5%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n2{top:58.45%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n3{top:61.40%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n4{top:64.35%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n5{top:67.30%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n6{top:70.25%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n7{top:73.20%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n8{top:76.15%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n9{top:79.10%!important}
+}
+/* Mobile: match the real 630×1000 panel dividers as well. */
+@media (max-width:760px){
+  /* Vertical boundaries: 29 / 229 / 418 / 610 px. */
+  #reisetipps-hero .hero-hotspot.tile.c1{left:4.603175%!important;width:31.746032%!important}
+  #reisetipps-hero .hero-hotspot.tile.c2{left:36.349206%!important;width:30.000000%!important}
+  #reisetipps-hero .hero-hotspot.tile.c3{left:66.349206%!important;width:30.476190%!important}
+
+  /* Horizontal boundaries: 453 / 578 / 700 / 845 px. */
+  #reisetipps-hero .hero-hotspot.tile.r1{top:45.300000%!important;height:12.500000%!important}
+  #reisetipps-hero .hero-hotspot.tile.r2{top:57.800000%!important;height:12.200000%!important}
+  #reisetipps-hero .hero-hotspot.tile.r3{top:70.000000%!important;height:14.500000%!important}
+}
+</style>
+<script id="reisetipps-language-hero-switch-v2">
+(function(){
+  'use strict';
+  const BASE='assets/reisetipps-hero-languages/';
+  const ALIAS={iw:'he',gr:'el'};
+  const SUPPORTED=new Set(['de','en','ar','zh','fr','it','ja','ko','pt','ru','es','am','el','he','tr']);
+  const ALT={
+    de:'Äthiopien-Reisetipps auf Deutsch',en:'Ethiopia travel tips in English',ar:'نصائح السفر إلى إثيوبيا بالعربية',
+    zh:'埃塞俄比亚旅行贴士（中文）',fr:'Conseils de voyage en Éthiopie en français',it:'Consigli di viaggio in Etiopia in italiano',
+    ja:'エチオピア旅行のヒント（日本語）',ko:'에티오피아 여행 팁 (한국어)',pt:'Dicas de viagem para a Etiópia em português',
+    ru:'Советы для путешествия по Эфиопии на русском',es:'Consejos de viaje para Etiopía en español',am:'የኢትዮጵያ የጉዞ ምክሮች በአማርኛ',
+    el:'Ταξιδιωτικές συμβουλές για την Αιθιοπία στα ελληνικά',he:'טיפים לטיול באתיופיה בעברית',tr:'Etiyopya seyahat ipuçları Türkçe'
+  };
+  function norm(v){const c=String(v||'').toLowerCase().split('-')[0];const x=ALIAS[c]||c;return SUPPORTED.has(x)?x:'de'}
+  function lang(){
+    let saved='';try{saved=localStorage.getItem('aj_lang')||''}catch(_){ }
+    return norm(document.documentElement.lang||document.body?.dataset?.lang||saved||window.__AJ_REQUESTED_LANG||'de');
+  }
+  function apply(){
+    const l=lang(),img=document.getElementById('reisetippsHeroImage'),mob=document.getElementById('reisetippsHeroMobileSource');
+    if(img){img.setAttribute('src',BASE+l+'.png');img.alt=ALT[l]||ALT.de;img.dataset.activeLang=l}
+    if(mob)mob.setAttribute('srcset',BASE+l+'-mobile.png');
+    document.getElementById('reisetippsHeroPicture')?.setAttribute('data-hero-lang',l);
+  }
+  function init(){
+    apply();
+    new MutationObserver(apply).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+    window.addEventListener('storage',e=>{if(e.key==='aj_lang')apply()});
+    window.addEventListener('pageshow',apply);
+    document.addEventListener('click',e=>{if(e.target.closest('#langMenu button,[data-lang]')){requestAnimationFrame(apply);setTimeout(apply,120)}},true);
+    setTimeout(apply,300);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script>
+
+
+<style id="reisetipps-notebook-hitbox-final-v2">
+/* Final notebook hover/click alignment for the localized 1672×941 desktop hero.
+   Each row uses its own measured vertical position because the visible notebook
+   line spacing is not perfectly uniform toward the bottom of the page. */
+@media (min-width:761px){
+  #reisetipps-hero .hero-hotspot.notebook{
+    display:block!important;
+    left:18.450000%!important;
+    width:18.900000%!important;
+    height:2.763000%!important;
+    box-sizing:border-box!important;
+    border-radius:5px!important;
+    cursor:pointer!important;
+    transform:rotate(-4.5deg)!important;
+    transform-origin:left top!important;
+    background:transparent!important;
+  }
+
+  #reisetipps-hero .hero-hotspot.notebook.n1{top:56.110500%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n2{top:59.192300%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n3{top:62.274200%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n4{top:65.249700%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n5{top:68.225300%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n6{top:71.519700%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n7{top:74.601500%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n8{top:78.002100%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n9{top:81.402800%!important}
+
+  @media (hover:hover) and (pointer:fine){
+    #reisetipps-hero .hero-hotspot.notebook:hover{
+      box-shadow:inset 0 0 0 2px rgba(167,93,22,.72)!important;
+      background:rgba(255,246,226,.07)!important;
+      transform:rotate(-4.5deg)!important;
+    }
+  }
+  #reisetipps-hero .hero-hotspot.notebook:focus-visible{
+    box-shadow:inset 0 0 0 3px rgba(167,93,22,.78)!important;
+    background:rgba(255,246,226,.09)!important;
+    transform:rotate(-4.5deg)!important;
+  }
+  #reisetipps-hero .hero-hotspot.notebook:active{
+    box-shadow:inset 0 0 0 2px rgba(167,93,22,.82)!important;
+    background:rgba(255,246,226,.11)!important;
+    transform:rotate(-4.5deg)!important;
+  }
+}
+</style>
+
+
+<style id="reisetipps-desktop-hero-slight-crop-v1">
+/* Desktop only: keep the previous full-width Hero, but crop a small amount
+   vertically so it feels a little shorter. Mobile is intentionally untouched.
+   The hotspot Y coordinates below are remapped to the cropped viewport so the
+   notebook rows and 3x3 buttons stay exactly over the artwork. */
+@media (min-width:761px){
+  #reisetipps-hero.tips-hero{
+    padding:0!important;
+    margin:0!important;
+    background:transparent!important;
+    overflow:hidden!important;
+  }
+  #reisetipps-hero .hero-art-wrap,
+  #reisetipps-hero .hero-art-frame{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+  }
+  #reisetipps-hero .hero-art-frame{
+    position:relative!important;
+    aspect-ratio:1.92 / 1!important;
+    height:auto!important;
+    overflow:hidden!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    background:transparent!important;
+  }
+  #reisetipps-hero .hero-art-picture{
+    position:absolute!important;
+    inset:0!important;
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    overflow:hidden!important;
+    line-height:0!important;
+  }
+  #reisetipps-hero .hero-art{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+    max-width:none!important;
+    max-height:none!important;
+    object-fit:cover!important;
+    object-position:center center!important;
+    margin:0!important;
+    transform:none!important;
+  }
+
+  /* Remap notebook hit areas after the slight vertical crop. */
+  #reisetipps-hero .hero-hotspot.notebook{height:3.45622%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n1{top:63.34920%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n2{top:67.02834%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n3{top:70.70758%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n4{top:74.38672%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n5{top:78.06597%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n6{top:81.74511%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n7{top:85.42435%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n8{top:89.10349%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n9{top:92.78263%!important}
+
+  /* Remap the 3x3 panel hit areas after the same crop. */
+  #reisetipps-hero .hero-hotspot.tile.r1{top:50.30117%!important;height:14.93771%!important}
+  #reisetipps-hero .hero-hotspot.tile.r2{top:65.23886%!important;height:14.69677%!important}
+  #reisetipps-hero .hero-hotspot.tile.r3{top:79.93564%!important;height:17.46747%!important}
+}
+</style>
+
+<style id="reisetipps-desktop-hero-bottom-crop-v2">
+/* Desktop only: crop a little more from the BOTTOM only.
+   Keep the top edge fixed and remap hotspots to the visible viewport. */
+@media (min-width:761px){
+  #reisetipps-hero .hero-art-frame{
+    aspect-ratio:1.95 / 1!important;
+  }
+  #reisetipps-hero .hero-art{
+    object-fit:cover!important;
+    object-position:center top!important;
+  }
+
+  /* Notebook rows remapped for bottom-only crop. */
+  #reisetipps-hero .hero-hotspot.notebook{height:3.032277%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n1{top:61.578925%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n2{top:64.961071%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n3{top:68.343327%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n4{top:71.608814%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n5{top:74.874410%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n6{top:78.489877%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n7{top:81.872023%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n8{top:85.604039%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n9{top:89.336165%!important}
+
+  /* 3x3 buttons remapped for the same bottom-only crop. */
+  #reisetipps-hero .hero-hotspot.tile.r1{top:49.799641%!important;height:13.528708%!important}
+  #reisetipps-hero .hero-hotspot.tile.r2{top:63.328350%!important;height:13.528708%!important}
+  #reisetipps-hero .hero-hotspot.tile.r3{top:76.857057%!important;height:15.744617%!important}
+}
+</style>
+
+<style id="reisetipps-card-accordion-v1">
+.guide-content{gap:14px!important}
+.tip-card{grid-template-columns:68px minmax(0,1fr) 48px!important;align-items:center!important;gap:18px!important;overflow:hidden;transition:border-color .22s ease,box-shadow .22s ease,background-color .22s ease}
+.tip-card-main{min-width:0}
+.tip-card-main h3{margin:0 0 6px}
+.tip-card-main p{margin:0;color:var(--muted)}
+.tip-card.highlight .tip-card-main p{color:#c9d9d1}
+.tip-accordion-toggle{width:44px;height:44px;border-radius:50%;border:1px solid rgba(24,60,90,.18);background:#fff;display:grid;place-items:center;cursor:pointer;padding:0;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease;-webkit-tap-highlight-color:transparent}
+.tip-card.highlight .tip-accordion-toggle{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.28)}
+.tip-accordion-toggle:hover,.tip-accordion-toggle:focus-visible{border-color:#a75d16;box-shadow:0 0 0 4px rgba(167,93,22,.10);outline:none}
+.tip-plus{position:relative;display:block;width:18px;height:18px}
+.tip-plus:before,.tip-plus:after{content:"";position:absolute;left:50%;top:50%;width:18px;height:2px;border-radius:2px;background:#9b4f0f;transform:translate(-50%,-50%);transition:transform .24s cubic-bezier(.22,1,.36,1),opacity .2s ease}
+.tip-plus:after{transform:translate(-50%,-50%) rotate(90deg)}
+.tip-card.highlight .tip-plus:before,.tip-card.highlight .tip-plus:after{background:#f2cf74}
+.tip-accordion-toggle[aria-expanded="true"] .tip-plus:after{transform:translate(-50%,-50%) rotate(0deg);opacity:0}
+.tip-accordion-toggle[aria-expanded="true"]{transform:rotate(180deg)}
+.tip-card.is-open{border-color:rgba(167,93,22,.38);box-shadow:0 12px 32px rgba(15,47,70,.08)}
+.tip-card.highlight.is-open{border-color:var(--forest);box-shadow:0 14px 34px rgba(15,47,70,.18)}
+.tip-accordion-panel{grid-column:1 / -1;min-width:0;border-top:1px solid var(--line);margin:2px -22px -22px;padding:0 22px;background:linear-gradient(180deg,rgba(247,244,237,.45),rgba(255,255,255,.92))}
+.tip-card.highlight .tip-accordion-panel{border-top-color:rgba(255,255,255,.18);background:rgba(255,255,255,.075)}
+.tip-accordion-panel[hidden]{display:none}
+.tip-accordion-inner{padding:18px 0 20px}
+.tip-detail-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tip-detail-list li{display:flex;align-items:flex-start;gap:11px;padding:13px 14px;border-radius:16px;border:1px solid rgba(24,60,90,.09);background:#fff;min-width:0}
+.tip-card.highlight .tip-detail-list li{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.16)}
+.tip-detail-symbol{flex:0 0 34px;width:34px;height:34px;border-radius:11px;background:#f6ecdf;display:grid;place-items:center;font-size:1.05rem;line-height:1}
+.tip-card.highlight .tip-detail-symbol{background:rgba(242,207,116,.14)}
+.tip-detail-text{display:block;min-width:0}
+.tip-detail-text strong{display:block;font-size:.88rem;line-height:1.25;color:#183c5a}
+.tip-detail-text small{display:block;margin-top:3px;font-size:.76rem;line-height:1.38;color:#6b7e8b;font-weight:600}
+.tip-card.highlight .tip-detail-text strong{color:#fff}
+.tip-card.highlight .tip-detail-text small{color:#d7e2dc}
+.live-fx.is-live{color:#21734c!important;font-weight:800!important}
+.live-fx.is-error{color:#8d5b28!important}
+.tip-card.highlight .live-fx.is-live{color:#c9f0d5!important}
+.tip-card.highlight .live-fx.is-error{color:#f2cf74!important}
+.tip-accordion-action{display:inline-flex;align-items:center;gap:9px;margin-top:14px;padding:10px 15px;border-radius:999px;background:#183c5a;color:#fff!important;text-decoration:none;font-weight:800;font-size:.82rem}
+.tip-card.highlight .tip-accordion-action{background:#f2cf74;color:#17394f!important}
+.faq-list summary{position:relative;padding-right:44px;list-style:none}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary:before,.faq-list summary:after{content:"";position:absolute;right:8px;top:50%;width:14px;height:2px;background:#9b4f0f;transform:translateY(-50%);border-radius:2px;transition:transform .2s ease,opacity .2s ease}
+.faq-list summary:after{transform:translateY(-50%) rotate(90deg)}
+.faq-list details[open] summary:after{opacity:0;transform:translateY(-50%) rotate(0)}
+@media(max-width:700px){
+  .tip-card{grid-template-columns:50px minmax(0,1fr) 42px!important;gap:12px!important;padding:16px!important}
+  .tip-card .arrow{display:none!important}
+  .tip-accordion-toggle{width:40px;height:40px}
+  .tip-accordion-panel{margin:2px -16px -16px;padding:0 16px}
+  .tip-accordion-inner{padding:15px 0 17px}
+  .tip-detail-list{grid-template-columns:1fr;gap:8px}
+  .tip-detail-list li{padding:11px 12px}
+  .tip-detail-symbol{width:32px;height:32px;flex-basis:32px}
+  .tip-card-main h3{font-size:1rem}
+  .tip-card-main p{font-size:.86rem;line-height:1.4}
+}
+</style>
+<link rel="stylesheet" href="aj-responsive-stability.css?v=3">
+<link rel="stylesheet" href="aj-whatsapp.css?v=3">
 </head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
-<section class="tips-hero" id="reisetipps-hero"><span id="laenderinformation" class="aj-menu-anchor" aria-hidden="true"></span><div class="hero-art-wrap"><div class="hero-art-frame"><picture class="hero-art-picture"><source media="(max-width:760px)" srcset="reisetipps-informationen-mobile.png"><img class="hero-art" src="reisetipps-informationen-clean.png" alt="Äthiopien-Reiselandschaft mit Lalibela, traditioneller Kleidung und Symbolen zur Reisevorbereitung" width="1536" height="1024" loading="eager" decoding="async"></picture><div class="tips-hero-copy"><h1>Reisetipps <span class="hero-amp">&amp;</span><br>Informationen</h1><div class="tips-hero-divider" aria-hidden="true"></div><p>Gut vorbereitet. Sicher reisen.<br>Unvergessliche Momente erleben.</p></div><div class="hero-hotspots" aria-label="Klickbare Reiseinformationen">
+<section class="tips-hero" id="reisetipps-hero"><span id="laenderinformation" class="aj-menu-anchor" aria-hidden="true"></span><div class="hero-art-wrap"><div class="hero-art-frame"><picture class="hero-art-picture" id="reisetippsHeroPicture"><source id="reisetippsHeroMobileSource" media="(max-width:760px)" srcset="assets/reisetipps-hero-languages/de-mobile.png"><img id="reisetippsHeroImage" class="hero-art" src="assets/reisetipps-hero-languages/de.png" alt="Äthiopien-Reiselandschaft mit Reiseinformationen" width="1672" height="941" loading="eager" decoding="async" fetchpriority="high"></picture><div class="tips-hero-copy"><h1>Reisetipps <span class="hero-amp">&amp;</span><br>Informationen</h1><div class="tips-hero-divider" aria-hidden="true"></div><p>Gut vorbereitet. Sicher reisen.<br>Unvergessliche Momente erleben.</p></div><div class="hero-hotspots" aria-label="Klickbare Reiseinformationen">
 <a class="hero-hotspot notebook n1" href="#reisevorbereitung"><span class="hotspot-label" data-image-label="prep" data-no-translate translate="no">Reisevorbereitung</span></a>
 <a class="hero-hotspot notebook n2" href="#visa"><span class="hotspot-label" data-image-label="visa" data-no-translate translate="no">VISA &amp; Einreise</span></a>
 <a class="hero-hotspot notebook n3" href="#flug"><span class="hotspot-label" data-image-label="flights" data-no-translate translate="no">Flüge</span></a>
@@ -1715,8 +2023,85 @@ body.aj-translated-language .hero-hotspot.notebook .hotspot-label{
 <a class="hero-hotspot tile c2 r3" href="#faq"><span class="hotspot-label" data-image-label="faq" data-no-translate translate="no">FAQ</span></a>
 <a class="hero-hotspot tile c3 r3" href="#beratung"><span class="hotspot-label" data-image-label="advice" data-no-translate translate="no">Persönliche Beratung</span></a>
 </div></div></div></section>
-<section class="section white"><span id="reisevorbereitung" class="aj-menu-anchor" aria-hidden="true"></span><div class="container guide-layout"><nav class="guide-nav"><strong>Schnellnavigation</strong><a href="#visa">VISA & Einreise</a><a href="#flug">Flüge</a><a href="#klima">Klima</a><a href="#gesundheit">Gesundheit</a><a href="#geld">Geld</a><a href="#kultur">Kultur</a></nav><div class="guide-content"><article class="tip-card highlight" id="visa"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/travel.png" alt="" aria-hidden="true"></div><div><h3>VISA & Einreise</h3><p>Platz für aktuelle Einreisebedingungen, eVisa-Hinweise, Dokumentcheck und individuelle Unterstützung.</p></div><a class="arrow" href="buchung.html">→</a></article><article class="tip-card" id="flug"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/flight.png" alt="" aria-hidden="true"></div><div><h3>Flüge</h3><p>Abflughäfen, sinnvolle Verbindungen, Gepäck und optionale Unterstützung bei der Flugbuchung.</p></div><a class="arrow" href="buchung.html">→</a></article><article class="tip-card" id="klima"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/sun.png" alt="" aria-hidden="true"></div><div><h3>Klima & Reisezeit</h3><p>Regionale Unterschiede, Höhenlagen und saisonale Empfehlungen können hier ausführlich gepflegt werden.</p></div><span class="arrow">→</span></article><article class="tip-card" id="gesundheit"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/heart.png" alt="" aria-hidden="true"></div><div><h3>Gesundheit</h3><p>Bereich für ärztlich geprüfte Hinweise, Höhenanpassung, Reiseapotheke und Versicherungen.</p></div><span class="arrow">→</span></article><article class="tip-card" id="geld"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/euro.png" alt="" aria-hidden="true"></div><div><h3>Geld & Bezahlen</h3><p>Hinweise zu Währung, Bargeld, Karten und Trinkgeld.</p></div><span class="arrow">→</span></article><article class="tip-card" id="kultur"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/coffee-cup.png" alt="" aria-hidden="true"></div><div><h3>Kultur & Respekt</h3><p>Lokale Begegnungen, Kleidung, Begrüßung und Kaffeezeremonie – mit Respekt und ausreichend Zeit.</p></div><span class="arrow">→</span></article><article class="tip-card" id="religion"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/cross.png" alt="" aria-hidden="true"></div><div><h3>Religion</h3><p>Hinweise zu orthodoxen Festen, Kirchenbesuchen, religiösen Orten und respektvollem Verhalten vor Ort.</p></div><span class="arrow">→</span></article><article class="tip-card" id="ernaehrung"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/cutlery.png" alt="" aria-hidden="true"></div><div><h3>Ernährung</h3><p>Äthiopische Küche, Injera, Fastenzeiten, vegetarische Optionen und praktische Hinweise zu Essen und Trinken.</p></div><span class="arrow">→</span></article><article class="tip-card" id="fotografieren"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/camera.png" alt="" aria-hidden="true"></div><div><h3>Fotografieren</h3><p>Menschen vorher fragen, sensible Orte respektieren und für besondere Motive genügend Zeit einplanen.</p></div><span class="arrow">→</span></article><article class="tip-card" id="packliste"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/backpack.png" alt="" aria-hidden="true"></div><div><h3>Packliste</h3><p>Je nach Trekking, Kulturreise oder Komfortreise unterschiedliche Checklisten.</p></div><span class="arrow">→</span></article><article class="tip-card" id="beratung"><div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/phone.png" alt="" aria-hidden="true"></div><div><h3>Persönliche Beratung</h3><p>Kontaktformular und Terminwunsch für Video-Beratung.</p></div><a class="arrow" href="kontakt.html">→</a></article></div></div></section>
-<section class="section sand" id="faq"><div class="container faq-grid"><div><div class="kicker">FAQ</div><h2>Noch Fragen?</h2><p class="lead">Die wichtigsten Antworten rund um Planung und Services.</p></div><div class="faq-list"><details><summary>Kann ich die Website später selbst pflegen?</summary><p>Ja. Für eine Live-Version empfiehlt sich ein echtes CMS oder Backend für Reisen, Texte und Firmendaten.</p></details><details><summary>Kann ich Reisen individuell kombinieren?</summary><p>Ja. Dafür ist der Reisebaukasten vorgesehen.</p></details><details><summary>Kann ich Flug- oder VISA-Hilfe anfragen?</summary><p>Ja. Beide Optionen sind im Reisebaukasten und Buchungsformular sichtbar.</p></details><details><summary>Gibt es einen Kundenbereich?</summary><p>Ja. Der Prototyp zeigt einen vorbereiteten Cloud-/Download-Bereich.</p></details></div></div></section>
+<section class="section white"><span id="reisevorbereitung" class="aj-menu-anchor" aria-hidden="true"></span><div class="container guide-layout"><nav class="guide-nav" aria-label="Schnellnavigation"><strong>Schnellnavigation</strong><a href="#visa">VISA & Einreise</a><a href="#flug">Flüge</a><a href="#klima">Klima</a><a href="#gesundheit">Gesundheit</a><a href="#geld">Geld & Bezahlen</a><a href="#kultur">Kultur & Respekt</a><a href="#religion">Religion</a><a href="#ernaehrung">Ernährung</a><a href="#fotografieren">Fotografieren</a><a href="#packliste">Packliste</a><a href="#beratung">Persönliche Beratung</a><a href="#faq">Häufige Fragen</a></nav><div class="guide-content"><article class="tip-card highlight" id="visa">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/travel.png" alt="" aria-hidden="true" decoding="async"></div>
+<div class="tip-card-main"><h3>VISA & Einreise</h3><p>Platz für aktuelle Einreisebedingungen, eVisa-Hinweise, Dokumentcheck und individuelle Unterstützung.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="visa-details" aria-label="VISA & Einreise öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="visa-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">🛂</span><span class="tip-detail-text"><strong>Reisepass</strong><small>Gültigkeit, freie Seiten und Reisedokumente prüfen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">📄</span><span class="tip-detail-text"><strong>Äthiopien eVisa</strong><small>Visum, Bestätigung und Einreiseunterlagen übersichtlich ablegen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🛃</span><span class="tip-detail-text"><strong>Einreise</strong><small>Ankunft, Passkontrolle und wichtige Nachweise.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">✅</span><span class="tip-detail-text"><strong>Dokumentencheck</strong><small>Vor Abreise noch einmal alles vollständig kontrollieren.</small></span></li></ul><a class="tip-accordion-action" href="buchung.html">Buchung & Anfrage<span aria-hidden="true">→</span></a></div>
+</div>
+</article><article class="tip-card" id="flug">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/flight.png" alt="" aria-hidden="true" decoding="async"></div>
+<div class="tip-card-main"><h3>Flüge</h3><p>Abflughäfen, sinnvolle Verbindungen, Gepäck und optionale Unterstützung bei der Flugbuchung.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="flug-details" aria-label="Flüge öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="flug-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">✈️</span><span class="tip-detail-text"><strong>Flugverbindung</strong><small>Direktflug oder passende Umsteigeverbindung vergleichen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🎫</span><span class="tip-detail-text"><strong>Boarding Pass</strong><small>Flugdaten und Reisedokumente griffbereit halten.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🧳</span><span class="tip-detail-text"><strong>Gepäck</strong><small>Freigepäck und Handgepäck vorab prüfen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🚐</span><span class="tip-detail-text"><strong>Airport-Transfer</strong><small>Ankunft und Weiterfahrt zur Unterkunft vorbereiten.</small></span></li></ul><a class="tip-accordion-action" href="buchung.html">Fluganfrage stellen<span aria-hidden="true">→</span></a></div>
+</div>
+</article><article class="tip-card" id="klima">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/sun.png" alt="" aria-hidden="true" decoding="async"></div>
+<div class="tip-card-main"><h3>Klima & Reisezeit</h3><p>Regionale Unterschiede, Höhenlagen und saisonale Empfehlungen können hier ausführlich gepflegt werden.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="klima-details" aria-label="Klima & Reisezeit öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="klima-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">☀️</span><span class="tip-detail-text"><strong>Trockenzeit</strong><small>Sonnenreiche Monate und regionale Unterschiede beachten.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🌦️</span><span class="tip-detail-text"><strong>Regenzeit</strong><small>Je nach Region können Straßen und Wege anspruchsvoller sein.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">⛰️</span><span class="tip-detail-text"><strong>Höhenlagen</strong><small>In höheren Regionen sind Abende oft deutlich kühler.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🧥</span><span class="tip-detail-text"><strong>Kleidung</strong><small>Leichte Kleidung plus warme Schicht für Morgen und Abend.</small></span></li></ul></div>
+</div>
+</article><article class="tip-card" id="gesundheit">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/heart.png" alt="" aria-hidden="true" decoding="async" loading="lazy"></div>
+<div class="tip-card-main"><h3>Gesundheit</h3><p>Bereich für ärztlich geprüfte Hinweise, Höhenanpassung, Reiseapotheke und Versicherungen.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="gesundheit-details" aria-label="Gesundheit öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="gesundheit-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">💉</span><span class="tip-detail-text"><strong>Impfpass</strong><small>Persönlichen Impfstatus rechtzeitig ärztlich prüfen lassen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">💊</span><span class="tip-detail-text"><strong>Medikamente</strong><small>Persönliche Medikamente und eine kleine Reiseapotheke einpacken.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🩹</span><span class="tip-detail-text"><strong>Erste Hilfe</strong><small>Pflaster, Desinfektion und wichtige Basics griffbereit halten.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🚑</span><span class="tip-detail-text"><strong>Notfall</strong><small>Versicherungs- und Notfallkontakte offline speichern.</small></span></li></ul></div>
+</div>
+</article><article class="tip-card" id="geld">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/euro.png" alt="" aria-hidden="true" decoding="async" loading="lazy"></div>
+<div class="tip-card-main"><h3>Geld & Bezahlen</h3><p>Hinweise zu Währung, Bargeld, Karten und Trinkgeld.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="geld-details" aria-label="Geld & Bezahlen öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="geld-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">💵</span><span class="tip-detail-text"><strong>Äthiopischer Birr (ETB)</strong><small>Bargeld bleibt für viele Ausgaben wichtig.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🔄</span><span class="tip-detail-text"><strong>Live EUR → ETB</strong><small class="live-fx" data-live-fx>Wechselkurs wird geladen …</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🏧</span><span class="tip-detail-text"><strong>ATM</strong><small>Geldautomaten sind vor allem in größeren Städten verfügbar.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">💳</span><span class="tip-detail-text"><strong>Kartenzahlung</strong><small>Karten werden nicht überall akzeptiert; Bargeldreserve mitnehmen.</small></span></li></ul></div>
+</div>
+</article><article class="tip-card" id="kultur">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/coffee-cup.png" alt="" aria-hidden="true" decoding="async" loading="lazy"></div>
+<div class="tip-card-main"><h3>Kultur & Respekt</h3><p>Lokale Begegnungen, Kleidung, Begrüßung und Kaffeezeremonie – mit Respekt und ausreichend Zeit.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="kultur-details" aria-label="Kultur & Respekt öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="kultur-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">🤝</span><span class="tip-detail-text"><strong>Begegnungen</strong><small>Freundlich grüßen und sich Zeit für persönliche Kontakte nehmen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">☕</span><span class="tip-detail-text"><strong>Kaffeezeremonie</strong><small>Ein wichtiger Teil äthiopischer Gastfreundschaft.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">👕</span><span class="tip-detail-text"><strong>Kleidung</strong><small>An religiösen und ländlichen Orten eher zurückhaltend kleiden.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🌍</span><span class="tip-detail-text"><strong>Lokale Gewohnheiten</strong><small>Mit Offenheit, Geduld und Respekt reisen.</small></span></li></ul></div>
+</div>
+</article><article class="tip-card" id="religion">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/cross.png" alt="" aria-hidden="true" decoding="async" loading="lazy"></div>
+<div class="tip-card-main"><h3>Religion</h3><p>Hinweise zu orthodoxen Festen, Kirchenbesuchen, religiösen Orten und respektvollem Verhalten vor Ort.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="religion-details" aria-label="Religion öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="religion-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">⛪</span><span class="tip-detail-text"><strong>Kirchen & Klöster</strong><small>Kleiderregeln und lokale Hinweise am Eingang beachten.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🕊️</span><span class="tip-detail-text"><strong>Feiertage</strong><small>Religiöse Feste können Reiseabläufe und Öffnungszeiten beeinflussen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🧣</span><span class="tip-detail-text"><strong>Respektvolle Kleidung</strong><small>Schultern und Knie an sensiblen Orten bedecken.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🙏</span><span class="tip-detail-text"><strong>Fotografie</strong><small>In religiösen Räumen vor Fotos immer nachfragen.</small></span></li></ul></div>
+</div>
+</article><article class="tip-card" id="ernaehrung">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/cutlery.png" alt="" aria-hidden="true" decoding="async" loading="lazy"></div>
+<div class="tip-card-main"><h3>Ernährung</h3><p>Äthiopische Küche, Injera, Fastenzeiten, vegetarische Optionen und praktische Hinweise zu Essen und Trinken.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="ernaehrung-details" aria-label="Ernährung öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="ernaehrung-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">🍽️</span><span class="tip-detail-text"><strong>Injera</strong><small>Typische Grundlage vieler äthiopischer Gerichte.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🥗</span><span class="tip-detail-text"><strong>Vegetarisch</strong><small>Besonders während Fastenzeiten gibt es viele pflanzliche Gerichte.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">💧</span><span class="tip-detail-text"><strong>Trinkwasser</strong><small>Nur sicheres Trinkwasser verwenden und unterwegs ausreichend trinken.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">☕</span><span class="tip-detail-text"><strong>Kaffee</strong><small>Äthiopien ist Ursprungsland des Kaffees – Zeremonien gehören zum Erlebnis.</small></span></li></ul></div>
+</div>
+</article><article class="tip-card" id="fotografieren">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/camera.png" alt="" aria-hidden="true" decoding="async" loading="lazy"></div>
+<div class="tip-card-main"><h3>Fotografieren</h3><p>Menschen vorher fragen, sensible Orte respektieren und für besondere Motive genügend Zeit einplanen.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="fotografieren-details" aria-label="Fotografieren öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="fotografieren-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">📷</span><span class="tip-detail-text"><strong>Kamera</strong><small>Akkus, Ladegerät und Ersatzspeicher einpacken.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🙋</span><span class="tip-detail-text"><strong>Menschen fragen</strong><small>Vor Portraits immer um Erlaubnis bitten.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🏛️</span><span class="tip-detail-text"><strong>Sensible Orte</strong><small>An religiösen oder offiziellen Orten Fotoverbote beachten.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">💾</span><span class="tip-detail-text"><strong>Backup</strong><small>Fotos regelmäßig auf zweitem Speicher sichern.</small></span></li></ul></div>
+</div>
+</article><article class="tip-card" id="packliste">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/backpack.png" alt="" aria-hidden="true" decoding="async" loading="lazy"></div>
+<div class="tip-card-main"><h3>Packliste</h3><p>Je nach Trekking, Kulturreise oder Komfortreise unterschiedliche Checklisten.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="packliste-details" aria-label="Packliste öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="packliste-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">🕶️</span><span class="tip-detail-text"><strong>Sonnenbrille</strong><small>Guter UV-Schutz für intensive Sonne.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🧢</span><span class="tip-detail-text"><strong>Sonnenhut & Schutz</strong><small>Kopfbedeckung und Sonnenschutz für Tagesausflüge.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🎒</span><span class="tip-detail-text"><strong>Tagesrucksack</strong><small>Leicht, bequem und groß genug für Wasser und Kamera.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">🥾</span><span class="tip-detail-text"><strong>Feste Schuhe</strong><small>Je nach Route bequeme Wander- oder Trekkingschuhe.</small></span></li></ul></div>
+</div>
+</article><article class="tip-card" id="beratung">
+<div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/phone.png" alt="" aria-hidden="true" decoding="async" loading="lazy"></div>
+<div class="tip-card-main"><h3>Persönliche Beratung</h3><p>Kontaktformular und Terminwunsch für Video-Beratung.</p></div>
+<button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="beratung-details" aria-label="Persönliche Beratung öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
+<div class="tip-accordion-panel" id="beratung-details" hidden>
+  <div class="tip-accordion-inner"><ul class="tip-detail-list"><li><span class="tip-detail-symbol" aria-hidden="true">👤</span><span class="tip-detail-text"><strong>Persönlicher Kontakt</strong><small>Fragen direkt mit einem Ansprechpartner klären.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">📞</span><span class="tip-detail-text"><strong>Telefon</strong><small>Schnelle Rücksprache für konkrete Reisefragen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">💻</span><span class="tip-detail-text"><strong>Video-Beratung</strong><small>Route, Hotels und Wünsche gemeinsam besprechen.</small></span></li><li><span class="tip-detail-symbol" aria-hidden="true">✉️</span><span class="tip-detail-text"><strong>Nachricht</strong><small>Individuelle Anfrage mit Ihren Reisedaten senden.</small></span></li></ul><a class="tip-accordion-action" href="kontakt.html">Kontakt aufnehmen<span aria-hidden="true">→</span></a></div>
+</div>
+</article></div></div></section>
+<section class="section sand" id="faq"><div class="container faq-grid"><div><div class="kicker">FAQ</div><h2>Häufige Fragen</h2><p class="lead">Praktische Antworten für die Vorbereitung Ihrer Äthiopien-Reise.</p></div><div class="faq-list"><details><summary>Brauche ich für Äthiopien ein Visum?</summary><p>Die Einreisebestimmungen hängen von Ihrer Staatsangehörigkeit und der Art der Reise ab. Prüfen Sie vor der Abreise die aktuell gültigen Vorgaben und halten Sie Reisepass, Visum beziehungsweise eVisa und weitere erforderliche Unterlagen bereit.</p></details><details><summary>Welche Impfungen und Gesundheitsvorbereitungen sind sinnvoll?</summary><p>Lassen Sie sich rechtzeitig individuell ärztlich beraten. Je nach Reiseroute, Aufenthaltsdauer und persönlicher Situation können Impfungen, eine Reiseapotheke und weitere Vorsorgemaßnahmen sinnvoll sein.</p></details><details><summary>Kann ich in Äthiopien mit Karte bezahlen oder brauche ich Bargeld?</summary><p>Je nach Ort und Anbieter werden Karten unterschiedlich häufig akzeptiert. Für kleinere Ausgaben und abgelegenere Regionen ist Bargeld in äthiopischen Birr häufig wichtig. Geldautomaten sind vor allem in größeren Städten zu finden.</p></details><details><summary>Was sollte ich für eine Äthiopien-Reise einpacken?</summary><p>Zur Grundausstattung gehören je nach Route unter anderem Sonnenschutz, Sonnenbrille, bequeme und feste Schuhe, leichte Kleidung, eine wärmere Schicht für höhere Lagen, persönliche Medikamente und ein kleiner Tagesrucksack.</p></details><details><summary>Wie funktionieren Internet, SIM-Karte und Erreichbarkeit unterwegs?</summary><p>Die Netzabdeckung kann je nach Region unterschiedlich sein. In Städten ist die Verbindung meist leichter verfügbar als in abgelegenen Gebieten. Für längere Reisen kann eine lokale SIM- oder eSIM-Lösung praktisch sein.</p></details></div></div></section>
 </main><div data-shell="footer"></div><div class="toast"></div><script>
 const REAL={
  simien:'https://images.unsplash.com/photo-1637594976068-5eed79a13212?auto=format&fit=crop&fm=jpg&q=82&w=1800',
@@ -1735,7 +2120,7 @@ const DEMO_TRIPS=[
 {id:'south',title:'Völker des Südens',subtitle:'Omo-Tal, Seenlandschaften und intensive Begegnungen',category:'Kultur',days:14,price:2890,group:'4–10',image:REAL.hamar,level:'Leicht',rating:'4.8',tag:'Begegnung'},
 {id:'simien',title:'Dach Afrikas',subtitle:'Trekking und Panoramen im Simien-Gebirge',category:'Wandern',days:10,price:2490,group:'4–8',image:REAL.simien,level:'Aktiv',rating:'4.9',tag:'Trekking'},
 {id:'danakil',title:'Feuer & Salz',subtitle:'Danakil-Senke, Dallol und vulkanische Landschaften',category:'Abenteuer',days:7,price:2190,group:'4–10',image:REAL.dallol,level:'Anspruchsvoll',rating:'4.8',tag:'Expedition'},
-{id:'harar',title:'Harar & Ostäthiopien',subtitle:'UNESCO-Weltkulturerbe, wilde Elefanten & die legendären Hyänen',category:'Kultur & Natur',days:3,price:899,group:'6–12',image:REAL.harar,level:'Normale Fitness',rating:'Neu',tag:'Ost-Äthiopien'},
+{id:'harar',title:'Harar & Ostäthiopien',subtitle:'mit Flug von Addis Abeba und zurück · UNESCO-Weltkulturerbe, wilde Elefanten & die legendären Hyänen',category:'Kultur & Natur',days:3,price:899,group:'6–12',image:REAL.harar,level:'Normale Fitness',rating:'Neu',tag:'Ost-Äthiopien'},
 {id:'photo',title:'Licht des Hochlands',subtitle:'Fotoreise mit Zeit für Motive, Märkte und Landschaft',category:'Foto',days:11,price:3490,group:'3–8',image:REAL.coffee,level:'Leicht',rating:'5.0',tag:'Foto'},
 {id:'family',title:'Seen, Natur & Familie',subtitle:'Entspanntes Tempo mit Natur, Boot und Tierbeobachtung',category:'Familie',days:10,price:2790,group:'2–8',image:REAL.arba,level:'Familienfreundlich',rating:'4.8',tag:'Familie'},
 {id:'private',title:'Äthiopien Privat',subtitle:'Eigener Guide, flexible Route und ausgewählte Hotels',category:'VIP',days:12,price:4690,group:'2–4',image:REAL.addis,level:'Individuell',rating:'4.9',tag:'Private'},
@@ -1761,12 +2146,12 @@ function safeJSON(k,fb){try{return JSON.parse(localStorage.getItem(k))||fb}catch
 function trips(){const stored=safeJSON('aj_trips',null);if(!Array.isArray(stored))return DEMO_TRIPS;const canonicalHarar=DEMO_TRIPS.find(x=>x.id==='harar');let merged=stored.map(x=>x&&x.id==='harar'?canonicalHarar:x);if(canonicalHarar&&!merged.some(x=>x&&x.id==='harar'))merged.push(canonicalHarar);const required=DEMO_TRIPS.filter(x=>(x.id==='senior'||x.id==='romance')&&!merged.some(y=>y&&y.id===x.id));return required.length?[...merged,...required]:merged}
 function company(){return safeJSON('aj_company',{name:'Abyssinia Journeys',email:'reisen@example.de',phone:'+49 (0) 000 000000'})}
 function euro(n){return new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(Number(n)||0)}
-function imgTag(src,alt,cls=''){return `<img class="${cls}" src="${src}" alt="${alt}" loading="lazy">`}
+function imgTag(src,alt,cls=''){return `<img class="${cls}" src="${src}" alt="${alt}" loading="lazy" decoding="async">`}
 function toast(msg){let t=document.querySelector('.toast');if(!t){t=document.createElement('div');t.className='toast';document.body.appendChild(t)}t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),2300)}
 function currentPage(){return (location.pathname.split('/').pop()||'index.html').toLowerCase()}
 function renderShell(){
  const c=company(),h=document.querySelector('[data-shell="header"]'),f=document.querySelector('[data-shell="footer"]'),page=currentPage();
- if(h)h.innerHTML=`<div class="site-top"><div class="container"><div class="mini"><span> ${c.email}</span><span> ${c.phone}</span></div><div class="mini"><span>Persönliche Äthiopien-Beratung · Flug · VISA</span></div></div></div><nav class="site-nav"><div class="container nav-inner"><a class="brand brand-index-logo" href="index.html" aria-label="${c.name} – Startseite"><span class="brand-emblem"><img class="brand-logo" src="logo.png" alt="${c.name}" loading="eager"><span class="brand-fallback" aria-hidden="true"></span></span></a><button class="menuBtn" aria-label="Menü"></button><div class="navlinks"><a href="index.html" data-page="index.html" data-i18n="home">Äthiopien</a><a href="reisen.html" data-page="reisen.html" data-i18n="groups">Gruppenreisen</a><a href="individualreisen.html" data-page="individualreisen.html" data-i18n="private">Individualreisen</a><a href="baukasten.html" data-page="baukasten.html" data-i18n="modules">Reisebausteine</a><a href="reisetipps.html" data-page="reisetipps.html" data-i18n="tips">Reisetipps</a><a href="info.html" data-page="info.html" data-i18n="info">Infos</a></div><div class="nav-actions"><a class="nav-login" href="kundenbereich.html" data-i18n="login">Einloggen</a><div class="langwrap"><button class="langbtn" id="langBtn">DE ▾</button><div class="langmenu" id="langMenu"><button data-lang="de">🇩🇪 Deutsch</button><button data-lang="en">🇬🇧 English</button><button data-lang="ar">🇸🇦 العربية</button></div></div><a class="btn primary" href="baukasten.html" data-i18n="builder">Reise planen</a></div></div></nav>`;
+ if(h)h.innerHTML=`<div class="site-top"><div class="container"><div class="mini"><span> ${c.email}</span><span> ${c.phone}</span></div><div class="mini"><span>Persönliche Äthiopien-Beratung · Flug · VISA</span></div></div></div><nav class="site-nav"><div class="container nav-inner"><a class="brand brand-index-logo" href="index.html" aria-label="${c.name} – Startseite"><span class="brand-emblem"><img class="brand-logo" src="logo.png" alt="${c.name}" loading="eager" decoding="async"><span class="brand-fallback" aria-hidden="true"></span></span></a><button class="menuBtn" aria-label="Menü"></button><div class="navlinks"><a href="index.html" data-page="index.html" data-i18n="home">Äthiopien</a><a href="reisen.html" data-page="reisen.html" data-i18n="groups">Gruppenreisen</a><a href="individualreisen.html" data-page="individualreisen.html" data-i18n="private">Individualreisen</a><a href="baukasten.html" data-page="baukasten.html" data-i18n="modules">Reisebausteine</a><a href="reisetipps.html" data-page="reisetipps.html" data-i18n="tips">Reisetipps</a><a href="info.html" data-page="info.html" data-i18n="info">Infos</a></div><div class="nav-actions"><a class="nav-login" href="kundenbereich.html" data-i18n="login">Einloggen</a><div class="langwrap"><button class="langbtn" id="langBtn">DE ▾</button><div class="langmenu" id="langMenu"><button data-lang="de">🇩🇪 Deutsch</button><button data-lang="en">🇬🇧 English</button><button data-lang="ar">🇸🇦 العربية</button></div></div><a class="btn primary" href="baukasten.html" data-i18n="builder">Reise planen</a></div></div></nav>`;
  if(f)f.innerHTML=`<footer class="site-footer"><div class="container"><div class="footer-grid"><div><div class="footer-brand"><span class="brand-mark">AJ</span>${c.name}</div><p>Persönlich geplante Äthiopien-Reisen: kleine Gruppen, private Routen und individuelle Bausteine.</p></div><div><h4>REISEN</h4><a href="reisen.html">Gruppenreisen</a><a href="individualreisen.html">Individualreisen</a><a href="baukasten.html">Reisebaukasten</a></div><div><h4>SERVICE</h4><a href="reisetipps.html#visa">VISA & Einreise</a><a href="reisetipps.html#flug">Flugberatung</a><a href="kundenbereich.html">Kundenbereich</a><a href="kontakt.html">Beratung</a></div><div><h4>RECHT</h4><a href="kontakt.html">Kontakt</a><a href="agb.html">AGB</a><a href="datenschutz.html">Datenschutz</a><a href="impressum.html">Impressum</a></div></div><div class="footer-bottom"><span>© 2026 ${c.name} · Frontend-Prototyp</span><span>Äthiopien-Reisen · Beratung · Reiseplanung</span></div></div></footer>`;
  document.querySelector(`[data-page="${page}"]`)?.classList.add('active');
  document.querySelector('.menuBtn')?.addEventListener('click',()=>document.querySelector('.navlinks')?.classList.toggle('open'));
@@ -1802,7 +2187,7 @@ document.addEventListener('DOMContentLoaded',()=>{renderShell();demoForms()});
     music:`<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg>`
   };
   const ajIcon=(n)=>AJ_ICONS[n]||''; window.ajShellIcon=ajIcon;
-  const ajFlag=(code,alt='')=>{const cc=String(code||'').toLowerCase();const safe=String(alt||'').replace(/"/g,'&quot;');return `<img class="aj-flag-img" src="flags/${cc}.png" srcset="flags/${cc}.png 2x" alt="${safe}">`;};
+  const ajFlag=(code,alt='')=>{const cc=String(code||'').toLowerCase();const safe=String(alt||'').replace(/"/g,'&quot;');return `<img class="aj-flag-img" src="flags/${cc}.png" srcset="flags/${cc}.png 2x" alt="${safe}" decoding="async">`;};
   const ajPage=()=> (location.pathname.split('/').pop()||'index.html').toLowerCase();
   const ajCompany=()=>{try{return company()}catch(e){return {name:'Abyssinia Journeys',email:'reisen@example.de',phone:'+49 (0) 000 000000',address:''}}};
 
@@ -1872,7 +2257,7 @@ document.addEventListener('DOMContentLoaded',()=>{renderShell();demoForms()});
     if(header){
       header.innerHTML=`<div class="site-top"><div class="container"><div class="mini">${topContact}</div><div class="mini top-service"><span>Individuelle Planung · Flug · VISA</span><a href="kontakt.html">Kontakt & Beratung</a></div></div></div>
       <nav class="site-nav" aria-label="Hauptnavigation"><div class="container nav-inner">
-      <a class="brand" href="index.html" aria-label="${c.name||'Abyssinia Journeys'} – Startseite"><span class="brand-emblem"><img class="brand-logo" src="logo.png" alt="${c.name||'Abyssinia Journeys'}" onerror="this.onerror=null;this.src='image-fallback.svg'"></span></a>
+      <a class="brand" href="index.html" aria-label="${c.name||'Abyssinia Journeys'} – Startseite"><span class="brand-emblem"><img class="brand-logo" src="logo.png" alt="${c.name||'Abyssinia Journeys'}" onerror="this.onerror=null;this.src='image-fallback.svg'" decoding="async"></span></a>
       <button class="menuBtn" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mainNav"><span class="menu-icon" aria-hidden="true"></span></button>
       <div class="navlinks" id="mainNav"><a href="reisen.html" data-page="reisen.html" data-i18n="groups">Gruppenreisen</a><a href="individualreisen.html" data-page="individualreisen.html" data-i18n="private">Individualreisen</a><a href="baukasten.html" data-page="baukasten.html" data-i18n="modules">Reisebausteine</a><a href="reisetipps.html" data-page="reisetipps.html" data-i18n="tips">Reisetipps</a><a href="info.html" data-page="info.html" data-i18n="info">Infos</a></div>
       <div class="nav-actions"><div class="langwrap"><button class="langbtn" id="langBtn" type="button" aria-label="Sprache auswählen" aria-expanded="false" aria-haspopup="true"></button><div class="langmenu" id="langMenu">${Object.entries(AJ_LANGS).map(([code,x])=>`<button type="button" data-lang="${code}">${ajFlag(x.flag,x.name)}<span>${x.name}</span></button>`).join('')}</div></div><a class="btn nav-cta" href="baukasten.html" data-i18n="builder">Reise planen</a></div>
@@ -1990,7 +2375,7 @@ document.addEventListener('DOMContentLoaded',()=>{renderShell();demoForms()});
     he:{groups:'טיולים קבוצתיים',private:'טיולים פרטיים',modules:'בניית מסלול',tips:'טיפים למטיילים',info:'מידע',builder:'תכנון טיול',login:'התחברות',home:'אתיופיה'},
     tr:{groups:'Grup turları',private:'Özel turlar',modules:'Seyahat planlayıcı',tips:'Seyahat ipuçları',info:'Bilgi',builder:'Seyahat planla',login:'Giriş',home:'Etiyopya'}
   };
-  const flagImg=(code,alt='')=>`<img src="flags/${code}.png" srcset="flags/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}">`;
+  const flagImg=(code,alt='')=>`<img src="flags/${code}.png" srcset="flags/${code}.png 2x" alt="${String(alt||'').replace(/"/g,'&quot;')}" decoding="async">`;
   const flagMarkup=(lang,compact=false)=>{
     const item=LANGS[lang]||LANGS.de;
     if(item.flags.length===1)return flagImg(item.flags[0],item.name);
@@ -3089,6 +3474,248 @@ body.top-strip-collapsed .site-nav .brand-logo{
 
 
 <script id="reisetipps-hotspot-scroll-v1">
-(function(){document.addEventListener('click',function(e){const a=e.target.closest('.hero-hotspot,.guide-nav a[href^="#"]');if(!a)return;const id=a.getAttribute('href');const t=id&&document.querySelector(id);if(!t)return;e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'',id);});})();
+(function(){document.addEventListener('click',function(e){const a=e.target.closest('.hero-hotspot');if(!a)return;const id=a.getAttribute('href');const t=id&&document.querySelector(id);if(!t)return;e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'',id);});})();
 </script>
+<script id="reisetipps-card-accordion-js">
+(function(){
+  'use strict';
+  function closeCard(card){
+    const btn=card?.querySelector('.tip-accordion-toggle'),panel=card?.querySelector('.tip-accordion-panel');
+    if(!btn||!panel)return;
+    btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label',(card.querySelector('h3')?.textContent||'Rubrik')+' öffnen');
+    card.classList.remove('is-open');panel.hidden=true;
+  }
+  function openCard(card){
+    document.querySelectorAll('.tip-card.is-open').forEach(other=>{if(other!==card)closeCard(other)});
+    const btn=card.querySelector('.tip-accordion-toggle'),panel=card.querySelector('.tip-accordion-panel');
+    btn.setAttribute('aria-expanded','true');btn.setAttribute('aria-label',(card.querySelector('h3')?.textContent||'Rubrik')+' schließen');
+    card.classList.add('is-open');panel.hidden=false;
+    if(card.id==='geld')loadFx();
+  }
+  function toggle(btn){const card=btn.closest('.tip-card');if(!card)return;btn.getAttribute('aria-expanded')==='true'?closeCard(card):openCard(card)}
+  async function loadFx(){
+    const targets=[...document.querySelectorAll('[data-live-fx]')];if(!targets.length)return;
+    if(targets.some(x=>x.dataset.loaded==='1'))return;
+    try{
+      const ctrl=new AbortController();const timer=setTimeout(()=>ctrl.abort(),5500);
+      const r=await fetch('https://open.er-api.com/v6/latest/EUR',{signal:ctrl.signal,cache:'no-store'});clearTimeout(timer);
+      if(!r.ok)throw new Error('rate');const data=await r.json();const rate=Number(data?.rates?.ETB);if(!rate)throw new Error('ETB');
+      const value='1 EUR ≈ '+rate.toLocaleString(undefined,{maximumFractionDigits:2})+' ETB';
+      targets.forEach(x=>{x.textContent=value;x.classList.add('is-live');x.dataset.loaded='1'});
+    }catch(_){
+      targets.forEach(x=>{x.textContent='Live-Kurs aktuell nicht verfügbar';x.classList.add('is-error')});
+    }
+  }
+  function init(){
+    document.addEventListener('click',e=>{const b=e.target.closest('.tip-accordion-toggle');if(b){e.preventDefault();toggle(b)}});
+    // Always enter the page with every accordion closed. A section opens only with its (+) button.
+    document.querySelectorAll('.tip-card').forEach(closeCard);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script>
+
+<style id="reisetipps-schnellnavigation-scroll-effect-v3">
+html{scroll-behavior:smooth}
+@media (min-width:761px){
+  .guide-nav{
+    position:sticky!important;
+    top:110px!important;
+    overflow:hidden!important;
+    padding:18px 16px 16px!important;
+    border:1px solid rgba(24,60,90,.11)!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.96)!important;
+    box-shadow:0 12px 34px rgba(15,47,70,.055)!important;
+  }
+  .guide-nav strong{
+    position:relative;
+    display:block!important;
+    margin:0 8px 13px!important;
+    padding-bottom:11px!important;
+    color:#183c5a!important;
+    font-size:.83rem!important;
+    font-weight:850!important;
+    letter-spacing:.015em!important;
+  }
+  .guide-nav strong::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:1px;
+    background:linear-gradient(90deg,rgba(167,93,22,.34),rgba(24,60,90,.07));
+  }
+  .guide-nav a{
+    position:relative!important;
+    z-index:2!important;
+    display:block!important;
+    margin:1px 0!important;
+    padding:9px 10px 10px!important;
+    border-radius:9px!important;
+    background:transparent!important;
+    color:#5a6d79!important;
+    font-size:.84rem!important;
+    font-weight:650!important;
+    line-height:1.28!important;
+    box-shadow:none!important;
+    transform:none!important;
+    transition:color .24s ease,background-color .24s ease!important;
+  }
+  .guide-nav a:hover,
+  .guide-nav a:focus-visible{
+    color:#183c5a!important;
+    background:rgba(239,227,208,.38)!important;
+    outline:none!important;
+  }
+  .guide-nav a.is-active{
+    color:#183c5a!important;
+    background:transparent!important;
+    font-weight:780!important;
+  }
+  /* One shared underline only. It moves between links instead of creating one per link. */
+  .guide-nav .guide-nav-indicator{
+    position:absolute;
+    z-index:3;
+    left:0;
+    top:0;
+    width:0;
+    height:3px;
+    border-radius:999px;
+    background:linear-gradient(90deg,
+      rgba(167,93,22,0) 0%,
+      rgba(167,93,22,.22) 12%,
+      rgba(167,93,22,.68) 32%,
+      rgba(183,105,28,.96) 50%,
+      rgba(167,93,22,.68) 68%,
+      rgba(167,93,22,.22) 88%,
+      rgba(167,93,22,0) 100%
+    );
+    box-shadow:0 1px 5px rgba(167,93,22,.16);
+    pointer-events:none;
+    opacity:0;
+    transform:translate3d(0,0,0);
+    transition:transform .34s cubic-bezier(.22,1,.36,1),width .34s cubic-bezier(.22,1,.36,1),opacity .18s ease;
+    will-change:transform,width;
+  }
+  .guide-nav .guide-nav-indicator.is-visible{opacity:0!important}
+  .guide-nav a::before,.guide-nav a::after{display:none!important;content:none!important}
+}
+@media (max-width:760px){
+  .guide-nav{display:none!important}
+  .guide-layout{display:block!important}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .guide-nav a,.guide-nav .guide-nav-indicator{transition:none!important}
+}
+</style>
+<script id="reisetipps-schnellnavigation-scroll-effect-js-v3">
+(function(){
+  'use strict';
+  function init(){
+    const nav=document.querySelector('.guide-nav');
+    if(!nav)return;
+    const links=[...nav.querySelectorAll('a[href^="#"]')];
+    const sections=links.map(a=>{
+      const id=a.getAttribute('href').slice(1);
+      return {a,id,el:document.getElementById(id)};
+    }).filter(x=>x.el);
+    if(!sections.length)return;
+
+    let indicator=nav.querySelector('.guide-nav-indicator');
+    if(!indicator){
+      indicator=document.createElement('span');
+      indicator.className='guide-nav-indicator';
+      indicator.setAttribute('aria-hidden','true');
+      nav.appendChild(indicator);
+    }
+
+    let activeId='';
+    let raf=0;
+    function placeIndicator(link,animate=true){
+      if(!link || getComputedStyle(nav).display==='none')return;
+      const navRect=nav.getBoundingClientRect();
+      const linkRect=link.getBoundingClientRect();
+      const inset=Math.min(16,Math.max(10,linkRect.width*.075));
+      const x=linkRect.left-navRect.left+inset;
+      const y=linkRect.bottom-navRect.top-5;
+      const w=Math.max(28,linkRect.width-inset*2);
+      if(!animate){
+        indicator.style.transition='none';
+        requestAnimationFrame(()=>{indicator.style.removeProperty('transition')});
+      }
+      indicator.style.transform='translate3d('+x+'px,'+y+'px,0)';
+      indicator.style.width=w+'px';
+      indicator.classList.add('is-visible');
+    }
+    function setActive(id,animate=true){
+      if(!sections.some(x=>x.id===id))return;
+      activeId=id;
+      let selected=null;
+      links.forEach(a=>{
+        const on=a.getAttribute('href')==='#'+id;
+        a.classList.toggle('is-active',on);
+        if(on){selected=a;a.setAttribute('aria-current','location')}else a.removeAttribute('aria-current');
+      });
+      if(selected)placeIndicator(selected,animate);
+    }
+    function headerOffset(){
+      const siteNav=document.querySelector('.site-nav');
+      const h=siteNav?siteNav.getBoundingClientRect().height:72;
+      return Math.max(112,Math.round(h+42));
+    }
+    function updateFromScroll(){
+      raf=0;
+      const marker=window.scrollY+headerOffset();
+      let current=sections[0];
+      for(const item of sections){
+        const top=item.el.getBoundingClientRect().top+window.scrollY;
+        if(top<=marker+8)current=item;else break;
+      }
+      // At the bottom, always select the final reachable section.
+      if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-8)current=sections[sections.length-1];
+      if(current.id!==activeId)setActive(current.id,true);
+    }
+    function onScroll(){
+      if(!raf)raf=requestAnimationFrame(updateFromScroll);
+    }
+
+    links.forEach(a=>a.addEventListener('click',e=>{
+      const id=a.getAttribute('href').slice(1);
+      const target=document.getElementById(id);
+      if(!target)return;
+      e.preventDefault();
+      setActive(id,true);
+      const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+      history.replaceState(null,'','#'+id);
+    }));
+
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',()=>{
+      if(activeId){
+        const current=sections.find(x=>x.id===activeId);
+        if(current)requestAnimationFrame(()=>placeIndicator(current.a,false));
+      }
+      onScroll();
+    },{passive:true});
+    if('ResizeObserver' in window){
+      new ResizeObserver(()=>{
+        const current=sections.find(x=>x.id===activeId);
+        if(current)requestAnimationFrame(()=>placeIndicator(current.a,false));
+      }).observe(nav);
+    }
+
+    const hash=(location.hash||'').slice(1);
+    const initial=sections.some(x=>x.id===hash)?hash:sections[0].id;
+    setActive(initial,false);
+    requestAnimationFrame(updateFromScroll);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
+</script>
+<script src="aj-responsive-stability.js?v=3" defer></script>
+<script defer src="aj-whatsapp.js?v=1"></script>
 </body></html>

@@ -257,7 +257,7 @@
   }
 }
 
-/* v2 — mobile Termine & Preise: show the COMPLETE five-column table
+/* v2 — mobile Termine & Preise: show the COMPLETE six-column table
    inside the phone viewport (no horizontal scrolling). */
 @media (max-width:768px){
   /* Use almost the full phone width only for the dates section. */
@@ -267,7 +267,7 @@
     overflow:visible!important;
   }
 
-  /* The enhancement script already creates the real five-column header.
+  /* The enhancement script already creates the real six-column header.
      Hide the old temporary four-column mobile header. */
   #termine .date-table-head{display:none!important}
 
@@ -286,7 +286,7 @@
   #termine .aj-date-head,
   #termine .date-row.aj-date-row{
     display:grid!important;
-    grid-template-columns:minmax(0,1.55fr) minmax(0,.72fr) minmax(0,.64fr) minmax(0,1.24fr) minmax(0,1.18fr)!important;
+    grid-template-columns:minmax(0,1.34fr) minmax(0,.78fr) minmax(0,.66fr) minmax(0,.58fr) minmax(0,1.12fr) minmax(0,1.08fr)!important;
     gap:3px!important;
     align-items:center!important;
     width:100%!important;
@@ -338,6 +338,26 @@
     font-size:clamp(8.5px,2.55vw,10.5px)!important;
     line-height:1.2!important;
   }
+  #termine .date-row.aj-date-row > .booking-code,
+  #termine .date-row.aj-date-row > strong:nth-of-type(3),
+  #termine .date-row.aj-date-row > strong:nth-of-type(4){
+    display:block!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    color:#183c5a!important;
+    text-align:center!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    font-size:clamp(7.6px,2.25vw,9.3px)!important;
+    line-height:1.18!important;
+    font-weight:800!important;
+    font-variant-numeric:tabular-nums!important;
+  }
   #termine .date-row.aj-date-row .availability{
     display:flex!important;
     align-items:flex-start!important;
@@ -380,7 +400,7 @@
   #termine .container{width:calc(100% - 6px)!important}
   #termine .aj-date-head,
   #termine .date-row.aj-date-row{
-    grid-template-columns:minmax(0,1.52fr) minmax(0,.69fr) minmax(0,.61fr) minmax(0,1.19fr) minmax(0,1.15fr)!important;
+    grid-template-columns:minmax(0,1.31fr) minmax(0,.75fr) minmax(0,.63fr) minmax(0,.56fr) minmax(0,1.08fr) minmax(0,1.05fr)!important;
     gap:2px!important;
   }
   #termine .aj-date-head{padding-left:5px!important;padding-right:5px!important}
@@ -654,3 +674,7 @@
     z-index:3;
   }
 }
+
+/* v12: the unified section bar below the image gallery replaces the older
+   mobile-only word strip inside the hero. */
+.trip-word-strip{display:none!important}

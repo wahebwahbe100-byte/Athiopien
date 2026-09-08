@@ -470,3 +470,795 @@ body.top-strip-collapsed .site-top{transform:none!important;max-height:none!impo
 .aj-available-only{display:inline-flex;align-items:center;gap:8px;padding:8px 11px;border:1px solid rgba(24,60,90,.14);border-radius:999px;background:#fff;color:#183c5a;font:800 .76rem 'Manrope',sans-serif;cursor:pointer}
 .aj-available-only input{accent-color:#183c5a}
 @media(max-width:680px){.aj-available-only{width:100%;justify-content:center;border-radius:12px}}
+
+/* =========================================================
+   Trip media navigation v12 — section bar directly below photos
+   ========================================================= */
+.aj-trip-subnav.aj-trip-media-nav{
+  display:block!important;
+  position:sticky!important;
+  top:var(--aj-main-nav-height,80px)!important;
+  z-index:255!important;
+  margin:0!important;
+  border:0!important;
+  border-top:1px solid rgba(242,207,116,.28)!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  background:linear-gradient(135deg,rgba(8,34,54,.985),rgba(14,53,81,.975))!important;
+  box-shadow:0 12px 30px rgba(6,28,46,.18)!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+}
+.aj-trip-media-nav .aj-trip-subnav-inner{
+  width:min(calc(100% - 40px),1240px)!important;
+  min-height:72px!important;
+  margin:0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:24px!important;
+}
+.aj-trip-media-nav .aj-trip-subnav-title{
+  flex:0 0 auto;
+  min-width:160px;
+  padding-right:22px;
+  border-right:1px solid rgba(255,255,255,.13);
+  line-height:1.15;
+}
+.aj-trip-media-nav .aj-trip-subnav-title span{
+  display:block;
+  margin-bottom:5px;
+  color:#f2cf74;
+  font:800 .66rem/1 'Manrope',Arial,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+}
+.aj-trip-media-nav .aj-trip-subnav-title strong{
+  display:block;
+  max-width:210px;
+  overflow:hidden;
+  color:#fff;
+  font:800 .82rem/1.25 'Manrope',Arial,sans-serif;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.aj-trip-media-nav .aj-trip-subnav-links{
+  flex:1 1 auto!important;
+  display:flex!important;
+  align-items:stretch!important;
+  justify-content:flex-end!important;
+  gap:6px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:8px 0!important;
+  scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch;
+}
+.aj-trip-media-nav .aj-trip-subnav-links::-webkit-scrollbar{display:none!important}
+.aj-trip-media-nav .aj-trip-subnav-links a{
+  position:relative;
+  flex:0 0 auto;
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  min-height:48px;
+  padding:10px 13px!important;
+  border:1px solid transparent!important;
+  border-radius:13px!important;
+  color:#e8f0f5!important;
+  background:transparent!important;
+  font:800 .76rem/1.18 'Manrope',Arial,sans-serif!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease!important;
+}
+.aj-trip-media-nav .aj-trip-subnav-links a:hover{
+  transform:translateY(-1px);
+  color:#fff!important;
+  background:rgba(255,255,255,.08)!important;
+  border-color:rgba(255,255,255,.12)!important;
+}
+.aj-trip-media-nav .aj-trip-subnav-links a.is-active{
+  color:#0d2d46!important;
+  background:linear-gradient(135deg,#f4d77f,#e9bd55)!important;
+  border-color:#f2cf74!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.16)!important;
+}
+.aj-trip-media-nav .aj-trip-nav-index{
+  display:grid;
+  place-items:center;
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  border-radius:8px;
+  background:rgba(255,255,255,.10);
+  color:#f2cf74;
+  font-size:.62rem;
+  letter-spacing:.04em;
+}
+.aj-trip-media-nav a.is-active .aj-trip-nav-index{
+  background:rgba(13,45,70,.12);
+  color:#0d2d46;
+}
+#ueberblick,#termine,#verlauf,#leistungen,#hinweise{
+  scroll-margin-top:calc(var(--aj-main-nav-height,80px) + 86px)!important;
+}
+@media(max-width:980px){
+  .aj-trip-media-nav .aj-trip-subnav-inner{width:min(calc(100% - 24px),1240px)!important;gap:12px!important}
+  .aj-trip-media-nav .aj-trip-subnav-title{display:none!important}
+  .aj-trip-media-nav .aj-trip-subnav-links{justify-content:flex-start!important}
+}
+@media(max-width:768px){
+  .aj-trip-subnav.aj-trip-media-nav{
+    top:76px!important;
+    box-shadow:0 10px 24px rgba(6,28,46,.20)!important;
+  }
+  .aj-trip-media-nav .aj-trip-subnav-inner{
+    width:100%!important;
+    min-height:58px!important;
+  }
+  .aj-trip-media-nav .aj-trip-subnav-links{
+    width:100%!important;
+    padding:7px 10px!important;
+    gap:5px!important;
+  }
+  .aj-trip-media-nav .aj-trip-subnav-links a{
+    min-height:43px!important;
+    padding:8px 11px!important;
+    border-radius:11px!important;
+    font-size:.71rem!important;
+  }
+  .aj-trip-media-nav .aj-trip-nav-index{
+    width:22px;height:22px;flex-basis:22px;border-radius:7px;font-size:.58rem;
+  }
+  #ueberblick,#termine,#verlauf,#leistungen,#hinweise{
+    scroll-margin-top:146px!important;
+  }
+}
+
+/* =========================================================
+   Trip navigation v13 — main destinations + clean section bar
+   Scroll down: section bar only. Scroll up: full header returns.
+   ========================================================= */
+.aj-trip-subnav.aj-trip-media-nav{
+  top:var(--aj-main-nav-height,80px)!important;
+  overflow:hidden!important;
+  background:#0b2d47!important;
+  box-shadow:0 12px 30px rgba(6,28,46,.17)!important;
+  transition:top .28s ease,box-shadow .28s ease!important;
+}
+.aj-trip-media-nav .aj-trip-site-row,
+.aj-trip-media-nav .aj-trip-section-row{
+  width:100%!important;
+  margin:0!important;
+}
+.aj-trip-media-nav .aj-trip-site-row{
+  max-height:56px;
+  opacity:1;
+  overflow:hidden;
+  background:linear-gradient(180deg,#123d5d,#0f3552);
+  border-bottom:1px solid rgba(255,255,255,.10);
+  transition:max-height .28s ease,opacity .2s ease,border-color .2s ease!important;
+}
+.aj-trip-media-nav .aj-trip-site-links,
+.aj-trip-media-nav .aj-trip-subnav-links{
+  width:min(calc(100% - 40px),1240px)!important;
+  margin:0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch;
+}
+.aj-trip-media-nav .aj-trip-site-links::-webkit-scrollbar,
+.aj-trip-media-nav .aj-trip-subnav-links::-webkit-scrollbar{display:none!important}
+.aj-trip-media-nav .aj-trip-site-links{
+  min-height:54px;
+  justify-content:center!important;
+  gap:4px!important;
+  padding:5px 0!important;
+}
+.aj-trip-media-nav .aj-trip-site-links a{
+  position:relative;
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  min-height:42px;
+  padding:8px 16px;
+  border-radius:11px;
+  color:#eef5f9!important;
+  font:800 .78rem/1.15 'Manrope',Arial,sans-serif!important;
+  text-decoration:none!important;
+  white-space:nowrap;
+  transition:background .2s ease,color .2s ease!important;
+}
+.aj-trip-media-nav .aj-trip-site-links a:hover{
+  color:#f5d986!important;
+  background:rgba(255,255,255,.07)!important;
+}
+.aj-trip-media-nav .aj-trip-section-row{
+  background:linear-gradient(135deg,rgba(8,34,54,.99),rgba(14,53,81,.985));
+}
+.aj-trip-media-nav .aj-trip-subnav-links{
+  min-height:64px!important;
+  justify-content:center!important;
+  gap:7px!important;
+  padding:7px 0!important;
+}
+.aj-trip-media-nav .aj-trip-subnav-links a{
+  min-height:46px!important;
+  padding:10px 16px!important;
+  gap:0!important;
+  border-radius:12px!important;
+  font-size:.78rem!important;
+}
+.aj-trip-media-nav .aj-trip-nav-index{display:none!important}
+.aj-trip-media-nav.is-compact,
+body.aj-trip-compact-header .aj-trip-subnav.aj-trip-media-nav{
+  top:0!important;
+  z-index:500!important;
+  box-shadow:0 10px 26px rgba(5,25,42,.28)!important;
+}
+.aj-trip-media-nav.is-compact .aj-trip-site-row{
+  max-height:0!important;
+  opacity:0!important;
+  border-bottom-color:transparent!important;
+}
+body.aj-trip-compact-header .site-nav{
+  transform:translateY(calc(-100% - 8px))!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  transition:transform .28s ease,opacity .2s ease!important;
+}
+body:not(.aj-trip-compact-header) .site-nav{
+  transform:translateY(0)!important;
+  opacity:1!important;
+  transition:transform .28s ease,opacity .2s ease!important;
+}
+#ueberblick,#termine,#verlauf,#leistungen,#hinweise{
+  scroll-margin-top:154px!important;
+}
+body.aj-trip-compact-header #ueberblick,
+body.aj-trip-compact-header #termine,
+body.aj-trip-compact-header #verlauf,
+body.aj-trip-compact-header #leistungen,
+body.aj-trip-compact-header #hinweise{
+  scroll-margin-top:76px!important;
+}
+@media(max-width:980px){
+  .aj-trip-media-nav .aj-trip-site-links,
+  .aj-trip-media-nav .aj-trip-subnav-links{
+    width:100%!important;
+    justify-content:flex-start!important;
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+  .aj-trip-media-nav .aj-trip-site-links a{padding-left:13px;padding-right:13px}
+}
+@media(max-width:768px){
+  .aj-trip-subnav.aj-trip-media-nav{top:72px!important}
+  .aj-trip-media-nav .aj-trip-site-row{max-height:50px}
+  .aj-trip-media-nav .aj-trip-site-links{min-height:49px;padding-top:4px!important;padding-bottom:4px!important}
+  .aj-trip-media-nav .aj-trip-site-links a{min-height:39px;padding:7px 12px;font-size:.72rem!important}
+  .aj-trip-media-nav .aj-trip-subnav-links{min-height:56px!important;padding-top:6px!important;padding-bottom:6px!important}
+  .aj-trip-media-nav .aj-trip-subnav-links a{min-height:42px!important;padding:8px 12px!important;font-size:.71rem!important}
+  .aj-trip-media-nav.is-compact,
+  body.aj-trip-compact-header .aj-trip-subnav.aj-trip-media-nav{top:0!important}
+  #ueberblick,#termine,#verlauf,#leistungen,#hinweise{scroll-margin-top:136px!important}
+  body.aj-trip-compact-header #ueberblick,
+  body.aj-trip-compact-header #termine,
+  body.aj-trip-compact-header #verlauf,
+  body.aj-trip-compact-header #leistungen,
+  body.aj-trip-compact-header #hinweise{scroll-margin-top:66px!important}
+}
+
+
+/* =========================================================
+   Trip navigation v14 — no middle destination row + home button
+   Global red Harar promo remains on index.html only.
+   ========================================================= */
+body.aj-no-global-promo .site-top .promo-top-container,
+body.aj-no-global-promo .site-top .promo-banner{display:none!important}
+body.aj-no-global-promo .site-top:empty{display:none!important}
+
+.aj-trip-media-nav .aj-trip-site-row{display:none!important}
+.aj-trip-media-nav .aj-trip-section-row{
+  background:linear-gradient(135deg,rgba(8,34,54,.99),rgba(14,53,81,.985))!important;
+}
+.aj-trip-media-nav .aj-trip-section-inner{
+  width:min(calc(100% - 40px),1240px)!important;
+  min-height:64px!important;
+  margin:0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+}
+.aj-trip-media-nav .aj-trip-home-link{
+  flex:0 0 auto!important;
+  min-height:42px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  padding:9px 13px!important;
+  border:1px solid rgba(244,215,127,.50)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.06)!important;
+  color:#f4d77f!important;
+  font:800 .76rem/1.1 'Manrope',Arial,sans-serif!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  transition:background .2s ease,border-color .2s ease,color .2s ease!important;
+}
+.aj-trip-media-nav .aj-trip-home-link:hover{
+  background:#f4d77f!important;
+  border-color:#f4d77f!important;
+  color:#0d2d46!important;
+}
+.aj-trip-media-nav .aj-trip-home-link>span:first-child{
+  font-size:1rem!important;
+  line-height:1!important;
+}
+.aj-trip-media-nav .aj-trip-section-inner .aj-trip-subnav-links{
+  width:auto!important;
+  min-width:0!important;
+  margin:0!important;
+  flex:1 1 auto!important;
+  justify-content:center!important;
+  padding:7px 0!important;
+}
+/* With one row only, normal section anchors need less top offset. */
+#ueberblick,#termine,#verlauf,#leistungen,#hinweise{scroll-margin-top:86px!important}
+body:not(.aj-trip-compact-header) #ueberblick,
+body:not(.aj-trip-compact-header) #termine,
+body:not(.aj-trip-compact-header) #verlauf,
+body:not(.aj-trip-compact-header) #leistungen,
+body:not(.aj-trip-compact-header) #hinweise{scroll-margin-top:calc(var(--aj-main-nav-height,80px) + 76px)!important}
+@media(max-width:980px){
+  .aj-trip-media-nav .aj-trip-section-inner{
+    width:100%!important;
+    padding:0 12px!important;
+    gap:8px!important;
+  }
+  .aj-trip-media-nav .aj-trip-section-inner .aj-trip-subnav-links{justify-content:flex-start!important}
+}
+@media(max-width:768px){
+  .aj-trip-media-nav .aj-trip-section-inner{
+    min-height:56px!important;
+    padding:0 8px!important;
+    gap:5px!important;
+  }
+  .aj-trip-media-nav .aj-trip-home-link{
+    min-height:42px!important;
+    padding:8px 10px!important;
+    border-radius:11px!important;
+    font-size:.70rem!important;
+  }
+  .aj-trip-media-nav .aj-trip-home-link>span:last-child{display:none!important}
+  .aj-trip-media-nav .aj-trip-home-link>span:first-child{font-size:1.15rem!important}
+  .aj-trip-media-nav .aj-trip-section-inner .aj-trip-subnav-links{
+    min-height:56px!important;
+    padding:6px 0!important;
+  }
+  #ueberblick,#termine,#verlauf,#leistungen,#hinweise{scroll-margin-top:66px!important}
+  body:not(.aj-trip-compact-header) #ueberblick,
+  body:not(.aj-trip-compact-header) #termine,
+  body:not(.aj-trip-compact-header) #verlauf,
+  body:not(.aj-trip-compact-header) #leistungen,
+  body:not(.aj-trip-compact-header) #hinweise{scroll-margin-top:136px!important}
+}
+/* Non-home pages intentionally have no promotional top strip. */
+body.aj-no-global-promo .site-top{display:none!important}
+
+/* =========================================================
+   Trip navigation v15 — clean website header + neutral mini bar
+   Main header: Äthiopien / Reiseangebote / Individualreisen /
+   Reisebausteine / Reisetipps / Info.
+   Section bar: small, white/neutral, rounded and sticky.
+   ========================================================= */
+
+/* Exact six links requested for trip-detail pages. */
+.site-nav .navlinks.aj-trip-main-links{
+  gap:clamp(15px,2vw,28px)!important;
+}
+.site-nav .navlinks.aj-trip-main-links>a{
+  white-space:nowrap!important;
+}
+
+/* Remove every older colored treatment from the lower trip bar. */
+.aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav{
+  top:var(--aj-main-nav-height,80px)!important;
+  z-index:290!important;
+  overflow:visible!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  border:0!important;
+  transition:top .28s ease,transform .28s ease!important;
+}
+.aj-trip-neutral-nav .aj-trip-section-row{
+  background:rgba(255,255,255,.97)!important;
+  border-top:1px solid rgba(25,55,76,.09)!important;
+  border-bottom:1px solid rgba(25,55,76,.12)!important;
+  box-shadow:0 5px 14px rgba(15,42,61,.055)!important;
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
+}
+.aj-trip-neutral-nav .aj-trip-section-inner{
+  width:min(calc(100% - 40px),1240px)!important;
+  min-height:50px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.aj-trip-neutral-nav .aj-trip-subnav-links{
+  width:auto!important;
+  min-width:0!important;
+  min-height:50px!important;
+  margin:0 auto!important;
+  padding:6px 0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.aj-trip-neutral-nav .aj-trip-subnav-links::-webkit-scrollbar{display:none!important}
+.aj-trip-neutral-nav .aj-trip-subnav-links a{
+  min-height:34px!important;
+  padding:6px 11px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid rgba(22,58,82,.18)!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#24475f!important;
+  box-shadow:none!important;
+  transform:none!important;
+  font:800 .71rem/1.1 'Manrope',Arial,sans-serif!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+  transition:border-color .18s ease,color .18s ease,background .18s ease!important;
+}
+.aj-trip-neutral-nav .aj-trip-subnav-links a:hover{
+  background:rgba(20,58,84,.035)!important;
+  border-color:rgba(22,58,82,.32)!important;
+  color:#0d2d46!important;
+  transform:none!important;
+}
+.aj-trip-neutral-nav .aj-trip-subnav-links a.is-active{
+  background:transparent!important;
+  border-color:#c99d3f!important;
+  color:#9a6f17!important;
+  box-shadow:none!important;
+}
+.aj-trip-neutral-nav .aj-trip-nav-index,
+.aj-trip-neutral-nav .aj-trip-home-link,
+.aj-trip-neutral-nav .aj-trip-site-row{display:none!important}
+
+/* Down = upper website header folds away; the mini trip bar alone sits at top. */
+.aj-trip-neutral-nav.is-compact,
+body.aj-trip-compact-header .aj-trip-subnav.aj-trip-neutral-nav{
+  top:0!important;
+  z-index:700!important;
+}
+body.aj-trip-compact-header .site-nav{
+  transform:translateY(calc(-100% - 10px))!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transition:transform .28s ease,opacity .2s ease,visibility 0s linear .28s!important;
+}
+body:not(.aj-trip-compact-header) .site-nav{
+  transform:translateY(0)!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transition:transform .28s ease,opacity .2s ease!important;
+}
+
+/* Correct anchor offsets for the slimmer lower bar. */
+#ueberblick,#termine,#verlauf,#leistungen,#hinweise{
+  scroll-margin-top:calc(var(--aj-main-nav-height,80px) + 58px)!important;
+}
+body.aj-trip-compact-header #ueberblick,
+body.aj-trip-compact-header #termine,
+body.aj-trip-compact-header #verlauf,
+body.aj-trip-compact-header #leistungen,
+body.aj-trip-compact-header #hinweise{
+  scroll-margin-top:58px!important;
+}
+
+@media(max-width:980px){
+  .aj-trip-neutral-nav .aj-trip-section-inner{
+    width:100%!important;
+    padding:0 10px!important;
+  }
+  .aj-trip-neutral-nav .aj-trip-subnav-links{
+    width:100%!important;
+    justify-content:flex-start!important;
+  }
+}
+@media(max-width:768px){
+  .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav{
+    top:76px!important;
+  }
+  .aj-trip-neutral-nav .aj-trip-section-inner,
+  .aj-trip-neutral-nav .aj-trip-subnav-links{
+    min-height:46px!important;
+  }
+  .aj-trip-neutral-nav .aj-trip-section-inner{padding:0 7px!important}
+  .aj-trip-neutral-nav .aj-trip-subnav-links{
+    padding:5px 0!important;
+    gap:5px!important;
+  }
+  .aj-trip-neutral-nav .aj-trip-subnav-links a{
+    min-height:32px!important;
+    padding:6px 10px!important;
+    font-size:.68rem!important;
+  }
+  .aj-trip-neutral-nav.is-compact,
+  body.aj-trip-compact-header .aj-trip-subnav.aj-trip-neutral-nav{top:0!important}
+  #ueberblick,#termine,#verlauf,#leistungen,#hinweise{
+    scroll-margin-top:126px!important;
+  }
+  body.aj-trip-compact-header #ueberblick,
+  body.aj-trip-compact-header #termine,
+  body.aj-trip-compact-header #verlauf,
+  body.aj-trip-compact-header #leistungen,
+  body.aj-trip-compact-header #hinweise{
+    scroll-margin-top:52px!important;
+  }
+}
+
+/* =========================================================
+   Trip navigation v16 — restored dark section bar + fixed fold-away header
+   ========================================================= */
+
+/* The main six-link website navigation is truly fixed to the top on trip pages. */
+body.aj-trip-detail-page .site-nav{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  z-index:800!important;
+  transform:translateY(0);
+  will-change:transform,opacity;
+}
+body.aj-trip-detail-page [data-shell="header"]{
+  height:var(--aj-main-nav-height,80px)!important;
+}
+
+/* Restore the previous dark-blue background for the trip section navigation. */
+body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav{
+  top:var(--aj-main-nav-height,80px)!important;
+  z-index:790!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  border:0!important;
+}
+body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-section-row{
+  background:linear-gradient(135deg,rgba(8,34,54,.99),rgba(14,53,81,.985))!important;
+  border-top:1px solid rgba(255,255,255,.08)!important;
+  border-bottom:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 9px 24px rgba(5,25,42,.18)!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+}
+body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-section-inner,
+body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links{
+  min-height:58px!important;
+}
+body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links{
+  padding:6px 0!important;
+  gap:7px!important;
+}
+body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links a{
+  min-height:40px!important;
+  padding:8px 14px!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.045)!important;
+  color:#f5f8fb!important;
+  font-size:.75rem!important;
+  box-shadow:none!important;
+}
+body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links a:hover{
+  background:rgba(255,255,255,.10)!important;
+  border-color:rgba(242,207,116,.48)!important;
+  color:#f2cf74!important;
+}
+body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links a.is-active{
+  background:rgba(242,207,116,.12)!important;
+  border-color:#f2cf74!important;
+  color:#f2cf74!important;
+}
+
+/* Down: only the section bar remains at the very top. Up: the full main header returns. */
+body.aj-trip-detail-page.aj-trip-compact-header .site-nav{
+  transform:translateY(calc(-100% - 12px))!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+body.aj-trip-detail-page:not(.aj-trip-compact-header) .site-nav{
+  transform:translateY(0)!important;
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+}
+body.aj-trip-detail-page .aj-trip-neutral-nav.is-compact,
+body.aj-trip-detail-page.aj-trip-compact-header .aj-trip-subnav.aj-trip-neutral-nav{
+  top:0!important;
+  z-index:810!important;
+}
+
+/* Slightly larger trip photo mosaics across the trip pages. */
+body.aj-trip-detail-page .trip-photo-gallery:not(.aj-trip-gallery-has-video) .trip-photo-grid{
+  height:clamp(345px,25.5vw,490px)!important;
+}
+/* Harar's image + video stage was already larger; give it a modest increase too. */
+body.aj-trip-detail-page .trip-photo-gallery.aj-trip-gallery-has-video .trip-photo-grid{
+  height:clamp(395px,37vw,640px)!important;
+}
+
+#ueberblick,#termine,#verlauf,#leistungen,#hinweise{
+  scroll-margin-top:calc(var(--aj-main-nav-height,80px) + 66px)!important;
+}
+body.aj-trip-compact-header #ueberblick,
+body.aj-trip-compact-header #termine,
+body.aj-trip-compact-header #verlauf,
+body.aj-trip-compact-header #leistungen,
+body.aj-trip-compact-header #hinweise{
+  scroll-margin-top:66px!important;
+}
+
+@media(max-width:1000px){
+  body.aj-trip-detail-page .trip-photo-gallery:not(.aj-trip-gallery-has-video) .trip-photo-grid{
+    height:clamp(360px,48vw,500px)!important;
+  }
+  body.aj-trip-detail-page .trip-photo-gallery.aj-trip-gallery-has-video .trip-photo-grid{
+    height:clamp(390px,53vw,575px)!important;
+  }
+}
+@media(max-width:768px){
+  body.aj-trip-detail-page [data-shell="header"]{height:76px!important}
+  body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav{top:76px!important}
+  body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-section-inner,
+  body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links{min-height:52px!important}
+  body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links{gap:5px!important;padding:5px 0!important}
+  body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links a{
+    min-height:36px!important;
+    padding:7px 11px!important;
+    font-size:.70rem!important;
+  }
+  body.aj-trip-detail-page .aj-trip-neutral-nav.is-compact,
+  body.aj-trip-detail-page.aj-trip-compact-header .aj-trip-subnav.aj-trip-neutral-nav{top:0!important}
+  body.aj-trip-detail-page .trip-photo-gallery:not(.aj-trip-gallery-has-video) .trip-photo-grid{
+    height:clamp(340px,66vw,440px)!important;
+  }
+  /* Keep Harar's useful two-row mobile layout, only make the video row a little taller. */
+  body.aj-trip-detail-page .trip-photo-gallery.aj-trip-gallery-has-video .trip-photo-grid{
+    height:auto!important;
+    grid-template-rows:min(64vw,390px) min(44vw,245px)!important;
+  }
+  #ueberblick,#termine,#verlauf,#leistungen,#hinweise{scroll-margin-top:136px!important}
+  body.aj-trip-compact-header #ueberblick,
+  body.aj-trip-compact-header #termine,
+  body.aj-trip-compact-header #verlauf,
+  body.aj-trip-compact-header #leistungen,
+  body.aj-trip-compact-header #hinweise{scroll-margin-top:60px!important}
+}
+
+/* =========================================================
+   Trip scroll stability v17 + slightly smaller desktop media
+   ========================================================= */
+/* Keep vertical page scrolling natural when a gesture starts on the
+   horizontally scrollable trip section bar (especially iOS/iPadOS Safari). */
+body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links{
+  touch-action:pan-x pan-y!important;
+  overscroll-behavior-x:contain;
+  overscroll-behavior-y:auto;
+}
+@supports (-webkit-touch-callout:none){
+  body.aj-trip-detail-page .aj-trip-neutral-nav .aj-trip-subnav-links{
+    -webkit-overflow-scrolling:auto!important;
+  }
+}
+
+/* Desktop only: reduce photos/video by roughly 10–12%; tablet/mobile stay unchanged. */
+@media (min-width:1001px){
+  body.aj-trip-detail-page .trip-photo-gallery:not(.aj-trip-gallery-has-video) .trip-photo-grid{
+    height:clamp(310px,23vw,440px)!important;
+  }
+  body.aj-trip-detail-page .trip-photo-gallery.aj-trip-gallery-has-video .trip-photo-grid{
+    height:clamp(355px,33vw,560px)!important;
+  }
+}
+
+/* =========================================================
+   Trip media + sticky section bar v18
+   - Desktop: shorten the complete photo/video stage from the bottom
+     while keeping width, outer edges and rounded corners unchanged.
+   - Restore a robust sticky trip section bar while scrolling down.
+   ========================================================= */
+
+/* Keep the requested trip section bar sticky exactly below the website
+   header, then at the very top while the website header is folded away. */
+body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav{
+  position:-webkit-sticky!important;
+  position:sticky!important;
+  top:var(--aj-main-nav-height,80px)!important;
+  width:100%!important;
+  z-index:790!important;
+}
+body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav.is-compact,
+body.aj-trip-detail-page.aj-trip-compact-header .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav{
+  top:0!important;
+  z-index:810!important;
+}
+
+/* Desktop only: preserve the gallery's full width/edges and shorten its
+   height. Media is anchored toward the top, so the reduction happens from
+   the lower edge instead of squeezing/distorting the content. */
+@media (min-width:1001px){
+  body.aj-trip-detail-page .trip-photo-gallery:not(.aj-trip-gallery-has-video) .trip-photo-grid{
+    height:clamp(285px,21vw,400px)!important;
+  }
+  body.aj-trip-detail-page .trip-photo-gallery.aj-trip-gallery-has-video .trip-photo-grid{
+    height:clamp(315px,29vw,490px)!important;
+  }
+  body.aj-trip-detail-page .trip-photo-gallery .trip-photo-cell img,
+  body.aj-trip-detail-page .trip-photo-gallery .harar-media-side img,
+  body.aj-trip-detail-page .trip-photo-gallery .harar-video-stage video,
+  body.aj-trip-detail-page .trip-photo-gallery video{
+    object-position:center top!important;
+  }
+}
+
+/* =========================================================
+   Trip section bar v19 — true fixed-on-reach behavior
+   ========================================================= */
+body.aj-trip-detail-page .aj-trip-subnav-spacer{
+  display:block!important;
+  width:100%!important;
+  height:0;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+}
+/* In normal flow the bar remains directly below the gallery. */
+body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav:not(.is-stuck){
+  position:relative!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+}
+/* Once the bar reaches the top edge, pin it there reliably on every browser. */
+body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav.is-stuck{
+  position:fixed!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  top:var(--aj-main-nav-height,80px)!important;
+  z-index:810!important;
+}
+body.aj-trip-detail-page.aj-trip-compact-header .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav.is-stuck,
+body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav.is-stuck.is-compact{
+  top:0!important;
+}
+@media(max-width:768px){
+  body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav.is-stuck:not(.is-compact){
+    top:76px!important;
+  }
+  body.aj-trip-detail-page.aj-trip-compact-header .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav.is-stuck,
+  body.aj-trip-detail-page .aj-trip-subnav.aj-trip-media-nav.aj-trip-neutral-nav.is-stuck.is-compact{
+    top:0!important;
+  }
+}

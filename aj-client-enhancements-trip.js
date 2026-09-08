@@ -115,9 +115,15 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
   }
 
   function enhanceBanner(){
+    const page=((location.pathname||'').replace(/\\/g,'/').split('/').pop()||'index.html').toLowerCase();
+    const isHome=page==='index.html';
+    if(!isHome){
+      document.body.classList.add('aj-no-global-promo');
+      return;
+    }
     const banner=document.querySelector('.promo-banner');if(!banner||banner.dataset.ajEnhanced)return;
     banner.dataset.ajEnhanced='1';
-    /* A calm static travel notice replaces the former ticker-style promotion. */
+    /* The red Harar notice is intentionally shown on the homepage only. */
     banner.classList.remove('aj-changing');
     const inner=banner.querySelector('.promo-banner-inner');
     if(inner)inner.innerHTML=`<span class="promo-badge">Neu 2027</span><strong class="promo-title">Harar &amp; Ostäthiopien</strong><span class="promo-copy">3 Tage / 2 Nächte · ab 899 € p. P. im DZ · Inlandsflug inklusive</span><a class="promo-link" href="${tripPage('harar')}#termine">Termine ansehen <span aria-hidden="true">→</span></a>`;
@@ -428,31 +434,80 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
     return `<div class="aj-trip-details-card"><h3>Details Ihrer Reise</h3><dl class="aj-detail-list"><div class="aj-detail-row"><dt>Reiseart</dt><dd>${reiseart}<small>${t.category||''}</small></dd></div><div class="aj-detail-row"><dt>Teilnehmer</dt><dd>mind. ${min} Reisende<small>max. ${max} Reisende</small></dd></div><div class="aj-detail-row"><dt>Reiseleitung</dt><dd>${guidePrimary}<small>${guideGerman}</small><small>${guideAi}</small></dd></div><div class="aj-detail-row"><dt>Transport</dt><dd><span class="aj-transport-icons">${transport.map(x=>transportSvg(x)).join('')}</span></dd></div><div class="aj-detail-row"><dt>Unterbringung</dt><dd>${stay}</dd></div><div class="aj-detail-row"><dt>Buchungsnummer</dt><dd>${code}</dd></div></dl><div class="aj-detail-actions"><a class="btn forest aj-price-cta" href="${bookingHref(t,'book')}">ab ${money(t.price)} o. Flug<small> · m. Flug auf Anfrage</small></a><button class="aj-icon-btn" type="button" data-aj-current-fav="${t.id}" aria-label="Reise merken">${heartSvg}</button><button class="aj-icon-btn" type="button" data-aj-share aria-label="Reise teilen">${shareSvg}</button></div></div>`
   }
 
+  function normalizeTripMainNav(){
+    // Trip-detail pages use a clean six-link website navigation.
+    // Keep relative links so the package also works after moving to another computer/server.
+    const gallery=document.querySelector('#tripPhotoGallery')||document.querySelector('.trip-photo-gallery');
+    if(!gallery)return;
+    document.body.classList.add('aj-trip-detail-page');
+    gallery.classList.toggle('aj-trip-gallery-has-video',!!gallery.querySelector('.harar-video-stage, video'));
+    const navlinks=document.querySelector('.site-nav .navlinks');
+    if(!navlinks)return;
+    navlinks.classList.add('aj-trip-main-links');
+    const links=[
+      ['index.html','Äthiopien'],
+      ['reisen.html','Reiseangebote'],
+      ['individualreisen.html','Individualreisen'],
+      ['baukasten.html','Reisebausteine'],
+      ['reisetipps.html','Reisetipps'],
+      ['info.html','Info']
+    ];
+    navlinks.innerHTML=links.map(([href,label])=>`<a href="${rootPrefix}${href}"${href==='reisen.html'?' class="active"':''}>${label}</a>`).join('');
+  }
+
   function addTripSubnav(t){
-    // V11: trip section navigation lives inside the main header.
-    // No separate third bar is created on trip detail pages.
+    // Small, neutral trip-section navigation directly below the media gallery.
+    // When the user scrolls down past this point, the large website header folds away
+    // and this compact section bar moves to the top. Scrolling upward restores the header.
     document.querySelectorAll('.aj-trip-subnav').forEach(el=>el.remove());
-    const mainNav=document.querySelector('.site-nav');
-    const linksHost=mainNav?.querySelector('.navlinks');
-    if(!mainNav||!linksHost)return;
+    document.body.classList.remove('aj-trip-compact-header');
 
-    linksHost.classList.add('aj-trip-main-links');
-    linksHost.setAttribute('aria-label','Reisenavigation');
-    linksHost.innerHTML=`<a href="#ueberblick">Überblick</a><a href="#termine">Termine / Preise</a><a href="#verlauf">Reiseablauf / Karte</a><a href="#leistungen">Leistungen</a><a href="#hinweise">Hinweise</a>`;
+    const gallery=document.querySelector('#tripPhotoGallery')||document.querySelector('.trip-photo-gallery');
+    if(!gallery)return;
 
-    const links=[...linksHost.querySelectorAll('a[href^="#"]')];
-    const menuBtn=mainNav.querySelector('.menuBtn');
+    const items=[
+      {id:'ueberblick',label:'Überblick'},
+      {id:'termine',label:'Termine / Preise'},
+      {id:'verlauf',label:'Reiseablauf / Karte'},
+      {id:'leistungen',label:'Leistungen'},
+      {id:'hinweise',label:'Hinweise'}
+    ].filter(item=>document.getElementById(item.id));
+    if(!items.length)return;
+
+    const nav=document.createElement('nav');
+    nav.className='aj-trip-subnav aj-trip-media-nav aj-trip-neutral-nav';
+    nav.setAttribute('aria-label','Reisenavigation');
+    nav.innerHTML=`<div class="aj-trip-section-row"><div class="aj-trip-section-inner"><div class="aj-trip-subnav-links">${items.map((item,i)=>`<a href="#${item.id}"${i===0?' class="is-active"':''}>${item.label}</a>`).join('')}</div></div></div>`;
+    gallery.insertAdjacentElement('afterend',nav);
+    // Reserve the bar's original space only while it is fixed. This prevents
+    // a layout jump when the section navigation reaches the top of the screen.
+    const navSpacer=document.createElement('div');
+    navSpacer.className='aj-trip-subnav-spacer';
+    nav.insertAdjacentElement('afterend',navSpacer);
+
+    const links=[...nav.querySelectorAll('.aj-trip-subnav-links a[href^="#"]')];
+    const linksHost=nav.querySelector('.aj-trip-subnav-links');
+    const prefersReduced=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+    const centerLinkHorizontally=a=>{
+      if(!linksHost||!a)return;
+      const max=Math.max(0,linksHost.scrollWidth-linksHost.clientWidth);
+      const left=Math.max(0,Math.min(max,a.offsetLeft-(linksHost.clientWidth-a.offsetWidth)/2));
+      if(typeof linksHost.scrollTo==='function') linksHost.scrollTo({left,behavior:prefersReduced?'auto':'smooth'});
+      else linksHost.scrollLeft=left;
+    };
+    const scrollToSection=target=>{
+      const mainH=document.body.classList.contains('aj-trip-compact-header')?0:Math.max(0,document.querySelector('.site-nav')?.getBoundingClientRect().height||0);
+      const subH=Math.max(0,nav.getBoundingClientRect().height||0);
+      const top=Math.max(0,target.getBoundingClientRect().top+(window.scrollY||0)-mainH-subH-8);
+      window.scrollTo({top,behavior:prefersReduced?'auto':'smooth'});
+    };
     links.forEach(a=>a.addEventListener('click',e=>{
       const hash=a.getAttribute('href');
       const target=document.querySelector(hash);
       if(!target)return;
       e.preventDefault();
-      e.stopPropagation();
-      target.scrollIntoView({behavior:'smooth',block:'start'});
+      scrollToSection(target);
       history.replaceState(null,'',`${location.pathname}${location.search}${hash}`);
-      linksHost.classList.remove('open');
-      menuBtn?.classList.remove('menu-open');
-      menuBtn?.setAttribute('aria-expanded','false');
     }));
 
     const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
@@ -460,10 +515,75 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
       const ob=new IntersectionObserver(entries=>{
         const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
         if(!visible)return;
-        links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+visible.target.id));
-      },{rootMargin:'-135px 0px -58% 0px',threshold:[0,.1,.35]});
+        links.forEach(a=>{
+          const active=a.getAttribute('href')==='#'+visible.target.id;
+          const changed=active&&!a.classList.contains('is-active');
+          a.classList.toggle('is-active',active);
+          /* Only move the horizontal subnav. Never call element.scrollIntoView here:
+             on iOS/iPadOS Safari it can also move the page vertically and cause jumps. */
+          if(changed)centerLinkHorizontally(a);
+        });
+      },{rootMargin:'-105px 0px -58% 0px',threshold:[0,.1,.35]});
       targets.forEach(x=>ob.observe(x));
     }
+
+    let lastY=Math.max(0,window.scrollY||0);
+    let anchorY=0;
+    let ticking=false;
+    let headerHidden=false;
+    let directionScore=0;
+    const measure=()=>{
+      // The navigation sits directly after the gallery in normal flow.
+      // Measure that natural document position, not its fixed position.
+      const wasStuck=nav.classList.contains('is-stuck');
+      if(wasStuck)nav.classList.remove('is-stuck');
+      navSpacer.style.height='0px';
+      anchorY=nav.getBoundingClientRect().top+(window.scrollY||0);
+      if(wasStuck)nav.classList.add('is-stuck');
+      updateScrollState(true);
+    };
+    const updateScrollState=(force=false)=>{
+      const y=Math.max(0,window.scrollY||0);
+      const headerH=Math.max(0,Math.round(document.querySelector('.site-nav')?.getBoundingClientRect().height||0));
+      const delta=y-lastY;
+
+      // Accumulate small wheel/touch deltas so the header reacts reliably even to slow scrolling.
+      if(delta>0){ directionScore=directionScore<0?delta:directionScore+delta; }
+      else if(delta<0){ directionScore=directionScore>0?delta:directionScore+delta; }
+
+      // Down folds the website header away; up restores it.
+      // At the page top it is always fully visible.
+      if(y<18){
+        headerHidden=false;
+        directionScore=0;
+      }else if(directionScore>=8){
+        headerHidden=true;
+        directionScore=0;
+      }else if(directionScore<=-8){
+        headerHidden=false;
+        directionScore=0;
+      }
+
+      // Fix the trip bar only when its natural top actually reaches the
+      // available top edge: viewport top when the website header is folded,
+      // or directly below the header when it is visible again.
+      const stickyTop=headerHidden?0:headerH;
+      const pastNav=(y+stickyTop)>=Math.max(0,anchorY-1);
+
+      nav.classList.toggle('is-stuck',pastNav);
+      nav.classList.toggle('is-compact',headerHidden);
+      document.body.classList.toggle('aj-trip-compact-header',headerHidden);
+      navSpacer.style.height=pastNav?`${Math.max(1,Math.round(nav.getBoundingClientRect().height||0))}px`:'0px';
+      if(force){
+        nav.classList.toggle('is-compact',headerHidden);
+        document.body.classList.toggle('aj-trip-compact-header',headerHidden);
+      }
+      lastY=y;
+      ticking=false;
+    };
+    requestAnimationFrame(()=>{anchorY=nav.getBoundingClientRect().top+(window.scrollY||0);updateScrollState(true)});
+    window.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(updateScrollState)}},{passive:true});
+    window.addEventListener('resize',()=>requestAnimationFrame(measure),{passive:true});
   }
 
   function enhanceTripMedia(t){const gallery=document.querySelector('#tripPhotoGallery');if(t?.id!=='harar'&&gallery&&!gallery.querySelector('.aj-trip-media-caption')){const cap=document.createElement('div');cap.className='aj-trip-media-caption';cap.textContent='Bilder & Video dieser Reise';gallery.appendChild(cap)}const video=t?.heroVideo||t?.video;if(video){const media=document.querySelector('.trip-hero-media');if(media)media.innerHTML=`<video src="${video}" poster="${t.image||''}" muted loop autoplay playsinline controls aria-label="Video: ${t.title||'Reise'}"></video>`}}
@@ -540,6 +660,25 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
     window.addEventListener('scroll',()=>requestAnimationFrame(()=>document.body.classList.remove('top-strip-collapsed')),{passive:true});
   }
 
-  function boot(){applyClientV8LateStyles();patchLanguageMenu();enhanceBanner();stabilizeHeader();setupWishlist();enhanceNavCategories();enhanceContact();enhanceBooking();enhanceTripDetail();sanitizeGroupListingCategories();normalizePricePresentation();setTimeout(()=>{patchLanguageMenu();enhanceNavCategories();setupWishlist();sanitizeGroupListingCategories();stabilizeHeader()},180)}
+  function stabilizeTripScrolling(){
+    const recover=()=>{
+      if(!document.body?.classList.contains('aj-trip-detail-page'))return;
+      const menuOpen=!!document.querySelector('.navlinks.open');
+      const wishlistOpen=!!document.querySelector('#aj-wishlist-overlay.is-open');
+      if(menuOpen||wishlistOpen)return;
+      /* Recover from a stale mobile-menu/modal body lock after Safari bfcache,
+         orientation changes, or interrupted menu transitions. */
+      document.body.classList.remove('menu-locked','aj-modal-open');
+      if(document.body.style?.overflow==='hidden')document.body.style.removeProperty('overflow');
+      if(document.documentElement.style?.overflow==='hidden')document.documentElement.style.removeProperty('overflow');
+    };
+    recover();
+    window.addEventListener('pageshow',recover,{passive:true});
+    window.addEventListener('orientationchange',()=>setTimeout(recover,90),{passive:true});
+    document.addEventListener('touchstart',recover,{passive:true,capture:true});
+    document.addEventListener('pointerdown',recover,{passive:true,capture:true});
+  }
+
+  function boot(){applyClientV8LateStyles();patchLanguageMenu();enhanceBanner();stabilizeHeader();normalizeTripMainNav();setupWishlist();enhanceNavCategories();enhanceContact();enhanceBooking();enhanceTripDetail();stabilizeTripScrolling();sanitizeGroupListingCategories();normalizePricePresentation();setTimeout(()=>{patchLanguageMenu();normalizeTripMainNav();enhanceNavCategories();setupWishlist();sanitizeGroupListingCategories();stabilizeHeader()},180)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();

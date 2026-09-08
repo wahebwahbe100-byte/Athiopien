@@ -1,0 +1,288 @@
+/* Abyssinia Journeys — DIAMIR-inspired itinerary + Google Maps interaction */
+.aj-route-enhanced .aj-route-original-head{display:none!important}
+.aj-route-diamir{margin:10px 0 44px;color:#173f32}
+.aj-route-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:0 0 24px;border-bottom:1px solid rgba(23,63,50,.13)}
+.aj-route-heading>div{max-width:760px}.aj-route-kicker{font:800 .69rem/1.2 Manrope,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#a45638;margin-bottom:8px}
+.aj-route-heading h2{margin:0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,3.4vw,3.15rem);line-height:1.04;color:#173f32}
+.aj-route-heading p{margin:10px 0 0;max-width:700px;color:#65766f;font:600 .92rem/1.6 Manrope,Arial,sans-serif}
+.aj-route-google-top{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(23,63,50,.18);border-radius:999px;padding:11px 15px;text-decoration:none!important;color:#173f32!important;background:#fff;font:800 .73rem Manrope,Arial,sans-serif;box-shadow:0 5px 18px rgba(23,63,50,.06);transition:.2s ease}
+.aj-route-google-top:hover{background:#173f32;color:#fff!important;transform:translateY(-1px)}.aj-route-google-top svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8}
+.aj-route-mobile-tabs{display:none}
+.aj-route-diamir-grid{display:grid;grid-template-columns:minmax(390px,.97fr) minmax(0,1.03fr);gap:42px;align-items:start;padding-top:28px;direction:ltr}
+.aj-route-map-col{grid-column:1;grid-row:1}.aj-route-days-col{grid-column:2;grid-row:1}
+html[dir="rtl"] .aj-route-map-col,html[dir="rtl"] .aj-route-days-col{direction:rtl}
+.aj-route-days-col{min-width:0}.aj-route-days-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:13px;padding:0 2px 11px;border-bottom:1px solid rgba(23,63,50,.10)}
+.aj-route-days-head strong{font:800 .82rem Manrope,Arial,sans-serif;text-transform:uppercase;letter-spacing:.11em;color:#173f32}.aj-route-days-head span{font:700 .7rem Manrope,Arial,sans-serif;color:#8a9892}
+.aj-route-diamir .day-list{display:block!important}
+.aj-route-diamir .day{position:relative;margin:0 0 13px!important;padding:20px 22px 20px 72px!important;border:1px solid rgba(23,63,50,.12)!important;border-radius:16px!important;background:#fff!important;box-shadow:none!important;cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease,background .2s ease;outline:none;overflow:visible!important}
+.aj-route-diamir .day:before{content:'';position:absolute;left:34px;top:48px;bottom:-28px;width:1px;background:#d6ddd9}
+.aj-route-diamir .day:last-child:before{display:none}.aj-route-diamir .day:after{content:'';position:absolute;left:27px;top:28px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid #a45638;box-shadow:0 0 0 5px #f7f2ec;transition:.2s ease}
+.aj-route-diamir .day:hover,.aj-route-diamir .day:focus-visible{border-color:rgba(164,86,56,.45)!important;box-shadow:0 10px 30px rgba(23,63,50,.08)!important;transform:translateY(-1px)}
+.aj-route-diamir .day.is-route-active{border-color:#a45638!important;background:linear-gradient(90deg,#fffaf5 0,#fff 44%)!important;box-shadow:0 11px 34px rgba(23,63,50,.09)!important}.aj-route-diamir .day.is-route-active:after{background:#a45638;box-shadow:0 0 0 6px rgba(164,86,56,.12)}
+.aj-route-diamir .daynum{display:inline-flex!important;align-items:center;min-height:24px;margin:0 0 5px!important;padding:4px 9px!important;border-radius:999px!important;background:#eef3f0!important;color:#315f4d!important;font:800 .65rem Manrope,Arial,sans-serif!important;letter-spacing:.08em;text-transform:uppercase}
+.aj-route-diamir .day h3{margin:3px 0 8px!important;color:#173f32!important;font-family:'Playfair Display',Georgia,serif!important;font-size:clamp(1.18rem,2vw,1.5rem)!important;line-height:1.18!important}.aj-route-diamir .day p{margin-bottom:0!important;line-height:1.65!important}
+.aj-route-diamir .day img{border-radius:12px!important;margin:13px 0 4px!important;max-height:260px;object-fit:cover}
+.aj-route-map-col{position:relative;min-width:0}.aj-route-map-card{position:sticky;top:92px;height:min(72vh,680px);min-height:540px;border-radius:18px;overflow:hidden;background:#e7ebe7;border:1px solid rgba(23,63,50,.15);box-shadow:0 18px 50px rgba(23,63,50,.13)}
+.aj-route-map{position:absolute;inset:0}.aj-route-map .gm-style{font-family:Manrope,Arial,sans-serif}.aj-route-map .gm-control-active,.aj-route-map button{font-family:Manrope,Arial,sans-serif}
+.aj-route-map-topline{position:absolute;z-index:5;left:15px;top:15px;display:flex;align-items:center;gap:8px;pointer-events:none}.aj-route-map-brand,.aj-route-overview{pointer-events:auto;display:inline-flex;align-items:center;gap:7px;height:37px;padding:0 11px;border:0;border-radius:10px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);box-shadow:0 7px 24px rgba(20,44,35,.16);color:#173f32;font:800 .69rem Manrope,Arial,sans-serif}.aj-route-map-brand svg{width:15px;height:15px;fill:none;stroke:#a45638;stroke-width:1.9}.aj-route-overview{cursor:pointer}.aj-route-overview:hover{background:#173f32;color:#fff}
+.aj-route-map-bottom{position:absolute;z-index:5;left:15px;right:15px;bottom:15px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 13px 13px 15px;border-radius:14px;background:rgba(23,63,50,.94);backdrop-filter:blur(14px);box-shadow:0 12px 34px rgba(13,36,28,.25);color:#fff}
+.aj-route-current{min-width:0}.aj-route-current small{display:block;margin-bottom:2px;color:#f2cf74;font:800 .62rem Manrope,Arial,sans-serif;text-transform:uppercase;letter-spacing:.08em}.aj-route-current strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:800 .9rem Manrope,Arial,sans-serif}.aj-route-current span{display:block;margin-top:2px;color:#c9d8d2;font:600 .68rem Manrope,Arial,sans-serif}
+.aj-route-play{flex:0 0 auto;height:40px;border:0;border-radius:10px;padding:0 12px;background:#fff;color:#173f32;display:inline-flex;align-items:center;gap:7px;cursor:pointer;font:800 .68rem Manrope,Arial,sans-serif}.aj-route-play:hover,.aj-route-play.is-playing{background:#f2cf74}.aj-route-play svg{width:14px;height:14px;fill:currentColor}
+.aj-gmap-marker{position:absolute;width:34px;height:41px;padding:0;border:0;background:transparent;cursor:pointer;filter:drop-shadow(0 5px 7px rgba(18,45,35,.23));transition:filter .15s ease}.aj-gmap-marker:before{content:'';position:absolute;left:3px;top:1px;width:28px;height:28px;background:#fff;border:2px solid #a45638;border-radius:50% 50% 50% 0;transform:rotate(-45deg)}.aj-gmap-marker span{position:absolute;z-index:2;left:0;top:0;width:34px;height:31px;display:grid;place-items:center;color:#8f432d;font:900 10px Manrope,Arial,sans-serif}.aj-gmap-marker.is-active{z-index:50;filter:drop-shadow(0 7px 10px rgba(18,45,35,.32))}.aj-gmap-marker.is-active:before{background:#a45638;border-color:#fff;box-shadow:0 0 0 5px rgba(164,86,56,.20)}.aj-gmap-marker.is-active span{color:#fff}
+.aj-gmap-traveler{position:absolute;width:26px;height:26px;border:0;border-radius:50%;background:#fff;box-shadow:0 6px 18px rgba(20,44,35,.34);transform:translate(-50%,-50%);pointer-events:none;z-index:80}.aj-gmap-traveler:before{content:'';position:absolute;inset:-9px;border-radius:50%;background:rgba(185,102,66,.20);animation:ajTravelerPulse 1.25s ease-out infinite}.aj-gmap-traveler:after{content:'';position:absolute;inset:6px;border-radius:50%;background:#b96642;border:2px solid #fff;box-shadow:0 0 0 1px rgba(23,63,50,.14)}.aj-gmap-traveler.is-paused:before{animation-play-state:paused;opacity:.22}@keyframes ajTravelerPulse{0%{transform:scale(.45);opacity:.75}75%,100%{transform:scale(1.45);opacity:0}}
+.aj-route-loading{height:100%;display:grid;place-items:center;align-content:center;gap:12px;background:#eef2ed;color:#173f32}.aj-route-loading span{width:26px;height:26px;border-radius:50%;border:3px solid #ccd8d1;border-top-color:#a45638;animation:ajSpin .8s linear infinite}.aj-route-loading strong{font:800 .76rem Manrope,Arial,sans-serif}@keyframes ajSpin{to{transform:rotate(360deg)}}
+.aj-route-error{position:absolute;inset:0}.aj-route-error iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.8)}.aj-route-error-card{position:absolute;z-index:2;left:20px;right:20px;bottom:20px;padding:15px;border-radius:13px;background:rgba(255,255,255,.95);box-shadow:0 10px 32px rgba(23,63,50,.18);font-family:Manrope,Arial,sans-serif}.aj-route-error-card strong{display:block;color:#173f32;font-size:.83rem}.aj-route-error-card span{display:block;margin-top:4px;color:#687971;font-size:.69rem;line-height:1.45}.aj-route-error-card a{display:inline-flex;margin-top:9px;color:#a45638!important;font-weight:800;font-size:.69rem;text-decoration:none!important}
+html[dir="rtl"] .aj-route-diamir .day{padding:20px 72px 20px 22px!important}html[dir="rtl"] .aj-route-diamir .day:before{left:auto;right:34px}html[dir="rtl"] .aj-route-diamir .day:after{left:auto;right:27px}html[dir="rtl"] .aj-route-map-topline{left:auto;right:15px}
+@media(max-width:980px){.aj-route-diamir-grid{grid-template-columns:minmax(340px,.85fr) minmax(0,1fr);gap:26px}.aj-route-map-card{top:82px;min-height:500px;height:65vh}.aj-route-google-top span{display:none}}
+@media(max-width:760px){.aj-route-heading{align-items:flex-start}.aj-route-google-top{display:none}.aj-route-mobile-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:18px 0 13px;padding:4px;border:1px solid rgba(23,63,50,.12);border-radius:12px;background:#f4f5f1}.aj-route-mobile-tabs button{height:42px;border:0;border-radius:9px;background:transparent;color:#66766f;display:flex;align-items:center;justify-content:center;gap:7px;font:800 .72rem Manrope,Arial,sans-serif}.aj-route-mobile-tabs button.is-active{background:#173f32;color:#fff;box-shadow:0 5px 14px rgba(23,63,50,.18)}.aj-route-mobile-tabs svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8}.aj-route-diamir-grid{display:block;padding-top:0}.aj-route-map-col{display:none}.aj-route-diamir[data-mobile-view="map"] .aj-route-days-col{display:none}.aj-route-diamir[data-mobile-view="map"] .aj-route-map-col{display:block}.aj-route-map-card{position:relative;top:auto;height:62vh;min-height:470px}.aj-route-days-head{display:none}.aj-route-diamir .day{padding-left:66px!important}.aj-route-diamir .day:before{left:31px}.aj-route-diamir .day:after{left:24px}html[dir="rtl"] .aj-route-diamir .day{padding-left:22px!important;padding-right:66px!important}html[dir="rtl"] .aj-route-diamir .day:before{right:31px}html[dir="rtl"] .aj-route-diamir .day:after{right:24px}}
+@media(max-width:520px){.aj-route-heading h2{font-size:2rem}.aj-route-heading p{font-size:.84rem}.aj-route-map-card{min-height:420px;height:58vh;border-radius:15px}.aj-route-map-topline{left:10px;top:10px}.aj-route-overview{display:none}.aj-route-map-bottom{left:10px;right:10px;bottom:10px}.aj-route-play span{display:none}.aj-route-play{width:40px;padding:0;justify-content:center}.aj-route-diamir .day{padding-top:17px!important;padding-bottom:17px!important;padding-right:17px!important}.aj-route-diamir .day h3{font-size:1.16rem!important}}
+/* Scroll-driven route: the Google map viewport stays fixed; only the route progress changes. */
+.aj-route-scroll-hint{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#f2cf74;font:900 1.05rem Manrope,Arial,sans-serif;animation:ajRouteScrollHint 1.4s ease-in-out infinite}
+@keyframes ajRouteScrollHint{0%,100%{transform:translateY(-2px);opacity:.72}50%{transform:translateY(3px);opacity:1}}
+@media(min-width:761px){.aj-route-map-card{position:sticky!important;top:92px!important}.aj-route-map-col{grid-column:1!important}.aj-route-days-col{grid-column:2!important}}
+
+
+/* Route-map visual matching the supplied reference: black directional line + red circular stops. */
+.aj-gmap-marker{
+  width:22px!important;height:22px!important;
+  transform-origin:center center;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.28))!important;
+}
+.aj-gmap-marker:before{
+  content:''!important;position:absolute!important;inset:2px!important;
+  width:auto!important;height:auto!important;left:auto!important;top:auto!important;
+  border-radius:50%!important;transform:none!important;
+  background:#a80f2f!important;border:2.5px solid #fff!important;
+  box-shadow:0 0 0 1px rgba(32,32,32,.16)!important;
+}
+.aj-gmap-marker span{display:none!important}
+.aj-gmap-marker.is-active{z-index:55!important;filter:drop-shadow(0 3px 6px rgba(0,0,0,.34))!important}
+.aj-gmap-marker.is-active:before{
+  background:#a80f2f!important;border-color:#fff!important;
+  box-shadow:0 0 0 1px rgba(32,32,32,.16)!important;
+}
+
+/* Motion is shown by the progressively revealed arrowed route, not by a separate dot. */
+.aj-gmap-traveler{display:none!important}
+
+
+/* v5 — Google Maps iframe + independent scroll-driven route overlay (no JS API key required) */
+.aj-route-map{background:#e6eee8;overflow:hidden}
+.aj-google-embed{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:1;pointer-events:none;filter:saturate(.92) contrast(.98)}
+.aj-route-overlay{position:absolute;inset:0;width:100%;height:100%;z-index:3;overflow:visible;pointer-events:none}
+.aj-overlay-base{fill:none;stroke:#242424;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.20;vector-effect:non-scaling-stroke}
+.aj-overlay-active{fill:none;stroke:#111;stroke-width:3.1;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;transition:stroke-dashoffset .04s linear;filter:drop-shadow(0 1px 1px rgba(255,255,255,.85))}
+.aj-overlay-arrow{opacity:0;transform-box:fill-box;transform-origin:center;transition:opacity .12s ease}
+.aj-overlay-arrow.is-visible{opacity:1}.aj-overlay-arrow path{fill:#111;stroke:#fff;stroke-width:.7;paint-order:stroke fill;vector-effect:non-scaling-stroke}
+.aj-overlay-stop circle:not(.hit){fill:#aa1232;stroke:#fff;stroke-width:2.6;vector-effect:non-scaling-stroke;filter:drop-shadow(0 1px 2px rgba(0,0,0,.32));transition:r .16s ease,fill .16s ease}
+.aj-overlay-stop .hit{fill:transparent;stroke:none;cursor:pointer}.aj-overlay-stop.is-active circle:not(.hit){r:9.5;fill:#8f0927;stroke-width:3.1}
+.aj-overlay-current circle:first-child{fill:#111;stroke:#fff;stroke-width:2.4;vector-effect:non-scaling-stroke}.aj-overlay-current .pulse{fill:none;stroke:#111;stroke-width:2;opacity:.35;vector-effect:non-scaling-stroke;animation:ajOverlayPulse 1.25s ease-out infinite}
+@keyframes ajOverlayPulse{0%{r:8;opacity:.5}100%{r:18;opacity:0}}
+.aj-route-error,.aj-route-loading{display:none!important}
+
+/* v6 — keep the map pinned while the itinerary scrolls */
+@media (min-width:761px){
+  .aj-route-diamir-grid{align-items:stretch!important;}
+  .aj-route-map-col{
+    align-self:stretch!important;
+    height:auto!important;
+    min-height:100%!important;
+    position:relative!important;
+  }
+  .aj-route-map-card{
+    position:-webkit-sticky!important;
+    position:sticky!important;
+    top:92px!important;
+    left:auto!important;
+    right:auto!important;
+    bottom:auto!important;
+    z-index:8!important;
+  }
+}
+@media (min-width:761px) and (max-width:980px){
+  .aj-route-map-card{top:82px!important;}
+}
+
+/* v9 — corrected mobile map presentation */
+@media (max-width:760px){
+  .aj-route-mobile-tabs{display:none!important}
+  .aj-route-diamir-grid{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:auto auto!important;
+    gap:18px!important;
+    align-items:stretch!important;
+    padding-top:16px!important;
+    width:100%!important;
+  }
+  /* Flatten the wrapper so the sticky map is constrained by the full itinerary grid, not by a short map column. */
+  .aj-route-map-col{
+    display:contents!important;
+  }
+  .aj-route-days-col{
+    display:block!important;
+    grid-column:1!important;
+    grid-row:2!important;
+    min-width:0!important;
+    width:100%!important;
+  }
+  .aj-route-diamir[data-mobile-view="map"] .aj-route-days-col,
+  .aj-route-diamir[data-mobile-view="itinerary"] .aj-route-days-col{
+    display:block!important;
+  }
+  .aj-route-diamir[data-mobile-view="map"] .aj-route-map-col,
+  .aj-route-diamir[data-mobile-view="itinerary"] .aj-route-map-col{
+    display:contents!important;
+  }
+  .aj-route-map-card{
+    grid-column:1!important;
+    grid-row:1!important;
+    position:-webkit-sticky!important;
+    position:sticky!important;
+    top:calc(78px + env(safe-area-inset-top))!important;
+    width:100%!important;
+    max-width:100%!important;
+    height:clamp(300px,45svh,430px)!important;
+    min-height:0!important;
+    max-height:430px!important;
+    margin:0!important;
+    border-radius:16px!important;
+    overflow:hidden!important;
+    z-index:45!important;
+    box-shadow:0 14px 34px rgba(23,63,50,.16)!important;
+    background:#e6eee8!important;
+  }
+  .aj-route-map,
+  .aj-google-embed,
+  .aj-route-overlay{
+    position:absolute!important;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    max-width:none!important;
+  }
+  .aj-route-map-topline{left:10px!important;right:auto!important;top:10px!important;max-width:calc(100% - 20px)!important}
+  html[dir="rtl"] .aj-route-map-topline{left:auto!important;right:10px!important}
+  .aj-route-map-brand{height:34px!important;padding:0 10px!important;font-size:.65rem!important}
+  .aj-route-overview{display:inline-flex!important;height:34px!important;padding:0 10px!important;font-size:.64rem!important;white-space:nowrap!important}
+  .aj-route-map-bottom{
+    left:10px!important;
+    right:10px!important;
+    bottom:10px!important;
+    min-width:0!important;
+    padding:10px 10px 10px 12px!important;
+    border-radius:12px!important;
+  }
+  .aj-route-current{min-width:0!important;max-width:calc(100% - 46px)!important}
+  .aj-route-current strong{font-size:.82rem!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .aj-route-current span{font-size:.62rem!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .aj-route-current small{font-size:.58rem!important}
+  .aj-route-scroll-hint{width:36px!important;height:36px!important;border-radius:9px!important}
+  .aj-route-days-head{display:none!important}
+  .aj-route-diamir .day{margin-bottom:11px!important}
+}
+@media (max-width:430px){
+  .aj-route-heading{padding-bottom:16px!important}
+  .aj-route-heading h2{font-size:1.82rem!important}
+  .aj-route-heading p{font-size:.8rem!important;line-height:1.5!important}
+  .aj-route-diamir-grid{padding-top:12px!important;gap:14px!important}
+  .aj-route-map-card{
+    top:calc(74px + env(safe-area-inset-top))!important;
+    height:40svh!important;
+    min-height:285px!important;
+    max-height:360px!important;
+    border-radius:14px!important;
+  }
+  .aj-route-map-topline{left:8px!important;top:8px!important;gap:6px!important}
+  html[dir="rtl"] .aj-route-map-topline{left:auto!important;right:8px!important}
+  .aj-route-map-brand,.aj-route-overview{height:32px!important;padding:0 8px!important}
+  .aj-route-map-bottom{left:8px!important;right:8px!important;bottom:8px!important;padding:9px 9px 9px 10px!important}
+}
+@media (max-width:360px){
+  .aj-route-map-card{height:38svh!important;min-height:260px!important}
+  .aj-route-overview{display:none!important}
+}
+
+/* v10 — route status card aligned with the site's real navy / clay / gold palette */
+.aj-route-map-bottom{
+  background:rgba(24,60,90,.97)!important;
+  box-shadow:0 12px 34px rgba(7,28,46,.30)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+}
+.aj-route-current small{
+  color:#f1d38a!important;
+}
+.aj-route-current strong{
+  color:#fff!important;
+}
+.aj-route-current span{
+  color:#dce8f0!important;
+}
+.aj-route-scroll-hint{
+  background:rgba(255,255,255,.12)!important;
+  color:#f1d38a!important;
+}
+.aj-route-play{
+  background:#fff!important;
+  color:#183c5a!important;
+}
+.aj-route-play:hover,.aj-route-play.is-playing{
+  background:#f1d38a!important;
+  color:#183c5a!important;
+}
+
+/* v11 — smaller route status card on phones */
+@media (max-width:760px){
+  .aj-route-map-bottom{
+    left:12px!important;
+    right:12px!important;
+    bottom:8px!important;
+    padding:7px 8px 7px 10px!important;
+    min-height:0!important;
+    border-radius:10px!important;
+    gap:8px!important;
+  }
+  .aj-route-current{max-width:calc(100% - 40px)!important}
+  .aj-route-current small{
+    margin-bottom:1px!important;
+    font-size:.50rem!important;
+    line-height:1.15!important;
+    letter-spacing:.07em!important;
+  }
+  .aj-route-current strong{
+    font-size:.73rem!important;
+    line-height:1.18!important;
+  }
+  .aj-route-current span{
+    margin-top:1px!important;
+    font-size:.55rem!important;
+    line-height:1.2!important;
+  }
+  .aj-route-scroll-hint{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    border-radius:8px!important;
+  }
+  .aj-route-scroll-hint svg{width:14px!important;height:14px!important}
+}
+@media (max-width:430px){
+  .aj-route-map-bottom{
+    left:7px!important;
+    right:7px!important;
+    bottom:6px!important;
+    padding:6px 7px 6px 9px!important;
+    border-radius:9px!important;
+  }
+  .aj-route-current{max-width:calc(100% - 36px)!important}
+  .aj-route-current small{font-size:.47rem!important}
+  .aj-route-current strong{font-size:.68rem!important}
+  .aj-route-current span{font-size:.51rem!important}
+  .aj-route-scroll-hint{
+    width:28px!important;
+    height:28px!important;
+    min-width:28px!important;
+    border-radius:7px!important;
+  }
+}

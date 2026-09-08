@@ -130,7 +130,10 @@
   }
 
   function isDrawerMode(nav){
-    return innerWidth <= 820 || !!nav?.classList.contains('aj-nav-compact');
+    /* Tablets and landscape phones use the drawer too. The old 821–1080px
+       gap mixed desktop and mobile rules and could leave a full white panel
+       covering the page after rotation. */
+    return innerWidth <= 1080 || !!nav?.classList.contains('aj-nav-compact');
   }
 
   function closeMobileDrawer(nav, links){
