@@ -511,21 +511,44 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
     }));
 
     const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    if('IntersectionObserver'in window){
-      const ob=new IntersectionObserver(entries=>{
-        const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-        if(!visible)return;
-        links.forEach(a=>{
-          const active=a.getAttribute('href')==='#'+visible.target.id;
-          const changed=active&&!a.classList.contains('is-active');
-          a.classList.toggle('is-active',active);
-          /* Only move the horizontal subnav. Never call element.scrollIntoView here:
-             on iOS/iPadOS Safari it can also move the page vertically and cause jumps. */
-          if(changed)centerLinkHorizontally(a);
-        });
-      },{rootMargin:'-105px 0px -58% 0px',threshold:[0,.1,.35]});
-      targets.forEach(x=>ob.observe(x));
-    }
+
+    /* Scroll-spy: choose the section whose heading has actually crossed the
+       visible navigation edge. IntersectionObserver callbacks only contain
+       entries whose state changed in that frame, which could leave the old
+       link highlighted or skip a section at boundaries (especially Hinweise,
+       which is a zero-height anchor before the FAQ). */
+    const setActiveTarget=target=>{
+      if(!target)return;
+      links.forEach(a=>{
+        const active=a.getAttribute('href')==='#'+target.id;
+        const changed=active&&!a.classList.contains('is-active');
+        a.classList.toggle('is-active',active);
+        /* Only move the horizontal subnav. Never call element.scrollIntoView here:
+           on iOS/iPadOS Safari it can also move the page vertically and cause jumps. */
+        if(changed)centerLinkHorizontally(a);
+      });
+    };
+    const updateActiveSection=()=>{
+      if(!targets.length)return;
+      const compact=document.body.classList.contains('aj-trip-compact-header');
+      const mainH=compact?0:Math.max(0,document.querySelector('.site-nav')?.getBoundingClientRect().height||0);
+      const subH=Math.max(0,nav.getBoundingClientRect().height||0);
+      const activationLine=mainH+subH+10;
+      let activeTarget=targets[0];
+
+      for(const target of targets){
+        if(target.getBoundingClientRect().top<=activationLine)activeTarget=target;
+        else break;
+      }
+
+      // At the absolute bottom, keep the final navigation item selected even
+      // when the last section is shorter than the available viewport space.
+      const doc=document.documentElement;
+      if((window.scrollY||0)+window.innerHeight>=doc.scrollHeight-2){
+        activeTarget=targets[targets.length-1];
+      }
+      setActiveTarget(activeTarget);
+    };
 
     let lastY=Math.max(0,window.scrollY||0);
     let anchorY=0;
@@ -578,6 +601,7 @@ body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{t
         nav.classList.toggle('is-compact',headerHidden);
         document.body.classList.toggle('aj-trip-compact-header',headerHidden);
       }
+      updateActiveSection();
       lastY=y;
       ticking=false;
     };
