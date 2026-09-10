@@ -725,7 +725,7 @@ img{font-style:normal}.trip-media img,#dimg img,#overviewImg img,#summaryImage i
 <style id="trip-gallery-mosaic-v1">
 /* Harar media stage – centre video + automatically changing side images */
 .trip-photo-gallery{width:100%;background:#071f32;border-bottom:1px solid rgba(24,60,90,.12);padding:10px;overflow:hidden}
-.trip-photo-grid{width:min(100%,1720px);height:clamp(390px,38vw,650px);margin:0 auto;display:grid;grid-template-columns:1fr 2fr 1fr;gap:10px;background:#071f32}
+.trip-photo-grid{width:min(100%,1720px);height:clamp(320px,31vw,520px);margin:0 auto;display:grid;grid-template-columns:1fr 2fr 1fr;gap:10px;background:#071f32}
 .trip-photo-cell,.harar-video-stage{position:relative;min-width:0;min-height:0;overflow:hidden;border:0;border-radius:18px;background:#0a263c;box-shadow:0 15px 38px rgba(0,0,0,.20)}
 .trip-photo-cell{display:block;width:100%;height:100%;padding:0;cursor:zoom-in}
 .trip-photo-cell img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:opacity .55s ease,transform 6.5s ease;opacity:1}
@@ -750,8 +750,8 @@ img{font-style:normal}.trip-media img,#dimg img,#overviewImg img,#summaryImage i
 .harar-media-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer}.harar-media-dot.active{background:#f2cf74;transform:scale(1.25)}
 .trip-hero{grid-template-columns:1fr!important;min-height:0!important;display:block!important}.trip-hero-media{display:none!important}.trip-hero-copy{width:min(100%,var(--max));margin:0 auto;padding:44px 20px 46px!important;min-height:0!important;justify-content:flex-start!important}.trip-hero-copy h1{max-width:900px;font-size:clamp(2.55rem,4.4vw,4.9rem)!important}.trip-hero-copy>p{max-width:760px!important}.trip-facts{max-width:900px}.hero-btns{max-width:900px}
 .trip-lightbox{position:fixed;inset:0;z-index:2500;display:none;align-items:center;justify-content:center;padding:26px;background:rgba(4,18,29,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.trip-lightbox.is-open{display:flex}.trip-lightbox-image{display:block;max-width:min(94vw,1500px);max-height:88vh;width:auto;height:auto;object-fit:contain;border-radius:4px;box-shadow:0 24px 80px rgba(0,0,0,.42)}.trip-lightbox-close,.trip-lightbox-prev,.trip-lightbox-next{position:absolute;width:48px;height:48px;border:1px solid rgba(255,255,255,.38);border-radius:50%;display:grid;place-items:center;padding:0;background:rgba(7,29,46,.62);color:#fff;cursor:pointer;font-size:27px;line-height:1;backdrop-filter:blur(8px)}.trip-lightbox-close{right:22px;top:22px;font-size:30px}.trip-lightbox-prev{left:22px;top:50%;transform:translateY(-50%)}.trip-lightbox-next{right:22px;top:50%;transform:translateY(-50%)}.trip-lightbox-close:hover,.trip-lightbox-prev:hover,.trip-lightbox-next:hover{background:#fff;color:#0c2942}.trip-lightbox-counter{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);color:#fff;font:700 .82rem 'Manrope',sans-serif;padding:7px 11px;border-radius:999px;background:rgba(7,29,46,.62)}
-@media(max-width:1000px){.trip-photo-grid{height:clamp(360px,50vw,540px);grid-template-columns:.82fr 2fr .82fr;gap:7px}.trip-photo-gallery{padding:7px}.trip-photo-cell,.harar-video-stage{border-radius:14px}.trip-hero-copy{padding:36px 26px 40px!important}.harar-media-side-label{font-size:.7rem;left:10px;right:10px;bottom:10px}}
-@media(max-width:700px){.trip-photo-gallery{padding:5px}.trip-photo-grid{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:min(58vw,360px) min(42vw,230px);gap:5px}.harar-video-stage{grid-column:1 / span 2;grid-row:1}.harar-media-side:first-child{grid-column:1;grid-row:2}.harar-media-side:last-child{grid-column:2;grid-row:2}.trip-photo-cell,.harar-video-stage{border-radius:11px}.harar-video-overlay{padding:38px 12px 11px}.harar-video-copy strong{font-size:.8rem}.harar-video-copy span{display:none}.harar-media-control{width:35px;height:35px;font-size:15px}.harar-media-dots{top:10px}.harar-media-side-label{font-size:.65rem}.trip-hero-copy{padding:30px 18px 34px!important}.trip-hero-copy h1{font-size:clamp(2.1rem,11vw,3.2rem)!important}.trip-lightbox{padding:12px}.trip-lightbox-close{right:12px;top:12px}.trip-lightbox-prev{left:10px}.trip-lightbox-next{right:10px}.trip-lightbox-prev,.trip-lightbox-next{width:42px;height:42px}}
+@media(max-width:1000px){.trip-photo-grid{height:clamp(300px,42vw,430px);grid-template-columns:.82fr 2fr .82fr;gap:7px}.trip-photo-gallery{padding:7px}.trip-photo-cell,.harar-video-stage{border-radius:14px}.trip-hero-copy{padding:36px 26px 40px!important}.harar-media-side-label{font-size:.7rem;left:10px;right:10px;bottom:10px}}
+@media(max-width:700px){.trip-photo-gallery{padding:5px}.trip-photo-grid{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:min(48vw,300px) min(30vw,170px);gap:5px}.harar-video-stage{grid-column:1 / span 2;grid-row:1}.harar-media-side:first-child{grid-column:1;grid-row:2}.harar-media-side:last-child{grid-column:2;grid-row:2}.trip-photo-cell,.harar-video-stage{border-radius:11px}.harar-video-overlay{padding:38px 12px 11px}.harar-video-copy strong{font-size:.8rem}.harar-video-copy span{display:none}.harar-media-control{width:35px;height:35px;font-size:15px}.harar-media-dots{top:10px}.harar-media-side-label{font-size:.65rem}.trip-hero-copy{padding:30px 18px 34px!important}.trip-hero-copy h1{font-size:clamp(2.1rem,11vw,3.2rem)!important}.trip-lightbox{padding:12px}.trip-lightbox-close{right:12px;top:12px}.trip-lightbox-prev{left:10px}.trip-lightbox-next{right:10px}.trip-lightbox-prev,.trip-lightbox-next{width:42px;height:42px}}
 @media(prefers-reduced-motion:reduce){.trip-photo-cell img{transition:none!important}.harar-video-progress span{transition:none!important}}
 </style>
 
@@ -1443,6 +1443,25 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
 <link rel="stylesheet" href="../aj-compact-ui-v1.css?v=1">
 <link rel="stylesheet" href="../aj-responsive-stability.css?v=5">
 <link rel="stylesheet" href="../aj-whatsapp.css?v=3">
+
+<style id="aj-harar-gallery-half-height-v3">
+/* Requested: compact Harar media strip — roughly half the former height, with clean/even rounded edges. */
+@media (min-width:1001px){
+  .trip-photo-gallery{padding:8px!important;}
+  .trip-photo-grid{height:260px!important;max-height:260px!important;gap:10px!important;}
+  .trip-photo-cell,.harar-video-stage{border-radius:18px!important;}
+}
+@media (min-width:701px) and (max-width:1000px){
+  .trip-photo-gallery{padding:6px!important;}
+  .trip-photo-grid{height:230px!important;max-height:230px!important;gap:7px!important;}
+  .trip-photo-cell,.harar-video-stage{border-radius:14px!important;}
+}
+@media (max-width:700px){
+  .trip-photo-gallery{padding:5px!important;}
+  .trip-photo-grid{height:auto!important;grid-template-rows:min(38vw,190px) min(22vw,110px)!important;gap:5px!important;}
+  .trip-photo-cell,.harar-video-stage{border-radius:11px!important;}
+}
+</style>
 </head><body class="aj-index-shell-page aj-no-global-promo"><div data-shell="header"></div><main>
 
 <section class="trip-photo-gallery" id="tripPhotoGallery" aria-label="Harar &amp; Ostäthiopien – Bilder und Videos">
