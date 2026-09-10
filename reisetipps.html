@@ -2307,6 +2307,68 @@ body.aj-translated-language #reisetipps-hero .hero-hotspot .hotspot-label{
 @media(max-width:700px){.tip-card-visual,.prep-card-visual{width:100%!important;max-width:540px!important}}
 @media(prefers-reduced-motion:reduce){.tip-card.is-open .tip-accordion-panel{animation:none!important}}
 </style>
+
+<style id="reisetipps-hero-full-image-right-v1">
+/* Final override: show the entire localized hero artwork in the right column.
+   Removes the older desktop crop/aspect-ratio rules while preserving rounded corners. */
+#reisetipps-hero .hero-art-frame{
+  aspect-ratio:auto!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:hidden!important;
+}
+#reisetipps-hero .hero-art-picture{
+  position:static!important;
+  inset:auto!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  overflow:visible!important;
+  line-height:0!important;
+}
+#reisetipps-hero .hero-art{
+  position:static!important;
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  margin:0!important;
+  transform:none!important;
+}
+@media (min-width:761px){
+  /* Restore hotspot geometry for the uncropped 1672×941 desktop artwork. */
+  #reisetipps-hero .hero-hotspot.tile.r1{top:45.377258%!important;height:12.327311%!important}
+  #reisetipps-hero .hero-hotspot.tile.r2{top:57.704570%!important;height:12.327311%!important}
+  #reisetipps-hero .hero-hotspot.tile.r3{top:70.031881%!important;height:14.346440%!important}
+  #reisetipps-hero .hero-hotspot.notebook{height:2.763000%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n1{top:56.110500%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n2{top:59.192300%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n3{top:62.274200%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n4{top:65.249700%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n5{top:68.225300%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n6{top:71.519700%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n7{top:74.601500%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n8{top:78.002100%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n9{top:81.402800%!important}
+}
+</style>
+
+<style id="reisetipps-hero-compact-vertical-v1">
+/* Slightly tighter hero spacing above and below; keep the full right-hand image unchanged. */
+#reisetipps-hero.tips-hero{
+  padding-top:clamp(26px,3vw,48px)!important;
+  padding-bottom:clamp(26px,3vw,48px)!important;
+}
+@media (max-width:980px) and (min-width:761px){
+  #reisetipps-hero.tips-hero{padding-top:24px!important;padding-bottom:24px!important}
+}
+@media (max-width:760px){
+  #reisetipps-hero.tips-hero{padding-top:22px!important;padding-bottom:18px!important}
+}
+</style>
 </head><body class="aj-index-shell-page"><div data-shell="header"></div><main>
 <section class="tips-hero" id="reisetipps-hero"><span id="laenderinformation" class="aj-menu-anchor" aria-hidden="true"></span><div class="hero-art-wrap"><div class="tips-hero-copy"><h1>Reisetipps <span class="hero-amp">&amp;</span> Informationen</h1><div class="tips-hero-divider" aria-hidden="true"></div><p><strong>Gut vorbereitet. Sicher reisen.</strong><br><strong>Unvergessliche Momente erleben.</strong></p></div><div class="hero-art-frame"><picture class="hero-art-picture" id="reisetippsHeroPicture"><source id="reisetippsHeroMobileSource" media="(max-width:760px)" srcset="assets/reisetipps-hero-languages/de-mobile.png"><img id="reisetippsHeroImage" class="hero-art" src="assets/reisetipps-hero-languages/de.png" alt="Äthiopien-Reiselandschaft mit Reiseinformationen" width="1672" height="941" loading="eager" decoding="async" fetchpriority="high"></picture><div class="hero-hotspots" aria-label="Klickbare Reiseinformationen">
 <a class="hero-hotspot notebook n1" href="#reisevorbereitung"><span class="hotspot-label" data-image-label="prep" data-no-translate translate="no">Reisevorbereitung</span></a>
