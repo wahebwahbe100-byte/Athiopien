@@ -99,7 +99,7 @@ h1,h2,h3,h4,p{margin-top:0}h1,h2,h3,h4{font-family:'Manrope',sans-serif;line-hei
  .tips-hero-divider:before{top:4px;height:1px}
  .tips-hero-divider:after{top:1px;width:6px;height:6px}
  .tips-hero-copy p{font-size:clamp(.58rem,2.3vw,.8rem);line-height:1.25}
-}.guide-layout{display:grid;grid-template-columns:1fr;gap:0;align-items:start}.guide-nav{position:sticky;top:110px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.guide-nav strong{display:block;margin-bottom:12px}.guide-nav a{display:block;padding:9px 8px;border-radius:10px;font-size:.85rem;color:#516775}.guide-nav a:hover{background:var(--soft);color:var(--forest)}.guide-content{display:grid;gap:16px}.tip-card{display:grid;grid-template-columns:68px 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.tip-icon{width:58px;height:58px;border-radius:17px;background:#eef4ef;display:grid;place-items:center;font-size:1.6rem}.tip-card h3{margin:0 0 6px}.tip-card p{margin:0;color:var(--muted)}.tip-card .arrow{font-size:1.5rem;color:#9aa9a2}.tip-card.highlight{background:var(--forest);color:#fff;border-color:var(--forest)}.tip-card.highlight p{color:#c9d9d1}.tip-card.highlight .tip-icon{background:rgba(255,255,255,.1)}.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}.faq-list details{border-bottom:1px solid var(--line);padding:18px 0}.faq-list summary{font-weight:800;cursor:pointer}.faq-list p{color:var(--muted)}
+}.guide-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.guide-nav{position:sticky;top:110px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.guide-nav strong{display:block;margin-bottom:12px}.guide-nav a{display:block;padding:9px 8px;border-radius:10px;font-size:.85rem;color:#516775}.guide-nav a:hover{background:var(--soft);color:var(--forest)}.guide-content{display:grid;gap:16px}.tip-card{display:grid;grid-template-columns:68px 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.tip-icon{width:58px;height:58px;border-radius:17px;background:#eef4ef;display:grid;place-items:center;font-size:1.6rem}.tip-card h3{margin:0 0 6px}.tip-card p{margin:0;color:var(--muted)}.tip-card .arrow{font-size:1.5rem;color:#9aa9a2}.tip-card.highlight{background:var(--forest);color:#fff;border-color:var(--forest)}.tip-card.highlight p{color:#c9d9d1}.tip-card.highlight .tip-icon{background:rgba(255,255,255,.1)}.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}.faq-list details{border-bottom:1px solid var(--line);padding:18px 0}.faq-list summary{font-weight:800;cursor:pointer}.faq-list p{color:var(--muted)}
 @media(max-width:1080px){.guide-layout,.faq-grid{grid-template-columns:1fr}.guide-nav{position:relative;top:0;display:flex;overflow:auto;gap:5px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.guide-nav::-webkit-scrollbar{display:none}.guide-nav strong{display:none}.guide-nav a{white-space:nowrap;background:#fff}}
 @media(max-width:700px){.tips-hero .hero-art{width:100%;height:auto}.tip-card{grid-template-columns:56px 1fr;padding:18px}.tip-card .arrow{display:none}.tip-icon{width:50px;height:50px}.guide-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;overflow:visible;padding:14px}.guide-nav a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;white-space:normal;text-align:center;font-size:.92rem;line-height:1.25;color:var(--forest);background:#fff;-webkit-tap-highlight-color:transparent}.guide-nav a:hover,.guide-nav a:focus-visible,.guide-nav a:active{background:var(--soft);color:var(--forest)}}
 
@@ -2652,7 +2652,7 @@ html body.aj-index-shell-page.top-strip-collapsed .site-nav.scrolled{top:0!impor
 <a class="hero-hotspot board b12" href="#faq" aria-label="Häufig gestellte Fragen"></a>
 <a class="hero-hotspot board b13" href="#beratung" aria-label="Persönliche Tipps"></a>
 </div></div></div></section>
-<section class="section white"><div class="container guide-layout"><div class="guide-content"><article class="tip-card highlight" id="reisevorbereitung">
+<section class="section white"><div class="container guide-layout"><nav class="guide-nav" aria-label="Schnellnavigation"><strong>Schnellnavigation</strong><a href="#reisevorbereitung">Reisevorbereitung</a><a href="#visa">VISA &amp; Einreise</a><a href="#flug">Flüge &amp; Transport</a><a href="#klima">Wetter &amp; beste Reisezeit</a><a href="#gesundheit">Gesundheit</a><a href="#geld">Geld &amp; Zahlungsmittel</a><a href="#fotografieren">Fotografie</a><a href="#kultur">Kultur &amp; Respekt</a><a href="#religion">Religion</a><a href="#ernaehrung">Essen &amp; Trinken</a><a href="#sehenswuerdigkeiten">Sehenswürdigkeiten</a><a href="#faq">Häufig gestellte Fragen</a><a href="#beratung">Persönliche Tipps</a></nav><div class="guide-content"><article class="tip-card highlight" id="reisevorbereitung">
 <div class="tip-icon"><img class="tip-icon-img" src="assets/reisetipps-icons/reisevorbereitung.png" alt="" aria-hidden="true" decoding="async"></div>
 <div class="tip-card-main"><h3>Reisevorbereitung</h3><p>Reisedokumente, Planung und die wichtigsten Unterlagen vor der Abreise übersichtlich vorbereiten.</p></div>
 <button class="tip-accordion-toggle" type="button" aria-expanded="false" aria-controls="reisevorbereitung-details" aria-label="Reisevorbereitung öffnen"><span class="tip-plus" aria-hidden="true"></span></button>
@@ -4222,7 +4222,14 @@ body.top-strip-collapsed .site-nav .brand-logo{
 <style id="reisetipps-schnellnavigation-scroll-effect-v3">
 html{scroll-behavior:smooth}
 @media (min-width:761px){
+  .guide-layout{
+    display:grid!important;
+    grid-template-columns:230px minmax(0,1fr)!important;
+    gap:48px!important;
+    align-items:start!important;
+  }
   .guide-nav{
+    display:block!important;
     position:sticky!important;
     top:110px!important;
     overflow:hidden!important;
