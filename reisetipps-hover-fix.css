@@ -1,0 +1,218 @@
+/*
+  Reisetipps hero – precise hover/click frames.
+  The artwork itself is NOT changed. Only invisible click areas and their
+  mouse/focus feedback are positioned over the visible German labels/cells.
+*/
+
+#reisetipps-hero .hero-hotspots{
+  position:absolute!important;
+  inset:0!important;
+  z-index:20!important;
+  pointer-events:none!important;
+}
+
+#reisetipps-hero .hero-hotspot{
+  position:absolute!important;
+  display:block!important;
+  box-sizing:border-box!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+  background:transparent!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  -webkit-tap-highlight-color:transparent!important;
+  touch-action:manipulation!important;
+}
+
+/* ---------------- RIGHT INFORMATION BOARD ----------------
+   Exact desktop artwork boundaries (1672 × 941):
+   x = 1076 | 1219 | 1364 | 1508 | 1659
+   y =  425 |  549 |  656 |  768 |  859
+*/
+#reisetipps-hero .hero-hotspot.board{
+  transform:none!important;
+  border-radius:0!important;
+  overflow:visible!important;
+}
+
+/* The visible hover ring is inset so it sits cleanly inside each printed cell. */
+#reisetipps-hero .hero-hotspot.board::before{
+  content:"";
+  position:absolute;
+  inset:3px;
+  border:2px solid rgba(166,54,22,.76);
+  border-radius:11px;
+  background:rgba(255,249,240,.12);
+  box-shadow:0 5px 14px rgba(78,35,18,.10);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .14s ease, background-color .14s ease, box-shadow .14s ease, transform .14s ease;
+}
+
+@media (hover:hover) and (pointer:fine){
+  #reisetipps-hero .hero-hotspot.board:hover::before{
+    opacity:1;
+    background:rgba(255,249,240,.20);
+    box-shadow:0 6px 16px rgba(78,35,18,.14);
+  }
+}
+#reisetipps-hero .hero-hotspot.board:focus-visible::before{
+  opacity:1;
+  border-width:3px;
+  background:rgba(255,249,240,.22);
+}
+#reisetipps-hero .hero-hotspot.board:active::before{
+  opacity:1;
+  transform:scale(.985);
+  background:rgba(236,210,190,.25);
+}
+#reisetipps-hero .hero-hotspot.board.b13::before{
+  inset:4px 5px;
+  border-radius:14px;
+}
+
+/* ---------------- NOTEBOOK SENTENCES ----------------
+   Each frame hugs ONE printed sentence instead of drawing one oversized box.
+   The notebook lettering slopes about -5 degrees in the baked artwork.
+*/
+@media (min-width:761px){
+  #reisetipps-hero .hero-hotspot.notebook{
+    height:3.188098%!important;
+    transform:rotate(-5deg)!important;
+    transform-origin:left center!important;
+    border-radius:8px!important;
+    overflow:visible!important;
+  }
+
+  #reisetipps-hero .hero-hotspot.notebook::before{
+    content:"";
+    position:absolute;
+    inset:1px 0;
+    border:2px solid rgba(166,54,22,.76);
+    border-radius:8px;
+    background:rgba(255,249,240,.12);
+    box-shadow:0 4px 12px rgba(78,35,18,.09);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .14s ease, background-color .14s ease, box-shadow .14s ease, transform .14s ease;
+  }
+
+  @media (hover:hover) and (pointer:fine){
+    #reisetipps-hero .hero-hotspot.notebook:hover::before{
+      opacity:1;
+      background:rgba(255,249,240,.18);
+      box-shadow:0 5px 14px rgba(78,35,18,.12);
+    }
+  }
+  #reisetipps-hero .hero-hotspot.notebook:focus-visible::before{
+    opacity:1;
+    border-width:3px;
+    background:rgba(255,249,240,.21);
+  }
+  #reisetipps-hero .hero-hotspot.notebook:active::before{
+    opacity:1;
+    transform:scale(.985);
+    background:rgba(236,210,190,.23);
+  }
+
+  /* One exact frame per printed notebook sentence. */
+  #reisetipps-hero .hero-hotspot.notebook.n1 {left:20.215311%!important;top:53.666312%!important;width:11.363636%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n2 {left:20.753589%!important;top:56.429330%!important;width:11.961722%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n3 {left:21.291866%!important;top:59.192349%!important;width:12.260766%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n4 {left:21.770335%!important;top:61.955367%!important;width:13.456938%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n5 {left:22.308612%!important;top:64.718385%!important;width:7.476077%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n6 {left:22.846890%!important;top:67.481403%!important;width:11.064593%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n7 {left:23.325359%!important;top:70.244421%!important;width:7.177033%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n8 {left:23.863636%!important;top:73.007439%!important;width:10.466507%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n9 {left:24.401914%!important;top:75.770457%!important;width:5.980861%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n10{left:24.880383%!important;top:78.533475%!important;width:4.784689%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n11{left:25.418660%!important;top:81.296493%!important;width:14.055024%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n12{left:25.956938%!important;top:84.059511%!important;width:8.971292%!important}
+  #reisetipps-hero .hero-hotspot.notebook.n13{left:26.495215%!important;top:86.822529%!important;width:10.167464%!important}
+
+  /* Exact 4-column board cells. */
+  #reisetipps-hero .hero-hotspot.board.b1,
+  #reisetipps-hero .hero-hotspot.board.b5,
+  #reisetipps-hero .hero-hotspot.board.b9 {left:64.354067%!important;width:8.552632%!important}
+  #reisetipps-hero .hero-hotspot.board.b2,
+  #reisetipps-hero .hero-hotspot.board.b6,
+  #reisetipps-hero .hero-hotspot.board.b10{left:72.906699%!important;width:8.672249%!important}
+  #reisetipps-hero .hero-hotspot.board.b3,
+  #reisetipps-hero .hero-hotspot.board.b7,
+  #reisetipps-hero .hero-hotspot.board.b11{left:81.578947%!important;width:8.612440%!important}
+  #reisetipps-hero .hero-hotspot.board.b4,
+  #reisetipps-hero .hero-hotspot.board.b8,
+  #reisetipps-hero .hero-hotspot.board.b12{left:90.191388%!important;width:9.031100%!important}
+  #reisetipps-hero .hero-hotspot.board.b13{left:64.354067%!important;width:34.868421%!important}
+
+  #reisetipps-hero .hero-hotspot.board.b1,
+  #reisetipps-hero .hero-hotspot.board.b2,
+  #reisetipps-hero .hero-hotspot.board.b3,
+  #reisetipps-hero .hero-hotspot.board.b4 {top:45.164718%!important;height:13.177471%!important}
+  #reisetipps-hero .hero-hotspot.board.b5,
+  #reisetipps-hero .hero-hotspot.board.b6,
+  #reisetipps-hero .hero-hotspot.board.b7,
+  #reisetipps-hero .hero-hotspot.board.b8 {top:58.342189%!important;height:11.370882%!important}
+  #reisetipps-hero .hero-hotspot.board.b9,
+  #reisetipps-hero .hero-hotspot.board.b10,
+  #reisetipps-hero .hero-hotspot.board.b11,
+  #reisetipps-hero .hero-hotspot.board.b12{top:69.713071%!important;height:11.902232%!important}
+  #reisetipps-hero .hero-hotspot.board.b13{top:81.615303%!important;height:9.670563%!important}
+}
+
+/* ---------------- MOBILE ----------------
+   Dedicated 630 × 1000 artwork. Notebook is intentionally not shown there.
+   Exact panel boundaries:
+   x = 34 | 177 | 322 | 467 | 617
+   y =452 | 584 | 697 | 816 | 914
+*/
+@media (max-width:760px){
+  #reisetipps-hero .hero-hotspot.notebook{
+    display:none!important;
+    pointer-events:none!important;
+  }
+  #reisetipps-hero .hero-hotspot.board::before{
+    inset:3px;
+    border-radius:10px;
+  }
+  #reisetipps-hero .hero-hotspot.board.b13::before{
+    inset:4px 5px;
+    border-radius:13px;
+  }
+
+  #reisetipps-hero .hero-hotspot.board.b1,
+  #reisetipps-hero .hero-hotspot.board.b5,
+  #reisetipps-hero .hero-hotspot.board.b9 {left:5.396825%!important;width:22.698413%!important}
+  #reisetipps-hero .hero-hotspot.board.b2,
+  #reisetipps-hero .hero-hotspot.board.b6,
+  #reisetipps-hero .hero-hotspot.board.b10{left:28.095238%!important;width:23.015873%!important}
+  #reisetipps-hero .hero-hotspot.board.b3,
+  #reisetipps-hero .hero-hotspot.board.b7,
+  #reisetipps-hero .hero-hotspot.board.b11{left:51.111111%!important;width:23.015873%!important}
+  #reisetipps-hero .hero-hotspot.board.b4,
+  #reisetipps-hero .hero-hotspot.board.b8,
+  #reisetipps-hero .hero-hotspot.board.b12{left:74.126984%!important;width:23.809524%!important}
+  #reisetipps-hero .hero-hotspot.board.b13{left:5.396825%!important;width:92.539683%!important}
+
+  #reisetipps-hero .hero-hotspot.board.b1,
+  #reisetipps-hero .hero-hotspot.board.b2,
+  #reisetipps-hero .hero-hotspot.board.b3,
+  #reisetipps-hero .hero-hotspot.board.b4 {top:45.200000%!important;height:13.200000%!important}
+  #reisetipps-hero .hero-hotspot.board.b5,
+  #reisetipps-hero .hero-hotspot.board.b6,
+  #reisetipps-hero .hero-hotspot.board.b7,
+  #reisetipps-hero .hero-hotspot.board.b8 {top:58.400000%!important;height:11.300000%!important}
+  #reisetipps-hero .hero-hotspot.board.b9,
+  #reisetipps-hero .hero-hotspot.board.b10,
+  #reisetipps-hero .hero-hotspot.board.b11,
+  #reisetipps-hero .hero-hotspot.board.b12{top:69.700000%!important;height:11.900000%!important}
+  #reisetipps-hero .hero-hotspot.board.b13{top:81.600000%!important;height:9.800000%!important}
+}
+
+@media (hover:none),(pointer:coarse){
+  #reisetipps-hero .hero-hotspot::before{box-shadow:none!important}
+}
+@media (prefers-reduced-motion:reduce){
+  #reisetipps-hero .hero-hotspot::before{transition:none!important}
+}
