@@ -99,7 +99,7 @@ h1,h2,h3,h4,p{margin-top:0}h1,h2,h3,h4{font-family:'Manrope',sans-serif;line-hei
  .tips-hero-divider:before{top:4px;height:1px}
  .tips-hero-divider:after{top:1px;width:6px;height:6px}
  .tips-hero-copy p{font-size:clamp(.58rem,2.3vw,.8rem);line-height:1.25}
-}.guide-layout{display:grid;grid-template-columns:230px 1fr;gap:48px;align-items:start}.guide-nav{position:sticky;top:110px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.guide-nav strong{display:block;margin-bottom:12px}.guide-nav a{display:block;padding:9px 8px;border-radius:10px;font-size:.85rem;color:#516775}.guide-nav a:hover{background:var(--soft);color:var(--forest)}.guide-content{display:grid;gap:16px}.tip-card{display:grid;grid-template-columns:68px 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.tip-icon{width:58px;height:58px;border-radius:17px;background:#eef4ef;display:grid;place-items:center;font-size:1.6rem}.tip-card h3{margin:0 0 6px}.tip-card p{margin:0;color:var(--muted)}.tip-card .arrow{font-size:1.5rem;color:#9aa9a2}.tip-card.highlight{background:var(--forest);color:#fff;border-color:var(--forest)}.tip-card.highlight p{color:#c9d9d1}.tip-card.highlight .tip-icon{background:rgba(255,255,255,.1)}.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}.faq-list details{border-bottom:1px solid var(--line);padding:18px 0}.faq-list summary{font-weight:800;cursor:pointer}.faq-list p{color:var(--muted)}
+}.guide-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;align-items:start}.guide-nav{position:sticky;top:110px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.guide-nav strong{display:block;margin-bottom:12px}.guide-nav a{display:block;padding:9px 8px;border-radius:10px;font-size:.85rem;color:#516775}.guide-nav a:hover{background:var(--soft);color:var(--forest)}.guide-content{display:grid;gap:16px}.tip-card{display:grid;grid-template-columns:68px 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px}.tip-icon{width:58px;height:58px;border-radius:17px;background:#eef4ef;display:grid;place-items:center;font-size:1.6rem}.tip-card h3{margin:0 0 6px}.tip-card p{margin:0;color:var(--muted)}.tip-card .arrow{font-size:1.5rem;color:#9aa9a2}.tip-card.highlight{background:var(--forest);color:#fff;border-color:var(--forest)}.tip-card.highlight p{color:#c9d9d1}.tip-card.highlight .tip-icon{background:rgba(255,255,255,.1)}.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}.faq-list details{border-bottom:1px solid var(--line);padding:18px 0}.faq-list summary{font-weight:800;cursor:pointer}.faq-list p{color:var(--muted)}
 @media(max-width:1080px){.guide-layout,.faq-grid{grid-template-columns:1fr}.guide-nav{position:relative;top:0;display:flex;overflow:auto;gap:5px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.guide-nav::-webkit-scrollbar{display:none}.guide-nav strong{display:none}.guide-nav a{white-space:nowrap;background:#fff}}
 @media(max-width:700px){.tips-hero .hero-art{width:100%;height:auto}.tip-card{grid-template-columns:56px 1fr;padding:18px}.tip-card .arrow{display:none}.tip-icon{width:50px;height:50px}.guide-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;overflow:visible;padding:14px}.guide-nav a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;white-space:normal;text-align:center;font-size:.92rem;line-height:1.25;color:var(--forest);background:#fff;-webkit-tap-highlight-color:transparent}.guide-nav a:hover,.guide-nav a:focus-visible,.guide-nav a:active{background:var(--soft);color:var(--forest)}}
 
@@ -4222,7 +4222,14 @@ body.top-strip-collapsed .site-nav .brand-logo{
 <style id="reisetipps-schnellnavigation-scroll-effect-v3">
 html{scroll-behavior:smooth}
 @media (min-width:761px){
+  .guide-layout{
+    display:grid!important;
+    grid-template-columns:230px minmax(0,1fr)!important;
+    gap:48px!important;
+    align-items:start!important;
+  }
   .guide-nav{
+    display:block!important;
     position:sticky!important;
     top:110px!important;
     overflow:hidden!important;
@@ -4426,37 +4433,60 @@ html{scroll-behavior:smooth}
 (function(){
   'use strict';
   const items=[
-    ['reisevorbereitung','Reisevorbereitung'],['visa','Visum und Einreise'],['flug','Flüge und Transport'],['klima','Wetter und beste Reisezeit'],
-    ['gesundheit','Gesundheit'],['geld','Geld und Zahlungsmittel'],['fotografieren','Fotografie'],['kultur','Kultur und Respekt'],
-    ['religion','Religion'],['ernaehrung','Essen und Trinken'],['sehenswuerdigkeiten','Sehenswürdigkeiten'],['faq','Häufig gestellte Fragen'],['beratung','Persönliche Tipps']
+    ['reisevorbereitung','Reisevorbereitung'],
+    ['visa','VISA & Einreise'],
+    ['flug','Flüge & Transport'],
+    ['klima','Wetter & beste Reisezeit'],
+    ['gesundheit','Gesundheit'],
+    ['geld','Geld & Zahlungsmittel'],
+    ['fotografieren','Fotografie'],
+    ['kultur','Kultur & Respekt'],
+    ['religion','Religion'],
+    ['ernaehrung','Essen & Trinken'],
+    ['sehenswuerdigkeiten','Sehenswürdigkeiten'],
+    ['faq','Häufig gestellte Fragen'],
+    ['beratung','Persönliche Tipps']
   ];
   function addStyle(){
-    if(document.getElementById('aj-reisetipps-nav-order-style-v1'))return;
-    const s=document.createElement('style');s.id='aj-reisetipps-nav-order-style-v1';s.textContent=`
-      @media(min-width:769px){
-        .nav-dropdown-menu.aj-reisetipps-menu{left:auto!important;right:-32px!important;width:min(680px,calc(100vw - 30px))!important;max-width:680px!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important;padding:10px!important}
-        .nav-dropdown-menu.aj-reisetipps-menu .drop-row{min-width:0!important;min-height:52px!important;padding:9px 11px!important;white-space:normal!important;line-height:1.22!important;align-items:center!important}
-        .nav-dropdown-menu.aj-reisetipps-menu .drop-row:nth-child(13){grid-column:1/-1!important;justify-content:center!important;text-align:center!important}
+    if(document.getElementById('aj-reisetipps-menu-13-style'))return;
+    const style=document.createElement('style');
+    style.id='aj-reisetipps-menu-13-style';
+    style.textContent=`
+      @media (min-width:1081px){
+        .site-nav .navlinks .nav-dropdown-menu.aj-reisetipps-menu{
+          width:min(560px,calc(100vw - 28px))!important;
+          max-width:560px!important;
+          max-height:calc(100vh - 125px)!important;
+          display:grid!important;
+          grid-template-columns:repeat(2,minmax(0,1fr))!important;
+          gap:5px 8px!important;
+          padding:11px!important;
+          overflow-y:auto!important;
+        }
+        .site-nav .navlinks .aj-reisetipps-menu>.drop-row{
+          min-width:0!important;
+          min-height:48px!important;
+          padding:10px 13px!important;
+          white-space:normal!important;
+          line-height:1.24!important;
+        }
+        .site-nav .navlinks .aj-reisetipps-menu>.drop-row:last-child{
+          grid-column:1/-1!important;
+          justify-content:center!important;
+          text-align:center!important;
+        }
       }
-      @media(max-width:768px){
-        .nav-dropdown-menu.aj-reisetipps-menu{display:grid!important;grid-template-columns:1fr!important;gap:3px!important;overflow-y:auto!important;max-height:min(68vh,620px)!important}
-        .nav-dropdown.is-open>.nav-dropdown-menu.aj-reisetipps-menu{max-height:min(68vh,620px)!important}
-        .nav-dropdown-menu.aj-reisetipps-menu .drop-row{min-height:44px!important;padding:9px 11px!important;white-space:normal!important}
+      @media (max-width:1080px){
+        .site-nav .navlinks .nav-dropdown.is-open>.nav-dropdown-menu.aj-reisetipps-menu{
+          display:grid!important;
+          grid-template-columns:1fr!important;
+          gap:3px!important;
+          max-height:min(68vh,620px)!important;
+          overflow-y:auto!important;
+        }
       }
-    `;document.head.appendChild(s);
-  }
-  function install(){
-    addStyle();
-    const main=document.querySelector('.site-nav .navlinks [data-page="reisetipps.html"]');
-    const drop=main&&main.closest('.nav-dropdown');
-    const menu=drop&&drop.querySelector(':scope > .nav-dropdown-menu');
-    if(!main||!drop||!menu)return false;
-    const hereIsTips=/\/reisetipps\.html?$/i.test(location.pathname);
-    const base=hereIsTips?(location.pathname.split('/').pop()||'reisetipps.html'):(main.getAttribute('href')||'reisetipps.html').split('#')[0];
-    menu.classList.remove('compact');menu.classList.add('aj-reisetipps-menu');
-    const html=items.map(([id,label])=>`<a class="drop-row" href="${base}#${id}" data-reisetipp-target="${id}"><span>${label}</span></a>`).join('');
-    if(menu.dataset.reisetippsOrdered!=='1'||menu.innerHTML!==html){menu.innerHTML=html;menu.dataset.reisetippsOrdered='1'}
-    return true;
+    `;
+    document.head.appendChild(style);
   }
   function closeMenus(){
     document.querySelectorAll('.nav-dropdown.is-open').forEach(x=>x.classList.remove('is-open'));
@@ -4464,17 +4494,53 @@ html{scroll-behavior:smooth}
     document.body.classList.remove('menu-locked');
     const btn=document.querySelector('.site-nav .menuBtn');if(btn){btn.classList.remove('menu-open');btn.setAttribute('aria-expanded','false')}
   }
-  document.addEventListener('click',function(e){
-    const a=e.target.closest('.aj-reisetipps-menu a[data-reisetipp-target]');if(!a)return;
+  function activateTipLink(e){
+    const a=e.currentTarget;
     let u,cur;try{u=new URL(a.getAttribute('href'),location.href);cur=new URL(location.href)}catch(_){return}
     if(!/reisetipps\.html?$/i.test(cur.pathname)||u.pathname!==cur.pathname||!u.hash)return;
     const target=document.getElementById(u.hash.slice(1));if(!target)return;
-    e.preventDefault();closeMenus();
+    e.preventDefault();e.stopImmediatePropagation();closeMenus();
     const btn=target.querySelector(':scope > .tip-accordion-toggle');
     if(btn&&btn.getAttribute('aria-expanded')!=='true'){btn.dataset.skipAutoScroll='1';btn.click();delete btn.dataset.skipAutoScroll}
     try{history.replaceState(null,'',u.hash)}catch(_){}
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{const top=target.getBoundingClientRect().top+scrollY-122;scrollTo({top:Math.max(0,top),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}));
-  },true);
+    const scrollDestination=()=>{
+      const destination=matchMedia('(min-width:769px)').matches
+        ?(target.querySelector('.tip-card-visual-image')||target.querySelector('.tip-card-visual')||target)
+        :target;
+      const nav=document.querySelector('.site-nav');
+      const offset=Math.max(16,(nav?nav.getBoundingClientRect().height:72)+16);
+      const top=destination.getBoundingClientRect().top+window.scrollY-offset;
+      window.scrollTo({top:Math.max(0,top),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    };
+    const image=target.querySelector('.tip-card-visual-image');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      if(image&&!image.complete)image.addEventListener('load',scrollDestination,{once:true});
+      scrollDestination();
+    }));
+  }
+  function install(){
+    addStyle();
+    const main=document.querySelector('.site-nav .navlinks [data-menu-top="tips"],.site-nav .navlinks [data-page="reisetipps.html"],.site-nav .navlinks .aj-menu-tips>.nav-main-link');
+    const drop=main&&main.closest('.nav-dropdown');
+    const menu=drop&&drop.querySelector(':scope > .nav-dropdown-menu');
+    if(!main||!drop||!menu)return false;
+    const hereIsTips=/\/reisetipps\.html?$/i.test(location.pathname);
+    const base=hereIsTips?(location.pathname.split('/').pop()||'reisetipps.html'):(main.getAttribute('href')||'reisetipps.html').split('#')[0];
+    menu.classList.remove('compact');
+    menu.classList.add('aj-reisetipps-menu');
+    const html=items.map(([id,label])=>`<a class="drop-row" href="${base}#${id}" data-reisetipp-target="${id}"><span>${label}</span></a>`).join('');
+    if(menu.dataset.reisetippsMenuVersion!=='13'||menu.querySelectorAll(':scope > a.drop-row').length!==items.length){
+      menu.innerHTML=html;
+      menu.dataset.reisetippsMenuVersion='13';
+    }
+    const links=[...menu.querySelectorAll(':scope > a.drop-row')];
+    links.forEach(a=>{
+      if(a.dataset.reisetippDirectReady==='1')return;
+      a.dataset.reisetippDirectReady='1';
+      a.addEventListener('click',activateTipLink,true);
+    });
+    return true;
+  }
   function boot(){
     if(install())return;
     const mo=new MutationObserver(()=>{if(install())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(()=>mo.disconnect(),5000);
