@@ -101,13 +101,17 @@
       items: [
         ['Reisevorbereitung', 'reisetipps.html#reisevorbereitung'],
         ['VISA & Einreise', 'reisetipps.html#visa'],
-        ['Flüge', 'reisetipps.html#flug'],
+        ['Flüge & Transport', 'reisetipps.html#flug'],
+        ['Wetter & beste Reisezeit', 'reisetipps.html#klima'],
         ['Gesundheit', 'reisetipps.html#gesundheit'],
-        ['Geld und Bezahlen', 'reisetipps.html#geld'],
-        ['Fotografieren', 'reisetipps.html#fotografieren'],
-        ['Packliste', 'reisetipps.html#packliste'],
-        ['FAQ', 'reisetipps.html#faq'],
-        ['Persönliche Beratung', 'kontakt.html#beratung']
+        ['Geld & Zahlungsmittel', 'reisetipps.html#geld'],
+        ['Fotografie', 'reisetipps.html#fotografieren'],
+        ['Kultur & Respekt', 'reisetipps.html#kultur'],
+        ['Religion', 'reisetipps.html#religion'],
+        ['Essen & Trinken', 'reisetipps.html#ernaehrung'],
+        ['Sehenswürdigkeiten', 'reisetipps.html#sehenswuerdigkeiten'],
+        ['Häufig gestellte Fragen', 'reisetipps.html#faq'],
+        ['Persönliche Tipps', 'reisetipps.html#beratung']
       ]
     },
     {
@@ -766,6 +770,32 @@
         .site-nav .navlinks.aj-separate-menus .nav-main-link,
         .site-nav .navlinks.aj-separate-menus .nav-arrow,
         .site-nav .navlinks.aj-separate-menus .drop-row{transition:none!important}
+      }
+
+      /* V19 — Reisetipps: all 13 page sections in a balanced desktop grid. */
+      @media (min-width:1081px){
+        .site-nav:not(.aj-nav-compact) .navlinks.aj-separate-menus .aj-menu-tips .nav-dropdown-menu{
+          width:min(560px,calc(100vw - 28px))!important;
+          max-width:560px!important;
+          max-height:calc(100vh - 125px)!important;
+          display:grid!important;
+          grid-template-columns:repeat(2,minmax(0,1fr))!important;
+          gap:5px 8px!important;
+          padding:11px!important;
+          overflow-y:auto!important;
+        }
+        .site-nav:not(.aj-nav-compact) .navlinks.aj-separate-menus .aj-menu-tips .nav-dropdown-menu>.drop-row{
+          min-width:0!important;
+          min-height:48px!important;
+          padding:10px 13px!important;
+          white-space:normal!important;
+          line-height:1.24!important;
+        }
+        .site-nav:not(.aj-nav-compact) .navlinks.aj-separate-menus .aj-menu-tips .nav-dropdown-menu>.drop-row:last-child{
+          grid-column:1/-1!important;
+          justify-content:center!important;
+          text-align:center!important;
+        }
       }
     `;
     document.head.appendChild(s);

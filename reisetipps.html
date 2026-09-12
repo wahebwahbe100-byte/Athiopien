@@ -4432,9 +4432,62 @@ html{scroll-behavior:smooth}
 <script id="aj-reisetipps-nav-order-v1">
 (function(){
   'use strict';
-  /* Targets for the nine existing rows created by aj-mega-menu.js.
-     Packliste lives inside Reisevorbereitung, so both rows open that card. */
-  const itemTargets=['reisevorbereitung','visa','flug','gesundheit','geld','fotografieren','reisevorbereitung','faq','beratung'];
+  const items=[
+    ['reisevorbereitung','Reisevorbereitung'],
+    ['visa','VISA & Einreise'],
+    ['flug','Flüge & Transport'],
+    ['klima','Wetter & beste Reisezeit'],
+    ['gesundheit','Gesundheit'],
+    ['geld','Geld & Zahlungsmittel'],
+    ['fotografieren','Fotografie'],
+    ['kultur','Kultur & Respekt'],
+    ['religion','Religion'],
+    ['ernaehrung','Essen & Trinken'],
+    ['sehenswuerdigkeiten','Sehenswürdigkeiten'],
+    ['faq','Häufig gestellte Fragen'],
+    ['beratung','Persönliche Tipps']
+  ];
+  function addStyle(){
+    if(document.getElementById('aj-reisetipps-menu-13-style'))return;
+    const style=document.createElement('style');
+    style.id='aj-reisetipps-menu-13-style';
+    style.textContent=`
+      @media (min-width:1081px){
+        .site-nav .navlinks .nav-dropdown-menu.aj-reisetipps-menu{
+          width:min(560px,calc(100vw - 28px))!important;
+          max-width:560px!important;
+          max-height:calc(100vh - 125px)!important;
+          display:grid!important;
+          grid-template-columns:repeat(2,minmax(0,1fr))!important;
+          gap:5px 8px!important;
+          padding:11px!important;
+          overflow-y:auto!important;
+        }
+        .site-nav .navlinks .aj-reisetipps-menu>.drop-row{
+          min-width:0!important;
+          min-height:48px!important;
+          padding:10px 13px!important;
+          white-space:normal!important;
+          line-height:1.24!important;
+        }
+        .site-nav .navlinks .aj-reisetipps-menu>.drop-row:last-child{
+          grid-column:1/-1!important;
+          justify-content:center!important;
+          text-align:center!important;
+        }
+      }
+      @media (max-width:1080px){
+        .site-nav .navlinks .nav-dropdown.is-open>.nav-dropdown-menu.aj-reisetipps-menu{
+          display:grid!important;
+          grid-template-columns:1fr!important;
+          gap:3px!important;
+          max-height:min(68vh,620px)!important;
+          overflow-y:auto!important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
   function closeMenus(){
     document.querySelectorAll('.nav-dropdown.is-open').forEach(x=>x.classList.remove('is-open'));
     const nav=document.querySelector('.site-nav .navlinks');nav&&nav.classList.remove('open');
@@ -4466,17 +4519,22 @@ html{scroll-behavior:smooth}
     }));
   }
   function install(){
+    addStyle();
     const main=document.querySelector('.site-nav .navlinks [data-menu-top="tips"],.site-nav .navlinks [data-page="reisetipps.html"],.site-nav .navlinks .aj-menu-tips>.nav-main-link');
     const drop=main&&main.closest('.nav-dropdown');
     const menu=drop&&drop.querySelector(':scope > .nav-dropdown-menu');
     if(!main||!drop||!menu)return false;
     const hereIsTips=/\/reisetipps\.html?$/i.test(location.pathname);
     const base=hereIsTips?(location.pathname.split('/').pop()||'reisetipps.html'):(main.getAttribute('href')||'reisetipps.html').split('#')[0];
-    const links=[...menu.querySelectorAll(':scope > a.drop-row')];if(!links.length)return false;
-    links.forEach((a,index)=>{
-      const id=itemTargets[index];if(!id)return;
-      a.setAttribute('href',base+'#'+id);
-      a.dataset.reisetippTarget=id;
+    menu.classList.remove('compact');
+    menu.classList.add('aj-reisetipps-menu');
+    const html=items.map(([id,label])=>`<a class="drop-row" href="${base}#${id}" data-reisetipp-target="${id}"><span>${label}</span></a>`).join('');
+    if(menu.dataset.reisetippsMenuVersion!=='13'||menu.querySelectorAll(':scope > a.drop-row').length!==items.length){
+      menu.innerHTML=html;
+      menu.dataset.reisetippsMenuVersion='13';
+    }
+    const links=[...menu.querySelectorAll(':scope > a.drop-row')];
+    links.forEach(a=>{
       if(a.dataset.reisetippDirectReady==='1')return;
       a.dataset.reisetippDirectReady='1';
       a.addEventListener('click',activateTipLink,true);
