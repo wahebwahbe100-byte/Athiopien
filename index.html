@@ -7684,5 +7684,138 @@ body.top-strip-collapsed .site-nav .nav-actions .langbtn{
 }
 </style>
 
+
+<style id="aj-home-scrolled-nav-perfect-center-v1">
+/* Homepage desktop: when the header becomes sticky/compact, keep the six
+   main navigation items geometrically centered in the viewport. The logo
+   and action buttons stay anchored to their own sides and no longer push
+   the menu off-center. */
+@media (min-width:1181px){
+  html body .site-nav.scrolled .nav-inner,
+  html body.top-strip-collapsed .site-nav .nav-inner{
+    position:relative!important;
+  }
+  html body .site-nav.scrolled .navlinks.aj-separate-menus,
+  html body.top-strip-collapsed .site-nav .navlinks.aj-separate-menus{
+    position:absolute!important;
+    left:50%!important;
+    right:auto!important;
+    top:50%!important;
+    width:max-content!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+    transform:translate(-50%,-50%)!important;
+    justify-content:center!important;
+    gap:14px!important;
+    z-index:6!important;
+  }
+  html body .site-nav.scrolled .navlinks.aj-separate-menus > .nav-dropdown:first-child,
+  html body.top-strip-collapsed .site-nav .navlinks.aj-separate-menus > .nav-dropdown:first-child{
+    margin-left:0!important;
+  }
+}
+
+/* Medium laptops: keep the same visual centering while tightening spacing
+   enough to avoid collisions with the logo and right-side controls. */
+@media (min-width:821px) and (max-width:1180px){
+  html body .site-nav.scrolled .nav-inner,
+  html body.top-strip-collapsed .site-nav .nav-inner{
+    position:relative!important;
+  }
+  html body .site-nav.scrolled .navlinks.aj-separate-menus,
+  html body.top-strip-collapsed .site-nav .navlinks.aj-separate-menus{
+    position:absolute!important;
+    left:50%!important;
+    right:auto!important;
+    top:50%!important;
+    width:max-content!important;
+    max-width:calc(100vw - 350px)!important;
+    margin:0!important;
+    padding:0!important;
+    transform:translate(-50%,-50%)!important;
+    justify-content:center!important;
+    gap:5px!important;
+    z-index:6!important;
+  }
+  html body .site-nav.scrolled .navlinks.aj-separate-menus > .nav-dropdown:first-child,
+  html body.top-strip-collapsed .site-nav .navlinks.aj-separate-menus > .nav-dropdown:first-child{
+    margin-left:0!important;
+  }
+  html body .site-nav.scrolled .navlinks.aj-separate-menus .nav-main-link,
+  html body.top-strip-collapsed .site-nav .navlinks.aj-separate-menus .nav-main-link{
+    font-size:.60rem!important;
+    gap:3px!important;
+  }
+}
+</style>
+
+
+<style id="aj-home-scrolled-menu-left-logo-bigger-v2">
+/* Homepage fine tuning requested:
+   - move the six-item menu a little to the left while scrolled
+   - make the compact logo slightly larger
+   This is intentionally last so it overrides earlier header experiments. */
+@media (min-width:1181px){
+  html body .site-nav.scrolled .navlinks.aj-separate-menus,
+  html body.top-strip-collapsed .site-nav .navlinks.aj-separate-menus{
+    left:49%!important;
+    transform:translate(-50%,-50%)!important;
+  }
+
+  html body .site-nav.scrolled .brand,
+  html body.top-strip-collapsed .site-nav .brand{
+    width:120px!important;
+    min-width:120px!important;
+    height:76px!important;
+  }
+  html body .site-nav.scrolled .brand-emblem,
+  html body .site-nav.scrolled .brand-emblem img,
+  html body .site-nav.scrolled .brand-logo,
+  html body.top-strip-collapsed .site-nav .brand-emblem,
+  html body.top-strip-collapsed .site-nav .brand-emblem img,
+  html body.top-strip-collapsed .site-nav .brand-logo{
+    width:120px!important;
+    min-width:120px!important;
+    max-width:120px!important;
+    height:76px!important;
+    min-height:76px!important;
+    max-height:76px!important;
+    object-fit:contain!important;
+    object-position:center!important;
+  }
+}
+
+@media (min-width:821px) and (max-width:1180px){
+  html body .site-nav.scrolled .navlinks.aj-separate-menus,
+  html body.top-strip-collapsed .site-nav .navlinks.aj-separate-menus{
+    left:49%!important;
+    transform:translate(-50%,-50%)!important;
+  }
+
+  html body .site-nav.scrolled .brand,
+  html body.top-strip-collapsed .site-nav .brand{
+    width:104px!important;
+    min-width:104px!important;
+    height:68px!important;
+  }
+  html body .site-nav.scrolled .brand-emblem,
+  html body .site-nav.scrolled .brand-emblem img,
+  html body .site-nav.scrolled .brand-logo,
+  html body.top-strip-collapsed .site-nav .brand-emblem,
+  html body.top-strip-collapsed .site-nav .brand-emblem img,
+  html body.top-strip-collapsed .site-nav .brand-logo{
+    width:104px!important;
+    min-width:104px!important;
+    max-width:104px!important;
+    height:68px!important;
+    min-height:68px!important;
+    max-height:68px!important;
+    object-fit:contain!important;
+    object-position:center!important;
+  }
+}
+</style>
+
 </body>
 </html>
