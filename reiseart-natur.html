@@ -1478,6 +1478,55 @@ body.top-strip-collapsed .site-nav .nav-dropdown-menu .drop-row:hover{color:#0e3
 <link rel="stylesheet" href="aj-client-enhancements-trip.css?v=4"><link rel="stylesheet" href="aj-compact-ui-v1.css?v=1">
 <link rel="stylesheet" href="aj-responsive-stability.css?v=5">
 <link rel="stylesheet" href="aj-whatsapp.css?v=3">
+
+<style id="aj-promo-homepage-only-v1">
+/* Harar announcement strip is intentionally shown only on index.html.
+   On inner pages the navigation must start at the very top; do not reserve the old 42px promo-strip offset. */
+.site-top{display:none!important;height:0!important;min-height:0!important;}
+.site-nav,.site-nav.scrolled,body.top-strip-collapsed .site-nav,body.top-strip-collapsed .site-nav.scrolled{top:0!important;}
+</style>
+
+<style id="aj-inner-header-no-gap-v2">
+/* Inner pages: promo is homepage-only. Reserve exactly the visible navigation height, not the old 42px promo + nav height. */
+html body.aj-index-shell-page .site-top{display:none!important;height:0!important;min-height:0!important;}
+html body.aj-index-shell-page .site-nav,
+html body.aj-index-shell-page .site-nav.scrolled,
+html body.aj-index-shell-page.top-strip-collapsed .site-nav,
+html body.aj-index-shell-page.top-strip-collapsed .site-nav.scrolled{top:0!important;}
+@media (min-width:769px){
+  html body.aj-index-shell-page [data-shell="header"]{display:block!important;height:64px!important;min-height:64px!important;}
+}
+@media (max-width:768px){
+  html body.aj-index-shell-page [data-shell="header"]{display:block!important;height:76px!important;min-height:76px!important;}
+}
+</style>
+<script id="aj-inner-header-no-gap-sync-v2">
+(function(){
+  'use strict';
+  function syncInnerHeaderHeight(){
+    var body=document.body;
+    if(!body || !body.classList.contains('aj-index-shell-page')) return;
+    var shell=document.querySelector('[data-shell="header"]');
+    var nav=document.querySelector('.site-nav');
+    if(!shell || !nav) return;
+    var h=Math.ceil(nav.getBoundingClientRect().height);
+    if(h>0 && h<180){
+      shell.style.setProperty('height',h+'px','important');
+      shell.style.setProperty('min-height',h+'px','important');
+    }
+  }
+  function boot(){
+    syncInnerHeaderHeight();
+    [0,50,150,350,800,1600].forEach(function(ms){setTimeout(syncInnerHeaderHeight,ms)});
+    window.addEventListener('resize',syncInnerHeaderHeight,{passive:true});
+    var shell=document.querySelector('[data-shell="header"]');
+    if(shell && 'MutationObserver' in window){
+      new MutationObserver(syncInnerHeaderHeight).observe(shell,{childList:true,subtree:true});
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+})();
+</script>
 </head><body class="aj-index-shell-page aj-no-global-promo" data-aj-route="reiseart-natur"><div data-shell="header"></div><main>
 
 <section class="trip-photo-gallery" id="tripPhotoGallery" aria-label="Reisebilder">
@@ -2996,4 +3045,308 @@ body.top-strip-collapsed .site-nav .brand-logo{
 <script src="aj-trip-mobile-detail-fix.js?v=4"></script>
 <script src="aj-responsive-stability.js?v=4" defer></script>
 <script defer src="aj-whatsapp.js?v=1"></script>
+<script id="aj-reisetipps-nav-order-v1">
+(function(){
+  'use strict';
+  const items=[
+    ['reisevorbereitung','Reisevorbereitung'],['visa','Visum und Einreise'],['flug','Flüge und Transport'],['klima','Wetter und beste Reisezeit'],
+    ['gesundheit','Gesundheit'],['geld','Geld und Zahlungsmittel'],['fotografieren','Fotografie'],['kultur','Kultur und Respekt'],
+    ['religion','Religion'],['ernaehrung','Essen und Trinken'],['sehenswuerdigkeiten','Sehenswürdigkeiten'],['faq','Häufig gestellte Fragen'],['beratung','Persönliche Tipps']
+  ];
+  function addStyle(){
+    if(document.getElementById('aj-reisetipps-nav-order-style-v1'))return;
+    const s=document.createElement('style');s.id='aj-reisetipps-nav-order-style-v1';s.textContent=`
+      @media(min-width:769px){
+        .nav-dropdown-menu.aj-reisetipps-menu{left:auto!important;right:-32px!important;width:min(680px,calc(100vw - 30px))!important;max-width:680px!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important;padding:10px!important}
+        .nav-dropdown-menu.aj-reisetipps-menu .drop-row{min-width:0!important;min-height:52px!important;padding:9px 11px!important;white-space:normal!important;line-height:1.22!important;align-items:center!important}
+        .nav-dropdown-menu.aj-reisetipps-menu .drop-row:nth-child(13){grid-column:1/-1!important;justify-content:center!important;text-align:center!important}
+      }
+      @media(max-width:768px){
+        .nav-dropdown-menu.aj-reisetipps-menu{display:grid!important;grid-template-columns:1fr!important;gap:3px!important;overflow-y:auto!important;max-height:min(68vh,620px)!important}
+        .nav-dropdown.is-open>.nav-dropdown-menu.aj-reisetipps-menu{max-height:min(68vh,620px)!important}
+        .nav-dropdown-menu.aj-reisetipps-menu .drop-row{min-height:44px!important;padding:9px 11px!important;white-space:normal!important}
+      }
+    `;document.head.appendChild(s);
+  }
+  function install(){
+    addStyle();
+    const main=document.querySelector('.site-nav .navlinks [data-page="reisetipps.html"]');
+    const drop=main&&main.closest('.nav-dropdown');
+    const menu=drop&&drop.querySelector(':scope > .nav-dropdown-menu');
+    if(!main||!drop||!menu)return false;
+    const base=(main.getAttribute('href')||'reisetipps.html').split('#')[0];
+    menu.classList.remove('compact');menu.classList.add('aj-reisetipps-menu');
+    const html=items.map(([id,label])=>`<a class="drop-row" href="${base}#${id}" data-reisetipp-target="${id}"><span>${label}</span></a>`).join('');
+    if(menu.dataset.reisetippsOrdered!=='1'||menu.innerHTML!==html){menu.innerHTML=html;menu.dataset.reisetippsOrdered='1'}
+    return true;
+  }
+  function closeMenus(){
+    document.querySelectorAll('.nav-dropdown.is-open').forEach(x=>x.classList.remove('is-open'));
+    const nav=document.querySelector('.site-nav .navlinks');nav&&nav.classList.remove('open');
+    document.body.classList.remove('menu-locked');
+    const btn=document.querySelector('.site-nav .menuBtn');if(btn){btn.classList.remove('menu-open');btn.setAttribute('aria-expanded','false')}
+  }
+  document.addEventListener('click',function(e){
+    const a=e.target.closest('.aj-reisetipps-menu a[data-reisetipp-target]');if(!a)return;
+    let u,cur;try{u=new URL(a.getAttribute('href'),location.href);cur=new URL(location.href)}catch(_){return}
+    if(!/reisetipps\.html$/i.test(cur.pathname)||u.pathname!==cur.pathname||!u.hash)return;
+    const target=document.getElementById(u.hash.slice(1));if(!target)return;
+    e.preventDefault();closeMenus();
+    const btn=target.querySelector(':scope > .tip-accordion-toggle');
+    if(btn&&btn.getAttribute('aria-expanded')!=='true'){btn.dataset.skipAutoScroll='1';btn.click();delete btn.dataset.skipAutoScroll}
+    try{history.replaceState(null,'',u.hash)}catch(_){}
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{const top=target.getBoundingClientRect().top+scrollY-122;scrollTo({top:Math.max(0,top),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}));
+  },true);
+  function boot(){
+    if(install())return;
+    const mo=new MutationObserver(()=>{if(install())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});setTimeout(()=>mo.disconnect(),5000);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+})();
+</script>
+
+<style id="aj-harar-promo-strip-v1">
+@keyframes ajHararShine{0%,62%{transform:translateX(-165%) skewX(-18deg);opacity:0}70%{opacity:.78}88%,100%{transform:translateX(680%) skewX(-18deg);opacity:0}}
+@keyframes ajHararBadgeGlow{0%,100%{box-shadow:inset 0 0 0 1px rgba(255,241,176,.5),0 0 0 rgba(247,196,87,0);transform:translateZ(0) scale(1)}50%{box-shadow:inset 0 0 0 1px rgba(255,248,205,.8),0 0 13px rgba(247,196,87,.24);transform:translateZ(0) scale(1.025)}}
+@keyframes ajHararSceneDrift{0%{background-position:48% 48%}100%{background-position:54% 52%}}
+@keyframes ajHararPlaneMove{0%{transform:translate3d(-18px,1px,0) rotate(-2deg);opacity:0}16%{opacity:.78}72%{opacity:.78}100%{transform:translate3d(150px,-4px,0) rotate(-2deg);opacity:0}}
+@keyframes ajHararLinePulse{0%,100%{opacity:.22;transform:scaleX(.88)}50%{opacity:.68;transform:scaleX(1)}}
+@media (min-width:769px){
+  .site-top{height:42px!important;min-height:42px!important;background:#082f49!important;border:0!important;box-shadow:0 6px 18px rgba(4,30,47,.18)!important;overflow:hidden!important}
+  .site-top>.container,.site-top .promo-top-container{width:100%!important;max-width:none!important;height:42px!important;min-height:42px!important;padding:0!important;margin:0!important}
+  .site-top .promo-banner{position:relative!important;width:100%!important;height:42px!important;min-height:42px!important;overflow:hidden!important;display:block!important}
+  .site-top .promo-banner-inner{position:relative!important;width:100%!important;height:42px!important;min-height:42px!important;padding:0!important;margin:0!important;display:block!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:hidden!important}
+  .aj-harar-promo{position:relative;isolation:isolate;width:100%;height:42px;display:flex;align-items:center;gap:13px;padding:0 max(18px,calc((100vw - 1460px)/2));padding-right:max(255px,calc((100vw - 1460px)/2 + 238px));box-sizing:border-box;color:#fff;text-decoration:none!important;white-space:nowrap;overflow:hidden;background:linear-gradient(100deg,#05283f 0%,#083754 48%,#0b4665 74%,#103f59 100%)}
+  .aj-harar-promo:before{content:"";position:absolute;z-index:2;top:-35%;left:0;width:70px;height:170%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,226,144,0),rgba(255,226,144,.31),rgba(255,255,255,.24),rgba(255,226,144,0),transparent);filter:blur(1px);animation:ajHararShine 7.5s ease-in-out infinite}
+  .aj-harar-promo:after{content:"";position:absolute;z-index:0;inset:0;pointer-events:none;background:radial-gradient(circle at 13% 50%,rgba(248,198,87,.12),transparent 22%),linear-gradient(180deg,rgba(255,255,255,.035),transparent 55%,rgba(0,0,0,.07))}
+  .aj-harar-promo>*{position:relative;z-index:4}
+  .aj-harar-scene{position:absolute!important;z-index:1!important;right:0;top:0;width:290px;height:42px;background-image:url('harar-banner-scene.webp');background-size:cover;background-repeat:no-repeat;background-position:50% 50%;pointer-events:none;animation:ajHararSceneDrift 11s ease-in-out infinite alternate;filter:saturate(.98) contrast(1.03)}
+  .aj-harar-scene:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0b4665 0%,rgba(11,70,101,.86) 11%,rgba(11,70,101,.28) 34%,rgba(11,70,101,0) 58%),linear-gradient(180deg,rgba(6,37,57,.05),rgba(6,37,57,.12));pointer-events:none}
+  .aj-harar-badge{display:inline-flex;align-items:center;justify-content:center;height:28px;padding:0 14px;border-radius:999px;background:linear-gradient(135deg,#ffe08a 0%,#f4c252 58%,#eeb03d 100%);color:#07324b;font:900 12px/1 'Manrope',Arial,sans-serif;letter-spacing:.02em;animation:ajHararBadgeGlow 3.4s ease-in-out infinite}
+  .aj-harar-title{display:inline-flex;align-items:baseline;gap:5px;font:700 21px/1 'Playfair Display',Georgia,serif;color:#fff;letter-spacing:-.02em;text-shadow:0 1px 2px rgba(0,0,0,.16);margin-right:3px}
+  .aj-harar-title b{font-style:normal;font-weight:700;color:#f4c457}
+  .aj-harar-sep{width:1px;height:25px;background:linear-gradient(180deg,transparent,rgba(244,196,87,.82),transparent);flex:0 0 1px}
+  .aj-harar-fact{display:inline-flex;align-items:center;gap:7px;color:#f8fbfd;font:700 12.2px/1 'Manrope',Arial,sans-serif;text-shadow:0 1px 1px rgba(0,0,0,.12)}
+  .aj-harar-ico{width:25px;height:25px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ffe08a,#efb43e);color:#082f49;font:900 13px/1 Arial,sans-serif;box-shadow:inset 0 0 0 1px rgba(255,247,199,.55),0 1px 5px rgba(0,0,0,.12)}
+  .aj-harar-date .aj-harar-ico{border-radius:7px;font-size:14px}
+  .aj-harar-route{position:absolute!important;z-index:2!important;right:260px;bottom:4px;width:176px;height:1px;transform-origin:right center;background:linear-gradient(90deg,transparent,rgba(244,196,87,.8),rgba(255,224,138,.36),transparent);pointer-events:none;animation:ajHararLinePulse 4.6s ease-in-out infinite}
+  .aj-harar-moving-plane{position:absolute;right:95px;bottom:7px;z-index:3;color:#f6cc69;font:700 11px/1 Arial,sans-serif;pointer-events:none;text-shadow:0 0 8px rgba(246,204,105,.26);animation:ajHararPlaneMove 7s ease-in-out infinite}
+  .aj-harar-promo:hover{color:#fff!important;filter:brightness(1.045)}
+  .aj-harar-promo:hover .aj-harar-scene{filter:saturate(1.04) contrast(1.04) brightness(1.02)}
+}
+@media (min-width:769px) and (max-width:1240px){
+  .aj-harar-promo{gap:9px;padding-left:16px;padding-right:198px}.aj-harar-scene{width:220px}.aj-harar-title{font-size:18px}.aj-harar-fact{font-size:10.7px}.aj-harar-badge{height:26px;padding:0 10px;font-size:10px}.aj-harar-ico{width:22px;height:22px;font-size:11px}.aj-harar-route{right:190px;width:120px}.aj-harar-moving-plane{right:64px}
+}
+@media (min-width:769px) and (max-width:980px){
+  .aj-harar-price,.aj-harar-price-sep{display:none!important}.aj-harar-promo{padding-right:145px}.aj-harar-scene{width:160px}.aj-harar-title{font-size:17px}.aj-harar-route{right:135px;width:86px}.aj-harar-moving-plane{display:none}
+}
+@media (max-width:768px){.site-top{display:none!important}}
+@media (prefers-reduced-motion:reduce){.aj-harar-promo:before,.aj-harar-badge,.aj-harar-scene,.aj-harar-route,.aj-harar-moving-plane{animation:none!important}}
+</style>
+
+<script id="aj-harar-promo-strip-script-v1">
+(function(){
+  function applyHararPromo(){
+    var top=document.querySelector('[data-shell="header"] .site-top')||document.querySelector('.site-top');
+    if(!top)return false;
+    var banner=top.querySelector('.promo-banner');
+    if(!banner){
+      top.innerHTML='<div class="container promo-top-container"><aside class="promo-banner" id="promoBanner"><div class="promo-banner-inner"></div></aside></div>';
+      banner=top.querySelector('.promo-banner');
+    }
+    var inner=banner.querySelector('.promo-banner-inner');
+    if(!inner)return false;
+    if(inner.querySelector('.aj-harar-promo'))return true;
+    inner.innerHTML='<a class="aj-harar-promo" href="reise-harar.html" aria-label="Harar und Ostäthiopien – Angebot ansehen">'+
+      '<span class="aj-harar-scene" aria-hidden="true"></span>'+
+      '<span class="aj-harar-route" aria-hidden="true"></span>'+
+      '<span class="aj-harar-moving-plane" aria-hidden="true">✈</span>'+
+      '<span class="aj-harar-badge">NEU 2027</span>'+
+      '<span class="aj-harar-title"><span>Harar</span><b>&amp;</b><span>Ostäthiopien</span></span>'+
+      '<span class="aj-harar-sep"></span>'+
+      '<span class="aj-harar-fact aj-harar-date"><span class="aj-harar-ico">▦</span><span>3 Tage / 2 Nächte</span></span>'+
+      '<span class="aj-harar-sep aj-harar-price-sep"></span>'+
+      '<span class="aj-harar-fact aj-harar-price"><span class="aj-harar-ico">€</span><span>ab 899 € p. P. im DZ</span></span>'+
+      '<span class="aj-harar-sep"></span>'+
+      '<span class="aj-harar-fact aj-harar-flight"><span class="aj-harar-ico">✈</span><span>Inlandsflug inklusive</span></span>'+
+      '</a>';
+    return true;
+  }
+  function start(){
+    applyHararPromo();
+    [30,120,350,900,1800].forEach(function(ms){setTimeout(applyHararPromo,ms)});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+</script>
+
+<style id="aj-inner-pages-fixed-logo-v1">
+/* Inner pages: keep the navigation and logo at one stable size while scrolling. */
+@media (min-width:1181px){
+  html body.aj-index-shell-page .site-nav .nav-inner,
+  html body.aj-index-shell-page .site-nav.scrolled .nav-inner,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .nav-inner,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav.scrolled .nav-inner{
+    height:100px!important;
+    min-height:100px!important;
+    padding-left:176px!important;
+  }
+  html body.aj-index-shell-page .site-nav .brand,
+  html body.aj-index-shell-page .site-nav.scrolled .brand,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav.scrolled .brand,
+  html body.aj-index-shell-page .site-nav .brand-index-logo,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-index-logo{
+    left:8px!important;
+    top:50%!important;
+    width:154px!important;
+    min-width:154px!important;
+    height:92px!important;
+    min-height:92px!important;
+    max-height:92px!important;
+    transform:translateY(-50%)!important;
+    overflow:visible!important;
+  }
+  html body.aj-index-shell-page .site-nav .brand-emblem,
+  html body.aj-index-shell-page .site-nav .brand-emblem img,
+  html body.aj-index-shell-page .site-nav .brand-logo,
+  html body.aj-index-shell-page .site-nav .brand img,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-emblem,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-emblem img,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-logo,
+  html body.aj-index-shell-page .site-nav.scrolled .brand img,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand-emblem,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand-emblem img,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand-logo,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand img{
+    width:154px!important;
+    min-width:154px!important;
+    max-width:154px!important;
+    height:92px!important;
+    min-height:92px!important;
+    max-height:92px!important;
+    object-fit:contain!important;
+    object-position:center!important;
+    transform:none!important;
+    clip-path:none!important;
+    -webkit-clip-path:none!important;
+  }
+}
+@media (min-width:769px) and (max-width:1180px){
+  html body.aj-index-shell-page .site-nav .nav-inner,
+  html body.aj-index-shell-page .site-nav.scrolled .nav-inner,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .nav-inner,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav.scrolled .nav-inner{
+    height:92px!important;
+    min-height:92px!important;
+    padding-left:158px!important;
+  }
+  html body.aj-index-shell-page .site-nav .brand,
+  html body.aj-index-shell-page .site-nav.scrolled .brand,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav.scrolled .brand,
+  html body.aj-index-shell-page .site-nav .brand-index-logo,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-index-logo{
+    left:6px!important;
+    top:50%!important;
+    width:140px!important;
+    min-width:140px!important;
+    height:84px!important;
+    min-height:84px!important;
+    max-height:84px!important;
+    transform:translateY(-50%)!important;
+    overflow:visible!important;
+  }
+  html body.aj-index-shell-page .site-nav .brand-emblem,
+  html body.aj-index-shell-page .site-nav .brand-emblem img,
+  html body.aj-index-shell-page .site-nav .brand-logo,
+  html body.aj-index-shell-page .site-nav .brand img,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-emblem,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-emblem img,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-logo,
+  html body.aj-index-shell-page .site-nav.scrolled .brand img,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand-emblem,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand-emblem img,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand-logo,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand img{
+    width:140px!important;
+    min-width:140px!important;
+    max-width:140px!important;
+    height:84px!important;
+    min-height:84px!important;
+    max-height:84px!important;
+    object-fit:contain!important;
+    object-position:center!important;
+    transform:none!important;
+    clip-path:none!important;
+    -webkit-clip-path:none!important;
+  }
+}
+@media (max-width:768px){
+  html body.aj-index-shell-page .site-nav .nav-inner,
+  html body.aj-index-shell-page .site-nav.scrolled .nav-inner,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .nav-inner,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav.scrolled .nav-inner{
+    height:76px!important;
+    min-height:76px!important;
+    padding-left:128px!important;
+  }
+  html body.aj-index-shell-page .site-nav .brand,
+  html body.aj-index-shell-page .site-nav.scrolled .brand,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav.scrolled .brand,
+  html body.aj-index-shell-page .site-nav .brand-index-logo,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-index-logo{
+    left:2px!important;
+    top:1px!important;
+    width:132px!important;
+    min-width:132px!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    transform:none!important;
+    overflow:visible!important;
+  }
+  html body.aj-index-shell-page .site-nav .brand-emblem,
+  html body.aj-index-shell-page .site-nav .brand-emblem img,
+  html body.aj-index-shell-page .site-nav .brand-logo,
+  html body.aj-index-shell-page .site-nav .brand img,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-emblem,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-emblem img,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-logo,
+  html body.aj-index-shell-page .site-nav.scrolled .brand img,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand-emblem,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand-logo,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand img{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    object-fit:contain!important;
+    object-position:left top!important;
+    transform:none!important;
+    clip-path:none!important;
+    -webkit-clip-path:none!important;
+  }
+  html body.aj-index-shell-page .site-nav .navlinks{top:76px!important;}
+  html body.aj-index-shell-page #langMenu.langmenu,
+  html body.aj-index-shell-page #currencyMenu.currmenu{top:82px!important;}
+}
+@media (max-width:390px){
+  html body.aj-index-shell-page .site-nav .nav-inner,
+  html body.aj-index-shell-page .site-nav.scrolled .nav-inner,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .nav-inner{padding-left:112px!important;}
+  html body.aj-index-shell-page .site-nav .brand,
+  html body.aj-index-shell-page .site-nav.scrolled .brand,
+  html body.aj-index-shell-page.top-strip-collapsed .site-nav .brand,
+  html body.aj-index-shell-page .site-nav .brand-index-logo,
+  html body.aj-index-shell-page .site-nav.scrolled .brand-index-logo{
+    width:116px!important;
+    min-width:116px!important;
+  }
+}
+</style>
+
 </body></html>
